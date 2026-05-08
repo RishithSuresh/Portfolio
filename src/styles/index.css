@@ -1,0 +1,135 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ───────────────────────────────────────────────────────────
+   ROOT THEME
+   ─────────────────────────────────────────────────────────── */
+:root {
+  --ink-900: #0a0e14;
+  --ink-850: #0d1117;
+  --ink-800: #111827;
+  --ink-700: #1c2431;
+  --emerald: #2e8b57;
+  --cyan: #5bc0be;
+  --silver: #d9e2ec;
+  --silver-dim: #8fa0b3;
+
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  background: var(--ink-850);
+  color: var(--silver);
+  font-family: 'General Sans', Inter, Manrope, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+body {
+  /* Subtle radial vignette so the canvas always feels framed */
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(91, 192, 190, 0.06), transparent 60%),
+    radial-gradient(ellipse at 50% 100%, rgba(46, 139, 87, 0.05), transparent 60%),
+    var(--ink-850);
+}
+
+/* Custom cursor active — hide system cursor on capable devices only */
+@media (hover: hover) and (pointer: fine) {
+  body.cursor-active,
+  body.cursor-active * {
+    cursor: none !important;
+  }
+}
+
+::selection {
+  background: rgba(91, 192, 190, 0.25);
+  color: var(--silver);
+}
+
+/* Typography utilities */
+.font-display { font-family: 'Clash Display', 'Cabinet Grotesk', 'Space Grotesk', system-ui, sans-serif; }
+.font-cabinet { font-family: 'Cabinet Grotesk', 'Space Grotesk', system-ui, sans-serif; }
+.font-mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+
+/* HUD label */
+.hud-label {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--silver-dim);
+}
+
+/* Hairline border helper */
+.hair {
+  border: 1px solid rgba(217, 226, 236, 0.08);
+}
+.hair-strong {
+  border: 1px solid rgba(217, 226, 236, 0.16);
+}
+
+/* Holographic glass surface */
+.glass {
+  background: linear-gradient(180deg, rgba(28, 36, 49, 0.55), rgba(13, 17, 23, 0.55));
+  backdrop-filter: blur(14px) saturate(120%);
+  -webkit-backdrop-filter: blur(14px) saturate(120%);
+  border: 1px solid rgba(217, 226, 236, 0.08);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 30px 60px -30px rgba(0, 0, 0, 0.6);
+}
+
+/* Soft holo gradient text */
+.text-holo {
+  background: linear-gradient(180deg, #eef2f7 0%, #d9e2ec 45%, #8fa0b3 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Cinematic film grain (very subtle) */
+.grain::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.85  0 0 0 0 0.89  0 0 0 0 0.93  0 0 0 0.6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  z-index: 80;
+}
+
+/* Scanline strip */
+.scanlines::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(217, 226, 236, 0.025) 0px,
+    rgba(217, 226, 236, 0.025) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  mix-blend-mode: overlay;
+}
+
+/* Scrollbar — minimal */
+::-webkit-scrollbar { width: 0; height: 0; }
+
+/* Lenis required */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}
