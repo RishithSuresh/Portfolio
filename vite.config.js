@@ -6,6 +6,7 @@ export default defineConfig({
   server: { port: 5173, host: true },
   build: {
     target: 'esnext',
+    chunkSizeWarningLimit: 800,
     rollupOptions: {
       output: {
         manualChunks: {
