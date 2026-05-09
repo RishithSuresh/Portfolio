@@ -149,7 +149,7 @@ export default function Landing() {
               <span className="hud-label">{identity.status}</span>
             </div>
 
-            <h1 className="font-display text-5xl leading-[0.95] text-luminous sm:text-7xl md:text-8xl lg:text-[120px]">
+            <h1 className="font-display text-5xl leading-[0.95] text-silver-soft drop-shadow-[0_0_18px_rgba(56,239,245,0.18)] sm:text-7xl md:text-8xl lg:text-[120px]">
               <RevealText delay={0.05} stagger={0.06}>{identity.name}</RevealText>
             </h1>
 
