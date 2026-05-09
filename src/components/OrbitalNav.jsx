@@ -3,9 +3,8 @@ import { useState } from 'react';
 import { useWorld } from '../context/WorldContext';
 import { zones } from '../data/portfolio';
 
-// Custom radial / orbital navigation.
-// Collapsed: a single pulsing "node" hub with the zone glyph.
-// Expanded: nodes orbit around it; selecting one transitions the world.
+// Bottom navigation — hub button expands into a clean frosted-glass pill
+// containing all zone nodes in a horizontal row. No more orbital clutter.
 export default function OrbitalNav() {
   const [open, setOpen] = useState(false);
   const { zone, setZone, ignited } = useWorld();
@@ -13,86 +12,131 @@ export default function OrbitalNav() {
 
   if (!ignited) return null;
 
-  const radius = 124;
-
   return (
-    <div className="pointer-events-none fixed bottom-10 left-1/2 z-50 -translate-x-1/2">
-      {/* Orbit ring */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: open ? 1 : 0, scale: open ? 1 : 0.9 }}
-        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-        className="pointer-events-none absolute left-1/2 top-1/2"
-        style={{ width: radius * 2, height: radius * 2, marginLeft: -radius, marginTop: -radius }}
-      >
-        <div className="absolute inset-0 rounded-full hair" />
-        <div className="absolute inset-3 rounded-full" style={{ border: '1px dashed rgba(217,226,236,0.08)' }} />
-      </motion.div>
+    <div className="pointer-events-none fixed bottom-8 left-1/2 z-50 -translate-x-1/2 flex flex-col items-center gap-3">
 
-      {/* Orbit nodes */}
+      {/* Expanded zone picker — slides up from hub */}
       <AnimatePresence>
-        {open &&
-          zones.map((z, i) => {
-            const angle = (-Math.PI / 2) + (i / zones.length) * Math.PI * 2;
-            const x = Math.cos(angle) * radius;
-            const y = Math.sin(angle) * radius;
-            const isActive = z.id === zone;
-            return (
-              <motion.button
-                key={z.id}
-                data-magnetic
-                onClick={() => { setZone(z.id); setOpen(false); }}
-                className="pointer-events-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
-                initial={{ x: 0, y: 0, opacity: 0, scale: 0.4 }}
-                animate={{ x, y, opacity: 1, scale: 1 }}
-                exit={{ x: 0, y: 0, opacity: 0, scale: 0.4 }}
-                transition={{ duration: 0.55, delay: i * 0.04, ease: [0.22, 1, 0.36, 1] }}
-              >
-                <div className="group relative flex flex-col items-center">
+        {open && (
+          <motion.div
+            key="nav-panel"
+            initial={{ opacity: 0, y: 20, scale: 0.92 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 16, scale: 0.94 }}
+            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+            className="pointer-events-auto flex items-center gap-1 rounded-2xl p-2"
+            style={{
+              background: 'rgba(13,17,23,0.82)',
+              border: '1px solid rgba(91,192,190,0.18)',
+              boxShadow: '0 8px 48px rgba(0,0,0,0.6), 0 0 0 1px rgba(91,192,190,0.06), inset 0 0 24px rgba(91,192,190,0.04)',
+              backdropFilter: 'blur(20px)',
+            }}
+          >
+            {zones.map((z, i) => {
+              const isActive = z.id === zone;
+              return (
+                <motion.button
+                  key={z.id}
+                  onClick={() => { setZone(z.id); setOpen(false); }}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.35, delay: i * 0.04, ease: [0.22, 1, 0.36, 1] }}
+                  className="group relative flex flex-col items-center gap-1.5 rounded-xl px-4 py-3 transition-all duration-200"
+                  style={{
+                    background: isActive
+                      ? 'rgba(91,192,190,0.12)'
+                      : 'transparent',
+                    border: isActive
+                      ? '1px solid rgba(91,192,190,0.28)'
+                      : '1px solid transparent',
+                  }}
+                  onMouseEnter={(e) => {
+                    if (!isActive) e.currentTarget.style.background = 'rgba(217,226,236,0.05)';
+                  }}
+                  onMouseLeave={(e) => {
+                    if (!isActive) e.currentTarget.style.background = 'transparent';
+                  }}
+                >
+                  {/* Glyph */}
                   <span
-                    className={`flex h-12 w-12 items-center justify-center rounded-full glass text-base transition-all duration-300 ${isActive ? 'text-cyan' : 'text-silver/80 group-hover:text-cyan'}`}
+                    className="text-base transition-all duration-200"
                     style={{
-                      boxShadow: isActive
-                        ? '0 0 24px rgba(91,192,190,0.35), inset 0 0 12px rgba(91,192,190,0.15)'
-                        : '0 10px 30px -16px rgba(0,0,0,0.6)',
+                      color: isActive ? 'rgba(91,192,190,1)' : 'rgba(217,226,236,0.5)',
+                      filter: isActive ? 'drop-shadow(0 0 6px rgba(91,192,190,0.6))' : 'none',
                     }}
                   >
                     {z.glyph}
                   </span>
-                  <span className="mt-2 hud-label text-[9px]">{z.label}</span>
-                </div>
-              </motion.button>
-            );
-          })}
+                  {/* Label */}
+                  <span
+                    className="hud-label text-[9px] transition-colors duration-200"
+                    style={{ color: isActive ? 'rgba(91,192,190,0.9)' : 'rgba(217,226,236,0.35)' }}
+                  >
+                    {z.label}
+                  </span>
+                  {/* Active underline */}
+                  {isActive && (
+                    <motion.span
+                      layoutId="nav-underline"
+                      className="absolute bottom-2 left-1/2 h-px w-4 -translate-x-1/2 rounded-full"
+                      style={{ background: 'rgba(91,192,190,0.8)', boxShadow: '0 0 6px rgba(91,192,190,0.6)' }}
+                    />
+                  )}
+                </motion.button>
+              );
+            })}
+          </motion.div>
+        )}
       </AnimatePresence>
 
-      {/* Hub button */}
+      {/* Hub / toggle button */}
       <motion.button
         data-magnetic
         onClick={() => setOpen((s) => !s)}
-        className="pointer-events-auto relative flex flex-col items-center"
-        whileTap={{ scale: 0.94 }}
+        className="pointer-events-auto flex flex-col items-center gap-2"
+        whileTap={{ scale: 0.92 }}
       >
+        {/* Orb */}
         <span
-          className="relative flex h-16 w-16 items-center justify-center rounded-full glass"
+          className="relative flex h-14 w-14 items-center justify-center rounded-full transition-all duration-300"
           style={{
-            boxShadow: '0 0 28px rgba(91,192,190,0.18), inset 0 0 16px rgba(91,192,190,0.10)',
+            background: open
+              ? 'linear-gradient(135deg, rgba(91,192,190,0.2), rgba(46,139,87,0.15))'
+              : 'rgba(13,17,23,0.7)',
+            border: `1px solid ${open ? 'rgba(91,192,190,0.45)' : 'rgba(217,226,236,0.12)'}`,
+            boxShadow: open
+              ? '0 0 32px rgba(91,192,190,0.22), inset 0 0 20px rgba(91,192,190,0.10)'
+              : '0 0 20px rgba(0,0,0,0.4)',
+            backdropFilter: 'blur(12px)',
           }}
         >
-          <span className="absolute inset-1 rounded-full hair" />
-          <span className="absolute inset-3 rounded-full hair" />
+          {/* inner rings */}
+          <span className="absolute inset-1.5 rounded-full" style={{ border: '1px solid rgba(217,226,236,0.06)' }} />
+          <span className="absolute inset-3 rounded-full" style={{ border: '1px solid rgba(217,226,236,0.04)' }} />
+
           <motion.span
-            key={active.id}
-            initial={{ opacity: 0, y: 4 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="font-display text-lg text-silver"
+            key={open ? 'close' : active.id}
+            initial={{ opacity: 0, rotate: -30, scale: 0.7 }}
+            animate={{ opacity: 1, rotate: 0, scale: 1 }}
+            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="font-display text-base"
+            style={{ color: open ? 'rgba(91,192,190,1)' : 'rgba(217,226,236,0.85)' }}
           >
-            {active.glyph}
+            {open ? '✕' : active.glyph}
           </motion.span>
         </span>
-        <span className="mt-3 hud-label">
-          {open ? 'Select zone' : `${active.label.toUpperCase()} · TAP TO TRAVEL`}
-        </span>
+
+        {/* Label beneath hub */}
+        <motion.span
+          key={open ? 'sel' : active.label}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.25 }}
+          className="hud-label text-[9px]"
+          style={{ color: 'rgba(217,226,236,0.35)' }}
+        >
+          {open ? 'SELECT ZONE' : `${active.label.toUpperCase()} · TAP`}
+        </motion.span>
       </motion.button>
     </div>
   );
