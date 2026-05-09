@@ -23,7 +23,7 @@ export default function Contact() {
   return (
     <SectionShell
       id="contact"
-      eyebrow="05 · UPLINK"
+      eyebrow="06 · UPLINK"
       title="Open a channel"
       kicker="Send a transmission. Channels stay quiet but never closed."
     >

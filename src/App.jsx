@@ -13,6 +13,7 @@ const WorldScene = lazy(() => import('./three/WorldScene'));
 const About = lazy(() => import('./sections/About'));
 const Projects = lazy(() => import('./sections/Projects'));
 const Skills = lazy(() => import('./sections/Skills'));
+const Certifications = lazy(() => import('./sections/Certifications'));
 const Experience = lazy(() => import('./sections/Experience'));
 const Contact = lazy(() => import('./sections/Contact'));
 
@@ -59,6 +60,7 @@ function Shell() {
             <About />
             <Projects />
             <Skills />
+            <Certifications />
             <Experience />
             <Contact />
 

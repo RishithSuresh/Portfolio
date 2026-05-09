@@ -8,7 +8,7 @@ export default function Experience() {
   return (
     <SectionShell
       id="experience"
-      eyebrow="04 · TRAJECTORY"
+      eyebrow="05 · TRAJECTORY"
       title="Mission log"
       kicker="A chronological dispatch of the operator's previous assignments and theatres of work."
     >

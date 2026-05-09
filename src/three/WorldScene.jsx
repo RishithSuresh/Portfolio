@@ -17,6 +17,7 @@ const ZONE_CAMERA = {
   about:      { pos: [-1.4, 0.6, 5.4], look: [0.4, 0.1, 0], fov: 36 },
   projects:   { pos: [1.6, -0.2, 5.6], look: [-0.2, 0, 0], fov: 40 },
   skills:     { pos: [0, 1.0, 5.2], look: [0, -0.2, 0], fov: 42 },
+  certifications: { pos: [1.0, 0.2, 5.0], look: [0.1, 0.1, 0], fov: 39 },
   experience: { pos: [-1.2, -0.8, 5.8], look: [0.2, 0.4, 0], fov: 38 },
   contact:    { pos: [0, 0, 4.6], look: [0, 0, 0],     fov: 34 },
 };

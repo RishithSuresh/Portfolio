@@ -11,6 +11,7 @@ const ZONE_MOOD = {
   about: 0.2,
   projects: 0.55,
   skills: 0.35,
+  certifications: 0.48,
   experience: 0.7,
   contact: 0.15,
 };

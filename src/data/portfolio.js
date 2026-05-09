@@ -35,8 +35,33 @@ export const zones = [
   { id: 'about', label: 'Identity', subtitle: 'Operator profile', glyph: '◉' },
   { id: 'projects', label: 'Vault', subtitle: 'Mission archive', glyph: '◆' },
   { id: 'skills', label: 'Constellation', subtitle: 'Skill matrix', glyph: '✦' },
+  { id: 'certifications', label: 'Credentials', subtitle: 'Proof stack', glyph: '⟡' },
   { id: 'experience', label: 'Trajectory', subtitle: 'Mission log', glyph: '⌖' },
   { id: 'contact', label: 'Uplink', subtitle: 'Open channel', glyph: '⌬' },
+];
+
+export const credentials = [
+  {
+    id: 'cred-01',
+    label: 'Academic credential',
+    issuer: 'BMS Institute of Technology',
+    detail: 'B.E. Computer Science · CGPA 8.80',
+    status: 'Verified in bio',
+  },
+  {
+    id: 'cred-02',
+    label: 'Leadership credential',
+    issuer: 'ARVR HUB',
+    detail: 'President · Apr 2025 — Present',
+    status: 'Ongoing role',
+  },
+  {
+    id: 'cred-03',
+    label: 'Technical credentials',
+    issuer: 'Portfolio focus',
+    detail: 'Full-stack, AI/ML, blockchain, security',
+    status: 'Active practice',
+  },
 ];
 
 export const skills = [
