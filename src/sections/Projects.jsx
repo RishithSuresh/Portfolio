@@ -147,6 +147,21 @@ function ProjectViewer({ project, onClose }) {
           <Detail k="Stack" v={project.stack.join(' · ')} />
           <Detail k="Year" v={String(project.year)} />
         </div>
+        {project.link && (
+          <a
+            href={project.link}
+            target="_blank"
+            rel="noreferrer"
+            className="mt-8 inline-flex items-center gap-2 rounded-full px-6 py-3 font-display text-sm tracking-widest text-silver-soft transition-all hover:text-cyan"
+            style={{
+              border: '1px solid rgba(91,192,190,0.4)',
+              background: 'linear-gradient(180deg, rgba(28,36,49,0.7), rgba(13,17,23,0.7))',
+              boxShadow: '0 0 20px rgba(91,192,190,0.12)',
+            }}
+          >
+            VIEW ON GITHUB <span className="text-cyan">↗</span>
+          </a>
+        )}
       </motion.div>
     </motion.div>
   );

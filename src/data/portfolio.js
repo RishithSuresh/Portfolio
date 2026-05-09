@@ -1,34 +1,33 @@
 // ─────────────────────────────────────────────────────────────
 // Single source of truth for portfolio content.
-// Replace these values with your own — everything in the UI
-// reads from here.
 // ─────────────────────────────────────────────────────────────
 
 export const identity = {
-  callsign: 'AETHER',
+  callsign: 'RISHITH',
   name: 'Rishith Suresh',
-  role: 'AI / Full-Stack Developer',
-  tagline: 'Architecting intelligent systems & cinematic interfaces.',
-  location: 'Earth · Remote',
-  status: 'AVAILABLE FOR MISSIONS',
-  bio: `I design and build intelligent products at the intersection of AI, full-stack
-engineering and motion design. From neural pipelines to choreographed
-interfaces, I treat every system as an experience.`,
+  role: 'Full-Stack & AI Developer',
+  tagline: 'Engineering intelligent systems at the edge of full-stack & AI.',
+  location: 'Bengaluru, India',
+  status: 'OPEN TO OPPORTUNITIES',
+  bio: `B.E. Computer Science student at BMS Institute of Technology (CGPA 8.80),
+building full-stack products, blockchain systems, and ML-powered tools.
+I blend backend depth with frontend craft — from RESTful APIs to
+real-time pipelines and neural networks.`,
 };
 
 export const stats = [
-  { label: 'Years in field', value: 6, suffix: '+' },
-  { label: 'Projects shipped', value: 42, suffix: '' },
-  { label: 'Models deployed', value: 17, suffix: '' },
-  { label: 'Cups of coffee', value: 9001, suffix: '' },
+  { label: 'Projects shipped', value: 5, suffix: '+' },
+  { label: 'APIs built', value: 28, suffix: '+' },
+  { label: 'CGPA', value: 8.80, suffix: '' },
+  { label: 'Hackathons', value: 3, suffix: '+' },
 ];
 
 export const attributes = [
-  { label: 'Architecture', value: 92 },
-  { label: 'AI / ML', value: 88 },
-  { label: 'Frontend craft', value: 95 },
-  { label: 'Motion design', value: 84 },
-  { label: 'DevOps', value: 76 },
+  { label: 'Full-Stack Development', value: 90 },
+  { label: 'AI / ML Engineering', value: 82 },
+  { label: 'Blockchain / Web3', value: 75 },
+  { label: 'Database Design', value: 85 },
+  { label: 'Security & DevOps', value: 72 },
 ];
 
 export const zones = [
@@ -41,80 +40,105 @@ export const zones = [
 ];
 
 export const skills = [
-  { name: 'TypeScript', group: 'Frontend', level: 0.95 },
-  { name: 'React', group: 'Frontend', level: 0.96 },
-  { name: 'Three.js / R3F', group: 'Frontend', level: 0.88 },
-  { name: 'GSAP', group: 'Frontend', level: 0.86 },
-  { name: 'GLSL', group: 'Frontend', level: 0.72 },
-  { name: 'Node.js', group: 'Backend', level: 0.9 },
-  { name: 'Python', group: 'Backend', level: 0.92 },
-  { name: 'Postgres', group: 'Backend', level: 0.84 },
-  { name: 'Redis', group: 'Backend', level: 0.78 },
-  { name: 'PyTorch', group: 'AI', level: 0.86 },
-  { name: 'LangChain', group: 'AI', level: 0.82 },
-  { name: 'Vector DBs', group: 'AI', level: 0.8 },
-  { name: 'Docker', group: 'Cloud', level: 0.84 },
-  { name: 'AWS', group: 'Cloud', level: 0.78 },
-  { name: 'Kubernetes', group: 'Cloud', level: 0.7 },
+  { name: 'Python', group: 'Languages', level: 0.90 },
+  { name: 'C', group: 'Languages', level: 0.82 },
+  { name: 'Solidity', group: 'Languages', level: 0.74 },
+  { name: 'Java', group: 'Languages', level: 0.78 },
+  { name: 'HTML / CSS', group: 'Frontend', level: 0.92 },
+  { name: 'JavaScript', group: 'Frontend', level: 0.88 },
+  { name: 'React', group: 'Frontend', level: 0.85 },
+  { name: 'Flutter', group: 'Frontend', level: 0.72 },
+  { name: 'Node.js', group: 'Backend', level: 0.88 },
+  { name: 'Express.js', group: 'Backend', level: 0.86 },
+  { name: 'SQL', group: 'Database', level: 0.84 },
+  { name: 'MongoDB', group: 'Database', level: 0.80 },
+  { name: 'Wireshark', group: 'Networking', level: 0.70 },
+  { name: 'Nessus', group: 'Networking', level: 0.68 },
+  { name: 'Blender', group: 'Tools', level: 0.65 },
+  { name: 'Figma', group: 'Tools', level: 0.75 },
 ];
 
 export const projects = [
   {
     id: 'p-01',
     code: 'M-001',
-    title: 'Helios Neural Engine',
-    summary: 'Realtime multi-agent orchestration platform for autonomous research workflows.',
-    role: 'Lead Engineer',
-    year: 2025,
-    stack: ['TypeScript', 'Node', 'LangGraph', 'Postgres', 'Redis'],
-    tags: ['AI', 'Infra'],
+    title: 'Grass-Roots',
+    summary: 'A transparent produce & pricing tracking system with 16 pages, 8 REST API routes, and a relational database of 15+ tables. Integrates blockchain payments via Solidity smart contracts and JWT-based auth with bcrypt encryption and 5+ security measures.',
+    role: 'Full-Stack Engineer',
+    year: 2024,
+    stack: ['Node.js', 'Express.js', 'SQL', 'Solidity', 'JWT', 'bcrypt'],
+    tags: ['Full-Stack', 'Blockchain'],
     accent: 'emerald',
+    link: 'https://github.com/RishithSuresh/Grass-Roots',
   },
   {
     id: 'p-02',
     code: 'M-002',
-    title: 'Aurora Interface Kit',
-    summary: 'A cinematic React component system with shader-driven motion primitives.',
-    role: 'Creator',
-    year: 2025,
-    stack: ['React', 'R3F', 'GLSL', 'Framer Motion'],
-    tags: ['Design Systems', 'Motion'],
+    title: 'Glow-Wise',
+    summary: 'Health metrics platform with 10+ relational tables ensuring 100% data integrity, 60+ pre-loaded food items with calorie tracking, and a Node.js backend with connection pooling (10 concurrent users), bcrypt encryption, and 6+ API endpoints.',
+    role: 'Backend Lead',
+    year: 2024,
+    stack: ['Node.js', 'SQL', 'bcrypt', 'REST API'],
+    tags: ['Health', 'Backend'],
     accent: 'cyan',
+    link: 'https://github.com/RishithSuresh/Glow-Wise',
   },
   {
     id: 'p-03',
     code: 'M-003',
-    title: 'Obsidian Vault OS',
-    summary: 'Encrypted personal knowledge OS with semantic search and live-graph navigation.',
-    role: 'Solo build',
+    title: 'Threat-Analyzer',
+    summary: 'AI-powered risk profiling tool processing 300 transactions via rule-based AML scoring, 6 REST APIs for uploads, alerts, patterns, summaries, and CSV exports, plus 3 configurable detection rules including $100K threshold and 24-hour frequency monitoring.',
+    role: 'AI / Backend Engineer',
     year: 2024,
-    stack: ['Rust', 'SvelteKit', 'Qdrant'],
-    tags: ['Tooling', 'AI'],
+    stack: ['Python', 'Node.js', 'REST API', 'ML'],
+    tags: ['AI', 'Security'],
     accent: 'silver',
+    link: 'https://github.com/RishithSuresh/Threat-Analyzer',
   },
   {
     id: 'p-04',
     code: 'M-004',
-    title: 'Lumen Live',
-    summary: 'Sub-100ms streaming inference for collaborative creative tooling.',
-    role: 'Backend Lead',
+    title: 'My-Wallet',
+    summary: 'Personal expense tracker with 28 RESTful APIs, 6 interactive modules covering expenses, income, budgets, categories, and analytics, plus a real-time financial health scoring system built with Chart.js.',
+    role: 'Full-Stack Developer',
     year: 2024,
-    stack: ['Go', 'gRPC', 'WebRTC', 'Triton'],
-    tags: ['AI', 'Realtime'],
+    stack: ['Node.js', 'MySQL', 'Chart.js', 'REST API'],
+    tags: ['Finance', 'Full-Stack'],
     accent: 'emerald',
+    link: 'https://github.com/RishithSuresh/My-Wallet',
+  },
+  {
+    id: 'p-05',
+    code: 'M-005',
+    title: 'Sign-Language-Recognition-System',
+    summary: 'End-to-end ASL recognition using CNN, Random Forest, SVM, and KNN with modular data loading, preprocessing & augmentation, HOG feature extraction, training orchestration, and evaluation visualizations. CNN accuracy: 94–96%; RF/SVM/KNN: 84–89%.',
+    role: 'ML Engineer',
+    year: 2024,
+    stack: ['Python', 'CNN', 'OpenCV', 'scikit-learn', 'Streamlit'],
+    tags: ['AI', 'Computer Vision'],
+    accent: 'cyan',
+    link: 'https://github.com/RishithSuresh/Sign-Language-Recognition-System',
   },
 ];
 
 export const experience = [
-  { year: '2024 — Now', title: 'Principal Engineer', org: 'Independent Studio', summary: 'Designing autonomous systems & cinematic product surfaces for selected partners.' },
-  { year: '2022 — 2024', title: 'Staff Engineer', org: 'Stealth AI', summary: 'Led model serving infrastructure powering multi-tenant inference at scale.' },
-  { year: '2020 — 2022', title: 'Senior Full-Stack', org: 'Northwind Labs', summary: 'Shipped flagship realtime collaboration product end-to-end.' },
-  { year: '2018 — 2020', title: 'Software Engineer', org: 'Helios Systems', summary: 'Built data pipelines and internal tooling for ML research teams.' },
+  {
+    year: 'Apr 2025 — Present',
+    title: 'President',
+    org: 'ARVR HUB',
+    summary: 'Coordinating workshops and training sessions to elevate AR/VR expertise within college. Showcased the club\'s progress in AR/VR technology at Anveshana. Mentoring students in the field of VR gaming tools.',
+  },
+  {
+    year: 'Nov 2024 — Apr 2025',
+    title: 'Chief Secretary',
+    org: 'ARVR HUB',
+    summary: 'Coordinated and organized all event-related documentation. Collaborated with IEEE AESS to organise mARtian AESSence Event.',
+  },
 ];
 
 export const channels = [
-  { label: 'Email', value: 'hello@yourdomain.dev', href: 'mailto:hello@yourdomain.dev' },
-  { label: 'GitHub', value: 'github.com/yourname', href: 'https://github.com/' },
-  { label: 'LinkedIn', value: 'linkedin.com/in/yourname', href: 'https://linkedin.com/' },
-  { label: 'X', value: '@yourname', href: 'https://x.com/' },
+  { label: 'Email', value: 'rishithsuresh10@gmail.com', href: 'mailto:rishithsuresh10@gmail.com' },
+  { label: 'Phone', value: '+91 7892379634', href: 'tel:+917892379634' },
+  { label: 'GitHub', value: 'github.com/RishithSuresh', href: 'https://github.com/RishithSuresh' },
+  { label: 'LinkedIn', value: 'linkedin.com/in/rishith-suresh', href: 'https://linkedin.com/in/rishith-suresh' },
 ];
