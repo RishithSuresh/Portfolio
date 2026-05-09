@@ -69,18 +69,30 @@ export const skills = [
   { name: 'C', group: 'Languages', level: 0.82 },
   { name: 'Solidity', group: 'Languages', level: 0.74 },
   { name: 'Java', group: 'Languages', level: 0.78 },
-  { name: 'HTML / CSS', group: 'Frontend', level: 0.92 },
-  { name: 'JavaScript', group: 'Frontend', level: 0.88 },
-  { name: 'React', group: 'Frontend', level: 0.85 },
-  { name: 'Flutter', group: 'Frontend', level: 0.72 },
-  { name: 'Node.js', group: 'Backend', level: 0.88 },
-  { name: 'Express.js', group: 'Backend', level: 0.86 },
+
+  { name: 'HTML', group: 'Front-end', level: 0.92 },
+  { name: 'CSS', group: 'Front-end', level: 0.92 },
+  { name: 'JavaScript', group: 'Front-end', level: 0.88 },
+  { name: 'React', group: 'Front-end', level: 0.85 },
+  { name: 'Node.js', group: 'Front-end', level: 0.88 },
+  { name: 'Express.js', group: 'Front-end', level: 0.86 },
+  { name: 'Flutter', group: 'Front-end', level: 0.72 },
+
   { name: 'SQL', group: 'Database', level: 0.84 },
   { name: 'MongoDB', group: 'Database', level: 0.80 },
+
   { name: 'Wireshark', group: 'Networking', level: 0.70 },
   { name: 'Nessus', group: 'Networking', level: 0.68 },
+  { name: 'Nmap', group: 'Networking', level: 0.67 },
+
+  { name: 'VS Code', group: 'Tools', level: 0.95 },
+  { name: 'Jupyter Notebook', group: 'Tools', level: 0.88 },
   { name: 'Blender', group: 'Tools', level: 0.65 },
+  { name: 'Unity', group: 'Tools', level: 0.62 },
   { name: 'Figma', group: 'Tools', level: 0.75 },
+  { name: 'Power BI', group: 'Tools', level: 0.66 },
+  { name: 'Android Studio', group: 'Tools', level: 0.64 },
+  { name: 'Arduino IDE', group: 'Tools', level: 0.60 },
 ];
 
 export const projects = [
