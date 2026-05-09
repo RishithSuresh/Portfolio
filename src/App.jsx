@@ -21,6 +21,24 @@ function Shell() {
 
   return (
     <div className="grain relative">
+      <div aria-hidden className="pointer-events-none fixed inset-0 z-[1] overflow-hidden">
+        <div className="prism-halo" />
+        <div className="aurora-grid" />
+        <div className="orbit-ring" />
+        <div
+          className="aurora-orb orb-cyan"
+          style={{ top: '12%', left: '16%', width: '24rem', height: '24rem' }}
+        />
+        <div
+          className="aurora-orb orb-violet"
+          style={{ bottom: '4%', right: '8%', width: '28rem', height: '28rem' }}
+        />
+        <div
+          className="aurora-orb orb-green"
+          style={{ top: '58%', left: '58%', width: '18rem', height: '18rem' }}
+        />
+      </div>
+
       {/* Persistent 3D world — sits behind everything */}
       <Suspense fallback={null}>
         <WorldScene />

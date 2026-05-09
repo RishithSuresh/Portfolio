@@ -35,7 +35,7 @@ export default function AtmosphereBackground() {
     u.uResolution.value.set(size.width, size.height);
 
     // Smoothly chase target intensity / mood.
-    const targetI = ignited ? 1.0 : 0.45;
+    const targetI = ignited ? 1.0 : 0.55;
     const targetM = ZONE_MOOD[zone] ?? 0.2;
     u.uIntensity.value += (targetI - u.uIntensity.value) * 0.03;
     u.uMood.value     += (targetM - u.uMood.value) * 0.02;
