@@ -30,13 +30,11 @@ export default function Certifications() {
 
               <div className="mt-8 rounded-2xl border border-cyan/10 bg-ink-900/40 p-6">
                 <p className="hud-label text-cyan/80">STATUS</p>
-                <h3 className="mt-3 font-display text-3xl leading-tight text-silver-soft sm:text-4xl">
-                  No formal certificates were listed in the source data.
+                <h3 className="mt-3 font-display text-lg leading-snug text-silver-soft sm:text-xl">
+                  Open to Opportunities
                 </h3>
-                <p className="mt-4 max-w-md font-sans text-sm leading-relaxed text-silver-dim">
-                  This section is wired and ready for badges, vendor certs, and course completions.
-                  Until those are added, the vault surfaces the strongest verified signals already
-                  present in the portfolio.
+                <p className="mt-2 font-sans text-xs leading-relaxed text-silver-dim">
+                  Actively seeking roles in software engineering, blockchain, and creative tech.
                 </p>
               </div>
             </div>

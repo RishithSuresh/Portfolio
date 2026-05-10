@@ -9,6 +9,7 @@ import AtmosphereBackground from './AtmosphereBackground';
 import AICore from './AICore';
 import Monoliths from './Monoliths';
 import AmbientParticles from './AmbientParticles';
+import AncientNature from './AncientNature';
 import { useWorld } from '../context/WorldContext';
 
 // Camera target per zone — drives cinematic transitions when navigating.
@@ -68,15 +69,18 @@ export default function WorldScene() {
         <AtmosphereBackground />
 
         {/* Soft cinematic lighting */}
-        <ambientLight intensity={0.12} />
-        <directionalLight position={[5, 4, 3]} intensity={0.55} color="#D9E2EC" />
-        <pointLight position={[-3, -2, 2]} intensity={0.5} color="#5BC0BE" distance={12} />
-        <pointLight position={[3, 2, 1]} intensity={0.35} color="#2E8B57" distance={10} />
+        <ambientLight intensity={0.24} color="#c6d3b2" />
+        <hemisphereLight intensity={0.3} color="#f4ecd4" groundColor="#1b2018" />
+        <directionalLight position={[5, 6, 3]} intensity={0.82} color="#ffe7c2" />
+        <pointLight position={[-3, -1, 2]} intensity={0.22} color="#8fb36a" distance={16} />
+        <pointLight position={[3, 1.5, 1]} intensity={0.18} color="#8a7f5e" distance={14} />
+        <pointLight position={[-5, 0, -5]} intensity={0.16} color="#b6d7a8" distance={18} />
 
-        <Environment preset="night" background={false} />
+        <Environment preset="forest" background={false} />
 
         <AICore position={[0, 0, 0]} scale={1} />
-        <Monoliths count={tier === 'low' ? 5 : 9} />
+        <Monoliths count={tier === 'low' ? 3 : 6} />
+        <AncientNature />
         {showParticles && <AmbientParticles count={tier === 'mid' ? 140 : 220} />}
 
         <Rig />
@@ -86,13 +90,13 @@ export default function WorldScene() {
       {showBloom && (
         <EffectComposer multisampling={0} disableNormalPass>
           <Bloom
-            intensity={0.55}
-            luminanceThreshold={0.6}
-            luminanceSmoothing={0.4}
+            intensity={0.3}
+            luminanceThreshold={0.75}
+            luminanceSmoothing={0.35}
             mipmapBlur
           />
-          <ChromaticAberration offset={[0.0006, 0.0009]} blendFunction={BlendFunction.NORMAL} />
-          <Vignette eskil={false} offset={0.25} darkness={0.85} />
+          <ChromaticAberration offset={[0.00025, 0.00035]} blendFunction={BlendFunction.NORMAL} />
+          <Vignette eskil={false} offset={0.25} darkness={0.78} />
         </EffectComposer>
       )}
     </Canvas>

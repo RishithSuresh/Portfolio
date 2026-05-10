@@ -41,6 +41,8 @@ body {
     radial-gradient(ellipse 90% 55% at 18% -8%, rgba(56, 239, 245, 0.12), transparent 58%),
     radial-gradient(ellipse 75% 45% at 84% 12%, rgba(217, 70, 239, 0.10), transparent 54%),
     radial-gradient(ellipse 70% 50% at 80% 108%, rgba(0, 201, 122, 0.10), transparent 56%),
+    radial-gradient(ellipse 60% 38% at 14% 92%, rgba(92, 148, 87, 0.12), transparent 54%),
+    radial-gradient(ellipse 42% 34% at 64% 82%, rgba(245, 158, 11, 0.07), transparent 58%),
     radial-gradient(ellipse 45% 40% at 46% 44%, rgba(96, 165, 250, 0.08), transparent 68%),
     linear-gradient(145deg, rgba(15, 24, 37, 0.9), rgba(6, 9, 15, 1));
   background-attachment: fixed;
