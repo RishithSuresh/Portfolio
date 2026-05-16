@@ -263,7 +263,7 @@ body {
     0 0 48px rgba(56, 239, 245, 0.08);
   mask-image: radial-gradient(circle, transparent 58%, black 62%);
   opacity: 0.65;
-  animation: orbit 30s linear infinite;
+  animation: orbitSpin 30s linear infinite;
 }
 
 .zone-aura-layer {
@@ -341,7 +341,7 @@ body {
 .chrono-sigil .ring-a {
   border: 1px solid rgba(56, 239, 245, 0.24);
   box-shadow: 0 0 24px rgba(56, 239, 245, 0.14), inset 0 0 28px rgba(56, 239, 245, 0.05);
-  animation: orbit 16s linear infinite;
+  animation: orbitSpin 16s linear infinite;
 }
 
 .chrono-sigil .ring-b {
@@ -472,7 +472,7 @@ html.lenis, html.lenis body { height: auto; }
   100% { transform: rotate(360deg) scale(1); }
 }
 
-@keyframes orbit {
+@keyframes orbitSpin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
