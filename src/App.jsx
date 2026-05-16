@@ -27,9 +27,11 @@ function Shell() {
   return (
     <div className="grain relative">
       <div aria-hidden className="pointer-events-none fixed inset-0 z-[1] overflow-hidden">
+        <div className="sun-disc" />
         <div className="prism-halo" />
         <div className="aurora-grid" />
         <div className="orbit-ring" />
+        <div className="katana-sweep" />
         <div
           className="aurora-orb orb-cyan"
           style={{ top: '12%', left: '16%', width: '24rem', height: '24rem' }}
@@ -74,7 +76,7 @@ function Shell() {
 
             <footer className="relative z-10 px-6 py-16 text-center sm:px-10">
               <span className="hud-label opacity-60">
-                © {new Date().getFullYear()} · AETHER · CRAFTED IN ORBIT
+                © {new Date().getFullYear()} · SHADOW DOJO · FORGED LIKE A BLADE
               </span>
             </footer>
           </Suspense>
@@ -86,9 +88,9 @@ function Shell() {
 
 function SectionFallback() {
   return (
-    <div className="flex min-h-[60vh] items-center justify-center">
-      <span className="hud-label animate-pulse-soft">LOADING ZONE…</span>
-    </div>
+      <div className="flex min-h-[60vh] items-center justify-center">
+      <span className="hud-label animate-pulse-soft">SUMMONING THE NEXT SCROLL…</span>
+      </div>
   );
 }
 

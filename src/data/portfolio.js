@@ -31,13 +31,13 @@ export const attributes = [
 ];
 
 export const zones = [
-  { id: 'home', label: 'Origin', subtitle: 'Entry point', glyph: '◇' },
-  { id: 'about', label: 'Identity', subtitle: 'Operator profile', glyph: '◉' },
-  { id: 'projects', label: 'Vault', subtitle: 'Mission archive', glyph: '◆' },
-  { id: 'skills', label: 'Constellation', subtitle: 'Skill matrix', glyph: '✦' },
-  { id: 'certifications', label: 'Credentials', subtitle: 'Proof stack', glyph: '⟡' },
-  { id: 'experience', label: 'Trajectory', subtitle: 'Mission log', glyph: '⌖' },
-  { id: 'contact', label: 'Uplink', subtitle: 'Open channel', glyph: '⌬' },
+  { id: 'home', label: 'Dojo Gate', subtitle: 'Entry point', glyph: '門' },
+  { id: 'about', label: 'Ronin Scroll', subtitle: 'Warrior profile', glyph: '侍' },
+  { id: 'projects', label: 'Battle Archive', subtitle: 'Shipped builds', glyph: '刀' },
+  { id: 'skills', label: 'Blade Matrix', subtitle: 'Skill codex', glyph: '炎' },
+  { id: 'certifications', label: 'Seals', subtitle: 'Proof marks', glyph: '印' },
+  { id: 'experience', label: 'Warpath', subtitle: 'Career timeline', glyph: '軌' },
+  { id: 'contact', label: 'Summon', subtitle: 'Open channel', glyph: '文' },
 ];
 
 export const credentials = [
@@ -207,38 +207,38 @@ export const services = [
 
 export const missionProtocols = {
   home: {
-    codename: 'Ignition',
-    objective: 'Initialize operator system and unlock the interactive world.',
-    tasks: ['Boot interface', 'Activate world state', 'Calibrate navigation'],
+    codename: 'Gate Ritual',
+    objective: 'Open the dojo and bring the interface spirit online.',
+    tasks: ['Unseal interface', 'Wake background realm', 'Set navigation stance'],
   },
   about: {
-    codename: 'Identity Scan',
-    objective: 'Decode operator background, focus areas, and capability signature.',
-    tasks: ['Read bio profile', 'Inspect attributes', 'Review core stats'],
+    codename: 'Lineage Read',
+    objective: 'Study the warrior profile, strengths, and intent.',
+    tasks: ['Read profile scroll', 'Inspect strengths', 'Review key stats'],
   },
   projects: {
-    codename: 'Mission Vault',
-    objective: 'Explore shipped systems with measurable technical outcomes.',
-    tasks: ['Open mission cards', 'Inspect stack and role', 'Visit source repositories'],
+    codename: 'Battle Archive',
+    objective: 'Inspect shipped builds and the impact of each strike.',
+    tasks: ['Open archive cards', 'Inspect stack and role', 'Visit source repositories'],
   },
   skills: {
-    codename: 'Constellation',
-    objective: 'Map technology graph and evaluate depth across domains.',
-    tasks: ['Hover skill nodes', 'Trace semantic links', 'Identify strongest clusters'],
+    codename: 'Blade Matrix',
+    objective: 'Map technical disciplines and depth across domains.',
+    tasks: ['Hover skill nodes', 'Trace skill links', 'Identify strongest clusters'],
   },
   certifications: {
-    codename: 'Proof Layer',
-    objective: 'Verify formal and practical credibility signals.',
+    codename: 'Seal Chamber',
+    objective: 'Verify certifications, leadership marks, and status.',
     tasks: ['Review credentials', 'Inspect leadership track', 'Validate current status'],
   },
   experience: {
-    codename: 'Trajectory',
-    objective: 'Track leadership evolution and operational milestones.',
+    codename: 'Warpath',
+    objective: 'Trace growth through leadership and technical milestones.',
     tasks: ['Follow timeline', 'Read impact summaries', 'Assess growth arc'],
   },
   contact: {
-    codename: 'Uplink',
-    objective: 'Open collaboration channel and establish next mission.',
-    tasks: ['Submit transmission', 'Use direct channels', 'Schedule collaboration'],
+    codename: 'Summon Signal',
+    objective: 'Open collaboration channels and start the next build.',
+    tasks: ['Send message', 'Use direct channels', 'Plan collaboration'],
   },
 };

@@ -23,9 +23,9 @@ export default function Contact() {
   return (
     <SectionShell
       id="contact"
-      eyebrow="06 · UPLINK"
-      title="Open a channel"
-      kicker="Send a transmission. Channels stay quiet but never closed."
+      eyebrow="06 · SUMMON"
+      title="Send a raven"
+      kicker="Send your message. Channels stay quiet, but never closed."
     >
       <div className="grid w-full grid-cols-1 gap-6 lg:grid-cols-12">
         {/* Terminal */}
@@ -38,22 +38,22 @@ export default function Contact() {
           className="glass scanlines relative overflow-hidden rounded-2xl p-7 lg:col-span-7"
         >
           <div className="mb-6 flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <span className="h-2 w-2 animate-pulse-soft rounded-full bg-emerald" />
-              <span className="hud-label text-cyan/80">UPLINK · 0xAETHER</span>
-            </div>
-            <span className="hud-label">END-TO-END · ENCRYPTED</span>
+              <div className="flex items-center gap-3">
+                <span className="h-2 w-2 animate-pulse-soft rounded-full bg-emerald" />
+                <span className="hud-label text-cyan/80">RAVEN NET · KAGE-01</span>
+              </div>
+              <span className="hud-label">SEALED · ENCRYPTED</span>
           </div>
 
-          <Field label="OPERATOR // NAME" value={state.name} onChange={onChange('name')} placeholder="your name" />
-          <Field label="RETURN CHANNEL // EMAIL" type="email" value={state.email} onChange={onChange('email')} placeholder="you@signal.dev" />
-          <Field label="TRANSMISSION // MESSAGE" multiline value={state.msg} onChange={onChange('msg')} placeholder="What are we building?" />
+          <Field label="RONIN // NAME" value={state.name} onChange={onChange('name')} placeholder="your name" />
+          <Field label="RETURN SCROLL // EMAIL" type="email" value={state.email} onChange={onChange('email')} placeholder="you@domain.dev" />
+          <Field label="MESSAGE // BRIEF" multiline value={state.msg} onChange={onChange('msg')} placeholder="What are we building?" />
 
           <div className="mt-6 flex items-center justify-between">
             <span className="hud-label opacity-70">
               {status === 'idle' && 'AWAITING INPUT'}
-              {status === 'sending' && 'TRANSMITTING…'}
-              {status === 'sent' && 'TRANSMISSION RECEIVED'}
+              {status === 'sending' && 'SENDING RAVEN…'}
+              {status === 'sent' && 'RAVEN DELIVERED'}
             </span>
             <Magnetic strength={0.4}>
               <button
@@ -61,12 +61,12 @@ export default function Contact() {
                 type="submit"
                 className="relative inline-flex items-center justify-center rounded-full px-6 py-3 font-display text-sm tracking-hud text-silver-soft"
                 style={{
-                  border: '1px solid rgba(91,192,190,0.5)',
-                  background: 'linear-gradient(180deg, rgba(28,36,49,0.7), rgba(13,17,23,0.7))',
-                  boxShadow: '0 0 28px rgba(91,192,190,0.18), inset 0 0 14px rgba(91,192,190,0.08)',
+                  border: '1px solid rgba(245,158,11,0.5)',
+                  background: 'linear-gradient(180deg, rgba(33,19,39,0.8), rgba(11,6,13,0.8))',
+                  boxShadow: '0 0 28px rgba(245,158,11,0.22), inset 0 0 14px rgba(157,23,77,0.12)',
                 }}
               >
-                {status === 'sent' ? 'SENT ✓' : 'TRANSMIT'}
+                {status === 'sent' ? 'DELIVERED ✓' : 'SEND RAVEN'}
                 <motion.span
                   className="ml-3 text-cyan"
                   animate={status === 'sending' ? { rotate: 360 } : { x: [0, 4, 0] }}
@@ -90,7 +90,7 @@ export default function Contact() {
           className="glass rounded-2xl p-7 lg:col-span-5"
         >
           <h4 className="font-display text-xl text-silver-soft">Direct channels</h4>
-          <p className="mt-1 hud-label">PICK A FREQUENCY</p>
+          <p className="mt-1 hud-label">CHOOSE A CHANNEL</p>
           <ul className="mt-6 space-y-3">
             {channels.map((c) => (
               <li key={c.label}>

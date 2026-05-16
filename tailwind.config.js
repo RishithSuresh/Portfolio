@@ -3,29 +3,29 @@ export default {
   content: ['./index.html', './src/**/*.{js,jsx}'],
   theme: {
     extend: {
-      colors: {
-        ink: {
-          900: '#06090f',
-          850: '#090e17',
-          800: '#0f1825',
-          700: '#182030',
-          600: '#1f2a3d',
-        },
-        emerald: {
-          DEFAULT: '#00c97a',
-          soft: '#2edfa0',
-          deep: '#009960',
-        },
-        cyan: {
-          DEFAULT: '#38eff5',
-          soft: '#7ff4f7',
-          deep: '#1cc8cf',
-        },
-        violet: {
-          DEFAULT: '#8b5cf6',
-          soft: '#a78bfa',
-          deep: '#6d28d9',
-        },
+        colors: {
+          ink: {
+            900: '#050306',
+            850: '#0b060d',
+            800: '#140c16',
+            700: '#211327',
+            600: '#2d1a34',
+          },
+          emerald: {
+            DEFAULT: '#9d174d',
+            soft: '#be185d',
+            deep: '#7a103c',
+          },
+          cyan: {
+            DEFAULT: '#f59e0b',
+            soft: '#fbbf24',
+            deep: '#d97706',
+          },
+          violet: {
+            DEFAULT: '#c026d3',
+            soft: '#d946ef',
+            deep: '#86198f',
+          },
         rose: {
           DEFAULT: '#f43f5e',
           soft: '#fb7185',
@@ -33,11 +33,11 @@ export default {
         amber: {
           DEFAULT: '#f59e0b',
         },
-        silver: {
-          DEFAULT: '#d9e2ec',
-          soft: '#eef2f7',
-          dim: '#8fa0b3',
-        },
+          silver: {
+            DEFAULT: '#e8ddc7',
+            soft: '#f6f1e7',
+            dim: '#a89572',
+          },
       },
       fontFamily: {
         display: ['"Clash Display"', '"Cabinet Grotesk"', '"Space Grotesk"', 'system-ui', 'sans-serif'],

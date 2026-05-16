@@ -8,16 +8,16 @@ export default function Experience() {
   return (
     <SectionShell
       id="experience"
-      eyebrow="05 · TRAJECTORY"
-      title="Mission log"
-      kicker="A chronological dispatch of the operator's previous assignments and theatres of work."
+      eyebrow="05 · WARPATH"
+      title="Career warpath"
+      kicker="A chronological trail of leadership roles, technical impact, and consistent growth."
     >
       <div className="relative w-full">
         {/* Center rail */}
         <div className="absolute left-4 top-0 h-full w-px md:left-1/2 md:-translate-x-1/2"
              style={{
-               background: 'linear-gradient(180deg, transparent, rgba(91,192,190,0.5), rgba(46,139,87,0.4), transparent)',
-             }} />
+               background: 'linear-gradient(180deg, transparent, rgba(245,158,11,0.55), rgba(157,23,77,0.44), transparent)',
+              }} />
 
         {/* Reveal overlay — animates from top to bottom on scroll */}
         <motion.div
@@ -28,7 +28,7 @@ export default function Experience() {
           style={{ transformOrigin: 'top' }}
           className="absolute left-4 top-0 h-full w-px md:left-1/2 md:-translate-x-1/2"
         >
-          <div className="h-full w-full" style={{ background: 'linear-gradient(180deg, rgba(91,192,190,0.85), transparent)', filter: 'blur(2px)' }} />
+          <div className="h-full w-full" style={{ background: 'linear-gradient(180deg, rgba(245,158,11,0.88), transparent)', filter: 'blur(2px)' }} />
         </motion.div>
 
         <div className="space-y-12">
@@ -48,9 +48,9 @@ function Milestone({ item, index }) {
       {/* Marker on rail */}
       <span className="absolute left-4 top-7 z-10 -translate-x-1/2 md:left-1/2">
         <span className="block h-3 w-3 rounded-full bg-cyan"
-              style={{ boxShadow: '0 0 18px rgba(91,192,190,0.7)' }} />
+              style={{ boxShadow: '0 0 18px rgba(245,158,11,0.75)' }} />
         <span className="absolute inset-0 -m-2 animate-pulse-soft rounded-full"
-              style={{ boxShadow: '0 0 24px rgba(91,192,190,0.3)' }} />
+              style={{ boxShadow: '0 0 24px rgba(245,158,11,0.4)' }} />
       </span>
 
       <motion.div
@@ -64,7 +64,7 @@ function Milestone({ item, index }) {
           <div className={`flex items-center gap-2 ${left ? 'md:justify-end' : ''}`}>
             <span className="hud-label text-cyan/80">{item.year}</span>
             <span className="h-3 w-px bg-silver/20" />
-            <span className="hud-label">UNLOCKED</span>
+            <span className="hud-label">RECORDED</span>
           </div>
           <h3 className="mt-3 font-display text-2xl text-silver-soft">{item.title}</h3>
           <p className="mt-1 font-sans text-sm text-cyan">{item.org}</p>
