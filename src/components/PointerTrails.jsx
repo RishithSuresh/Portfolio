@@ -22,7 +22,7 @@ export default function PointerTrails() {
       setTrails((prev) => [
         ...prev.slice(-(MAX_TRAILS - 1)),
         {
-          id: `${t}-${Math.random().toString(36).slice(2, 7)}`,
+          id: `${t}`,
           x: e.clientX,
           y: e.clientY,
           born: Date.now(),
