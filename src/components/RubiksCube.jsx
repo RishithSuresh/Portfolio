@@ -1,61 +1,102 @@
 import { useMemo, useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { OrbitControls } from '@react-three/drei';
+import { Float, Stars } from '@react-three/drei';
 import * as THREE from 'three';
 
-const palette = ['#b8ff58', '#8bff5f', '#33d1ff', '#42e8c5', '#f0ea3b', '#111320'];
-
-function CubeCluster() {
+function ImmersiveCore() {
   const groupRef = useRef();
-  const cubes = useMemo(() => {
-    const out = [];
+  const ringsRef = useRef();
+  const particlesRef = useRef();
 
-    for (let x = -1; x <= 1; x += 1) {
-      for (let y = -1; y <= 1; y += 1) {
-        for (let z = -1; z <= 1; z += 1) {
-          if (x === 0 && y === 0 && z === 0) continue;
-
-          const indexSeed = Math.abs(x * 7 + y * 11 + z * 13);
-          out.push({
-            position: [x * 0.68, y * 0.68, z * 0.68],
-            color: palette[indexSeed % palette.length],
-          });
-        }
-      }
+  const particles = useMemo(() => {
+    const data = [];
+    for (let i = 0; i < 56; i += 1) {
+      const radius = 2 + Math.random() * 4;
+      const angle = Math.random() * Math.PI * 2;
+      const y = (Math.random() - 0.5) * 2.8;
+      data.push([
+        Math.cos(angle) * radius,
+        y,
+        Math.sin(angle) * radius,
+        0.08 + Math.random() * 0.18,
+      ]);
     }
-
-    return out;
+    return data;
   }, []);
 
-  useFrame((_, delta) => {
-    if (!groupRef.current) return;
+  useFrame((state, delta) => {
+    const { mouse } = state;
 
-    groupRef.current.rotation.x += delta * 0.2;
-    groupRef.current.rotation.y += delta * 0.35;
+    if (groupRef.current) {
+      groupRef.current.rotation.y += delta * 0.15;
+      groupRef.current.rotation.x = THREE.MathUtils.lerp(groupRef.current.rotation.x, mouse.y * 0.3, 0.05);
+      groupRef.current.rotation.z = THREE.MathUtils.lerp(groupRef.current.rotation.z, -mouse.x * 0.3, 0.05);
+      groupRef.current.position.x = THREE.MathUtils.lerp(groupRef.current.position.x, mouse.x * 0.5, 0.05);
+      groupRef.current.position.y = THREE.MathUtils.lerp(groupRef.current.position.y, mouse.y * 0.3, 0.05);
+    }
+
+    if (ringsRef.current) {
+      ringsRef.current.rotation.x += delta * 0.1;
+      ringsRef.current.rotation.y -= delta * 0.08;
+    }
+
+    if (particlesRef.current) {
+      particlesRef.current.rotation.y += delta * 0.06;
+    }
   });
 
   return (
-    <group ref={groupRef}>
-      {cubes.map((cube, index) => (
-        <mesh key={`${cube.position.join('-')}-${index}`} position={cube.position}>
-          <boxGeometry args={[0.58, 0.58, 0.58]} />
-          <meshStandardMaterial color={cube.color} roughness={0.32} metalness={0.22} />
+    <>
+      <group ref={groupRef}>
+        <Float speed={1.3} rotationIntensity={0.5} floatIntensity={0.75}>
+          <mesh>
+            <icosahedronGeometry args={[1.05, 1]} />
+            <meshStandardMaterial
+              color="#78ffd6"
+              emissive="#59d7ff"
+              emissiveIntensity={0.55}
+              metalness={0.5}
+              roughness={0.25}
+              wireframe
+            />
+          </mesh>
+        </Float>
+      </group>
+
+      <group ref={ringsRef}>
+        <mesh rotation={[Math.PI * 0.15, Math.PI * 0.15, 0]}>
+          <torusGeometry args={[2.25, 0.03, 16, 100]} />
+          <meshStandardMaterial color="#89ff5d" emissive="#89ff5d" emissiveIntensity={0.22} />
         </mesh>
-      ))}
-    </group>
+        <mesh rotation={[Math.PI * 0.5, 0, Math.PI * 0.25]}>
+          <torusGeometry args={[2.8, 0.024, 16, 100]} />
+          <meshStandardMaterial color="#63b3ff" emissive="#63b3ff" emissiveIntensity={0.18} />
+        </mesh>
+      </group>
+
+      <group ref={particlesRef}>
+        {particles.map((particle, index) => (
+          <mesh key={`particle-${index}`} position={[particle[0], particle[1], particle[2]]}>
+            <sphereGeometry args={[particle[3], 16, 16]} />
+            <meshStandardMaterial color={index % 2 ? '#b8ff58' : '#88d7ff'} emissive="#6ec8ff" emissiveIntensity={0.2} />
+          </mesh>
+        ))}
+      </group>
+    </>
   );
 }
 
 export default function RubiksCube() {
   return (
-    <div className="cube-wrap" aria-label="Interactive 3D Rubiks Cube">
-      <Canvas camera={{ position: [3.3, 3.2, 3.8], fov: 42 }}>
-        <color attach="background" args={['#eaedf3']} />
-        <ambientLight intensity={0.75} />
-        <directionalLight position={[5, 5, 4]} intensity={1.05} />
-        <directionalLight position={[-4, -2, -5]} intensity={0.45} color={new THREE.Color('#95ff5a')} />
-        <CubeCluster />
-        <OrbitControls enablePan={false} enableZoom={false} minPolarAngle={0.4} maxPolarAngle={2.5} />
+    <div className="scene-shell" aria-hidden="true">
+      <Canvas camera={{ position: [0, 0.2, 8], fov: 42 }} dpr={[1, 1.5]}>
+        <color attach="background" args={['#05070f']} />
+        <fog attach="fog" args={['#05070f', 5, 15]} />
+        <ambientLight intensity={0.48} />
+        <directionalLight position={[2.4, 2.6, 4.2]} intensity={1.2} color={new THREE.Color('#9effdb')} />
+        <directionalLight position={[-3, -2, -4]} intensity={0.72} color={new THREE.Color('#6bb0ff')} />
+        <ImmersiveCore />
+        <Stars radius={80} depth={25} count={2600} factor={3.2} saturation={0.9} fade speed={0.75} />
       </Canvas>
     </div>
   );
