@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 import SectionShell from '../components/SectionShell';
 import Magnetic from '../components/Magnetic';
-import { channels, identity } from '../data/portfolio';
+import { availability, channels, identity, services } from '../data/portfolio';
 
 // Contact zone — futuristic communication terminal.
 // A holographic panel with animated input states and a magnetic send button.
@@ -112,6 +112,32 @@ export default function Contact() {
           <div className="mt-8 rounded-xl p-5 hair">
             <div className="hud-label opacity-70">CURRENT STATUS</div>
             <div className="mt-2 font-display text-lg text-cyan">{identity.status}</div>
+            <p className="mt-2 text-xs text-silver-dim">Timezone: {availability.timezone}</p>
+            <p className="mt-1 text-xs text-silver-dim">Response: {availability.response}</p>
+          </div>
+
+          <div className="mt-4 rounded-xl p-5 hair">
+            <div className="hud-label opacity-70">ENGAGEMENT MODES</div>
+            <p className="mt-2 text-xs leading-relaxed text-silver-dim">{availability.mode}</p>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {availability.preferredRoles.map((role) => (
+                <span key={role} className="rounded-full border border-cyan/20 px-2.5 py-1 text-[10px] text-cyan/90">
+                  {role}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-4 rounded-xl p-5 hair">
+            <div className="hud-label opacity-70">WHAT I BUILD</div>
+            <ul className="mt-3 space-y-2">
+              {services.map((service) => (
+                <li key={service.id}>
+                  <p className="text-xs text-silver">{service.title}</p>
+                  <p className="mt-1 text-xs text-silver-dim">{service.detail}</p>
+                </li>
+              ))}
+            </ul>
           </div>
         </motion.aside>
       </div>

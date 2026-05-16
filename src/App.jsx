@@ -5,6 +5,10 @@ import Cursor from './components/Cursor';
 import HUDFrame from './components/HUDFrame';
 import OrbitalNav from './components/OrbitalNav';
 import IgnitionVeil from './components/IgnitionVeil';
+import MissionIntel from './components/MissionIntel';
+import ZoneAura from './components/ZoneAura';
+import PointerTrails from './components/PointerTrails';
+import ChronoSigils from './components/ChronoSigils';
 import Landing from './sections/Landing';
 
 // Heavy / non-critical pieces are lazy-loaded so the landing
@@ -46,7 +50,11 @@ function Shell() {
       </Suspense>
 
       {/* Overlay frame + nav + cursor */}
+      <ZoneAura />
       <HUDFrame />
+      <ChronoSigils />
+      <MissionIntel />
+      <PointerTrails />
       <OrbitalNav />
       <Cursor />
       <IgnitionVeil />
