@@ -1,0 +1,16 @@
+{
+  "name": "Rishith Suresh Portfolio",
+  "short_name": "Rishith 3D",
+  "description": "Immersive gamified 3D portfolio experience.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0D1117",
+  "theme_color": "#0D1117",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

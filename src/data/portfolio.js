@@ -179,3 +179,66 @@ export const channels = [
   { label: 'GitHub', value: 'github.com/RishithSuresh', href: 'https://github.com/RishithSuresh' },
   { label: 'LinkedIn', value: 'linkedin.com/in/rishith-suresh', href: 'https://linkedin.com/in/rishith-suresh' },
 ];
+
+export const availability = {
+  timezone: 'IST (UTC+5:30)',
+  mode: 'Remote · Hybrid · On-site',
+  response: '< 24 hours',
+  preferredRoles: ['Software Engineer', 'Full-Stack Developer', 'AI Engineer'],
+};
+
+export const services = [
+  {
+    id: 'svc-01',
+    title: 'Product Engineering',
+    detail: 'Build robust full-stack products with scalable API architecture and production-grade security.',
+  },
+  {
+    id: 'svc-02',
+    title: 'AI-Integrated Systems',
+    detail: 'Design and deploy ML-powered workflows, analytics engines, and real-time decision pipelines.',
+  },
+  {
+    id: 'svc-03',
+    title: 'Blockchain Enablement',
+    detail: 'Deliver Solidity-backed modules, secure wallet flows, and transparent transaction logic.',
+  },
+];
+
+export const missionProtocols = {
+  home: {
+    codename: 'Ignition',
+    objective: 'Initialize operator system and unlock the interactive world.',
+    tasks: ['Boot interface', 'Activate world state', 'Calibrate navigation'],
+  },
+  about: {
+    codename: 'Identity Scan',
+    objective: 'Decode operator background, focus areas, and capability signature.',
+    tasks: ['Read bio profile', 'Inspect attributes', 'Review core stats'],
+  },
+  projects: {
+    codename: 'Mission Vault',
+    objective: 'Explore shipped systems with measurable technical outcomes.',
+    tasks: ['Open mission cards', 'Inspect stack and role', 'Visit source repositories'],
+  },
+  skills: {
+    codename: 'Constellation',
+    objective: 'Map technology graph and evaluate depth across domains.',
+    tasks: ['Hover skill nodes', 'Trace semantic links', 'Identify strongest clusters'],
+  },
+  certifications: {
+    codename: 'Proof Layer',
+    objective: 'Verify formal and practical credibility signals.',
+    tasks: ['Review credentials', 'Inspect leadership track', 'Validate current status'],
+  },
+  experience: {
+    codename: 'Trajectory',
+    objective: 'Track leadership evolution and operational milestones.',
+    tasks: ['Follow timeline', 'Read impact summaries', 'Assess growth arc'],
+  },
+  contact: {
+    codename: 'Uplink',
+    objective: 'Open collaboration channel and establish next mission.',
+    tasks: ['Submit transmission', 'Use direct channels', 'Schedule collaboration'],
+  },
+};

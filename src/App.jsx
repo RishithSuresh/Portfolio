@@ -5,6 +5,7 @@ import Cursor from './components/Cursor';
 import HUDFrame from './components/HUDFrame';
 import OrbitalNav from './components/OrbitalNav';
 import IgnitionVeil from './components/IgnitionVeil';
+import MissionIntel from './components/MissionIntel';
 import Landing from './sections/Landing';
 
 // Heavy / non-critical pieces are lazy-loaded so the landing
@@ -47,6 +48,7 @@ function Shell() {
 
       {/* Overlay frame + nav + cursor */}
       <HUDFrame />
+      <MissionIntel />
       <OrbitalNav />
       <Cursor />
       <IgnitionVeil />
