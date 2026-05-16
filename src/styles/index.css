@@ -266,6 +266,101 @@ body {
   animation: orbit 30s linear infinite;
 }
 
+.zone-aura-layer {
+  transition: opacity 0.8s ease;
+}
+
+.zone-aura-layer .zone-aura-blend {
+  position: absolute;
+  inset: -18%;
+  background:
+    radial-gradient(ellipse 60% 44% at 18% 20%, var(--zone-a), transparent 62%),
+    radial-gradient(ellipse 54% 42% at 82% 28%, var(--zone-b), transparent 64%),
+    radial-gradient(ellipse 68% 52% at 50% 84%, var(--zone-c), transparent 66%);
+  filter: blur(56px) saturate(135%);
+  mix-blend-mode: screen;
+  animation: zoneDrift 18s ease-in-out infinite;
+  transition: background 0.9s ease;
+}
+
+.zone-aura-layer .zone-aura-sweep {
+  position: absolute;
+  inset: -8%;
+  background: conic-gradient(
+    from 120deg at 50% 50%,
+    transparent 0deg,
+    rgba(56, 239, 245, 0.12) 68deg,
+    transparent 136deg,
+    rgba(217, 70, 239, 0.12) 212deg,
+    transparent 300deg
+  );
+  filter: blur(74px);
+  mix-blend-mode: screen;
+  opacity: 0.6;
+  animation: sigilSweep 26s linear infinite;
+}
+
+.chrono-sigil {
+  position: absolute;
+  top: 50%;
+  width: 8.6rem;
+  height: 8.6rem;
+  transform: translateY(-50%);
+  border-radius: 9999px;
+}
+
+.chrono-sigil-core {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Clash Display', 'Cabinet Grotesk', 'Space Grotesk', system-ui, sans-serif;
+  color: rgba(217, 226, 236, 0.84);
+  text-shadow: 0 0 14px rgba(56, 239, 245, 0.42);
+}
+
+.chrono-sigil-label {
+  position: absolute;
+  left: 50%;
+  bottom: -1.45rem;
+  transform: translateX(-50%);
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 9px;
+  letter-spacing: 0.26em;
+  color: rgba(143, 160, 179, 0.7);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.chrono-sigil-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  pointer-events: none;
+}
+
+.chrono-sigil .ring-a {
+  border: 1px solid rgba(56, 239, 245, 0.24);
+  box-shadow: 0 0 24px rgba(56, 239, 245, 0.14), inset 0 0 28px rgba(56, 239, 245, 0.05);
+  animation: orbit 16s linear infinite;
+}
+
+.chrono-sigil .ring-b {
+  inset: 0.65rem;
+  border: 1px dashed rgba(217, 70, 239, 0.26);
+  animation: orbitReverse 12s linear infinite;
+}
+
+.chrono-sigil .ring-c {
+  inset: 1.5rem;
+  border: 1px solid rgba(0, 201, 122, 0.24);
+  box-shadow: 0 0 18px rgba(0, 201, 122, 0.12);
+  animation: pulseMicro 2.4s ease-in-out infinite;
+}
+
+.chrono-sigil .ring-c.ring-boost {
+  box-shadow: 0 0 30px rgba(56, 239, 245, 0.35);
+}
+
 .text-luminous {
   background: linear-gradient(90deg, #eef2f7 0%, #38eff5 34%, #d946ef 68%, #eef2f7 100%);
   background-size: 240% 100%;
@@ -363,6 +458,33 @@ html.lenis, html.lenis body { height: auto; }
 @keyframes pulseRing {
   0%, 100% { transform: translate(-50%, -50%) scale(0.96); opacity: 0.45; }
   50% { transform: translate(-50%, -50%) scale(1.03); opacity: 0.8; }
+}
+
+@keyframes zoneDrift {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  33% { transform: translate3d(1rem, -1rem, 0) scale(1.04); }
+  66% { transform: translate3d(-1.2rem, 0.8rem, 0) scale(0.98); }
+}
+
+@keyframes sigilSweep {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.02); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+@keyframes orbit {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes orbitReverse {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(-360deg); }
+}
+
+@keyframes pulseMicro {
+  0%, 100% { transform: scale(0.96); opacity: 0.65; }
+  50% { transform: scale(1.04); opacity: 1; }
 }
 
 /* Reduce motion */
