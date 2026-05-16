@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import RubiksCube from './components/RubiksCube.jsx';
 
 const services = [
   'Search Engine Optimization',
@@ -54,7 +55,7 @@ export default function App() {
             <button className="btn btn-dark">Book a consultation</button>
           </div>
           <div className="hero-visual">
-            <div className="cube-placeholder">Interactive 3D Cube</div>
+            <RubiksCube />
           </div>
         </section>
 
