@@ -17,9 +17,9 @@ export default function Skills() {
   return (
     <SectionShell
       id="skills"
-      eyebrow="03 · CONSTELLATION"
-      title="The skill matrix"
-      kicker="An interactive map of the technologies that power the missions. Hover any node to see its weight."
+      eyebrow="03 · BLADE MATRIX"
+      title="Skill codex"
+      kicker="An interactive map of the technologies behind each build. Hover any node to see its weight."
     >
       <Constellation grouped={grouped} />
     </SectionShell>
@@ -106,13 +106,13 @@ function Constellation({ grouped }) {
       <svg viewBox={`0 0 ${W} ${H}`} className="block w-full" style={{ aspectRatio: `${W} / ${H}` }}>
         <defs>
           <linearGradient id="line" x1="0" x2="1">
-            <stop offset="0%" stopColor="#38EFF5" stopOpacity="0.05" />
-            <stop offset="50%" stopColor="#38EFF5" stopOpacity="0.55" />
+            <stop offset="0%" stopColor="#F59E0B" stopOpacity="0.05" />
+            <stop offset="50%" stopColor="#F59E0B" stopOpacity="0.55" />
             <stop offset="100%" stopColor="#D946EF" stopOpacity="0.05" />
           </linearGradient>
           <radialGradient id="node" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#38EFF5" stopOpacity="0.85" />
-            <stop offset="100%" stopColor="#38EFF5" stopOpacity="0" />
+            <stop offset="0%" stopColor="#F59E0B" stopOpacity="0.85" />
+            <stop offset="100%" stopColor="#F59E0B" stopOpacity="0" />
           </radialGradient>
           <filter id="glow">
             <feGaussianBlur stdDeviation="3" result="coloredBlur" />
@@ -195,7 +195,7 @@ function Constellation({ grouped }) {
         {Object.entries(centers).map(([g, c]) => (
           <g key={g}>
             <circle cx={c.x} cy={c.y} r={44} fill="url(#node)" opacity={0.5} />
-            <circle cx={c.x} cy={c.y} r={6} fill="#D9E2EC" />
+            <circle cx={c.x} cy={c.y} r={6} fill="#E8DDC7" />
             <text x={c.x} y={c.y + 60} textAnchor="middle"
                   fill="#8FA0B3" fontFamily="JetBrains Mono"
                   fontSize="10" letterSpacing="3">
@@ -238,7 +238,7 @@ function Constellation({ grouped }) {
                 cx={p.x}
                 cy={p.y}
                 r={r}
-                fill={isHover ? '#D946EF' : '#38EFF5'}
+                fill={isHover ? '#D946EF' : '#F59E0B'}
                 opacity={isHover ? 1 : 0.85}
                 filter={isHover ? 'url(#glow)' : ''}
               />
@@ -262,7 +262,7 @@ function Constellation({ grouped }) {
                 x={p.x}
                 y={p.y - r - 8}
                 textAnchor="middle"
-                fill={isHover ? '#D946EF' : '#38EFF5'}
+                fill={isHover ? '#D946EF' : '#F59E0B'}
                 fontFamily="General Sans"
                 fontSize="11"
                 fontWeight={isHover ? '600' : '400'}

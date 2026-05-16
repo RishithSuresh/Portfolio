@@ -32,7 +32,7 @@ export default function Landing() {
         transition={{ duration: 1.8, ease: [0.22, 1, 0.36, 1] }}
         style={{
           background:
-            'radial-gradient(circle at 50% 40%, rgba(56,239,245,0.16), transparent 26%), radial-gradient(circle at 18% 58%, rgba(217,70,239,0.11), transparent 24%), radial-gradient(circle at 82% 58%, rgba(0,201,122,0.12), transparent 22%)',
+            'radial-gradient(circle at 50% 40%, rgba(245,158,11,0.24), transparent 26%), radial-gradient(circle at 18% 58%, rgba(217,70,239,0.14), transparent 24%), radial-gradient(circle at 82% 58%, rgba(157,23,77,0.2), transparent 22%)',
         }}
       />
 
@@ -61,10 +61,10 @@ export default function Landing() {
               transition={{ duration: 0.8 }}
               className="flex flex-col items-center gap-6 text-center"
             >
-              <span className="hud-label">AETHER · BOOT SEQUENCE · 00.01</span>
+              <span className="hud-label">SHADOW DOJO · GATE RITUAL · 00.01</span>
               <div className="flex items-center gap-3">
                 <span className="h-2 w-2 animate-pulse-soft rounded-full bg-emerald" />
-                <span className="hud-label text-cyan/80">CHANNEL · STABLE</span>
+                <span className="hud-label text-cyan/80">KATANA CORE · STABLE</span>
               </div>
 
               <motion.h1
@@ -107,7 +107,7 @@ export default function Landing() {
                     style={{ background: 'radial-gradient(circle, rgba(56,239,245,0.14), transparent 68%)' }}
                   />
                   <span className="font-display text-sm tracking-hud text-silver-soft">
-                    PRESS START
+                    ENTER DOJO
                   </span>
                   <motion.span
                     className="ml-3 inline-block text-cyan"
@@ -119,7 +119,7 @@ export default function Landing() {
                 </button>
               </Magnetic>
 
-              <span className="hud-label opacity-60">[ enter the world ]</span>
+              <span className="hud-label opacity-60">[ enter the dojo ]</span>
             </motion.div>
           </motion.div>
         )}
@@ -183,7 +183,7 @@ export default function Landing() {
               transition={{ delay: 1.6, duration: 1 }}
               className="absolute -bottom-24 left-1/2 -translate-x-1/2"
             >
-              <span className="hud-label opacity-70">↓ scroll · or · open the orbital nav</span>
+              <span className="hud-label opacity-70">↓ scroll · or · open the war map</span>
             </motion.div>
           </motion.div>
         )}

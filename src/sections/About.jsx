@@ -8,9 +8,9 @@ export default function About() {
   return (
     <SectionShell
       id="about"
-      eyebrow="01 · IDENTITY"
-      title="Operator profile"
-      kicker="A scan of the operator behind the system. Specs, signature, and current operating parameters."
+      eyebrow="01 · RONIN SCROLL"
+      title="Warrior profile"
+      kicker="A clear read of the builder behind the blade: craft, focus, and operating discipline."
     >
       <div className="grid w-full grid-cols-1 gap-8 lg:grid-cols-12">
         {/* Identity card */}
@@ -25,14 +25,14 @@ export default function About() {
           <CornerGlyphs />
 
           <div className="flex items-center justify-between">
-            <span className="hud-label">UID · 0xAETHER</span>
-            <span className="hud-label text-cyan/80">CLEARANCE · 5</span>
+            <span className="hud-label">HOUSE SEAL · KAGE-01</span>
+            <span className="hud-label text-cyan/80">RANK · ELITE</span>
           </div>
 
           {/* avatar holo */}
           <div className="relative mx-auto my-8 h-44 w-44">
             <div className="absolute inset-0 animate-spin-slow rounded-full" style={{
-              background: 'conic-gradient(from 0deg, rgba(91,192,190,0.0), rgba(91,192,190,0.5), rgba(91,192,190,0.0) 60%)',
+              background: 'conic-gradient(from 0deg, rgba(245,158,11,0.0), rgba(245,158,11,0.65), rgba(157,23,77,0.0) 60%)',
               filter: 'blur(8px)',
             }} />
             <div className="absolute inset-2 rounded-full hair" />
@@ -40,7 +40,7 @@ export default function About() {
             <div className="absolute inset-6 rounded-full glass flex items-center justify-center">
               <span className="font-display text-4xl text-holo">{identity.callsign[0]}</span>
             </div>
-            <div className="absolute -inset-2 rounded-full" style={{ boxShadow: '0 0 60px rgba(91,192,190,0.18)' }} />
+            <div className="absolute -inset-2 rounded-full" style={{ boxShadow: '0 0 60px rgba(245,158,11,0.24)' }} />
           </div>
 
           <div className="text-center">
@@ -51,7 +51,7 @@ export default function About() {
 
           <div className="mt-8 grid grid-cols-2 gap-3">
             <Pill k="Status" v={identity.status} accent />
-            <Pill k="Origin" v={identity.location} />
+            <Pill k="Base" v={identity.location} />
           </div>
         </motion.div>
 
@@ -65,8 +65,8 @@ export default function About() {
             className="glass rounded-2xl p-7"
           >
             <div className="mb-6 flex items-center justify-between">
-              <h4 className="font-display text-xl text-silver-soft">Attributes</h4>
-              <span className="hud-label">CALIBRATED</span>
+              <h4 className="font-display text-xl text-silver-soft">Disciplines</h4>
+              <span className="hud-label">SHARPENED</span>
             </div>
             <div className="space-y-5">
               {attributes.map((a, i) => (
@@ -110,8 +110,8 @@ function Attribute({ label, value, delay = 0 }) {
           transition={{ duration: 1.4, delay, ease: [0.22, 1, 0.36, 1] }}
           className="h-full rounded-full"
           style={{
-            background: 'linear-gradient(90deg, rgba(46,139,87,0.9), rgba(91,192,190,0.95))',
-            boxShadow: '0 0 16px rgba(91,192,190,0.45)',
+            background: 'linear-gradient(90deg, rgba(157,23,77,0.9), rgba(245,158,11,0.95))',
+            boxShadow: '0 0 16px rgba(245,158,11,0.45)',
           }}
         />
         <div className="pointer-events-none absolute inset-0" style={{

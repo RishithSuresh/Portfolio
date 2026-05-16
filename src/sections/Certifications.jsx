@@ -8,9 +8,9 @@ export default function Certifications() {
   return (
     <SectionShell
       id="certifications"
-      eyebrow="04 · CREDENTIAL VAULT"
-      title="Certifications & credentials"
-      kicker="This layer holds formal certifications when available, plus the proof signals that make the portfolio feel complete and credible."
+      eyebrow="04 · SEAL CHAMBER"
+      title="Certifications & seals"
+      kicker="This chamber holds formal certifications and proof marks that validate craft and consistency."
     >
       <div className="grid w-full grid-cols-1 gap-6 lg:grid-cols-12">
         <motion.div
@@ -24,7 +24,7 @@ export default function Certifications() {
           <div className="relative z-10 flex h-full flex-col justify-between gap-8">
             <div>
               <div className="flex items-center justify-between">
-                <span className="hud-label text-cyan/80">CERTIFICATION VAULT</span>
+                <span className="hud-label text-cyan/80">SEAL CHAMBER</span>
                 <span className="hud-label">ACTIVE</span>
               </div>
 
@@ -71,7 +71,7 @@ export default function Certifications() {
                 <div className="flex flex-col items-start gap-2 sm:items-end">
                   <span className="hud-label">{item.status}</span>
                   <span className="inline-flex items-center gap-2 rounded-full border border-cyan/15 bg-ink-900/40 px-3 py-1 text-xs text-cyan/80">
-                    VERIFIED SIGNAL
+                    VERIFIED SEAL
                     <span>▸</span>
                   </span>
                 </div>

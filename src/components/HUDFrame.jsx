@@ -36,7 +36,7 @@ export default function HUDFrame() {
       {/* Top-left identity strip */}
       <div className="absolute left-6 top-6 flex items-center gap-3">
         <div className="h-2 w-2 animate-pulse-soft rounded-full bg-emerald" />
-        <span className="hud-label">SYS · AETHER · V1.0</span>
+        <span className="hud-label">SYS · SHADOW DOJO · V2.0</span>
       </div>
 
       {/* Top-right time + zone */}
@@ -52,15 +52,15 @@ export default function HUDFrame() {
             transition={{ duration: 0.45 }}
             className="hud-label text-cyan/80"
           >
-            ZONE · {active.label.toUpperCase()}
+            SCROLL · {active.label.toUpperCase()}
           </motion.span>
         </AnimatePresence>
       </div>
 
       {/* Bottom strip — minimal contextual labels */}
       <div className="absolute inset-x-0 bottom-6 flex items-center justify-between px-6">
-        <span className="hud-label">SCROLL · OR · SELECT NODE</span>
-        <span className="hud-label">SIGNAL · STABLE</span>
+        <span className="hud-label">MOVE · OR · CHOOSE A GLYPH</span>
+        <span className="hud-label">STANCE · READY</span>
       </div>
     </div>
   );
@@ -76,7 +76,7 @@ function Bracket({ pos, className = '' }) {
   return (
     <span
       className={`absolute h-6 w-6 ${map[pos]} border-cyan/40 ${className}`}
-      style={{ boxShadow: '0 0 12px rgba(91,192,190,0.12)' }}
+      style={{ boxShadow: '0 0 12px rgba(245,158,11,0.24)' }}
     />
   );
 }

@@ -11,9 +11,9 @@ export default function Projects() {
   return (
     <SectionShell
       id="projects"
-      eyebrow="02 · MISSION VAULT"
-      title="Selected missions"
-      kicker="A curated archive of shipped systems and crafted experiences. Open any mission for the deep brief."
+      eyebrow="02 · BATTLE ARCHIVE"
+      title="Featured builds"
+      kicker="A curated archive of shipped systems and crafted experiences. Open any card for the full battle brief."
     >
       <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2">
         {projects.map((p, i) => (
@@ -45,9 +45,9 @@ function ProjectCard({ p, index, onOpen }) {
   const onLeave = () => { mx.set(0); my.set(0); };
 
   const accentRing = {
-    emerald: '0 0 40px -10px rgba(46,139,87,0.45)',
-    cyan: '0 0 40px -10px rgba(91,192,190,0.45)',
-    silver: '0 0 40px -10px rgba(217,226,236,0.18)',
+    emerald: '0 0 40px -10px rgba(157,23,77,0.45)',
+    cyan: '0 0 40px -10px rgba(245,158,11,0.48)',
+    silver: '0 0 40px -10px rgba(232,221,199,0.22)',
   }[p.accent];
 
   return (
@@ -68,11 +68,11 @@ function ProjectCard({ p, index, onOpen }) {
       <motion.div
         className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
         style={{
-          background: useTransform(
-            [gx, gy],
-            ([x, y]) => `radial-gradient(360px circle at ${x} ${y}, rgba(91,192,190,0.12), transparent 60%)`
-          ),
-        }}
+              background: useTransform(
+                [gx, gy],
+                ([x, y]) => `radial-gradient(360px circle at ${x} ${y}, rgba(245,158,11,0.16), transparent 60%)`
+              ),
+            }}
       />
       {/* accent ring */}
       <div className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100"
@@ -108,7 +108,7 @@ function ProjectCard({ p, index, onOpen }) {
       <div className="mt-8 flex items-center justify-between" style={{ transform: 'translateZ(25px)' }}>
         <span className="hud-label">{p.role.toUpperCase()}</span>
         <span className="inline-flex items-center gap-2 font-display text-sm text-cyan">
-          OPEN MISSION
+          OPEN ARCHIVE
           <span className="transition-transform duration-300 group-hover:translate-x-1">▸</span>
         </span>
       </div>
@@ -154,9 +154,9 @@ function ProjectViewer({ project, onClose }) {
             rel="noreferrer"
             className="mt-8 inline-flex items-center gap-2 rounded-full px-6 py-3 font-display text-sm tracking-widest text-silver-soft transition-all hover:text-cyan"
             style={{
-              border: '1px solid rgba(91,192,190,0.4)',
-              background: 'linear-gradient(180deg, rgba(28,36,49,0.7), rgba(13,17,23,0.7))',
-              boxShadow: '0 0 20px rgba(91,192,190,0.12)',
+              border: '1px solid rgba(245,158,11,0.45)',
+              background: 'linear-gradient(180deg, rgba(33,19,39,0.8), rgba(11,6,13,0.8))',
+              boxShadow: '0 0 20px rgba(245,158,11,0.2)',
             }}
           >
             VIEW ON GITHUB <span className="text-cyan">↗</span>
