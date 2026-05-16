@@ -51,19 +51,19 @@ textarea {
 
 .page::before {
   background:
-    radial-gradient(circle at 18% 18%, rgba(111, 255, 171, 0.18), transparent 30%),
-    radial-gradient(circle at 82% 24%, rgba(84, 163, 255, 0.2), transparent 34%),
-    radial-gradient(circle at 50% 78%, rgba(148, 92, 255, 0.15), transparent 36%);
+    radial-gradient(circle at 14% 14%, rgba(111, 255, 171, 0.24), transparent 28%),
+    radial-gradient(circle at 84% 22%, rgba(84, 163, 255, 0.24), transparent 34%),
+    radial-gradient(circle at 50% 80%, rgba(183, 123, 255, 0.2), transparent 38%);
   filter: blur(10px);
-  animation: pulsefield 14s ease-in-out infinite alternate;
+  animation: pulsefield 12s ease-in-out infinite alternate;
 }
 
 .page::after {
-  background-image: linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
-  background-size: 56px 56px;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 52px 52px;
   opacity: 0.06;
-  animation: drift 24s linear infinite;
+  animation: drift 20s linear infinite;
 }
 
 @keyframes pulsefield {
@@ -71,7 +71,7 @@ textarea {
     transform: translate3d(-1%, -1%, 0) scale(1);
   }
   to {
-    transform: translate3d(2%, 1%, 0) scale(1.08);
+    transform: translate3d(2%, 1%, 0) scale(1.1);
   }
 }
 
@@ -80,7 +80,19 @@ textarea {
     transform: translateY(0);
   }
   to {
-    transform: translateY(56px);
+    transform: translateY(52px);
+  }
+}
+
+@keyframes livePulse {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: translateX(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(3px);
   }
 }
 
@@ -103,21 +115,56 @@ textarea {
   display: block;
 }
 
+.scroll-progress-wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.scroll-progress {
+  height: 100%;
+  width: 100%;
+  transform-origin: left;
+  background: linear-gradient(90deg, #8effc8, #79cfff, #c594ff);
+  box-shadow: 0 0 16px rgba(126, 255, 212, 0.6);
+}
+
 .pointer-glow {
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: -1;
-  background: radial-gradient(circle at var(--x) var(--y), rgba(122, 255, 164, 0.18), transparent 26%);
+  background: radial-gradient(circle at var(--x) var(--y), rgba(122, 255, 164, 0.24), transparent 24%);
   mix-blend-mode: screen;
   transition: background 0.08s linear;
+}
+
+.cursor-trail {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9;
+}
+
+.cursor-trail span {
+  position: absolute;
+  width: 14px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 1px solid rgba(118, 255, 208, 0.8);
+  background: radial-gradient(circle at 35% 35%, rgba(173, 255, 228, 0.95), rgba(67, 134, 255, 0.15));
+  box-shadow: 0 0 16px rgba(126, 255, 212, 0.42);
 }
 
 .glass {
   background: linear-gradient(145deg, rgba(17, 22, 35, 0.74), rgba(11, 15, 25, 0.56));
   backdrop-filter: blur(8px);
   border: 1px solid rgba(148, 181, 255, 0.26);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07), 0 16px 34px rgba(1, 5, 14, 0.34);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07), 0 18px 40px rgba(1, 5, 14, 0.36);
 }
 
 .topbar {
@@ -128,6 +175,9 @@ textarea {
   justify-content: space-between;
   gap: 1rem;
   margin-bottom: 1.35rem;
+  position: sticky;
+  top: 0.8rem;
+  z-index: 8;
 }
 
 .brand {
@@ -145,10 +195,30 @@ textarea {
 .nav a {
   font-size: 0.88rem;
   transition: color 0.2s ease;
+  position: relative;
 }
 
-.nav a:hover {
-  color: #8effc8;
+.nav a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.24rem;
+  height: 2px;
+  transform: scaleX(0);
+  transform-origin: left;
+  background: linear-gradient(90deg, #8effc8, #79cfff);
+  transition: transform 0.24s ease;
+}
+
+.nav a:hover,
+.nav a.active {
+  color: #9effc8;
+}
+
+.nav a:hover::after,
+.nav a.active::after {
+  transform: scaleX(1);
 }
 
 .hero {
@@ -167,9 +237,9 @@ textarea {
 
 .hero-tag {
   color: #99ffbc;
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.15em;
   font-size: 0.72rem;
 }
 
@@ -182,6 +252,7 @@ textarea {
 
 .hero-copy h1 span {
   color: #98ffd0;
+  text-shadow: 0 0 22px rgba(110, 255, 212, 0.48);
 }
 
 .hero-copy p {
@@ -254,8 +325,12 @@ textarea {
   color: #dcf2ff;
 }
 
+.hero-stat li {
+  animation: livePulse 1.8s ease-in-out infinite;
+}
+
 .hero-stat li::before {
-  content: '◈ ';
+  content: '● ';
   color: #8effc8;
 }
 
@@ -277,6 +352,12 @@ textarea {
   border-radius: 12px;
   background: rgba(13, 17, 28, 0.55);
   border: 1px solid rgba(138, 173, 255, 0.25);
+  transition: transform 0.22s ease, border-color 0.22s ease;
+}
+
+.timeline-item:hover {
+  transform: translateY(-2px);
+  border-color: rgba(145, 255, 212, 0.45);
 }
 
 .timeline-item h3 {
@@ -332,10 +413,6 @@ textarea {
   padding: 0.72rem;
   cursor: pointer;
   transition: transform 0.2s ease, border-color 0.2s ease;
-}
-
-.project-item:hover {
-  transform: translateX(4px);
 }
 
 .project-item.active {
@@ -442,12 +519,17 @@ textarea {
 
   .topbar {
     flex-wrap: wrap;
+    position: static;
   }
 
   .nav {
     width: 100%;
     justify-content: space-between;
     font-size: 0.84rem;
+  }
+
+  .cursor-trail {
+    display: none;
   }
 }
 

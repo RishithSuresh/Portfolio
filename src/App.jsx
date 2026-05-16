@@ -1,6 +1,14 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import RubiksCube from './components/RubiksCube.jsx';
+
+const navLinks = [
+  { id: 'home', label: 'Home' },
+  { id: 'about', label: 'About' },
+  { id: 'projects', label: 'Projects' },
+  { id: 'skills', label: 'Skills' },
+  { id: 'contact', label: 'Contact' },
+];
 
 const education = [
   {
@@ -94,6 +102,13 @@ const highlights = [
   'Curator and coordinator for multiple inter-college tech events',
 ];
 
+const feed = [
+  'Initializing immersive identity graph...',
+  'Syncing project intelligence nodes...',
+  'Trajectory set: AI x 3D x Full-stack products.',
+  'Status: Available for challenging builds.',
+];
+
 const fadeInUp = {
   initial: { opacity: 0, y: 24 },
   whileInView: { opacity: 1, y: 0 },
@@ -103,74 +118,148 @@ const fadeInUp = {
 
 export default function App() {
   const [activeProject, setActiveProject] = useState(projects[0].name);
+  const [activeSection, setActiveSection] = useState('home');
+  const [scrollProgress, setScrollProgress] = useState(0);
   const [pointer, setPointer] = useState({ x: 50, y: 25 });
+  const [trail, setTrail] = useState([]);
+
+  const rafRef = useRef(null);
 
   const activeProjectData = useMemo(
     () => projects.find((project) => project.name === activeProject) ?? projects[0],
     [activeProject]
   );
 
+  useEffect(() => {
+    const onScroll = () => {
+      const scrollTop = window.scrollY;
+      const total = document.documentElement.scrollHeight - window.innerHeight;
+      const ratio = total > 0 ? Math.min(1, Math.max(0, scrollTop / total)) : 0;
+      setScrollProgress(ratio);
+    };
+
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)
+          .slice(0, 1)
+          .forEach((entry) => setActiveSection(entry.target.id));
+      },
+      { rootMargin: '-30% 0px -45% 0px', threshold: [0.2, 0.35, 0.55, 0.75] }
+    );
+
+    navLinks.forEach((item) => {
+      const element = document.getElementById(item.id);
+      if (element) observer.observe(element);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current);
+      }
+    };
+  }, []);
+
+  const handlePointerMove = (event) => {
+    if (rafRef.current) return;
+
+    const { clientX, clientY } = event;
+
+    rafRef.current = requestAnimationFrame(() => {
+      const x = (clientX / window.innerWidth) * 100;
+      const y = (clientY / window.innerHeight) * 100;
+
+      setPointer({ x, y });
+      setTrail((previous) => [{ x, y, id: crypto.randomUUID() }, ...previous].slice(0, 10));
+      rafRef.current = null;
+    });
+  };
+
   return (
-    <div
-      className="page"
-      onMouseMove={(event) => {
-        const x = (event.clientX / window.innerWidth) * 100;
-        const y = (event.clientY / window.innerHeight) * 100;
-        setPointer({ x, y });
-      }}
-    >
+    <div className="page" onMouseMove={handlePointerMove}>
       <RubiksCube />
-      <div
-        className="pointer-glow"
-        style={{ '--x': `${pointer.x}%`, '--y': `${pointer.y}%` }}
-        aria-hidden="true"
-      />
+
+      <div className="scroll-progress-wrap" aria-hidden="true">
+        <div className="scroll-progress" style={{ transform: `scaleX(${scrollProgress})` }} />
+      </div>
+
+      <div className="pointer-glow" style={{ '--x': `${pointer.x}%`, '--y': `${pointer.y}%` }} aria-hidden="true" />
+      <div className="cursor-trail" aria-hidden="true">
+        {trail.map((item, index) => (
+          <span
+            key={item.id}
+            style={{
+              left: `${item.x}%`,
+              top: `${item.y}%`,
+              opacity: `${1 - index * 0.09}`,
+              transform: `translate(-50%, -50%) scale(${1 - index * 0.06})`,
+            }}
+          />
+        ))}
+      </div>
 
       <header className="topbar container glass">
         <a className="brand" href="#home">
           RISHITH SURESH
         </a>
         <nav className="nav">
-          <a href="#about">About</a>
-          <a href="#projects">Projects</a>
-          <a href="#skills">Skills</a>
-          <a href="#contact">Contact</a>
+          {navLinks.map((link) => (
+            <a className={activeSection === link.id ? 'active' : ''} href={`#${link.id}`} key={link.id}>
+              {link.label}
+            </a>
+          ))}
         </nav>
       </header>
 
       <main className="container">
         <motion.section id="home" className="hero" {...fadeInUp}>
           <div className="hero-copy glass">
-            <p className="hero-tag">Immersive Portfolio</p>
+            <p className="hero-tag">Extreme Immersive Portfolio</p>
             <h1>
-              I design <span>intelligent</span>, interactive digital systems.
+              I build <span>high-impact</span>, interactive digital intelligence systems.
             </h1>
             <p>
-              I&apos;m Rishith, a CSE student and builder focused on AI-driven products, full-stack engineering, and
-              3D-first web experiences that feel alive.
+              I&apos;m Rishith, a CSE builder focused on AI, immersive interfaces, and production-grade full-stack
+              software engineered for performance and precision.
             </p>
             <div className="hero-actions">
               <a className="btn btn-lime" href="#projects">
-                Explore Work
+                Enter Project Zone
               </a>
               <a className="btn btn-ghost" href="#contact">
-                Connect
+                Launch Collaboration
               </a>
             </div>
             <div className="quick-meta">
               <span>Bengaluru / Chikmagalur</span>
               <span>AR/VR Hub President</span>
-              <span>Open to impactful collaborations</span>
+              <span>Research + Product Engineering</span>
             </div>
           </div>
 
-          <motion.article className="hero-stat glass" whileHover={{ y: -4 }} transition={{ duration: 0.2 }}>
-            <h2>Now Building</h2>
-            <p>AI + vision products, immersive interfaces, and practical tools that solve real-world workflows.</p>
+          <motion.article className="hero-stat glass" whileHover={{ y: -4, scale: 1.01 }} transition={{ duration: 0.2 }}>
+            <h2>Live Signal Feed</h2>
+            <p>Realtime capability map streaming from my current focus stack.</p>
             <ul>
-              <li>Full-stack web apps</li>
-              <li>Machine learning systems</li>
-              <li>Interactive 3D interfaces</li>
+              {feed.map((item, index) => (
+                <li key={item} style={{ animationDelay: `${index * 0.25}s` }}>
+                  {item}
+                </li>
+              ))}
             </ul>
           </motion.article>
         </motion.section>
@@ -210,21 +299,23 @@ export default function App() {
         <motion.section id="projects" className="panel projects glass" {...fadeInUp}>
           <h2>Featured Projects</h2>
           <p className="section-copy">
-            Tap through projects to inspect each system. The selected card updates the detail view in real time.
+            Dynamic project matrix with instant context switching. Click any node to inspect stack and outcomes.
           </p>
 
           <div className="project-layout">
             <div className="project-list">
               {projects.map((project) => (
-                <button
+                <motion.button
                   className={`project-item ${activeProject === project.name ? 'active' : ''}`}
                   key={project.name}
                   onClick={() => setActiveProject(project.name)}
                   type="button"
+                  whileHover={{ x: 6, scale: 1.01 }}
+                  whileTap={{ scale: 0.985 }}
                 >
                   <h3>{project.name}</h3>
                   <span>{project.stack}</span>
-                </button>
+                </motion.button>
               ))}
             </div>
 
@@ -274,9 +365,10 @@ export default function App() {
         </motion.section>
 
         <motion.section id="contact" className="panel glass contact" {...fadeInUp}>
-          <h2>Let&apos;s Build Something Meaningful</h2>
+          <h2>Let&apos;s Build Something Extreme</h2>
           <p>
-            Reach out for internships, research collaborations, product builds, and cross-disciplinary innovation.
+            Reach out for internships, research collaborations, product builds, and high-impact interdisciplinary
+            engineering opportunities.
           </p>
           <div className="contact-links">
             <a href="mailto:rishithsuresh10@gmail.com">rishithsuresh10@gmail.com</a>
