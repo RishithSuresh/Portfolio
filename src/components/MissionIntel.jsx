@@ -56,14 +56,10 @@ export default function MissionIntel() {
         ))}
       </ul>
 
-      <div className="mt-3 grid grid-cols-2 gap-2">
+      <div className="mt-3">
         <div className="rounded-xl border border-cyan/20 bg-ink-900/55 p-3">
           <div className="hud-label opacity-70">RESPONSE TIME</div>
           <div className="mt-1 text-base font-medium text-aurora">{availability.response}</div>
-        </div>
-        <div className="rounded-xl border border-fuchsia/20 bg-ink-900/55 p-3">
-          <div className="hud-label opacity-70">BATTLE MODE</div>
-          <div className="mt-1 text-xs text-silver-soft">{availability.mode}</div>
         </div>
       </div>
 
