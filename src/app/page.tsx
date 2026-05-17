@@ -65,9 +65,9 @@ export default function Home() {
         <section className="intro-shell">
           <article className="portfolio-card resume-card">Resume</article>
           <div className="quick-cards">
-            <article className="portfolio-card quick-card" />
-            <article className="portfolio-card quick-card" />
-            <article className="portfolio-card quick-card" />
+            <article className="portfolio-card quick-card" aria-hidden />
+            <article className="portfolio-card quick-card" aria-hidden />
+            <article className="portfolio-card quick-card" aria-hidden />
           </div>
         </section>
 
@@ -75,7 +75,7 @@ export default function Home() {
           <h2 className="portfolio-title">PROJECTS</h2>
           <div className="project-grid">
             {Array.from({ length: projectCardCount }, (_, index) => (
-              <article key={index} className="portfolio-card project-card" />
+              <article key={index} className="portfolio-card project-card" aria-hidden />
             ))}
           </div>
         </section>
@@ -84,7 +84,7 @@ export default function Home() {
           <h2 className="portfolio-title">TECHNICAL SKILLS</h2>
           <div className="skills-row">
             {Array.from({ length: skillCardCount }, (_, index) => (
-              <span key={index} className="skill-orb" />
+              <span key={index} className="skill-orb" aria-hidden />
             ))}
           </div>
         </section>
@@ -92,8 +92,8 @@ export default function Home() {
         <section className="portfolio-section">
           <h2 className="portfolio-title">EXPERIENCE</h2>
           <div className="experience-shell">
-            <article className="portfolio-card experience-card" />
-            <article className="portfolio-card experience-card" />
+            <article className="portfolio-card experience-card" aria-hidden />
+            <article className="portfolio-card experience-card" aria-hidden />
           </div>
         </section>
 
@@ -101,7 +101,7 @@ export default function Home() {
           <h2 className="portfolio-title">CERTIFICATIONS &amp; PUBLICATIONS</h2>
           <div className="cert-grid">
             {Array.from({ length: certificateCardCount }, (_, index) => (
-              <article key={index} className="portfolio-card certificate-card" />
+              <article key={index} className="portfolio-card certificate-card" aria-hidden />
             ))}
           </div>
         </section>
@@ -109,8 +109,8 @@ export default function Home() {
         <section className="portfolio-section">
           <h2 className="portfolio-title">CONTACT ME</h2>
           <div className="contact-grid">
-            <div className="portfolio-card contact-card" role="presentation" />
-            <div className="portfolio-card contact-card" role="presentation" />
+            <div className="portfolio-card contact-card" aria-hidden />
+            <div className="portfolio-card contact-card" aria-hidden />
           </div>
         </section>
       </main>
