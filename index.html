@@ -3,16 +3,106 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio UI</title>
+    <meta
+      name="description"
+      content="Personal portfolio website showcasing skills, projects, and contact information."
+    />
+    <title>Rishith Suresh | Portfolio</title>
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <main class="design-wrapper">
-      <img
-        src="./assets/Desktop - 1.png"
-        alt="Landing page portfolio design with a dark background, profile image, navigation links, and highlighted introduction content"
-        class="design-image"
-      />
+    <header class="site-header">
+      <div class="container nav">
+        <a class="brand" href="#home">RS</a>
+        <nav aria-label="Primary">
+          <ul class="nav-list">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="home">
+      <section class="hero">
+        <div class="container hero-content">
+          <p class="eyebrow">Web Developer</p>
+          <h1>Hi, I’m Rishith. I build clean and useful web experiences.</h1>
+          <p class="hero-text">
+            This is a real portfolio website built with semantic HTML and CSS — not
+            a pasted image. Explore my skills, featured projects, and ways to get in
+            touch.
+          </p>
+          <div class="actions">
+            <a class="btn btn-primary" href="#projects">View Projects</a>
+            <a class="btn btn-secondary" href="#contact">Contact Me</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" class="section">
+        <div class="container">
+          <h2>About</h2>
+          <p>
+            I enjoy creating responsive, user-friendly websites with strong
+            fundamentals. I focus on performance, accessibility, and clear design.
+          </p>
+          <ul class="skills">
+            <li>HTML5</li>
+            <li>CSS3</li>
+            <li>JavaScript</li>
+            <li>Responsive Design</li>
+            <li>Git & GitHub</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="projects" class="section section-alt">
+        <div class="container">
+          <h2>Projects</h2>
+          <div class="project-grid">
+            <article class="card">
+              <h3>Portfolio Website</h3>
+              <p>
+                A responsive personal portfolio with semantic structure and modern,
+                accessible styling.
+              </p>
+            </article>
+            <article class="card">
+              <h3>Landing Page</h3>
+              <p>
+                A product-focused landing page emphasizing conversion, clear
+                hierarchy, and mobile-first layout.
+              </p>
+            </article>
+            <article class="card">
+              <h3>UI Components</h3>
+              <p>
+                Reusable buttons, cards, and navigation components built with
+                consistency and scalability in mind.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="section">
+        <div class="container">
+          <h2>Contact</h2>
+          <p>
+            Want to collaborate or discuss a project? Reach out:
+            <a href="mailto:rishith@example.com">rishith@example.com</a>
+          </p>
+        </div>
+      </section>
     </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>© <span id="year">2026</span> Rishith Suresh. All rights reserved.</p>
+      </div>
+    </footer>
   </body>
 </html>
