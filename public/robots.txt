@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://rishithsuresh.github.io/Portfolio/sitemap.xml
