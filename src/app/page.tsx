@@ -3,9 +3,9 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { useMemo } from "react";
 
-const projectPlaceholders = Array.from({ length: 6 }, (_, id) => id);
-const skillPlaceholders = Array.from({ length: 9 }, (_, id) => id);
-const certificatePlaceholders = Array.from({ length: 3 }, (_, id) => id);
+const projectCardCount = 6;
+const skillCardCount = 9;
+const certificateCardCount = 3;
 
 export default function Home() {
   const reduceMotion = useReducedMotion();
@@ -63,19 +63,19 @@ export default function Home() {
         </section>
 
         <section className="intro-shell">
-          <article className="ref-card resume-card">Resume</article>
+          <article className="portfolio-card resume-card">Resume</article>
           <div className="quick-cards">
-            <article className="ref-card quick-card" />
-            <article className="ref-card quick-card" />
-            <article className="ref-card quick-card" />
+            <article className="portfolio-card quick-card" />
+            <article className="portfolio-card quick-card" />
+            <article className="portfolio-card quick-card" />
           </div>
         </section>
 
         <section className="portfolio-section">
           <h2 className="portfolio-title">PROJECTS</h2>
           <div className="project-grid">
-            {projectPlaceholders.map((project) => (
-              <article key={project} className="ref-card project-card" />
+            {Array.from({ length: projectCardCount }, (_, project) => (
+              <article key={project} className="portfolio-card project-card" />
             ))}
           </div>
         </section>
@@ -83,7 +83,7 @@ export default function Home() {
         <section className="portfolio-section">
           <h2 className="portfolio-title">TECHNICAL SKILLS</h2>
           <div className="skills-row">
-            {skillPlaceholders.map((skill) => (
+            {Array.from({ length: skillCardCount }, (_, skill) => (
               <span key={skill} className="skill-orb" />
             ))}
           </div>
@@ -92,16 +92,16 @@ export default function Home() {
         <section className="portfolio-section">
           <h2 className="portfolio-title">EXPERIENCE</h2>
           <div className="experience-shell">
-            <article className="ref-card experience-card" />
-            <article className="ref-card experience-card" />
+            <article className="portfolio-card experience-card" />
+            <article className="portfolio-card experience-card" />
           </div>
         </section>
 
         <section className="portfolio-section">
           <h2 className="portfolio-title">CERTIFICATIONS &amp; PUBLICATIONS</h2>
           <div className="cert-grid">
-            {certificatePlaceholders.map((certificate) => (
-              <article key={certificate} className="ref-card certificate-card" />
+            {Array.from({ length: certificateCardCount }, (_, certificate) => (
+              <article key={certificate} className="portfolio-card certificate-card" />
             ))}
           </div>
         </section>
@@ -109,8 +109,8 @@ export default function Home() {
         <section className="portfolio-section">
           <h2 className="portfolio-title">CONTACT ME</h2>
           <div className="contact-grid">
-            <article className="ref-card contact-card" />
-            <article className="ref-card contact-card" />
+            <article className="portfolio-card contact-card" aria-label="Email contact placeholder" />
+            <article className="portfolio-card contact-card" aria-label="Professional profile placeholder" />
           </div>
         </section>
       </main>
