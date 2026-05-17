@@ -2,9 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "The Chrono Archive | Rishith Suresh",
-  description:
-    "An interactive cinematic notebook portfolio exploring projects, inventions, memories, and timelines.",
+  title: "Rishith Suresh | Portfolio",
+  description: "Interactive developer portfolio with animated visuals, projects, skills, and contact details.",
 };
 
 export default function RootLayout({
