@@ -74,8 +74,8 @@ export default function Home() {
         <section className="portfolio-section">
           <h2 className="portfolio-title">PROJECTS</h2>
           <div className="project-grid">
-            {Array.from({ length: projectCardCount }, (_, project) => (
-              <article key={project} className="portfolio-card project-card" />
+            {Array.from({ length: projectCardCount }, (_, index) => (
+              <article key={index} className="portfolio-card project-card" />
             ))}
           </div>
         </section>
@@ -83,8 +83,8 @@ export default function Home() {
         <section className="portfolio-section">
           <h2 className="portfolio-title">TECHNICAL SKILLS</h2>
           <div className="skills-row">
-            {Array.from({ length: skillCardCount }, (_, skill) => (
-              <span key={skill} className="skill-orb" />
+            {Array.from({ length: skillCardCount }, (_, index) => (
+              <span key={index} className="skill-orb" />
             ))}
           </div>
         </section>
@@ -100,8 +100,8 @@ export default function Home() {
         <section className="portfolio-section">
           <h2 className="portfolio-title">CERTIFICATIONS &amp; PUBLICATIONS</h2>
           <div className="cert-grid">
-            {Array.from({ length: certificateCardCount }, (_, certificate) => (
-              <article key={certificate} className="portfolio-card certificate-card" />
+            {Array.from({ length: certificateCardCount }, (_, index) => (
+              <article key={index} className="portfolio-card certificate-card" />
             ))}
           </div>
         </section>
@@ -109,8 +109,8 @@ export default function Home() {
         <section className="portfolio-section">
           <h2 className="portfolio-title">CONTACT ME</h2>
           <div className="contact-grid">
-            <article className="portfolio-card contact-card" aria-label="Email contact placeholder" />
-            <article className="portfolio-card contact-card" aria-label="Professional profile placeholder" />
+            <div className="portfolio-card contact-card" role="presentation" />
+            <div className="portfolio-card contact-card" role="presentation" />
           </div>
         </section>
       </main>

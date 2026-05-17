@@ -20,7 +20,7 @@ body {
 }
 
 body {
-  font-family: Inter, "Segoe UI", "Arial Narrow", Arial, sans-serif;
+  font-family: Inter, "Segoe UI", Arial, sans-serif;
   background: var(--bg);
   color: #dfe9ca;
 }
