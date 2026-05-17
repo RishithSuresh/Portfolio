@@ -23,6 +23,7 @@ let noiseBuffer;
 let idleTimer;
 const routeLength =
   Number.parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--route-length")) || 760;
+const waxAnimationDurationMs = 600;
 
 const updatePage = () => {
   pages.forEach((page, i) => page.classList.toggle("active", i === currentPage));
@@ -205,7 +206,7 @@ letterForm.addEventListener("submit", (e) => {
       { transform: "scale(1.08) rotate(-2deg)" },
       { transform: "scale(1) rotate(0deg)" },
     ],
-    { duration: 600, easing: "ease-out" }
+    { duration: waxAnimationDurationMs, easing: "ease-out" }
   );
 });
 
