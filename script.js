@@ -19,7 +19,10 @@ let journalOpened = false;
 let ambienceOn = false;
 let audioContext;
 let ambienceNodes;
+let noiseBuffer;
 let idleTimer;
+const routeLength =
+  Number.parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--route-length")) || 760;
 
 const updatePage = () => {
   pages.forEach((page, i) => page.classList.toggle("active", i === currentPage));
@@ -81,7 +84,7 @@ window.addEventListener("mousemove", (e) => {
 window.addEventListener("scroll", () => {
   const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
   const ratio = maxScroll > 0 ? window.scrollY / maxScroll : 0;
-  routePath.style.strokeDashoffset = `${760 - ratio * 760}`;
+  routePath.style.strokeDashoffset = `${routeLength - ratio * routeLength}`;
   document.body.classList.toggle("deep-scroll", ratio > 0.35);
 });
 
@@ -122,14 +125,18 @@ setTimeMode();
 setInterval(setTimeMode, 60000);
 
 const createAmbience = async () => {
+  if (ambienceNodes && !ambienceNodes.stopped) return;
+
   if (!audioContext) {
     audioContext = new AudioContext();
   }
   if (audioContext.state === "suspended") await audioContext.resume();
 
-  const noiseBuffer = audioContext.createBuffer(1, audioContext.sampleRate * 2, audioContext.sampleRate);
-  const data = noiseBuffer.getChannelData(0);
-  for (let i = 0; i < data.length; i += 1) data[i] = (Math.random() * 2 - 1) * 0.3;
+  if (!noiseBuffer) {
+    noiseBuffer = audioContext.createBuffer(1, audioContext.sampleRate * 2, audioContext.sampleRate);
+    const data = noiseBuffer.getChannelData(0);
+    for (let i = 0; i < data.length; i += 1) data[i] = (Math.random() * 2 - 1) * 0.3;
+  }
 
   const noiseSource = audioContext.createBufferSource();
   noiseSource.buffer = noiseBuffer;
@@ -159,13 +166,18 @@ const createAmbience = async () => {
   noiseSource.start();
   crackleOsc.start();
 
-  ambienceNodes = { noiseSource, crackleOsc };
+  ambienceNodes = { noiseSource, crackleOsc, stopped: false };
 };
 
 const stopAmbience = () => {
-  if (!ambienceNodes) return;
-  ambienceNodes.noiseSource.stop();
-  ambienceNodes.crackleOsc.stop();
+  if (!ambienceNodes || ambienceNodes.stopped) return;
+  ambienceNodes.stopped = true;
+  try {
+    ambienceNodes.noiseSource.stop();
+  } catch {}
+  try {
+    ambienceNodes.crackleOsc.stop();
+  } catch {}
   ambienceNodes = null;
 };
 
