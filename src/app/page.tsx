@@ -3,79 +3,44 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { useMemo } from "react";
 
-const projects = [
-  "Interactive Portfolio Experience",
-  "AI Research Assistant",
-  "Real-Time Data Dashboard",
-  "Mobile-First Product Landing",
-  "Cloud Deployment Automation",
-  "Design System Starter",
-];
-
-const technicalSkills = [
-  "React",
-  "Next.js",
-  "TypeScript",
-  "Node.js",
-  "Python",
-  "SQL",
-  "AWS",
-  "Git",
-];
-
-const experiences = [
-  {
-    role: "Software Engineer",
-    company: "Product & Platform Team",
-    period: "Recent Experience",
-  },
-  {
-    role: "Frontend Developer",
-    company: "Web Experience Projects",
-    period: "Previous Role",
-  },
-];
-
-const certificates = [
-  "Cloud Fundamentals",
-  "Modern Web Development",
-  "AI & Data Foundations",
-];
+const projectCardCount = 6;
+const skillCardCount = 9;
+const certificateCardCount = 3;
 
 export default function Home() {
   const reduceMotion = useReducedMotion();
   const leaves = useMemo(
     () =>
-      Array.from({ length: 22 }, (_, id) => ({
+      Array.from({ length: 30 }, (_, id) => ({
         id,
-        top: `${(id * 13.7) % 100}%`,
-        left: `${(id * 19.4) % 100}%`,
-        delay: id * 0.4,
-        duration: 10 + (id % 6) * 2.2,
+        top: `${(id * 11.5) % 100}%`,
+        left: `${(id * 17.2) % 100}%`,
+        delay: id * 0.22,
+        duration: 8 + (id % 5) * 1.8,
       })),
     [],
   );
 
   return (
     <div className="portfolio-root">
-      <div className="forest-overlay" />
-      <div className="fog-glow" />
-      <div className="wind-lines" />
+      <div className="portfolio-overlay" />
+      <div className="portfolio-glow" />
+      <div className="portfolio-lines" />
 
-      <div className="leaves-layer" aria-hidden>
+      <div className="portfolio-leaves" aria-hidden>
         {leaves.map((leaf) => (
           <motion.span
             key={leaf.id}
-            className="leaf-particle"
+            className="leaf-dot"
             style={{ top: leaf.top, left: leaf.left }}
             animate={
               reduceMotion
                 ? undefined
                 : {
-                    x: [0, 40, -18, 30],
-                    y: [0, 18, -12, 8],
-                    rotate: [0, 24, -20, 16],
-                    opacity: [0.2, 0.95, 0.9, 0.2],
+                    x: [0, 18, -10, 24],
+                    y: [0, 10, -7, 5],
+                    rotate: [0, 22, -14, 17],
+                    opacity: [0.18, 0.88, 0.85, 0.15],
                   }
             }
             transition={{
@@ -88,80 +53,64 @@ export default function Home() {
         ))}
       </div>
 
-      <main className="content">
-        <section className="hero-section">
-          <p className="tag">PORTFOLIO</p>
+      <main className="portfolio-content">
+        <p className="logo-mark" aria-hidden>
+          ✻
+        </p>
+
+        <section className="name-shell">
           <h1>RISHITH SURESH</h1>
-          <p className="hero-copy">Software developer building modern, animated, and user-focused digital experiences.</p>
+        </section>
 
-          <div className="hero-grid">
-            <article className="glass-card intro-card">
-              <h2>Profile</h2>
-              <p>I design and develop clean web products with strong engineering basics and polished interfaces.</p>
-            </article>
-            <div className="compact-stack">
-              <article className="glass-card mini-card">Location: India</article>
-              <article className="glass-card mini-card">Open to collaboration</article>
-              <article className="glass-card mini-card">Focus: Full-Stack + UI</article>
-            </div>
+        <section className="intro-shell">
+          <article className="portfolio-card resume-card">Resume</article>
+          <div className="quick-cards">
+            <article className="portfolio-card quick-card" aria-hidden />
+            <article className="portfolio-card quick-card" aria-hidden />
+            <article className="portfolio-card quick-card" aria-hidden />
           </div>
         </section>
 
-        <section>
-          <h2 className="section-title">PROJECTS</h2>
-          <div className="grid-2">
-            {projects.map((project) => (
-              <article key={project} className="glass-card project-card">
-                {project}
-              </article>
+        <section className="portfolio-section">
+          <h2 className="portfolio-title">PROJECTS</h2>
+          <div className="project-grid">
+            {Array.from({ length: projectCardCount }, (_, index) => (
+              <article key={index} className="portfolio-card project-card" aria-hidden />
             ))}
           </div>
         </section>
 
-        <section>
-          <h2 className="section-title">TECHNICAL SKILLS</h2>
-          <div className="skills-wrap">
-            {technicalSkills.map((skill) => (
-              <span key={skill} className="skill-chip">
-                {skill}
-              </span>
+        <section className="portfolio-section">
+          <h2 className="portfolio-title">TECHNICAL SKILLS</h2>
+          <div className="skills-row">
+            {Array.from({ length: skillCardCount }, (_, index) => (
+              <span key={index} className="skill-orb" aria-hidden />
             ))}
           </div>
         </section>
 
-        <section>
-          <h2 className="section-title">EXPERIENCE</h2>
-          <div className="experience-list">
-            {experiences.map((item) => (
-              <article key={item.role} className="glass-card experience-card">
-                <h3>{item.role}</h3>
-                <p>{item.company}</p>
-                <span>{item.period}</span>
-              </article>
+        <section className="portfolio-section">
+          <h2 className="portfolio-title">EXPERIENCE</h2>
+          <div className="experience-shell">
+            <article className="portfolio-card experience-card" aria-hidden />
+            <article className="portfolio-card experience-card" aria-hidden />
+          </div>
+        </section>
+
+        <section className="portfolio-section">
+          <h2 className="portfolio-title">CERTIFICATIONS &amp; PUBLICATIONS</h2>
+          <div className="cert-grid">
+            {Array.from({ length: certificateCardCount }, (_, index) => (
+              <article key={index} className="portfolio-card certificate-card" aria-hidden />
             ))}
           </div>
         </section>
 
-        <section>
-          <h2 className="section-title">CERTIFICATIONS &amp; PUBLICATIONS</h2>
-          <div className="grid-3">
-            {certificates.map((entry) => (
-              <article key={entry} className="glass-card cert-card">
-                {entry}
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section>
-          <h2 className="section-title">CONTACT ME</h2>
+        <section className="portfolio-section">
+          <h2 className="portfolio-title">CONTACT ME</h2>
           <div className="contact-grid">
-            <a className="glass-card contact-card" href="mailto:rishith@example.com">
-              Email
-            </a>
-            <a className="glass-card contact-card" href="https://www.linkedin.com" target="_blank" rel="noreferrer">
-              LinkedIn
-            </a>
+            <div className="portfolio-card contact-card" aria-hidden />
+            <div className="portfolio-card contact-card" aria-hidden />
           </div>
         </section>
       </main>
