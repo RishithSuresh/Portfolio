@@ -21,9 +21,12 @@ let audioContext;
 let ambienceNodes;
 let noiseBuffer;
 let idleTimer;
-const ROUTE_LENGTH =
-  Number.parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--route-length")) || 760;
-const WAX_ANIMATION_DURATION_MS = 600;
+const WAX_ANIMATION_DURATION = 600;
+const NOISE_BUFFER_DURATION_SECONDS = 2;
+
+const ROUTE_DASHARRAY_LENGTH = routePath.getTotalLength();
+routePath.style.strokeDasharray = `${ROUTE_DASHARRAY_LENGTH}`;
+routePath.style.strokeDashoffset = `${ROUTE_DASHARRAY_LENGTH}`;
 
 const updatePage = () => {
   pages.forEach((page, i) => page.classList.toggle("active", i === currentPage));
@@ -85,7 +88,7 @@ window.addEventListener("mousemove", (e) => {
 window.addEventListener("scroll", () => {
   const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
   const ratio = maxScroll > 0 ? window.scrollY / maxScroll : 0;
-  routePath.style.strokeDashoffset = `${ROUTE_LENGTH - ratio * ROUTE_LENGTH}`;
+  routePath.style.strokeDashoffset = `${ROUTE_DASHARRAY_LENGTH - ratio * ROUTE_DASHARRAY_LENGTH}`;
   document.body.classList.toggle("deep-scroll", ratio > 0.35);
 });
 
@@ -134,7 +137,11 @@ const createAmbience = async () => {
   if (audioContext.state === "suspended") await audioContext.resume();
 
   if (!noiseBuffer) {
-    noiseBuffer = audioContext.createBuffer(1, audioContext.sampleRate * 2, audioContext.sampleRate);
+    noiseBuffer = audioContext.createBuffer(
+      1,
+      audioContext.sampleRate * NOISE_BUFFER_DURATION_SECONDS,
+      audioContext.sampleRate
+    );
     const data = noiseBuffer.getChannelData(0);
     for (let i = 0; i < data.length; i += 1) data[i] = (Math.random() * 2 - 1) * 0.3;
   }
@@ -210,7 +217,7 @@ letterForm.addEventListener("submit", (e) => {
       { transform: "scale(1.08) rotate(-2deg)" },
       { transform: "scale(1) rotate(0deg)" },
     ],
-    { duration: WAX_ANIMATION_DURATION_MS, easing: "ease-out" }
+    { duration: WAX_ANIMATION_DURATION, easing: "ease-out" }
   );
 });
 
