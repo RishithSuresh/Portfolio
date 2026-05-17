@@ -34,6 +34,12 @@ body {
   pointer-events: none;
 }
 
+.dust-layer,
+.leaves-layer,
+.firefly-layer {
+  overflow: hidden;
+}
+
 .sun-rays {
   background: linear-gradient(
     120deg,

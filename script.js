@@ -21,9 +21,9 @@ let audioContext;
 let ambienceNodes;
 let noiseBuffer;
 let idleTimer;
-const routeLength =
+const ROUTE_LENGTH =
   Number.parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--route-length")) || 760;
-const waxAnimationDurationMs = 600;
+const WAX_ANIMATION_DURATION_MS = 600;
 
 const updatePage = () => {
   pages.forEach((page, i) => page.classList.toggle("active", i === currentPage));
@@ -85,7 +85,7 @@ window.addEventListener("mousemove", (e) => {
 window.addEventListener("scroll", () => {
   const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
   const ratio = maxScroll > 0 ? window.scrollY / maxScroll : 0;
-  routePath.style.strokeDashoffset = `${routeLength - ratio * routeLength}`;
+  routePath.style.strokeDashoffset = `${ROUTE_LENGTH - ratio * ROUTE_LENGTH}`;
   document.body.classList.toggle("deep-scroll", ratio > 0.35);
 });
 
@@ -175,10 +175,14 @@ const stopAmbience = () => {
   ambienceNodes.stopped = true;
   try {
     ambienceNodes.noiseSource.stop();
-  } catch {}
+  } catch (error) {
+    console.warn("Failed to stop ambience noise source.", error);
+  }
   try {
     ambienceNodes.crackleOsc.stop();
-  } catch {}
+  } catch (error) {
+    console.warn("Failed to stop ambience crackle oscillator.", error);
+  }
   ambienceNodes = null;
 };
 
@@ -206,7 +210,7 @@ letterForm.addEventListener("submit", (e) => {
       { transform: "scale(1.08) rotate(-2deg)" },
       { transform: "scale(1) rotate(0deg)" },
     ],
-    { duration: waxAnimationDurationMs, easing: "ease-out" }
+    { duration: WAX_ANIMATION_DURATION_MS, easing: "ease-out" }
   );
 });
 
