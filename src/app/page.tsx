@@ -3,9 +3,9 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { useMemo } from "react";
 
-const projects = Array.from({ length: 6 }, (_, id) => id);
-const skills = Array.from({ length: 9 }, (_, id) => id);
-const certificates = Array.from({ length: 3 }, (_, id) => id);
+const projectPlaceholders = Array.from({ length: 6 }, (_, id) => id);
+const skillPlaceholders = Array.from({ length: 9 }, (_, id) => id);
+const certificatePlaceholders = Array.from({ length: 3 }, (_, id) => id);
 
 export default function Home() {
   const reduceMotion = useReducedMotion();
@@ -22,12 +22,12 @@ export default function Home() {
   );
 
   return (
-    <div className="reference-root">
-      <div className="reference-overlay" />
-      <div className="reference-glow" />
-      <div className="reference-lines" />
+    <div className="portfolio-root">
+      <div className="portfolio-overlay" />
+      <div className="portfolio-glow" />
+      <div className="portfolio-lines" />
 
-      <div className="reference-leaves" aria-hidden>
+      <div className="portfolio-leaves" aria-hidden>
         {leaves.map((leaf) => (
           <motion.span
             key={leaf.id}
@@ -53,8 +53,10 @@ export default function Home() {
         ))}
       </div>
 
-      <main className="reference-content">
-        <p className="logo-mark">✻</p>
+      <main className="portfolio-content">
+        <p className="logo-mark" aria-hidden>
+          ✻
+        </p>
 
         <section className="name-shell">
           <h1>RISHITH SURESH</h1>
@@ -63,49 +65,49 @@ export default function Home() {
         <section className="intro-shell">
           <article className="ref-card resume-card">Resume</article>
           <div className="quick-cards">
-            <article className="ref-card quick-card">·</article>
-            <article className="ref-card quick-card">·</article>
+            <article className="ref-card quick-card" />
+            <article className="ref-card quick-card" />
             <article className="ref-card quick-card" />
           </div>
         </section>
 
-        <section className="reference-section">
-          <h2 className="reference-title">PROJECTS</h2>
+        <section className="portfolio-section">
+          <h2 className="portfolio-title">PROJECTS</h2>
           <div className="project-grid">
-            {projects.map((project) => (
+            {projectPlaceholders.map((project) => (
               <article key={project} className="ref-card project-card" />
             ))}
           </div>
         </section>
 
-        <section className="reference-section">
-          <h2 className="reference-title">TECHNICAL SKILLS</h2>
+        <section className="portfolio-section">
+          <h2 className="portfolio-title">TECHNICAL SKILLS</h2>
           <div className="skills-row">
-            {skills.map((skill) => (
+            {skillPlaceholders.map((skill) => (
               <span key={skill} className="skill-orb" />
             ))}
           </div>
         </section>
 
-        <section className="reference-section">
-          <h2 className="reference-title">EXPERIENCE</h2>
+        <section className="portfolio-section">
+          <h2 className="portfolio-title">EXPERIENCE</h2>
           <div className="experience-shell">
             <article className="ref-card experience-card" />
             <article className="ref-card experience-card" />
           </div>
         </section>
 
-        <section className="reference-section">
-          <h2 className="reference-title">CERTIFICATIONS &amp; PUBLICATIONS</h2>
+        <section className="portfolio-section">
+          <h2 className="portfolio-title">CERTIFICATIONS &amp; PUBLICATIONS</h2>
           <div className="cert-grid">
-            {certificates.map((certificate) => (
+            {certificatePlaceholders.map((certificate) => (
               <article key={certificate} className="ref-card certificate-card" />
             ))}
           </div>
         </section>
 
-        <section className="reference-section">
-          <h2 className="reference-title">CONTACT ME</h2>
+        <section className="portfolio-section">
+          <h2 className="portfolio-title">CONTACT ME</h2>
           <div className="contact-grid">
             <article className="ref-card contact-card" />
             <article className="ref-card contact-card" />

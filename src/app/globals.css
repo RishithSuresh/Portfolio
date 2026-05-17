@@ -6,6 +6,7 @@
   --gold: #e5b560;
   --card-border: rgba(144, 178, 120, 0.28);
   --card-fill: rgba(11, 45, 36, 0.56);
+  --cert-grid-width: 236px;
 }
 
 * {
@@ -19,12 +20,12 @@ body {
 }
 
 body {
-  font-family: "Arial Narrow", Arial, sans-serif;
+  font-family: Inter, "Segoe UI", "Arial Narrow", Arial, sans-serif;
   background: var(--bg);
   color: #dfe9ca;
 }
 
-.reference-root {
+.portfolio-root {
   position: relative;
   min-height: 100vh;
   overflow: hidden;
@@ -36,23 +37,23 @@ body {
     linear-gradient(180deg, rgba(7, 41, 32, 0.96) 0%, rgba(4, 25, 19, 0.98) 100%);
 }
 
-.reference-overlay,
-.reference-glow,
-.reference-lines,
-.reference-leaves {
+.portfolio-overlay,
+.portfolio-glow,
+.portfolio-lines,
+.portfolio-leaves {
   pointer-events: none;
   position: absolute;
   inset: 0;
 }
 
-.reference-overlay {
+.portfolio-overlay {
   z-index: 0;
   background:
     radial-gradient(circle at 10% -5%, rgba(159, 204, 70, 0.25), transparent 28%),
     linear-gradient(90deg, transparent 6%, rgba(41, 84, 49, 0.35) 12%, transparent 20%, rgba(38, 76, 45, 0.28) 30%, transparent 40%, rgba(42, 89, 54, 0.29) 52%, transparent 64%, rgba(45, 99, 59, 0.25) 78%, transparent 91%);
 }
 
-.reference-glow {
+.portfolio-glow {
   z-index: 1;
   background:
     radial-gradient(circle at 82% 15%, rgba(140, 194, 74, 0.18), transparent 30%),
@@ -60,14 +61,14 @@ body {
   animation: fogFloat 7s ease-in-out infinite alternate;
 }
 
-.reference-lines {
+.portfolio-lines {
   z-index: 2;
   opacity: 0.34;
   background-image: repeating-linear-gradient(170deg, transparent 0, transparent 20px, rgba(142, 189, 60, 0.12) 21px, transparent 24px);
   animation: windFlow 12s linear infinite;
 }
 
-.reference-leaves {
+.portfolio-leaves {
   z-index: 3;
   overflow: hidden;
 }
@@ -81,7 +82,7 @@ body {
   box-shadow: 0 0 8px rgba(139, 200, 77, 0.55);
 }
 
-.reference-content {
+.portfolio-content {
   position: relative;
   z-index: 10;
   width: min(375px, 100%);
@@ -153,12 +154,12 @@ body {
   font-size: 1.1rem;
 }
 
-.reference-section {
+.portfolio-section {
   display: grid;
   gap: 0.35rem;
 }
 
-.reference-title {
+.portfolio-title {
   margin: 0;
   color: var(--gold);
   font-size: clamp(1.12rem, 9vw, 2.9rem);
@@ -209,7 +210,7 @@ body {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.46rem;
-  max-width: 236px;
+  max-width: var(--cert-grid-width);
 }
 
 .certificate-card {
