@@ -44,17 +44,14 @@ const observerOptions = {
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
-      entry.target.style.opacity = "1";
-      entry.target.style.transform = "translateY(0)";
+      entry.target.classList.add("is-visible");
     }
   });
 }, observerOptions);
 
 // Observe project cards and skill items
 document.querySelectorAll(".project-card, .skill-category").forEach((el) => {
-  el.style.opacity = "0";
-  el.style.transform = "translateY(20px)";
-  el.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+  el.classList.add("fade-in-element");
   observer.observe(el);
 });
 
@@ -62,8 +59,8 @@ document.querySelectorAll(".project-card, .skill-category").forEach((el) => {
 window.addEventListener("scroll", () => {
   const navbar = document.querySelector(".navbar");
   if (window.scrollY > 50) {
-    navbar.style.boxShadow = "0 2px 8px rgba(0, 0, 0, 0.1)";
+    navbar.classList.add("scrolled");
   } else {
-    navbar.style.boxShadow = "none";
+    navbar.classList.remove("scrolled");
   }
 });

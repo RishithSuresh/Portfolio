@@ -30,12 +30,19 @@ body {
 
 /* Navigation */
 .navbar {
+  position: -webkit-sticky;
   position: sticky;
   top: 0;
   z-index: 100;
   background: var(--white);
   border-bottom: 1px solid var(--gray-light);
   padding: 1rem 0;
+  box-shadow: 0 2px 8px transparent;
+  transition: box-shadow 0.3s ease;
+}
+
+.navbar.scrolled {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .nav-container {
@@ -402,13 +409,16 @@ section {
   color: #667eea;
 }
 
-/* Footer */
-.footer {
-  background: var(--dark);
-  color: var(--white);
-  text-align: center;
-  padding: 2rem;
-  font-size: 0.95rem;
+/* Animations */
+.fade-in-element {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in-element.is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* Responsive */
