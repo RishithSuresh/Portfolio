@@ -23,7 +23,7 @@ if (contactForm) {
 
     // Show success message
     formStatus.textContent = `Thank you, ${name}! Your message has been sent successfully.`;
-    formStatus.style.color = "#10b981";
+    formStatus.style.color = "var(--success)";
 
     // Reset form
     contactForm.reset();
