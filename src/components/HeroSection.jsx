@@ -1,195 +1,124 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { ChevronDown, ExternalLink, GitBranch } from 'lucide-react';
+import { ArrowRight, ChevronDown, GitBranch } from 'lucide-react';
+
+const HERO_LINES = ['Designing elegant', 'digital experiences', 'for modern products'];
 
 export const HeroSection = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     const handleMouseMove = (e) => {
-      setMousePosition({
-        x: (e.clientX / window.innerWidth) * 20 - 10,
-        y: (e.clientY / window.innerHeight) * 20 - 10,
-      });
+      const x = (e.clientX / window.innerWidth - 0.5) * 28;
+      const y = (e.clientY / window.innerHeight - 0.5) * 28;
+      setMousePosition({ x, y });
     };
 
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.8, ease: 'easeOut' },
-    },
-  };
-
   return (
-    <section
-      id="home"
-      className="relative w-full min-h-screen flex items-center justify-center overflow-hidden pt-20"
-    >
-      {/* Animated Background Orbs */}
+    <section id="home" className="relative min-h-screen flex items-center justify-center px-5 sm:px-8 pt-36 pb-24 overflow-hidden">
       <motion.div
-        className="absolute w-96 h-96 rounded-full bg-primary blur-3xl opacity-20"
-        animate={{
-          x: mousePosition.x,
-          y: mousePosition.y,
-        }}
-        transition={{ type: 'spring', stiffness: 50, damping: 30 }}
-        style={{ top: '10%', right: '10%' }}
-      />
-      <motion.div
-        className="absolute w-96 h-96 rounded-full bg-secondary blur-3xl opacity-20"
-        animate={{
-          x: -mousePosition.x,
-          y: -mousePosition.y,
-        }}
-        transition={{ type: 'spring', stiffness: 50, damping: 30 }}
-        style={{ bottom: '20%', left: '5%' }}
+        className="absolute w-[34rem] h-[34rem] rounded-full blur-3xl bg-white/15"
+        style={{ top: '14%', left: '50%', transform: 'translateX(-50%)' }}
+        animate={{ x: mousePosition.x * 0.35, y: mousePosition.y * 0.35 }}
+        transition={{ type: 'spring', stiffness: 35, damping: 18 }}
       />
 
-      {/* Content */}
       <motion.div
-        className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
+        className="absolute bottom-16 right-10 w-40 h-40 rounded-full blur-3xl bg-white/10"
+        animate={{ y: [0, -16, 0], x: [0, 8, 0] }}
+        transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
+      />
+
+      <motion.div
+        className="relative z-10 w-full max-w-6xl text-center"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
       >
-        {/* Floating Badge */}
         <motion.div
-          variants={itemVariants}
-          className="inline-block mb-6"
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-5 py-2.5 text-xs uppercase tracking-[0.22em] text-white/80"
         >
-          <motion.div
-            className="glass-effect px-6 py-3 rounded-full flex items-center gap-2 w-fit mx-auto border border-primary/30"
-            whileHover={{ scale: 1.05, borderColor: '#FFA700' }}
-          >
-            <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-            <span className="text-sm font-medium text-primary">Available for opportunities</span>
-          </motion.div>
+          <span className="h-1.5 w-1.5 rounded-full bg-white animate-pulse" />
+          Open to select collaborations
         </motion.div>
 
-        {/* Main Heading */}
-        <motion.h1
-          variants={itemVariants}
-          className="text-4xl sm:text-5xl lg:text-7xl font-grotesk font-bold text-text mb-6 leading-tight"
-        >
-          <motion.span
-            className="block"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.8 }}
-          >
-            Crafting Digital
-          </motion.span>
-          <motion.span
-            className="block gradient-text"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.8 }}
-          >
-            Experiences
-          </motion.span>
-        </motion.h1>
+        <div className="mt-8 space-y-2">
+          {HERO_LINES.map((line, idx) => (
+            <motion.h1
+              key={line}
+              className="text-5xl sm:text-6xl lg:text-8xl leading-[0.94] font-bold text-white"
+              initial={{ opacity: 0, y: 40, filter: 'blur(10px)' }}
+              animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+              transition={{ duration: 0.9, delay: 0.2 + idx * 0.15 }}
+            >
+              {line}
+            </motion.h1>
+          ))}
+        </div>
 
-        {/* Subtitle */}
         <motion.p
-          variants={itemVariants}
-          className="text-lg sm:text-xl text-muted mb-12 max-w-2xl mx-auto"
+          className="mx-auto mt-10 max-w-2xl text-base sm:text-lg lg:text-xl leading-relaxed text-muted"
+          initial={{ opacity: 0, y: 26 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.75 }}
         >
-          Full Stack Developer | AI/ML Enthusiast | Cloud Solutions Architect
+          Full-stack developer focused on crafting premium interfaces, robust web platforms, and immersive user journeys with clean engineering.
         </motion.p>
 
-        {/* CTA Buttons */}
         <motion.div
-          variants={itemVariants}
-          className="flex flex-col sm:flex-row gap-4 justify-center mb-12"
+          className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.95 }}
         >
           <motion.a
             href="#projects"
-            className="group glass-effect px-8 py-4 rounded-lg border border-primary/50 text-text font-medium flex items-center justify-center gap-2 hover:bg-primary/10 transition-all"
-            whileHover={{
-              scale: 1.05,
-              boxShadow: '0 0 30px rgba(255, 167, 0, 0.4)',
-            }}
-            whileTap={{ scale: 0.95 }}
+            className="pill-button text-white"
+            whileHover={{ scale: 1.03, y: -2 }}
+            whileTap={{ scale: 0.97 }}
           >
-            View Projects
-            <ExternalLink size={18} className="group-hover:translate-x-1 transition-transform" />
+            Explore projects
+            <ArrowRight size={16} />
           </motion.a>
 
           <motion.a
             href="#contact"
-            className="group glass-effect px-8 py-4 rounded-lg border border-secondary/50 text-text font-medium flex items-center justify-center gap-2 hover:bg-secondary/10 transition-all"
-            whileHover={{
-              scale: 1.05,
-              boxShadow: '0 0 30px rgba(0, 217, 255, 0.4)',
-            }}
-            whileTap={{ scale: 0.95 }}
+            className="pill-button text-white/85"
+            whileHover={{ scale: 1.03, y: -2 }}
+            whileTap={{ scale: 0.97 }}
           >
-            Get in Touch
-            <ExternalLink size={18} className="group-hover:translate-x-1 transition-transform" />
+            Start a conversation
           </motion.a>
 
           <motion.a
-            href="#"
-            className="group glass-effect px-8 py-4 rounded-lg border border-text/20 text-text font-medium flex items-center justify-center gap-2 hover:border-text/40 transition-all"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            href="https://github.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="pill-button text-white/85"
+            whileHover={{ scale: 1.03, y: -2 }}
+            whileTap={{ scale: 0.97 }}
           >
-            <GitBranch size={18} />
+            <GitBranch size={16} />
             GitHub
           </motion.a>
         </motion.div>
-
-        {/* Social Links */}
-        <motion.div
-          variants={itemVariants}
-          className="flex justify-center gap-6"
-        >
-          {[
-            { icon: '𝕏', href: 'https://twitter.com' },
-            { icon: 'in', href: 'https://linkedin.com' },
-            { icon: 'GitHub', href: 'https://github.com' },
-          ].map((social, idx) => (
-            <motion.a
-              key={idx}
-              href={social.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted hover:text-primary transition-colors"
-              whileHover={{ y: -5 }}
-            >
-              {social.icon}
-            </motion.a>
-          ))}
-        </motion.div>
       </motion.div>
 
-      {/* Scroll Indicator */}
-      <motion.div
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10"
-        animate={{ y: [0, 10, 0] }}
+      <motion.a
+        href="#about"
+        className="absolute bottom-9 left-1/2 -translate-x-1/2 text-white/55 hover:text-white transition-colors"
+        animate={{ y: [0, 8, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
       >
-        <a href="#about" className="text-muted hover:text-primary transition-colors">
-          <ChevronDown size={28} />
-        </a>
-      </motion.div>
+        <ChevronDown size={30} />
+      </motion.a>
     </section>
   );
 };
