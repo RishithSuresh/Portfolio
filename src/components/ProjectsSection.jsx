@@ -7,7 +7,20 @@ export const ProjectsSection = () => {
       title: 'AI Portfolio Assistant',
       description: 'A polished conversational interface that helps visitors explore projects, experience, and services without digging through dense content.',
       tech: ['React', 'Conversation UX', 'Motion'],
-    }
+      accent: 'from-[#8f92ff] via-[#d7c8ff] to-[#ffd6a0]',
+    },
+    {
+      title: 'Analytics Command Center',
+      description: 'A clean analytics workspace with high-contrast hierarchy, concise data framing, and responsive panels for decision-ready reporting.',
+      tech: ['Dashboards', 'Visual hierarchy', 'Data UI'],
+      accent: 'from-[#ffd39f] via-[#d8c8ff] to-[#8f92ff]',
+    },
+    {
+      title: 'Founders Launch Site',
+      description: 'A conversion-first product website designed with refined spacing, clear call-to-actions, and premium section transitions.',
+      tech: ['Brand systems', 'Conversion design', 'Responsive build'],
+      accent: 'from-[#8f92ff] via-[#beb3ff] to-[#ffd6a0]',
+    },
   ];
 
   return (
@@ -18,10 +31,16 @@ export const ProjectsSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
+          className="flex flex-col gap-4"
         >
           <span className="section-kicker">Portfolio</span>
-          <h2 className="section-title mt-4">Some featured projects</h2>
-          <p className="section-subtitle">Presented with larger visual anchors and cleaner storytelling so each project has room to breathe.</p>
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <h2 className="section-title mt-4">Some featured projects</h2>
+              <p className="section-subtitle">Presented with larger visual anchors and cleaner storytelling so each project has room to breathe.</p>
+            </div>
+            <span className="floating-utility px-4 py-2 text-xs uppercase tracking-[0.22em] text-white/70">Selected work</span>
+          </div>
         </motion.div>
 
         <motion.div
@@ -38,19 +57,21 @@ export const ProjectsSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: idx * 0.06 }}
-              whileHover={{ y: -6, scale: 1.01 }}
+              whileHover={{ y: -8, scale: 1.01 }}
               className="project-card glass-effect"
             >
               <div className={`project-preview ${idx % 2 === 1 ? 'lg:order-2 lg:justify-self-end' : ''}`}>
-                <img src="/src/assets/project-bg.svg" alt="project preview" className="w-full h-full object-cover" />
+                <div className={`h-full w-full bg-gradient-to-br ${project.accent}`} />
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.4),transparent_30%),linear-gradient(180deg,transparent,rgba(0,0,0,0.16))]" />
+                <span className="absolute left-4 top-4 rounded-full border border-white/20 bg-black/20 px-3 py-1 text-[0.65rem] uppercase tracking-[0.22em] text-white/80">0{idx + 1}</span>
               </div>
 
               <div className={`flex flex-col justify-center ${idx % 2 === 1 ? 'lg:order-1' : ''}`}>
                 <span className="number-pill">{idx + 1}</span>
-                <h3 className="mt-5 font-grotesk text-3xl font-semibold text-white">{project.title}</h3>
-                <p className="mt-4 max-w-lg text-sm leading-7 text-muted sm:text-base">{project.description}</p>
+                <h3 className="mt-5 max-w-xl font-grotesk text-3xl font-semibold leading-[1.08] text-white sm:text-[2.35rem]">{project.title}</h3>
+                <p className="mt-5 max-w-xl text-sm leading-8 text-muted sm:text-base">{project.description}</p>
 
-                <div className="mt-6 flex flex-wrap gap-2.5">
+                <div className="mt-7 flex flex-wrap gap-2.5">
                   {project.tech.map((tech) => (
                     <span key={tech} className="tag-pill">
                       {tech}
@@ -60,7 +81,7 @@ export const ProjectsSection = () => {
 
                 <motion.a
                   href="#contact"
-                  className="mt-8 inline-flex items-center gap-2 text-sm font-medium text-white transition-opacity hover:opacity-80"
+                  className="mt-9 inline-flex items-center gap-2 text-sm font-medium text-white transition-opacity hover:opacity-80"
                   whileHover={{ x: 4 }}
                 >
                   Start a similar project

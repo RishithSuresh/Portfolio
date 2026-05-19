@@ -61,53 +61,83 @@ export const HeroSection = () => {
           <span className="star-pin left-0 top-1/2 -translate-x-1/2" />
           <span className="star-pin right-[16%] top-[22%]" />
 
-          <motion.div
-            className="hero-card glass-effect-lg animate-fadeUp"
-            initial={{ opacity: 0, y: 28 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.15 }}
-          >
-            <span className="section-kicker justify-center">Ultimate upgrade</span>
-            <h1 className="mt-6 max-w-4xl font-grotesk text-4xl font-bold leading-[1.08] tracking-[-0.04em] text-white sm:text-5xl lg:text-[3.6rem]">
-              I design and build clean web experiences
-            </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-sm leading-8 text-muted sm:text-base">
-              With thoughtful interaction design, premium spacing, and stronger visual hierarchy to help your portfolio stand out instantly.
-            </p>
-
+          <div className="relative z-10 grid gap-6 lg:grid-cols-[minmax(0,1.08fr)_minmax(16rem,0.72fr)] lg:items-stretch">
             <motion.div
-              className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row"
-              initial={{ opacity: 0, y: 18 }}
+              className="hero-card glass-effect-lg animate-fadeUp"
+              initial={{ opacity: 0, y: 28 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.65, delay: 0.35 }}
+              transition={{ duration: 0.8, delay: 0.15 }}
             >
-              <motion.a
-                href="#projects"
-                className="pill-button button-primary text-sm font-medium"
-                whileHover={{ scale: 1.03, y: -2 }}
-                whileTap={{ scale: 0.97 }}
+              <span className="section-kicker justify-center">Ultimate upgrade</span>
+              <h1 className="mt-6 max-w-4xl font-grotesk text-4xl font-bold leading-[1.08] tracking-[-0.04em] text-white sm:text-5xl lg:text-[3.6rem]">
+                I design and build clean web experiences
+              </h1>
+              <p className="mx-auto mt-6 max-w-2xl text-sm leading-8 text-muted sm:text-base">
+                With thoughtful interaction design, premium spacing, and stronger visual hierarchy to help your portfolio stand out instantly.
+              </p>
+
+              <motion.div
+                className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row"
+                initial={{ opacity: 0, y: 18 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.65, delay: 0.35 }}
               >
-                View work
-                <ArrowRight size={16} />
-              </motion.a>
-              <motion.a
-                href="#contact"
-                className="pill-button text-white/85"
-                whileHover={{ scale: 1.03, y: -2 }}
-                whileTap={{ scale: 0.97 }}
-              >
-                Hire me
-              </motion.a>
+                <motion.a
+                  href="#projects"
+                  className="pill-button button-primary text-sm font-medium"
+                  whileHover={{ scale: 1.03, y: -2 }}
+                  whileTap={{ scale: 0.97 }}
+                >
+                  View work
+                  <ArrowRight size={16} />
+                </motion.a>
+                <motion.a
+                  href="#contact"
+                  className="pill-button text-white/85"
+                  whileHover={{ scale: 1.03, y: -2 }}
+                  whileTap={{ scale: 0.97 }}
+                >
+                  Hire me
+                </motion.a>
+              </motion.div>
+
+              <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
+                {['Modern UI', 'Interactive motion', 'Responsive layout'].map((item) => (
+                  <span key={item} className="tag-pill">
+                    {item}
+                  </span>
+                ))}
+              </div>
             </motion.div>
 
-            <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
-              {['Modern UI', 'Interactive motion', 'Responsive layout'].map((item) => (
-                <span key={item} className="tag-pill">
-                  {item}
-                </span>
-              ))}
-            </div>
-          </motion.div>
+            <motion.aside
+              className="glass-effect-lg flex flex-col justify-between gap-6 rounded-[2rem] p-6 sm:p-7 lg:p-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.75, delay: 0.22 }}
+            >
+              <div>
+                <span className="section-kicker">Live direction</span>
+                <h2 className="mt-5 font-grotesk text-2xl font-semibold text-white">Clean hierarchy, glass depth, clear spacing</h2>
+                <p className="mt-4 text-sm leading-8 text-muted">
+                  The interface leans into editorial spacing, stronger visual breaks, and softer glass surfaces so each block reads clearly.
+                </p>
+              </div>
+
+              <div className="space-y-3">
+                {[
+                  'Bigger section breathing room',
+                  'More visible panel separation',
+                  'Consistent animation pacing',
+                ].map((item) => (
+                  <div key={item} className="stat-chip justify-start text-sm text-white/82">
+                    <Sparkles size={14} className="text-[#ffd6a0]" />
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </motion.aside>
+          </div>
         </div>
 
         <motion.div
