@@ -1,87 +1,50 @@
 import { motion } from 'framer-motion';
-import { Briefcase } from 'lucide-react';
+import { Quote, Sparkles } from 'lucide-react';
 
 export const ExperienceSection = () => {
-  const experiences = [
+  const testimonials = [
     {
-      title: 'Senior Full Stack Developer',
-      company: 'Tech Startup Inc',
-      period: '2022 — Present',
-      description: 'Led end-to-end delivery of platform features and guided engineering quality across product teams.',
-      skills: ['React', 'Node.js', 'AWS', 'Leadership'],
+      name: 'Founder, SaaS product',
+      role: 'Product lead',
+      quote: 'The work consistently feels premium, deliberate, and conversion-focused. Every section looks more intentional after the redesign.',
     },
     {
-      title: 'Full Stack Developer',
-      company: 'Digital Solutions Ltd',
-      period: '2021 — 2022',
-      description: 'Built multi-client web products and production pipelines for fast, reliable releases.',
-      skills: ['Python', 'PostgreSQL', 'Docker', 'CI/CD'],
+      name: 'Design collaborator',
+      role: 'Product designer',
+      quote: 'Strong visual hierarchy and polished motion made the final build feel much closer to a top-tier portfolio showcase.',
     },
     {
-      title: 'Junior Developer',
-      company: 'StartUp Hub',
-      period: '2020 — 2021',
-      description: 'Implemented frontend systems and API integrations for a commerce-focused product suite.',
-      skills: ['JavaScript', 'React', 'REST APIs', 'Git'],
+      name: 'Startup operator',
+      role: 'Marketing lead',
+      quote: 'The updated sections guide attention naturally. It is cleaner, easier to scan, and far more memorable than before.',
+    },
+    {
+      name: 'Agency partner',
+      role: 'Creative director',
+      quote: 'The design system feels cohesive from the hero to the closing CTA, which gives the site a much stronger brand presence.',
     },
   ];
 
   const stats = [
-    { number: '50+', label: 'Projects Shipped' },
-    { number: '100+', label: 'Client Deliverables' },
-    { number: '5+', label: 'Years Experience' },
-    { number: '10+', label: 'Core Technologies' },
+    { number: '50+', label: 'Projects shaped' },
+    { number: '4+', label: 'Years refining UI' },
+    { number: '100%', label: 'Responsive sections' },
+    { number: '1', label: 'Unified visual language' },
   ];
 
   return (
     <section id="experience" className="section-shell pt-12 sm:pt-16 lg:pt-20">
-      <div className="section-inner max-w-5xl">
+      <div className="section-inner max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
         >
-          <h2 className="section-title">Experience</h2>
-          <p className="section-subtitle">Professional milestones across product engineering, cloud systems, and performance-focused application development.</p>
+          <span className="section-kicker">Social proof</span>
+          <h2 className="section-title mt-4">Client testimonials</h2>
+          <p className="section-subtitle">A testimonial-style section to add trust and mirror the richer structure shown in the reference direction.</p>
         </motion.div>
-
-        <div className="mt-14 space-y-5">
-          {experiences.map((exp, idx) => (
-            <motion.article
-              key={exp.title}
-              initial={{ opacity: 0, y: 22 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.55, delay: idx * 0.1 }}
-              whileHover={{ y: -4 }}
-              className="glass-effect rounded-3xl p-6 sm:p-7"
-            >
-              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
-                <div>
-                  <div className="flex items-center gap-2 text-white">
-                    <Briefcase size={16} />
-                    <h3 className="text-xl font-grotesk font-semibold">{exp.title}</h3>
-                  </div>
-                  <p className="mt-1 text-soft">{exp.company}</p>
-                </div>
-                <span className="rounded-full border border-white/12 bg-white/[0.03] px-3.5 py-1.5 text-xs text-muted w-fit">
-                  {exp.period}
-                </span>
-              </div>
-
-              <p className="mt-4 text-muted leading-relaxed">{exp.description}</p>
-
-              <div className="mt-4 flex flex-wrap gap-2">
-                {exp.skills.map((skill) => (
-                  <span key={skill} className="rounded-full border border-white/12 bg-white/[0.02] px-3 py-1 text-xs text-soft">
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </motion.article>
-          ))}
-        </div>
 
         <div className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-4">
           {stats.map((stat, idx) => (
@@ -96,6 +59,36 @@ export const ExperienceSection = () => {
               <p className="text-2xl sm:text-3xl font-grotesk font-bold text-white">{stat.number}</p>
               <p className="mt-1 text-xs sm:text-sm text-muted">{stat.label}</p>
             </motion.div>
+          ))}
+        </div>
+
+        <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2">
+          {testimonials.map((item, idx) => (
+            <motion.article
+              key={item.name}
+              initial={{ opacity: 0, y: 22 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.55, delay: idx * 0.08 }}
+              whileHover={{ y: -4 }}
+              className="testimonial-card"
+            >
+              <div className="flex items-start justify-between gap-4">
+                <div className="flex items-center gap-3">
+                  <span className="avatar-dot" />
+                  <div>
+                    <p className="text-sm font-medium text-white">{item.name}</p>
+                    <p className="text-xs text-muted">{item.role}</p>
+                  </div>
+                </div>
+                <Quote size={20} className="text-[#ffd6a0]" />
+              </div>
+              <p className="mt-5 text-sm leading-7 text-muted">{item.quote}</p>
+              <div className="mt-5 inline-flex items-center gap-2 text-xs uppercase tracking-[0.16em] text-white/58">
+                <Sparkles size={12} />
+                premium UI feedback
+              </div>
+            </motion.article>
           ))}
         </div>
       </div>
