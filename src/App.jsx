@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Navbar } from './components/Navbar';
 import { ParticleBackground } from './components/Background';
@@ -14,44 +14,17 @@ import './App.css';
 
 function App() {
   const [activeSection, setActiveSection] = useState('home');
-  const [isDarkMode, setIsDarkMode] = useState(true);
 
   useSmoothScroll();
-
-  // Update document class and localStorage
-  useEffect(() => {
-    if (isDarkMode) {
-      document.documentElement.classList.add('dark');
-      document.documentElement.classList.remove('light');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      document.documentElement.classList.add('light');
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-    }
-  }, [isDarkMode]);
-
-  // Load theme from localStorage on mount
-  useEffect(() => {
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-      setIsDarkMode(savedTheme === 'dark');
-    } else {
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      setIsDarkMode(prefersDark);
-    }
-  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
       const sections = ['home', 'about', 'skills', 'projects', 'experience', 'contact'];
       const current = sections.find((section) => {
         const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          return rect.top <= 100 && rect.bottom >= 100;
-        }
-        return false;
+        if (!element) return false;
+        const rect = element.getBoundingClientRect();
+        return rect.top <= 140 && rect.bottom >= 140;
       });
       if (current) setActiveSection(current);
     };
@@ -61,25 +34,23 @@ function App() {
   }, []);
 
   return (
-    <div className={`${isDarkMode ? 'dark' : 'light'} bg-background text-text min-h-screen transition-colors duration-300`}>
+    <div className="bg-background text-text min-h-screen">
       <ParticleBackground />
+      <div className="grain-overlay" />
+      <div className="vignette-overlay" />
 
-      {/* Main Content */}
       <div className="relative z-10">
-        <Navbar activeSection={activeSection} isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
+        <Navbar activeSection={activeSection} />
 
-        {/* Scroll to Top Button */}
         <motion.button
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="fixed bottom-8 right-8 z-50 glass-effect p-4 rounded-lg border border-primary/50 text-primary hover:bg-primary/10 transition-all"
-          whileHover={{
-            scale: 1.1,
-            boxShadow: '0 0 30px rgba(255, 167, 0, 0.4)',
-          }}
+          className="fixed bottom-6 right-6 z-50 pill-button !px-4 !py-4 text-white/85"
+          whileHover={{ scale: 1.05, y: -2 }}
           whileTap={{ scale: 0.95 }}
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3 }}
+          transition={{ duration: 0.35 }}
+          aria-label="Scroll to top"
         >
           ↑
         </motion.button>

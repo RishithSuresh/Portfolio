@@ -28,5 +28,5 @@ export const useSmoothScroll = () => {
     };
   }, []);
 
-  return lenisRef.current;
+  return undefined;
 };
