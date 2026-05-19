@@ -6,10 +6,14 @@ import { ThemeToggle } from './ThemeToggle';
 export const Navbar = ({ activeSection, isDarkMode, setIsDarkMode }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = scrollHeight > 0 ? Math.min((window.scrollY / scrollHeight) * 100, 100) : 0;
+      setScrollProgress(progress);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -100,9 +104,7 @@ export const Navbar = ({ activeSection, isDarkMode, setIsDarkMode }) => {
       {/* Scroll Progress Bar */}
       <motion.div
         className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-primary to-secondary"
-        style={{
-          width: typeof window !== 'undefined' ? `${Math.min((window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100, 100)}%` : '0%',
-        }}
+        style={{ width: `${scrollProgress}%` }}
       />
     </motion.nav>
   );

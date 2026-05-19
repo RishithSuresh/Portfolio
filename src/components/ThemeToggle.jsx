@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { Moon, Sun } from 'lucide-react';
 
@@ -13,7 +13,7 @@ export const ThemeToggle = ({ isDarkMode, setIsDarkMode }) => {
     >
       <motion.div
         initial={false}
-        animate={{ rotate: isDarkMode ? 180 : 0, scale: isDarkMode ? 1 : 1 }}
+        animate={{ rotate: isDarkMode ? 180 : 0 }}
         transition={{ duration: 0.3 }}
       >
         {isDarkMode ? (

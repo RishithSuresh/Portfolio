@@ -1,17 +1,5 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import {
-  ReactIcon,
-  NodeIcon,
-  PythonIcon,
-  TensorflowIcon,
-  AWSIcon,
-  DockerIcon,
-  MongoIcon,
-  PostgresIcon,
-  GitIcon,
-  FigmaIcon,
-} from '../assets/icons';
 
 export const SkillsSection = () => {
   const containerVariants = {
