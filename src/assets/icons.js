@@ -1,0 +1,11 @@
+// Placeholder - Using emoji icons instead
+export const ReactIcon = () => null;
+export const NodeIcon = () => null;
+export const PythonIcon = () => null;
+export const TensorflowIcon = () => null;
+export const AWSIcon = () => null;
+export const DockerIcon = () => null;
+export const MongoIcon = () => null;
+export const PostgresIcon = () => null;
+export const GitIcon = () => null;
+export const FigmaIcon = () => null;
