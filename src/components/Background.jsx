@@ -24,10 +24,10 @@ export const ParticleBackground = () => {
       particles = Array.from({ length: particleCount }, () => ({
         x: Math.random() * width,
         y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.12,
-        vy: (Math.random() - 0.5) * 0.12,
-        radius: Math.random() * 1.6 + 0.3,
-        opacity: Math.random() * 0.45 + 0.06,
+        vx: (Math.random() - 0.5) * 0.08,
+        vy: (Math.random() - 0.5) * 0.08,
+        radius: Math.random() * 1.4 + 0.25,
+        opacity: Math.random() * 0.28 + 0.04,
       }));
     };
 
@@ -56,7 +56,7 @@ export const ParticleBackground = () => {
         height * 0.52,
         width * 0.65,
       );
-      radial.addColorStop(0, 'rgba(255,255,255,0.05)');
+      radial.addColorStop(0, 'rgba(179,160,255,0.08)');
       radial.addColorStop(1, 'rgba(0,0,0,0)');
       ctx.fillStyle = radial;
       ctx.fillRect(0, 0, width, height);
@@ -72,7 +72,7 @@ export const ParticleBackground = () => {
         if (p.y > height) p.y = 0;
 
         ctx.beginPath();
-        ctx.fillStyle = `rgba(255,255,255,${p.opacity})`;
+        ctx.fillStyle = `rgba(248,247,244,${p.opacity})`;
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
         ctx.fill();
 
@@ -81,9 +81,9 @@ export const ParticleBackground = () => {
           const dx = p.x - q.x;
           const dy = p.y - q.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 130) {
+          if (dist < 100) {
             ctx.beginPath();
-            ctx.strokeStyle = `rgba(255,255,255,${(1 - dist / 130) * 0.12})`;
+            ctx.strokeStyle = `rgba(179,160,255,${(1 - dist / 100) * 0.08})`;
             ctx.lineWidth = 0.5;
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(q.x, q.y);

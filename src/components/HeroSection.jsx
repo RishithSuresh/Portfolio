@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, ChevronDown, GitBranch } from 'lucide-react';
-
-const HERO_LINES = ['Designing elegant', 'digital experiences', 'for modern products'];
+import { ArrowRight, ChevronDown, Sparkles } from 'lucide-react';
 
 export const HeroSection = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const partners = ['Framer', 'Webflow', 'Figma', 'Notion', 'React'];
 
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -19,101 +18,116 @@ export const HeroSection = () => {
   }, []);
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center px-5 sm:px-8 pt-36 pb-24 overflow-hidden">
+    <section id="home" className="relative overflow-hidden px-5 pb-20 pt-32 sm:px-8 lg:px-12">
       <motion.div
-        className="absolute w-[34rem] h-[34rem] rounded-full blur-3xl bg-white/15"
-        style={{ top: '14%', left: '50%', transform: 'translateX(-50%)' }}
+        className="absolute left-1/2 top-10 h-[28rem] w-[28rem] rounded-full blur-3xl"
+        style={{
+          background: 'radial-gradient(circle, rgba(179,160,255,0.22) 0%, rgba(179,160,255,0) 70%)',
+          transform: 'translateX(-50%)',
+        }}
         animate={{ x: mousePosition.x * 0.35, y: mousePosition.y * 0.35 }}
         transition={{ type: 'spring', stiffness: 35, damping: 18 }}
       />
 
       <motion.div
-        className="absolute bottom-16 right-10 w-40 h-40 rounded-full blur-3xl bg-white/10"
+        className="absolute right-0 top-24 h-48 w-48 rounded-full blur-3xl"
+        style={{ background: 'radial-gradient(circle, rgba(255,214,160,0.14) 0%, rgba(255,214,160,0) 72%)' }}
         animate={{ y: [0, -16, 0], x: [0, 8, 0] }}
         transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
       />
 
       <motion.div
-        className="relative z-10 w-full max-w-6xl text-center"
+        className="relative z-10 mx-auto w-full max-w-6xl"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
       >
-        <motion.div
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-5 py-2.5 text-xs uppercase tracking-[0.22em] text-white/80"
-        >
-          <span className="h-1.5 w-1.5 rounded-full bg-white animate-pulse" />
-          Open to select collaborations
-        </motion.div>
-
-        <div className="mt-8 space-y-2">
-          {HERO_LINES.map((line, idx) => (
-            <motion.h1
-              key={line}
-              className="text-5xl sm:text-6xl lg:text-8xl leading-[0.94] font-bold text-white"
-              initial={{ opacity: 0, y: 40, filter: 'blur(10px)' }}
-              animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-              transition={{ duration: 0.9, delay: 0.2 + idx * 0.15 }}
-            >
-              {line}
-            </motion.h1>
-          ))}
+        <div className="mb-6 flex items-center justify-between gap-4 text-sm text-white/70">
+          <motion.span
+            initial={{ opacity: 0, x: -18 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="inline-flex items-center gap-2"
+          >
+            <span className="spark-dot" />
+            Premium portfolio system
+          </motion.span>
+          <motion.span initial={{ opacity: 0, x: 18 }} animate={{ opacity: 1, x: 0 }} className="hidden sm:inline-flex items-center gap-2">
+            <Sparkles size={14} className="text-[#ffd6a0]" />
+            Available for freelance work
+          </motion.span>
         </div>
 
-        <motion.p
-          className="mx-auto mt-10 max-w-2xl text-base sm:text-lg lg:text-xl leading-relaxed text-muted"
-          initial={{ opacity: 0, y: 26 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.75 }}
-        >
-          Full-stack developer focused on crafting premium interfaces, robust web platforms, and immersive user journeys with clean engineering.
-        </motion.p>
+        <div className="grid-stage min-h-[32rem] px-4 py-10 sm:px-10 sm:py-14 lg:min-h-[38rem] lg:px-16">
+          <span className="star-pin left-0 top-1/2 -translate-x-1/2" />
+          <span className="star-pin right-[16%] top-[22%]" />
+
+          <motion.div
+            className="hero-card"
+            initial={{ opacity: 0, y: 28 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.15 }}
+          >
+            <span className="section-kicker justify-center">Ultimate upgrade</span>
+            <h1 className="mt-5 font-grotesk text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-[3.6rem]">
+              I design and build clean web experiences
+            </h1>
+            <p className="mx-auto mt-5 max-w-xl text-sm leading-7 text-muted sm:text-base">
+              With thoughtful interaction design, premium spacing, and stronger visual hierarchy to help your portfolio stand out instantly.
+            </p>
+
+            <motion.div
+              className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row"
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.65, delay: 0.35 }}
+            >
+              <motion.a
+                href="#projects"
+                className="pill-button button-primary text-sm font-medium"
+                whileHover={{ scale: 1.03, y: -2 }}
+                whileTap={{ scale: 0.97 }}
+              >
+                View work
+                <ArrowRight size={16} />
+              </motion.a>
+              <motion.a
+                href="#contact"
+                className="pill-button text-white/85"
+                whileHover={{ scale: 1.03, y: -2 }}
+                whileTap={{ scale: 0.97 }}
+              >
+                Hire me
+              </motion.a>
+            </motion.div>
+
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+              {['Modern UI', 'Interactive motion', 'Responsive layout'].map((item) => (
+                <span key={item} className="tag-pill">
+                  {item}
+                </span>
+              ))}
+            </div>
+          </motion.div>
+        </div>
 
         <motion.div
-          className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4"
-          initial={{ opacity: 0, y: 20 }}
+          className="logo-marquee"
+          initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.95 }}
+          transition={{ duration: 0.7, delay: 0.45 }}
         >
-          <motion.a
-            href="#projects"
-            className="pill-button text-white"
-            whileHover={{ scale: 1.03, y: -2 }}
-            whileTap={{ scale: 0.97 }}
-          >
-            Explore projects
-            <ArrowRight size={16} />
-          </motion.a>
-
-          <motion.a
-            href="#contact"
-            className="pill-button text-white/85"
-            whileHover={{ scale: 1.03, y: -2 }}
-            whileTap={{ scale: 0.97 }}
-          >
-            Start a conversation
-          </motion.a>
-
-          <motion.a
-            href="https://github.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="pill-button text-white/85"
-            whileHover={{ scale: 1.03, y: -2 }}
-            whileTap={{ scale: 0.97 }}
-          >
-            <GitBranch size={16} />
-            GitHub
-          </motion.a>
+          {partners.map((partner) => (
+            <div key={partner}>
+              <span>{partner}</span>
+              <span className="spark-dot" />
+            </div>
+          ))}
         </motion.div>
       </motion.div>
 
       <motion.a
         href="#about"
-        className="absolute bottom-9 left-1/2 -translate-x-1/2 text-white/55 hover:text-white transition-colors"
+        className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/55 transition-colors hover:text-white"
         animate={{ y: [0, 8, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
       >

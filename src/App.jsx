@@ -38,6 +38,7 @@ function App() {
   return (
     <div className="bg-background text-text min-h-screen">
       <ParticleBackground />
+      <div className="app-grid-overlay" />
       <div className="grain-overlay" />
       <div className="vignette-overlay" />
 
@@ -46,7 +47,7 @@ function App() {
 
         <motion.button
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="fixed bottom-6 right-6 z-50 pill-button !px-4 !py-4 text-white/85"
+          className="fixed bottom-6 right-6 z-50 floating-utility px-4 py-4 text-white/85 transition-colors hover:text-white"
           whileHover={{ scale: 1.05, y: -2 }}
           whileTap={{ scale: 0.95 }}
           initial={{ opacity: 0, y: 16 }}
