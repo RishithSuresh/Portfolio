@@ -62,7 +62,7 @@ export const HeroSection = () => {
           <span className="star-pin right-[16%] top-[22%]" />
 
           <motion.div
-            className="hero-card"
+            className="hero-card glass-effect-lg animate-fadeUp"
             initial={{ opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.15 }}
@@ -127,7 +127,7 @@ export const HeroSection = () => {
 
       <motion.a
         href="#about"
-        className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/55 transition-colors hover:text-white"
+        className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/55 transition-colors hover:text-white floating-cta"
         animate={{ y: [0, 8, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
       >

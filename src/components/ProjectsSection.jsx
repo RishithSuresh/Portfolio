@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+﻿import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 
 export const ProjectsSection = () => {
@@ -24,16 +24,22 @@ export const ProjectsSection = () => {
           <p className="section-subtitle">Presented with larger visual anchors and cleaner storytelling so each project has room to breathe.</p>
         </motion.div>
 
-        <div className="mt-14 space-y-6">
+        <motion.div
+          className="mt-14 space-y-6"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ staggerChildren: 0.06 }}
+        >
           {projects.map((project, idx) => (
             <motion.article
               key={project.title}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: idx * 0.08 }}
-              whileHover={{ y: -6 }}
-              className="project-card"
+              transition={{ duration: 0.6, delay: idx * 0.06 }}
+              whileHover={{ y: -6, scale: 1.01 }}
+              className="project-card glass-effect"
             >
               <div className={`project-preview ${idx % 2 === 1 ? 'lg:order-2 lg:justify-self-end' : ''}`}>
                 <img src="/src/assets/project-bg.svg" alt="project preview" className="w-full h-full object-cover" />
@@ -63,7 +69,7 @@ export const ProjectsSection = () => {
               </div>
             </motion.article>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

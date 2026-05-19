@@ -71,7 +71,7 @@ export const ExperienceSection = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.55, delay: idx * 0.08 }}
               whileHover={{ y: -4 }}
-              className="testimonial-card"
+              className="testimonial-card glass-effect"
             >
               <div className="flex items-start justify-between gap-4">
                 <div className="flex items-center gap-3">
