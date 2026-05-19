@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, ChevronDown, GitBranch } from 'lucide-react';
 
+const HERO_LINES = ['Designing elegant', 'digital experiences', 'for modern products'];
+
 export const HeroSection = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
@@ -15,8 +17,6 @@ export const HeroSection = () => {
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
-
-  const lines = ['Designing elegant', 'digital experiences', 'for modern products'];
 
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center px-5 sm:px-8 pt-36 pb-24 overflow-hidden">
@@ -50,7 +50,7 @@ export const HeroSection = () => {
         </motion.div>
 
         <div className="mt-8 space-y-2">
-          {lines.map((line, idx) => (
+          {HERO_LINES.map((line, idx) => (
             <motion.h1
               key={line}
               className="text-5xl sm:text-6xl lg:text-8xl leading-[0.94] font-bold text-white"

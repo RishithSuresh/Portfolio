@@ -12,6 +12,8 @@ import { Footer } from './components/Footer';
 import { useSmoothScroll } from './hooks/useSmoothScroll';
 import './App.css';
 
+const SECTION_DETECTION_THRESHOLD = 140;
+
 function App() {
   const [activeSection, setActiveSection] = useState('home');
 
@@ -24,7 +26,7 @@ function App() {
         const element = document.getElementById(section);
         if (!element) return false;
         const rect = element.getBoundingClientRect();
-        return rect.top <= 140 && rect.bottom >= 140;
+        return rect.top <= SECTION_DETECTION_THRESHOLD && rect.bottom >= SECTION_DETECTION_THRESHOLD;
       });
       if (current) setActiveSection(current);
     };

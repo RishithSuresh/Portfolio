@@ -2,12 +2,14 @@ import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 
+const SCROLL_THRESHOLD = 14;
+
 export const Navbar = ({ activeSection }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 14);
+    const handleScroll = () => setScrolled(window.scrollY > SCROLL_THRESHOLD);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -23,7 +25,11 @@ export const Navbar = ({ activeSection }) => {
     >
       <div className={`mx-auto max-w-5xl rounded-full border border-white/10 ${scrolled ? 'glass-effect-lg' : 'glass-effect'} px-4 sm:px-6 py-3`}>
         <div className="flex items-center justify-between gap-4">
-          <a href="#home" className="text-base sm:text-lg font-grotesk font-bold tracking-[0.24em] text-white">
+          <a
+            href="#home"
+            aria-label="Rishith Suresh Portfolio Home"
+            className="text-base sm:text-lg font-grotesk font-bold tracking-[0.24em] text-white"
+          >
             RS
           </a>
 

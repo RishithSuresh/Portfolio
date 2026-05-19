@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Heart, GitBranch, X, Send } from 'lucide-react';
 
+const SUCCESS_MESSAGE_DURATION = 3000;
+
 export const ContactSection = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
@@ -15,7 +17,7 @@ export const ContactSection = () => {
     e.preventDefault();
     setSubmitted(true);
     setFormData({ name: '', email: '', message: '' });
-    setTimeout(() => setSubmitted(false), 3000);
+    setTimeout(() => setSubmitted(false), SUCCESS_MESSAGE_DURATION);
   };
 
   const links = [
