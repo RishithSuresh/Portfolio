@@ -18,9 +18,9 @@ export const ContactSection = () => {
           transition={{ duration: 0.7 }}
           className="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,0.78fr)] lg:items-center"
         >
-          <div>
+          <div className="section-header">
             <span className="section-kicker">Contact</span>
-            <h2 className="section-title mt-4">Have an idea about a project?</h2>
+            <h2 className="section-title">Have an idea about a project?</h2>
             <p className="section-subtitle">
               Let&apos;s turn it into something visually memorable, cleanly structured, and ready to impress from the first scroll.
             </p>
@@ -54,7 +54,7 @@ export const ContactSection = () => {
               })}
             </div>
 
-            <div className="mt-8 inline-flex items-center gap-2 text-sm text-white/62">
+            <div className="mt-9 inline-flex items-center gap-2 text-sm text-white/62">
               <Sparkles size={14} className="text-[#ffd6a0]" />
               Available for freelance, product, and portfolio design work
             </div>

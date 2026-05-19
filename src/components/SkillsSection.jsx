@@ -16,9 +16,10 @@ export const SkillsSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
+          className="section-header"
         >
           <span className="section-kicker">Capabilities</span>
-          <h2 className="section-title mt-4">Tools that shape the experience</h2>
+          <h2 className="section-title">Tools that shape the experience</h2>
           <p className="section-subtitle">A balanced toolkit across interface design, frontend delivery, and product-minded engineering.</p>
         </motion.div>
 
@@ -34,10 +35,10 @@ export const SkillsSection = () => {
               className="glass-effect rounded-[2rem] p-6 sm:p-7"
             >
               <div className="flex items-center justify-between gap-3">
-                <h3 className="text-xl font-grotesk font-semibold text-white">{category.title}</h3>
+                <h3 className="text-xl font-grotesk font-semibold leading-[1.1] text-white">{category.title}</h3>
                 <span className="number-pill">{idx + 1}</span>
               </div>
-              <div className="mt-5 flex flex-wrap gap-2.5">
+              <div className="mt-6 flex flex-wrap gap-2.5">
                 {category.skills.map((skill) => (
                   <span
                     key={skill}

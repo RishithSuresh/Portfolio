@@ -31,9 +31,10 @@ export const AboutSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
+          className="section-header"
         >
           <span className="section-kicker">Process</span>
-          <h2 className="section-title mt-4">My process to design</h2>
+          <h2 className="section-title">My process to design</h2>
           <p className="section-subtitle">
             A structured approach focused on clarity, aesthetic consistency, and premium execution from the first fold to the footer.
           </p>
@@ -63,9 +64,9 @@ export const AboutSection = () => {
                     <div className="icon-disc">
                       <Icon size={18} />
                     </div>
-                    <h3 className="mt-5 font-grotesk text-2xl font-semibold text-white">{item.title}</h3>
-                    <p className="mt-3 max-w-2xl text-sm leading-7 text-muted sm:text-base">{item.text}</p>
-                    <span className="mt-5 inline-flex rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-xs tracking-[0.08em] text-white/76">
+                    <h3 className="mt-6 font-grotesk text-2xl font-semibold leading-[1.12] text-white">{item.title}</h3>
+                    <p className="mt-4 max-w-2xl text-sm leading-8 text-muted sm:text-base">{item.text}</p>
+                    <span className="mt-6 inline-flex rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-xs tracking-[0.08em] text-white/76">
                       {item.action}
                     </span>
                   </div>
@@ -82,8 +83,8 @@ export const AboutSection = () => {
             className="glass-panel rounded-[2rem] p-7 sm:p-8"
           >
             <span className="section-kicker">What changes</span>
-            <h3 className="mt-4 font-grotesk text-2xl font-semibold text-white">A sharper portfolio system</h3>
-            <p className="mt-4 text-sm leading-7 text-muted sm:text-base">
+            <h3 className="mt-5 font-grotesk text-2xl font-semibold leading-[1.12] text-white">A sharper portfolio system</h3>
+            <p className="mt-4 text-sm leading-8 text-muted sm:text-base">
               The refreshed direction introduces stronger contrast, a cleaner section rhythm, and a more editorial layout inspired by the provided reference.
             </p>
 

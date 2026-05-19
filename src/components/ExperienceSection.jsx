@@ -40,9 +40,10 @@ export const ExperienceSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
+          className="section-header"
         >
           <span className="section-kicker">Social proof</span>
-          <h2 className="section-title mt-4">Client testimonials</h2>
+          <h2 className="section-title">Client testimonials</h2>
           <p className="section-subtitle">A testimonial-style section to add trust and mirror the richer structure shown in the reference direction.</p>
         </motion.div>
 
@@ -56,7 +57,7 @@ export const ExperienceSection = () => {
               transition={{ duration: 0.45, delay: idx * 0.08 }}
               className="glass-effect rounded-2xl p-5 text-center"
             >
-              <p className="text-2xl sm:text-3xl font-grotesk font-bold text-white">{stat.number}</p>
+              <p className="text-2xl sm:text-3xl font-grotesk font-bold leading-none text-white">{stat.number}</p>
               <p className="mt-1 text-xs sm:text-sm text-muted">{stat.label}</p>
             </motion.div>
           ))}
@@ -83,8 +84,8 @@ export const ExperienceSection = () => {
                 </div>
                 <Quote size={20} className="text-[#ffd6a0]" />
               </div>
-              <p className="mt-5 text-sm leading-7 text-muted">{item.quote}</p>
-              <div className="mt-5 inline-flex items-center gap-2 text-xs uppercase tracking-[0.16em] text-white/58">
+              <p className="mt-5 text-sm leading-8 text-muted">{item.quote}</p>
+              <div className="mt-6 inline-flex items-center gap-2 text-xs uppercase tracking-[0.16em] text-white/58">
                 <Sparkles size={12} />
                 premium UI feedback
               </div>
