@@ -86,7 +86,7 @@ export const HeroSection = () => {
         {/* Main Heading */}
         <motion.h1
           variants={itemVariants}
-          className="text-5xl sm:text-6xl lg:text-7xl font-grotesk font-bold text-text mb-6 leading-tight"
+          className="text-4xl sm:text-5xl lg:text-7xl font-grotesk font-bold text-text mb-6 leading-tight"
         >
           <motion.span
             className="block"

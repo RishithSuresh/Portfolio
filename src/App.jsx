@@ -18,6 +18,30 @@ function App() {
 
   useSmoothScroll();
 
+  // Update document class and localStorage
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add('dark');
+      document.documentElement.classList.remove('light');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.documentElement.classList.add('light');
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+    }
+  }, [isDarkMode]);
+
+  // Load theme from localStorage on mount
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      setIsDarkMode(savedTheme === 'dark');
+    } else {
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      setIsDarkMode(prefersDark);
+    }
+  }, []);
+
   useEffect(() => {
     const handleScroll = () => {
       const sections = ['home', 'about', 'skills', 'projects', 'experience', 'contact'];
@@ -37,12 +61,12 @@ function App() {
   }, []);
 
   return (
-    <div className={`${isDarkMode ? 'dark' : 'light'} bg-background text-text min-h-screen`}>
+    <div className={`${isDarkMode ? 'dark' : 'light'} bg-background text-text min-h-screen transition-colors duration-300`}>
       <ParticleBackground />
 
       {/* Main Content */}
       <div className="relative z-10">
-        <Navbar activeSection={activeSection} />
+        <Navbar activeSection={activeSection} isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
 
         {/* Scroll to Top Button */}
         <motion.button
