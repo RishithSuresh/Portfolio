@@ -68,15 +68,15 @@ export const HeroSection = () => {
             transition={{ duration: 0.8, delay: 0.15 }}
           >
             <span className="section-kicker justify-center">Ultimate upgrade</span>
-            <h1 className="mt-5 font-grotesk text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-[3.6rem]">
+            <h1 className="mt-6 max-w-4xl font-grotesk text-4xl font-bold leading-[1.08] tracking-[-0.04em] text-white sm:text-5xl lg:text-[3.6rem]">
               I design and build clean web experiences
             </h1>
-            <p className="mx-auto mt-5 max-w-xl text-sm leading-7 text-muted sm:text-base">
+            <p className="mx-auto mt-6 max-w-2xl text-sm leading-8 text-muted sm:text-base">
               With thoughtful interaction design, premium spacing, and stronger visual hierarchy to help your portfolio stand out instantly.
             </p>
 
             <motion.div
-              className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row"
+              className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row"
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.65, delay: 0.35 }}
@@ -100,7 +100,7 @@ export const HeroSection = () => {
               </motion.a>
             </motion.div>
 
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
               {['Modern UI', 'Interactive motion', 'Responsive layout'].map((item) => (
                 <span key={item} className="tag-pill">
                   {item}
