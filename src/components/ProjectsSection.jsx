@@ -7,17 +7,7 @@ export const ProjectsSection = () => {
       title: 'AI Portfolio Assistant',
       description: 'A polished conversational interface that helps visitors explore projects, experience, and services without digging through dense content.',
       tech: ['React', 'Conversation UX', 'Motion'],
-    },
-    {
-      title: 'Analytics Command Center',
-      description: 'A clean analytics workspace with high-contrast hierarchy, concise data framing, and responsive panels for decision-ready reporting.',
-      tech: ['Dashboards', 'Visual hierarchy', 'Data UI'],
-    },
-    {
-      title: 'Founders Launch Site',
-      description: 'A conversion-first product website designed with refined spacing, clear call-to-actions, and premium section transitions.',
-      tech: ['Brand systems', 'Conversion design', 'Responsive build'],
-    },
+    }
   ];
 
   return (
@@ -45,7 +35,9 @@ export const ProjectsSection = () => {
               whileHover={{ y: -6 }}
               className="project-card"
             >
-              <div className={`project-preview ${idx % 2 === 1 ? 'lg:order-2 lg:justify-self-end' : ''}`} />
+              <div className={`project-preview ${idx % 2 === 1 ? 'lg:order-2 lg:justify-self-end' : ''}`}>
+                <img src="/src/assets/project-bg.svg" alt="project preview" className="w-full h-full object-cover" />
+              </div>
 
               <div className={`flex flex-col justify-center ${idx % 2 === 1 ? 'lg:order-1' : ''}`}>
                 <span className="number-pill">{idx + 1}</span>
@@ -68,16 +60,6 @@ export const ProjectsSection = () => {
                   Start a similar project
                   <ArrowUpRight size={15} />
                 </motion.a>
-              </div>
-            </motion.article>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
-                  </div>
-                </div>
               </div>
             </motion.article>
           ))}

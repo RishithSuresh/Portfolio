@@ -1,11 +1,11 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Github, Linkedin, Mail, Sparkles } from 'lucide-react';
+import { ArrowRight, GitBranch, Users, Mail, Sparkles } from 'lucide-react';
 
 export const ContactSection = () => {
   const links = [
     { icon: Mail, href: 'mailto:rishith@example.com', label: 'Email' },
-    { icon: Linkedin, href: 'https://linkedin.com/in/rishithsuresh', label: 'LinkedIn' },
-    { icon: Github, href: 'https://github.com/RishithSuresh', label: 'GitHub' },
+    { icon: Users, href: 'https://linkedin.com/in/rishithsuresh', label: 'LinkedIn' },
+    { icon: GitBranch, href: 'https://github.com/RishithSuresh', label: 'GitHub' },
   ];
 
   return (
@@ -67,7 +67,7 @@ export const ContactSection = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="contact-grid-art"
           />
-        </div>
+        </motion.div>
       </div>
     </section>
   );

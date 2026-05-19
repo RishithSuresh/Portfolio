@@ -1,12 +1,12 @@
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Mail, Sparkles } from 'lucide-react';
+import { GitBranch, Users, Mail, Sparkles } from 'lucide-react';
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
   const footerLinks = [
     { icon: Mail, href: 'mailto:rishith@example.com', label: 'Email' },
-    { icon: Linkedin, href: 'https://linkedin.com/in/rishithsuresh', label: 'LinkedIn' },
-    { icon: Github, href: 'https://github.com/RishithSuresh', label: 'GitHub' },
+    { icon: Users, href: 'https://linkedin.com/in/rishithsuresh', label: 'LinkedIn' },
+    { icon: GitBranch, href: 'https://github.com/RishithSuresh', label: 'GitHub' },
   ];
 
   return (

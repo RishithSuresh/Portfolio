@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Compass, Figma, Rocket, Sparkles } from 'lucide-react';
+import { Compass, Layout, Rocket, Sparkles } from 'lucide-react';
 
 export const AboutSection = () => {
   const process = [
@@ -10,7 +10,7 @@ export const AboutSection = () => {
       action: 'User goals • structure • references',
     },
     {
-      icon: Figma,
+      icon: Layout,
       title: 'Interface direction and systems',
       text: 'Then I shape the layout, hierarchy, and reusable UI patterns so each section feels connected instead of visually isolated.',
       action: 'Layout rhythm • cards • typography',
