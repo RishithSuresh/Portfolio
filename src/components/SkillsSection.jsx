@@ -32,7 +32,7 @@ export const SkillsSection = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.55, delay: idx * 0.05 }}
               whileHover={{ y: -4 }}
-               className="glass-effect premium-outline shine-sweep rounded-[2rem] p-6 sm:p-7"
+              className="glass-effect premium-outline shine-sweep rounded-[2rem] p-6 sm:p-7"
             >
               <div className="flex items-center justify-between gap-3">
                 <h3 className="text-xl font-grotesk font-semibold leading-[1.1] text-white">{category.title}</h3>

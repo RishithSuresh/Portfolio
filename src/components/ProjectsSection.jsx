@@ -58,7 +58,7 @@ export const ProjectsSection = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: idx * 0.06 }}
               whileHover={{ y: -8, scale: 1.01 }}
-               className="project-card glass-effect premium-outline shine-sweep"
+              className="project-card glass-effect premium-outline shine-sweep"
             >
               <div className={`project-preview ${idx % 2 === 1 ? 'lg:order-2 lg:justify-self-end' : ''}`}>
                 <div className={`h-full w-full bg-gradient-to-br ${project.accent}`} />
@@ -79,14 +79,14 @@ export const ProjectsSection = () => {
                   ))}
                 </div>
 
-                 <motion.a
-                   href="#contact"
-                   className="mt-9 inline-flex items-center gap-2 text-sm font-medium text-white transition-opacity hover:opacity-80"
-                   whileHover={{ x: 4 }}
-                 >
-                   Commission a similar product experience
-                   <ArrowUpRight size={15} />
-                 </motion.a>
+                <motion.a
+                  href="#contact"
+                  className="mt-9 inline-flex items-center gap-2 text-sm font-medium text-white transition-opacity hover:opacity-80"
+                  whileHover={{ x: 4 }}
+                >
+                  Commission a similar product experience
+                  <ArrowUpRight size={15} />
+                </motion.a>
               </div>
             </motion.article>
           ))}

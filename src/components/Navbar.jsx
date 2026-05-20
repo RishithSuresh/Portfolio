@@ -39,7 +39,7 @@ export const Navbar = ({ activeSection }) => {
             <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/6 ring-1 ring-white/12">
               <Sparkles size={14} className="text-[#ffd6a0]" />
             </span>
-              <span className="font-grotesk tracking-[0.12em]">Rishith Studio</span>
+            <span className="font-grotesk tracking-[0.12em]">Rishith Studio</span>
           </a>
 
           <div className="hidden md:flex items-center gap-1 rounded-full border border-white/10 bg-white/[0.03] px-2 py-1">

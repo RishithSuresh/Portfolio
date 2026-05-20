@@ -58,7 +58,7 @@ export const HeroSection = () => {
           </motion.span>
           <motion.span initial={{ opacity: 0, x: 18 }} animate={{ opacity: 1, x: 0 }} className="hidden sm:inline-flex items-center gap-2">
             <Sparkles size={14} className="text-[#ffd6a0]" />
-             Available for premium engagements
+            Available for premium engagements
           </motion.span>
         </div>
 

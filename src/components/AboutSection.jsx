@@ -80,13 +80,13 @@ export const AboutSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.65, delay: 0.12 }}
-             className="glass-panel premium-outline rounded-[2rem] p-7 sm:p-8"
+            className="glass-panel premium-outline rounded-[2rem] p-7 sm:p-8"
           >
             <span className="section-kicker">What changes</span>
-              <h3 className="mt-5 font-grotesk text-2xl font-semibold leading-[1.12] text-white">A presentation-ready portfolio architecture</h3>
-              <p className="mt-4 text-sm leading-8 text-muted sm:text-base">
-               The redesign introduces intentional contrast, stronger compositional rhythm, and premium storytelling blocks designed for executive and client-facing audiences.
-              </p>
+            <h3 className="mt-5 font-grotesk text-2xl font-semibold leading-[1.12] text-white">A presentation-ready portfolio architecture</h3>
+            <p className="mt-4 text-sm leading-8 text-muted sm:text-base">
+              The redesign introduces intentional contrast, stronger compositional rhythm, and premium storytelling blocks designed for executive and client-facing audiences.
+            </p>
 
             <div className="mt-8 space-y-3">
               {['Structured hero framing', 'Cleaner project storytelling', 'Higher-end visual consistency'].map((item) => (
