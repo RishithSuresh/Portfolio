@@ -5,19 +5,19 @@ export const ProjectsSection = () => {
   const projects = [
     {
       title: 'AI Portfolio Assistant',
-      description: 'A polished conversational interface that helps visitors explore projects, experience, and services without digging through dense content.',
+      description: 'A high-end conversational interface that helps decision makers evaluate capability, trust, and delivery quality without friction.',
       tech: ['React', 'Conversation UX', 'Motion'],
       accent: 'from-[#8f92ff] via-[#d7c8ff] to-[#ffd6a0]',
     },
     {
       title: 'Analytics Command Center',
-      description: 'A clean analytics workspace with high-contrast hierarchy, concise data framing, and responsive panels for decision-ready reporting.',
+      description: 'An executive analytics workspace with elevated hierarchy, premium data framing, and responsive command panels for strategic reporting.',
       tech: ['Dashboards', 'Visual hierarchy', 'Data UI'],
       accent: 'from-[#ffd39f] via-[#d8c8ff] to-[#8f92ff]',
     },
     {
       title: 'Founders Launch Site',
-      description: 'A conversion-first product website designed with refined spacing, clear call-to-actions, and premium section transitions.',
+      description: 'A conversion-focused launch website with cinematic section pacing, premium typography, and confidence-building calls to action.',
       tech: ['Brand systems', 'Conversion design', 'Responsive build'],
       accent: 'from-[#8f92ff] via-[#beb3ff] to-[#ffd6a0]',
     },
@@ -36,10 +36,10 @@ export const ProjectsSection = () => {
           <span className="section-kicker">Portfolio</span>
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
-              <h2 className="section-title mt-4">Some featured projects</h2>
-              <p className="section-subtitle">Presented with larger visual anchors and cleaner storytelling so each project has room to breathe.</p>
+              <h2 className="section-title mt-4">Featured premium case studies</h2>
+              <p className="section-subtitle">Structured as high-trust narratives so each project communicates business value, craft quality, and execution confidence.</p>
             </div>
-            <span className="floating-utility px-4 py-2 text-xs uppercase tracking-[0.22em] text-white/70">Selected work</span>
+            <span className="floating-utility px-4 py-2 text-xs uppercase tracking-[0.22em] text-white/70">Executive selection</span>
           </div>
         </motion.div>
 
@@ -58,7 +58,7 @@ export const ProjectsSection = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: idx * 0.06 }}
               whileHover={{ y: -8, scale: 1.01 }}
-              className="project-card glass-effect"
+               className="project-card glass-effect premium-outline shine-sweep"
             >
               <div className={`project-preview ${idx % 2 === 1 ? 'lg:order-2 lg:justify-self-end' : ''}`}>
                 <div className={`h-full w-full bg-gradient-to-br ${project.accent}`} />
@@ -79,14 +79,14 @@ export const ProjectsSection = () => {
                   ))}
                 </div>
 
-                <motion.a
-                  href="#contact"
-                  className="mt-9 inline-flex items-center gap-2 text-sm font-medium text-white transition-opacity hover:opacity-80"
-                  whileHover={{ x: 4 }}
-                >
-                  Start a similar project
-                  <ArrowUpRight size={15} />
-                </motion.a>
+                 <motion.a
+                   href="#contact"
+                   className="mt-9 inline-flex items-center gap-2 text-sm font-medium text-white transition-opacity hover:opacity-80"
+                   whileHover={{ x: 4 }}
+                 >
+                   Commission a similar product experience
+                   <ArrowUpRight size={15} />
+                 </motion.a>
               </div>
             </motion.article>
           ))}

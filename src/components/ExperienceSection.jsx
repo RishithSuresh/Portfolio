@@ -42,9 +42,9 @@ export const ExperienceSection = () => {
           transition={{ duration: 0.7 }}
           className="section-header"
         >
-          <span className="section-kicker">Social proof</span>
-          <h2 className="section-title">Client testimonials</h2>
-          <p className="section-subtitle">A testimonial-style section to add trust and mirror the richer structure shown in the reference direction.</p>
+          <span className="section-kicker">Proof of impact</span>
+          <h2 className="section-title">Client results and reputation</h2>
+          <p className="section-subtitle">Performance snapshots and testimonial signals designed to reinforce trust with hiring teams and company stakeholders.</p>
         </motion.div>
 
         <div className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-4">
