@@ -62,11 +62,11 @@ export const ContactSection = () => {
 
           <motion.div
             initial={{ opacity: 0, y: 24 }}
-             whileInView={{ opacity: 1, y: 0 }}
-             viewport={{ once: true }}
-             transition={{ duration: 0.6, delay: 0.1 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
             className="contact-grid-art premium-outline"
-           />
+          />
         </motion.div>
       </div>
     </section>
