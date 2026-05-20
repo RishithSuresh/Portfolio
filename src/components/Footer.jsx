@@ -25,8 +25,8 @@ export const Footer = () => {
               <Sparkles size={16} className="text-[#ffd6a0]" />
             </span>
             <div>
-              <p className="font-grotesk text-lg tracking-[0.18em] text-white">Rishith</p>
-              <p className="mt-1 text-sm text-muted">Premium-focused developer portfolio</p>
+              <p className="font-grotesk text-lg tracking-[0.18em] text-white">Rishith Studio</p>
+              <p className="mt-1 text-sm text-muted">Premium digital product portfolio</p>
             </div>
           </div>
 

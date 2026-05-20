@@ -19,8 +19,8 @@ export const SkillsSection = () => {
           className="section-header"
         >
           <span className="section-kicker">Capabilities</span>
-          <h2 className="section-title">Tools that shape the experience</h2>
-          <p className="section-subtitle">A balanced toolkit across interface design, frontend delivery, and product-minded engineering.</p>
+          <h2 className="section-title">Technology and design leverage</h2>
+          <p className="section-subtitle">A high-impact stack across interface systems, product engineering, and strategic visual execution.</p>
         </motion.div>
 
         <div className="mt-14 grid grid-cols-1 gap-5 md:grid-cols-2">
@@ -32,7 +32,7 @@ export const SkillsSection = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.55, delay: idx * 0.05 }}
               whileHover={{ y: -4 }}
-              className="glass-effect rounded-[2rem] p-6 sm:p-7"
+              className="glass-effect premium-outline shine-sweep rounded-[2rem] p-6 sm:p-7"
             >
               <div className="flex items-center justify-between gap-3">
                 <h3 className="text-xl font-grotesk font-semibold leading-[1.1] text-white">{category.title}</h3>

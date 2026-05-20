@@ -5,6 +5,11 @@ import { ArrowRight, ChevronDown, Sparkles } from 'lucide-react';
 export const HeroSection = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const partners = ['Framer', 'Webflow', 'Figma', 'Notion', 'React'];
+  const metrics = [
+    { value: '98%', label: 'Client satisfaction' },
+    { value: '2.3x', label: 'Avg. engagement lift' },
+    { value: '7d', label: 'Rapid concept cycle' },
+  ];
 
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -49,11 +54,11 @@ export const HeroSection = () => {
             className="inline-flex items-center gap-2"
           >
             <span className="spark-dot" />
-            Premium portfolio system
+            Enterprise-grade portfolio system
           </motion.span>
           <motion.span initial={{ opacity: 0, x: 18 }} animate={{ opacity: 1, x: 0 }} className="hidden sm:inline-flex items-center gap-2">
             <Sparkles size={14} className="text-[#ffd6a0]" />
-            Available for freelance work
+            Available for premium engagements
           </motion.span>
         </div>
 
@@ -68,12 +73,12 @@ export const HeroSection = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.15 }}
             >
-              <span className="section-kicker justify-center">Ultimate upgrade</span>
+              <span className="section-kicker justify-center">Premium positioning</span>
               <h1 className="mt-6 max-w-4xl font-grotesk text-4xl font-bold leading-[1.08] tracking-[-0.04em] text-white sm:text-5xl lg:text-[3.6rem]">
-                I design and build clean web experiences
+                I design digital presence that feels unmistakably top-tier
               </h1>
               <p className="mx-auto mt-6 max-w-2xl text-sm leading-8 text-muted sm:text-base">
-                With thoughtful interaction design, premium spacing, and stronger visual hierarchy to help your portfolio stand out instantly.
+                Built with precision typography, luxury-grade spacing, and confident interaction design so your portfolio reads like a world-class product brand.
               </p>
 
               <motion.div
@@ -101,8 +106,17 @@ export const HeroSection = () => {
                 </motion.a>
               </motion.div>
 
+              <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+                {metrics.map((metric) => (
+                  <div key={metric.label} className="metric-card premium-outline">
+                    <p>{metric.value}</p>
+                    <p>{metric.label}</p>
+                  </div>
+                ))}
+              </div>
+
               <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
-                {['Modern UI', 'Interactive motion', 'Responsive layout'].map((item) => (
+                {['Executive-ready UI', 'Strategic interaction', 'Responsive precision'].map((item) => (
                   <span key={item} className="tag-pill">
                     {item}
                   </span>
@@ -118,17 +132,17 @@ export const HeroSection = () => {
             >
               <div>
                 <span className="section-kicker">Live direction</span>
-                <h2 className="mt-5 font-grotesk text-2xl font-semibold text-white">Clean hierarchy, glass depth, clear spacing</h2>
+                <h2 className="mt-5 font-grotesk text-2xl font-semibold text-white">Cinematic depth with disciplined hierarchy</h2>
                 <p className="mt-4 text-sm leading-8 text-muted">
-                  The interface leans into editorial spacing, stronger visual breaks, and softer glass surfaces so each block reads clearly.
+                  This direction combines editorial restraint with luxury motion, giving every section the clarity and authority expected in high-stakes company presentations.
                 </p>
               </div>
 
               <div className="space-y-3">
                 {[
-                  'Bigger section breathing room',
-                  'More visible panel separation',
-                  'Consistent animation pacing',
+                  'Sharper section contrast and framing',
+                  'Premium panel depth and materiality',
+                  'Consistent high-end motion language',
                 ].map((item) => (
                   <div key={item} className="stat-chip justify-start text-sm text-white/82">
                     <Sparkles size={14} className="text-[#ffd6a0]" />

@@ -20,9 +20,9 @@ export const ContactSection = () => {
         >
           <div className="section-header">
             <span className="section-kicker">Contact</span>
-            <h2 className="section-title">Have an idea about a project?</h2>
+            <h2 className="section-title">Ready to build a premium product presence?</h2>
             <p className="section-subtitle">
-              Let&apos;s turn it into something visually memorable, cleanly structured, and ready to impress from the first scroll.
+              Let&apos;s shape it into a high-end digital experience that communicates trust, quality, and execution maturity from the first interaction.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
@@ -32,7 +32,7 @@ export const ContactSection = () => {
                 whileTap={{ scale: 0.98 }}
                 className="pill-button button-primary text-sm font-medium"
               >
-                Send us a message
+                Start your project conversation
                 <ArrowRight size={15} />
               </motion.a>
 
@@ -65,7 +65,7 @@ export const ContactSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="contact-grid-art"
+            className="contact-grid-art premium-outline"
           />
         </motion.div>
       </div>
