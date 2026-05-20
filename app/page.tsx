@@ -2,7 +2,7 @@
 
 import { Canvas } from "@react-three/fiber";
 import { Float, MeshDistortMaterial, Sphere } from "@react-three/drei";
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 import Lenis from "lenis";
 import { ArrowUpRight, Code2, Mail, Sparkles } from "lucide-react";
 import { FormEvent, useEffect, useState } from "react";
@@ -87,19 +87,21 @@ const blurDots = [
   { id: 17, left: "94%", top: "41%", delay: 4.25 },
 ];
 
+const CURSOR_OFFSCREEN_POSITION = -320;
+
 function Orb() {
   return (
     <Canvas camera={{ position: [0, 0, 4], fov: 55 }}>
-      <ambientLight intensity={0.8} />
-      <directionalLight position={[2, 2, 2]} intensity={1.2} />
-      <Float speed={1.8} rotationIntensity={1.1} floatIntensity={1.4}>
+      <ambientLight intensity={0.9} />
+      <directionalLight position={[2, 2, 2]} intensity={1.3} />
+      <Float speed={1.6} rotationIntensity={1.05} floatIntensity={1.35}>
         <Sphere args={[1.15, 128, 128]}>
           <MeshDistortMaterial
-            color="#d4af37"
-            roughness={0.2}
-            metalness={0.8}
-            distort={0.35}
-            speed={1.6}
+            color="#8fb8ff"
+            roughness={0.12}
+            metalness={1}
+            distort={0.28}
+            speed={1.4}
           />
         </Sphere>
       </Float>
@@ -111,6 +113,10 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [progress, setProgress] = useState(0);
   const [formMessage, setFormMessage] = useState("");
+  const pointerX = useMotionValue(CURSOR_OFFSCREEN_POSITION);
+  const pointerY = useMotionValue(CURSOR_OFFSCREEN_POSITION);
+  const cursorX = useSpring(pointerX, { stiffness: 120, damping: 26, mass: 0.35 });
+  const cursorY = useSpring(pointerY, { stiffness: 120, damping: 26, mass: 0.35 });
 
   useEffect(() => {
     const lenis = new Lenis({ lerp: 0.08, smoothWheel: true });
@@ -150,24 +156,33 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="relative overflow-hidden bg-[#050505] text-[#f5f5f5]">
+    <div
+      className="premium-shell relative overflow-hidden bg-[#050505] text-[#f5f5f5]"
+      onMouseMove={(event) => {
+        pointerX.set(event.clientX);
+        pointerY.set(event.clientY);
+      }}
+    >
+      <motion.div className="cursor-aurora" style={{ x: cursorX, y: cursorY }} />
+
       <motion.div
         className="pointer-events-none fixed inset-0 z-0"
-        animate={{ opacity: [0.45, 0.65, 0.45] }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        animate={{ opacity: [0.45, 0.68, 0.45] }}
+        transition={{ duration: 11, repeat: Infinity, ease: "easeInOut" }}
       >
-        <div className="absolute -left-28 top-24 h-80 w-80 rounded-full bg-[radial-gradient(circle,#d4af3770_0%,transparent_70%)] blur-3xl" />
-        <div className="absolute right-0 top-1/3 h-96 w-96 rounded-full bg-[radial-gradient(circle,#ffffff30_0%,transparent_72%)] blur-3xl" />
-        <div className="absolute bottom-0 left-1/3 h-72 w-72 rounded-full bg-[radial-gradient(circle,#a8a8a822_0%,transparent_72%)] blur-3xl" />
+        <div className="absolute -left-40 top-10 h-[30rem] w-[30rem] rounded-full bg-[radial-gradient(circle,#8fb8ff44_0%,transparent_70%)] blur-[120px]" />
+        <div className="absolute right-[-8rem] top-[18%] h-[34rem] w-[34rem] rounded-full bg-[radial-gradient(circle,#dce6f238_0%,transparent_72%)] blur-[135px]" />
+        <div className="absolute bottom-[-12rem] left-1/3 h-[32rem] w-[32rem] rounded-full bg-[radial-gradient(circle,#9c9c9c33_0%,transparent_72%)] blur-[145px]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_10%,#ffffff0d_0%,transparent_50%),linear-gradient(180deg,#0b0b0bcc_0%,#050505_72%)]" />
       </motion.div>
 
       {blurDots.map((dot) => (
         <motion.span
           key={dot.id}
-          className="pointer-events-none fixed z-0 h-1 w-1 rounded-full bg-white/40"
+          className="pointer-events-none fixed z-0 h-1 w-1 rounded-full bg-[#dce6f2]/40"
           style={{ left: dot.left, top: dot.top }}
           animate={{ y: [0, -14, 0], opacity: [0.25, 0.8, 0.25] }}
-          transition={{ duration: 5, delay: dot.delay, repeat: Infinity, ease: "easeInOut" }}
+          transition={{ duration: 7, delay: dot.delay, repeat: Infinity, ease: "easeInOut" }}
         />
       ))}
 
@@ -178,18 +193,20 @@ export default function Home() {
         transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
       >
         <div className="glass-panel w-[min(84vw,430px)] rounded-3xl p-8 text-center">
-          <p className="text-xs tracking-[0.42em] text-[#a8a8a8]">RISHITH SURESH</p>
-          <h1 className="mt-4 text-4xl font-semibold tracking-tight">Loading Experience</h1>
+          <p className="text-xs tracking-[0.44em] text-[#b8b8b8]">RISHITH SURESH</p>
+          <h1 className="mt-4 text-4xl font-light tracking-[0.02em]">Loading Experience</h1>
           <div className="mt-8 h-1.5 w-full overflow-hidden rounded-full bg-white/10">
-            <motion.div className="h-full bg-gradient-to-r from-[#d4af37] to-[#f7e7ce]" style={{ width: `${progress}%` }} />
+            <motion.div className="h-full bg-gradient-to-r from-[#8fb8ff] via-[#bee9ff] to-[#dce6f2]" style={{ width: `${progress}%` }} />
           </div>
-          <p className="mt-4 text-sm text-[#a8a8a8]">{progress}%</p>
+          <p className="mt-4 text-sm text-[#b8b8b8]" aria-live="polite" aria-label={`Loading portfolio, ${progress} percent complete`}>
+            {progress}%
+          </p>
         </div>
       </motion.div>
 
       <header className="fixed inset-x-0 top-5 z-40 mx-auto w-[min(92vw,1120px)]">
         <nav className="glass-panel flex items-center justify-between rounded-2xl px-6 py-4">
-          <p className="text-sm tracking-[0.3em] text-[#f5f5f5]">RS</p>
+          <p className="nav-mark text-sm tracking-[0.34em] text-[#f5f5f5]">RS</p>
           <div className="hidden gap-7 text-sm text-[#a8a8a8] md:flex">
             {[
               ["About", "#about"],
@@ -202,7 +219,7 @@ export default function Home() {
               </a>
             ))}
           </div>
-          <a href="#contact" className="premium-btn text-xs">
+          <a href="#contact" className="premium-btn magnetic-btn text-xs">
             Let&apos;s Talk
           </a>
         </nav>
@@ -215,24 +232,26 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, ease: [0.2, 0.8, 0.2, 1] }}
           >
-            <p className="mb-4 flex items-center gap-2 text-xs tracking-[0.35em] text-[#a8a8a8]">
+            <p className="hero-kicker mb-4 flex items-center gap-2 text-xs tracking-[0.36em] text-[#b8b8b8]">
               <Sparkles size={14} /> APPLE-LEVEL DIGITAL CRAFT
             </p>
-            <h1 className="text-balance text-5xl font-semibold leading-[1.02] tracking-tight md:text-7xl">
-              Crafting Digital Experiences With Precision.
+            <h1 className="hero-heading text-balance" aria-label="Crafting Digital Experiences With Precision.">
+              <span aria-hidden="true">Crafting</span>
+              <span aria-hidden="true">Digital Experiences</span>
+              <span aria-hidden="true">With Precision.</span>
             </h1>
-            <p className="mt-6 max-w-xl text-pretty text-lg leading-relaxed text-[#a8a8a8]">
+            <p className="hero-sub mt-6 max-w-xl text-pretty text-lg leading-relaxed text-[#b8b8b8]">
               Frontend Developer • Creative Technologist • UI Experience Architect.
               I build cinematic interfaces that feel engineered, immersive, and premium.
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
-              <a href="#projects" className="premium-btn">
+              <a href="#projects" className="premium-btn magnetic-btn">
                 View Projects <ArrowUpRight size={16} />
               </a>
-              <a href="#about" className="glass-btn">
+              <a href="#about" className="glass-btn magnetic-btn">
                 About Me
               </a>
-              <a href="#contact" className="glass-btn">
+              <a href="#contact" className="glass-btn magnetic-btn">
                 Contact
               </a>
             </div>
@@ -242,9 +261,10 @@ export default function Home() {
             initial={{ opacity: 0, scale: 0.94 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.2 }}
-            className="glass-panel relative h-[460px] overflow-hidden rounded-[2rem]"
+            className="glass-panel hero-orb-shell relative h-[460px] overflow-hidden rounded-[2rem]"
           >
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,#ffffff22_0%,transparent_55%)]" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,#ffffff2a_0%,transparent_55%)]" />
+            <div className="absolute inset-0 bg-[linear-gradient(145deg,#8fb8ff12,#12121200_45%,#dce6f21f)]" />
             <Orb />
           </motion.div>
         </section>
@@ -266,7 +286,7 @@ export default function Home() {
               "I engineer robust systems that stay fast under visual complexity.",
               "I obsess over micro-details that make interfaces feel alive.",
             ].map((item) => (
-              <article key={item} className="glass-panel rounded-3xl p-6 text-[#d6d6d6]">
+              <article key={item} className="glass-panel cinematic-card rounded-3xl p-6 text-[#d6d6d6]">
                 {item}
               </article>
             ))}
@@ -286,7 +306,7 @@ export default function Home() {
           </div>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {Object.entries(skills).map(([group, values]) => (
-              <article key={group} className="glass-panel skill-card rounded-3xl p-6">
+              <article key={group} className="glass-panel skill-card cinematic-card rounded-3xl p-6">
                 <h3 className="text-lg font-medium">{group}</h3>
                 <div className="mt-4 flex flex-wrap gap-2">
                   {values.map((skill) => (
@@ -313,7 +333,8 @@ export default function Home() {
           </div>
           <div className="mt-8 grid gap-4 md:grid-cols-3">
             {projects.map((project) => (
-              <article key={project.name} className="glass-panel project-card rounded-3xl p-6">
+              <article key={project.name} className="glass-panel project-card project-showcase rounded-3xl p-6">
+                <div className="project-light" />
                 <p className="text-xs tracking-[0.25em] text-[#a8a8a8]">{project.category}</p>
                 <h3 className="mt-3 text-2xl font-semibold">{project.name}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-[#d2d2d2]">{project.description}</p>
@@ -356,8 +377,8 @@ export default function Home() {
           </div>
           <div className="mt-8 space-y-4 border-l border-white/10 pl-6">
             {experience.map((item) => (
-              <article key={item.year} className="glass-panel relative rounded-3xl p-5">
-                <span className="absolute -left-[33px] top-6 h-3 w-3 rounded-full bg-[#d4af37] shadow-[0_0_18px_#d4af37]" />
+               <article key={item.year} className="glass-panel cinematic-card relative rounded-3xl p-5">
+                 <span className="absolute -left-[33px] top-6 h-3 w-3 rounded-full bg-[#8fb8ff] shadow-[0_0_18px_#8fb8ff]" />
                 <p className="text-xs tracking-[0.2em] text-[#a8a8a8]">{item.year}</p>
                 <h3 className="mt-2 text-xl">{item.title}</h3>
                 <p className="text-[#d2d2d2]">{item.org}</p>
@@ -378,7 +399,7 @@ export default function Home() {
           </div>
           <div className="testimonial-track mt-8 flex gap-4 overflow-hidden">
             {[...testimonials, ...testimonials].map((item, idx) => (
-              <article key={`${item.author}-${idx}`} className="glass-panel min-w-[320px] rounded-3xl p-6">
+               <article key={`${item.author}-${idx}`} className="glass-panel cinematic-card min-w-[320px] rounded-3xl p-6">
                 <p className="text-[#e3e3e3]">“{item.quote}”</p>
                 <p className="mt-4 text-sm text-[#a8a8a8]">{item.author}</p>
               </article>
@@ -397,7 +418,7 @@ export default function Home() {
             <p>Contact</p>
             <h2>Let&apos;s craft a memorable digital universe together.</h2>
           </div>
-          <form onSubmit={handleSubmit} className="glass-panel mt-8 grid gap-4 rounded-3xl p-6 md:grid-cols-2">
+          <form onSubmit={handleSubmit} className="glass-panel cinematic-card mt-8 grid gap-4 rounded-3xl p-6 md:grid-cols-2">
             <label htmlFor="name" className="field md:col-span-1">
               <span>Name</span>
               <input id="name" name="name" type="text" placeholder="Your name" required />
@@ -410,11 +431,11 @@ export default function Home() {
               <span>Message</span>
               <textarea id="message" name="message" placeholder="Tell me about your project" rows={4} required />
             </label>
-            <button type="submit" className="premium-btn md:col-span-2 md:justify-self-start">
+            <button type="submit" className="premium-btn magnetic-btn md:col-span-2 md:justify-self-start">
               <Mail size={16} /> Send Inquiry
             </button>
             {formMessage ? (
-              <p className="text-sm text-[#f7e7ce] md:col-span-2" role="status" aria-live="polite">
+              <p className="text-sm text-[#dce6f2] md:col-span-2" role="status" aria-live="polite">
                 {formMessage}
               </p>
             ) : null}
