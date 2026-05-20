@@ -18,7 +18,7 @@ body {
 }
 
 body {
-  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-family: "Inter", "Manrope", "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
 a {

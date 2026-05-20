@@ -4,8 +4,8 @@ import { Canvas } from "@react-three/fiber";
 import { Float, MeshDistortMaterial, Sphere } from "@react-three/drei";
 import { motion } from "framer-motion";
 import Lenis from "lenis";
-import { ArrowUpRight, Github, Mail, Sparkles } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { ArrowUpRight, Code2, Mail, Sparkles } from "lucide-react";
+import { useEffect, useState } from "react";
 
 const skills = {
   Frontend: ["React", "Next.js", "Tailwind", "Framer Motion"],
@@ -60,6 +60,27 @@ const testimonials = [
   },
 ];
 
+const blurDots = [
+  { id: 0, left: "8%", top: "14%", delay: 0 },
+  { id: 1, left: "17%", top: "48%", delay: 0.25 },
+  { id: 2, left: "26%", top: "82%", delay: 0.5 },
+  { id: 3, left: "34%", top: "23%", delay: 0.75 },
+  { id: 4, left: "41%", top: "66%", delay: 1 },
+  { id: 5, left: "49%", top: "35%", delay: 1.25 },
+  { id: 6, left: "56%", top: "74%", delay: 1.5 },
+  { id: 7, left: "63%", top: "17%", delay: 1.75 },
+  { id: 8, left: "69%", top: "52%", delay: 2 },
+  { id: 9, left: "74%", top: "85%", delay: 2.25 },
+  { id: 10, left: "82%", top: "26%", delay: 2.5 },
+  { id: 11, left: "89%", top: "61%", delay: 2.75 },
+  { id: 12, left: "14%", top: "92%", delay: 3 },
+  { id: 13, left: "22%", top: "8%", delay: 3.25 },
+  { id: 14, left: "46%", top: "10%", delay: 3.5 },
+  { id: 15, left: "58%", top: "91%", delay: 3.75 },
+  { id: 16, left: "77%", top: "5%", delay: 4 },
+  { id: 17, left: "94%", top: "41%", delay: 4.25 },
+];
+
 function Orb() {
   return (
     <Canvas camera={{ position: [0, 0, 4], fov: 55 }}>
@@ -83,7 +104,6 @@ function Orb() {
 export default function Home() {
   const [loading, setLoading] = useState(true);
   const [progress, setProgress] = useState(0);
-  const [showOrb, setShowOrb] = useState(false);
 
   useEffect(() => {
     const lenis = new Lenis({ lerp: 0.08, smoothWheel: true });
@@ -116,21 +136,6 @@ export default function Home() {
 
     return () => clearInterval(timer);
   }, []);
-
-  useEffect(() => {
-    setShowOrb(true);
-  }, []);
-
-  const blurDots = useMemo(
-    () =>
-      Array.from({ length: 18 }).map((_, i) => ({
-        id: i,
-        left: `${Math.random() * 100}%`,
-        top: `${Math.random() * 100}%`,
-        delay: i * 0.25,
-      })),
-    []
-  );
 
   return (
     <div className="relative overflow-hidden bg-[#050505] text-[#f5f5f5]">
@@ -228,7 +233,7 @@ export default function Home() {
             className="glass-panel relative h-[460px] overflow-hidden rounded-[2rem]"
           >
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,#ffffff22_0%,transparent_55%)]" />
-            {showOrb ? <Orb /> : null}
+            <Orb />
           </motion.div>
         </section>
 
@@ -305,7 +310,7 @@ export default function Home() {
                     Live Preview <ArrowUpRight size={14} />
                   </a>
                   <a href="#" className="soft-link inline-flex items-center gap-1">
-                    <Github size={14} /> GitHub
+                    <Code2 size={14} /> GitHub
                   </a>
                 </div>
               </article>
