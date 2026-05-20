@@ -5,7 +5,7 @@ import { Float, MeshDistortMaterial, Sphere } from "@react-three/drei";
 import { motion } from "framer-motion";
 import Lenis from "lenis";
 import { ArrowUpRight, Code2, Mail, Sparkles } from "lucide-react";
-import { useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 
 const skills = {
   Frontend: ["React", "Next.js", "Tailwind", "Framer Motion"],
@@ -22,18 +22,24 @@ const projects = [
     category: "Luxury E-Commerce",
     description:
       "A cinematic storefront with fluid storytelling, product immersion, and conversion-focused interactions.",
+    liveUrl: "",
+    githubUrl: "https://github.com/RishithSuresh/Portfolio",
   },
   {
     name: "Aether OS",
     category: "Product Experience",
     description:
       "A concept operating system landing page inspired by spatial computing, glass depth, and precision motion.",
+    liveUrl: "",
+    githubUrl: "https://github.com/RishithSuresh/Portfolio",
   },
   {
     name: "Studio Noir",
     category: "Creative Portfolio",
     description:
       "An art-directed digital identity for a premium architecture studio with layered scroll narratives.",
+    liveUrl: "",
+    githubUrl: "https://github.com/RishithSuresh/Portfolio",
   },
 ];
 
@@ -104,6 +110,7 @@ function Orb() {
 export default function Home() {
   const [loading, setLoading] = useState(true);
   const [progress, setProgress] = useState(0);
+  const [formMessage, setFormMessage] = useState("");
 
   useEffect(() => {
     const lenis = new Lenis({ lerp: 0.08, smoothWheel: true });
@@ -121,6 +128,11 @@ export default function Home() {
       lenis.destroy();
     };
   }, []);
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setFormMessage("Thanks for reaching out — I’ll get back to you shortly.");
+  };
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -142,7 +154,7 @@ export default function Home() {
       <motion.div
         className="pointer-events-none fixed inset-0 z-0"
         animate={{ opacity: [0.45, 0.65, 0.45] }}
-        transition={{ duration: 8, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
       >
         <div className="absolute -left-28 top-24 h-80 w-80 rounded-full bg-[radial-gradient(circle,#d4af3770_0%,transparent_70%)] blur-3xl" />
         <div className="absolute right-0 top-1/3 h-96 w-96 rounded-full bg-[radial-gradient(circle,#ffffff30_0%,transparent_72%)] blur-3xl" />
@@ -155,7 +167,7 @@ export default function Home() {
           className="pointer-events-none fixed z-0 h-1 w-1 rounded-full bg-white/40"
           style={{ left: dot.left, top: dot.top }}
           animate={{ y: [0, -14, 0], opacity: [0.25, 0.8, 0.25] }}
-          transition={{ duration: 5, delay: dot.delay, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+          transition={{ duration: 5, delay: dot.delay, repeat: Infinity, ease: "easeInOut" }}
         />
       ))}
 
@@ -306,10 +318,24 @@ export default function Home() {
                 <h3 className="mt-3 text-2xl font-semibold">{project.name}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-[#d2d2d2]">{project.description}</p>
                 <div className="mt-6 flex items-center gap-3 text-sm">
-                  <a href="#" className="soft-link inline-flex items-center gap-1">
-                    Live Preview <ArrowUpRight size={14} />
-                  </a>
-                  <a href="#" className="soft-link inline-flex items-center gap-1">
+                  {project.liveUrl ? (
+                    <a
+                      href={project.liveUrl}
+                      className="soft-link inline-flex items-center gap-1"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Live Preview <ArrowUpRight size={14} />
+                    </a>
+                  ) : (
+                    <span className="text-sm text-[#8a8a8a]">Live preview soon</span>
+                  )}
+                  <a
+                    href={project.githubUrl}
+                    className="soft-link inline-flex items-center gap-1"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <Code2 size={14} /> GitHub
                   </a>
                 </div>
@@ -371,22 +397,27 @@ export default function Home() {
             <p>Contact</p>
             <h2>Let&apos;s craft a memorable digital universe together.</h2>
           </div>
-          <form className="glass-panel mt-8 grid gap-4 rounded-3xl p-6 md:grid-cols-2">
-            <label className="field md:col-span-1">
+          <form onSubmit={handleSubmit} className="glass-panel mt-8 grid gap-4 rounded-3xl p-6 md:grid-cols-2">
+            <label htmlFor="name" className="field md:col-span-1">
               <span>Name</span>
-              <input type="text" placeholder="Your name" />
+              <input id="name" name="name" type="text" placeholder="Your name" required />
             </label>
-            <label className="field md:col-span-1">
+            <label htmlFor="email" className="field md:col-span-1">
               <span>Email</span>
-              <input type="email" placeholder="you@example.com" />
+              <input id="email" name="email" type="email" placeholder="you@example.com" required />
             </label>
-            <label className="field md:col-span-2">
+            <label htmlFor="message" className="field md:col-span-2">
               <span>Message</span>
-              <textarea placeholder="Tell me about your project" rows={4} />
+              <textarea id="message" name="message" placeholder="Tell me about your project" rows={4} required />
             </label>
             <button type="submit" className="premium-btn md:col-span-2 md:justify-self-start">
               <Mail size={16} /> Send Inquiry
             </button>
+            {formMessage ? (
+              <p className="text-sm text-[#f7e7ce] md:col-span-2" role="status" aria-live="polite">
+                {formMessage}
+              </p>
+            ) : null}
           </form>
         </motion.section>
       </main>
