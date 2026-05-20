@@ -5,7 +5,7 @@ import { Float, MeshDistortMaterial, Sphere } from "@react-three/drei";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import Lenis from "lenis";
 import { ArrowUpRight, Code2, Mail, Sparkles } from "lucide-react";
-import { CSSProperties, FormEvent, useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 
 const skills = {
   Frontend: ["React", "Next.js", "Tailwind", "Framer Motion"],
@@ -87,6 +87,8 @@ const blurDots = [
   { id: 17, left: "94%", top: "41%", delay: 4.25 },
 ];
 
+const CURSOR_OFFSCREEN_POSITION = -320;
+
 function Orb() {
   return (
     <Canvas camera={{ position: [0, 0, 4], fov: 55 }}>
@@ -111,8 +113,8 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [progress, setProgress] = useState(0);
   const [formMessage, setFormMessage] = useState("");
-  const pointerX = useMotionValue(-300);
-  const pointerY = useMotionValue(-300);
+  const pointerX = useMotionValue(CURSOR_OFFSCREEN_POSITION);
+  const pointerY = useMotionValue(CURSOR_OFFSCREEN_POSITION);
   const cursorX = useSpring(pointerX, { stiffness: 120, damping: 26, mass: 0.35 });
   const cursorY = useSpring(pointerY, { stiffness: 120, damping: 26, mass: 0.35 });
 
@@ -160,7 +162,6 @@ export default function Home() {
         pointerX.set(event.clientX);
         pointerY.set(event.clientY);
       }}
-      style={{ "--cursor-x": "50%", "--cursor-y": "50%" } as CSSProperties}
     >
       <motion.div className="cursor-aurora" style={{ x: cursorX, y: cursorY }} />
 
@@ -197,7 +198,9 @@ export default function Home() {
           <div className="mt-8 h-1.5 w-full overflow-hidden rounded-full bg-white/10">
             <motion.div className="h-full bg-gradient-to-r from-[#8fb8ff] via-[#bee9ff] to-[#dce6f2]" style={{ width: `${progress}%` }} />
           </div>
-          <p className="mt-4 text-sm text-[#b8b8b8]">{progress}%</p>
+          <p className="mt-4 text-sm text-[#b8b8b8]" aria-live="polite" aria-label={`Loading portfolio, ${progress} percent complete`}>
+            {progress}%
+          </p>
         </div>
       </motion.div>
 
@@ -232,10 +235,10 @@ export default function Home() {
             <p className="hero-kicker mb-4 flex items-center gap-2 text-xs tracking-[0.36em] text-[#b8b8b8]">
               <Sparkles size={14} /> APPLE-LEVEL DIGITAL CRAFT
             </p>
-            <h1 className="hero-heading text-balance">
-              <span>Crafting</span>
-              <span>Digital Experiences</span>
-              <span>With Precision.</span>
+            <h1 className="hero-heading text-balance" aria-label="Crafting Digital Experiences With Precision.">
+              <span aria-hidden="true">Crafting</span>
+              <span aria-hidden="true">Digital Experiences</span>
+              <span aria-hidden="true">With Precision.</span>
             </h1>
             <p className="hero-sub mt-6 max-w-xl text-pretty text-lg leading-relaxed text-[#b8b8b8]">
               Frontend Developer • Creative Technologist • UI Experience Architect.

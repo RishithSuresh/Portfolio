@@ -53,8 +53,12 @@ body {
 .premium-shell::after {
   opacity: 0.18;
   mix-blend-mode: soft-light;
-  background-image: repeating-radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.22) 0, transparent 1.2px);
-  background-size: 4px 4px;
+  background-image: repeating-linear-gradient(
+    125deg,
+    rgba(255, 255, 255, 0.15) 0 1px,
+    transparent 1px 7px
+  );
+  background-size: 280px 280px;
 }
 
 .cursor-aurora {
@@ -69,6 +73,7 @@ body {
   background: radial-gradient(circle, rgba(190, 233, 255, 0.24) 0%, rgba(143, 184, 255, 0.08) 34%, transparent 72%);
   filter: blur(18px);
   mix-blend-mode: screen;
+  will-change: transform;
 }
 
 a {
@@ -183,11 +188,18 @@ a {
 
 .hero-heading span {
   display: inline-block;
+  color: #f5f5f5;
   background: linear-gradient(123deg, rgba(245, 245, 245, 0.96) 18%, rgba(220, 230, 242, 0.92) 45%, rgba(143, 184, 255, 0.85) 100%);
   -webkit-background-clip: text;
-  color: transparent;
+  background-clip: text;
   text-shadow: 0 10px 45px rgba(143, 184, 255, 0.24);
   animation: reveal-line 900ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+  .hero-heading span {
+    color: transparent;
+  }
 }
 
 .hero-heading span:nth-child(2) {
@@ -365,5 +377,19 @@ a {
 
   .testimonial-track {
     animation-duration: 40s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor-aurora {
+    display: none;
+  }
+
+  .testimonial-track {
+    animation: none;
+  }
+
+  .hero-heading span {
+    animation: none;
   }
 }
