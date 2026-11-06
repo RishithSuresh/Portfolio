@@ -4,7 +4,7 @@ import { Menu, Moon, Sun, X, ArrowUpRight } from 'lucide-react'
 import { useTheme } from './ThemeProvider'
 import { profile } from '../data/site'
 
-const links = [['Work', '/#work'], ['Research', '/#research'], ['About', '/#about'], ['Contact', '/#contact']]
+const links = [['About', '/#about'], ['Work', '/#work'], ['Research', '/#research'], ['Experience', '/#experience'], ['Contact', '/#contact']]
 export default function Navbar() {
   const { theme, toggleTheme } = useTheme()
   const [open, setOpen] = useState(false)

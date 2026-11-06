@@ -36,7 +36,7 @@ function Forms() {
   </group>
 }
 export default function ArtworkScene() {
-  return <Canvas camera={{ position: [0, 0, 4.4], fov: 42 }} dpr={[1, 1.5]} gl={{ alpha: true, antialias: true }}>
+  return <Canvas camera={{ position: [0, 0, 5.25], fov: 42 }} dpr={[1, 1.5]} gl={{ alpha: true, antialias: true }}>
     <ambientLight intensity={1.2}/>
     <directionalLight position={[3, 3, 4]} intensity={2}/>
     <Forms/>
