@@ -1,8 +1,7 @@
 
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Menu, Moon, Sun, X, ArrowUpRight } from 'lucide-react'
-import { useTheme } from './ThemeProvider'
+import { Menu, X, ArrowUpRight } from 'lucide-react'
 import { profile } from '../data/site'
 
 const links = [
@@ -14,7 +13,6 @@ const links = [
 ]
 
 export default function Navbar() {
-  const { theme, toggleTheme } = useTheme()
   const [open, setOpen] = useState(false)
 
   const go = id => {
@@ -65,17 +63,6 @@ export default function Navbar() {
       </nav>
 
       <div className="nav-actions">
-        <button
-          className="icon-button theme-button"
-          onClick={toggleTheme}
-          aria-label="Toggle color theme"
-        >
-          {theme === 'light'
-            ? <Moon size={17} />
-            : <Sun size={17} />
-          }
-        </button>
-
         <a
           className="nav-contact"
           href="#contact"
