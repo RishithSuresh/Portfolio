@@ -1041,8 +1041,8 @@ h2 em,
 .terminal-window {
   border-radius: 16px;
   overflow: hidden;
-  background: #162d2a;
-  color: #f8e9e3;
+  background: var(--surface);
+  color: var(--bg);
   box-shadow: var(--shadow);
   max-width: 850px;
   margin: auto;
@@ -1050,12 +1050,12 @@ h2 em,
 
 .terminal-top {
   height: 48px;
-  background: #1f3a36;
+  background: #c99487;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 18px;
-  color: #e0bcb3;
+  color: var(--bg);
   font: 10px var(--mono);
 }
 
@@ -1104,7 +1104,7 @@ h2 em,
 }
 
 .terminal-line p {
-  color: #e0bcb3;
+  color: #1f3a36;
   margin: 3px 0 0 2px;
   white-space: pre-wrap;
 }
@@ -1121,7 +1121,7 @@ h2 em,
 }
 
 .terminal-input label span {
-  color: #e0bcb3;
+  color: #1f3a36;
 }
 
 .terminal-input input {
@@ -1130,7 +1130,7 @@ h2 em,
   border: 0;
   outline: 0;
   background: transparent;
-  color: #f8e9e3;
+  color: #1f3a36;
   font: 11px var(--mono);
 }
 
@@ -1142,20 +1142,20 @@ h2 em,
 }
 
 .terminal-hints {
-  border-top: 1px solid #ffffff18;
+  border-top: 1px solid #1f3a3630;
   padding: 13px 23px;
   display: flex;
   gap: 9px;
   align-items: center;
   font: 9px var(--mono);
-  color: #d9a79a;
+  color: #1f3a36;
 }
 
 .terminal-hints button {
-  border: 1px solid #ffffff25;
+  border: 1px solid #1f3a3640;
   border-radius: 30px;
   background: transparent;
-  color: #f0c9bd;
+  color: #1f3a36;
   padding: 5px 10px;
   font: 9px var(--mono);
   cursor: pointer;
