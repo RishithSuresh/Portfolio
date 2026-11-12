@@ -1,14 +1,17 @@
-import { ArrowUpRight, MoveUpRight } from 'lucide-react'
+import { ArrowUpRight, Github, MoveUpRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { projects } from '../data/site'
 import Reveal from './Reveal'
 export function ProjectCard({ project, large = false }) {
-  return <Link to={`/projects/${project.slug}`} className={`project-card ${large ? 'project-card-large' : ''}`}>
-    <div className="project-image"><img src={project.image} alt="" loading="lazy"/><span className="image-arrow"><MoveUpRight size={20}/></span></div>
-    <div className="project-meta"><span>{project.number} / {project.category}</span><span>CASE STUDY</span></div>
-    <h3>{project.title}</h3><p>{project.summary}</p>
-    <div className="tag-row">{project.tags.map(t => <span key={t}>{t}</span>)}</div>
-  </Link>
+  return <article className={`project-card ${large ? 'project-card-large' : ''}`}>
+    <Link to={`/projects/${project.slug}`}>
+      <div className="project-image"><img src={project.image} alt="" loading="lazy"/><span className="image-arrow"><MoveUpRight size={20}/></span></div>
+      <div className="project-meta"><span>{project.number} / {project.category}</span><span>CASE STUDY</span></div>
+      <h3>{project.title}</h3><p>{project.summary}</p>
+      <div className="tag-row">{project.tags.map(t => <span key={t}>{t}</span>)}</div>
+    </Link>
+    {project.github && <a className="project-github-link" href={project.github} target="_blank" rel="noreferrer"><Github size={14}/> View source <ArrowUpRight size={13}/></a>}
+  </article>
 }
 export default function Projects() {
   const featured = projects.filter(p => p.featured)

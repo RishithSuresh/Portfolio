@@ -4,6 +4,7 @@ export const profile = {
   shortName: 'rishith.',
   role: 'Computer Science & Engineering Student',
   tagline: 'Curious by nature. Building with purpose.',
+  photo: '',
   intro:
     'I am a final-year Computer Science and Engineering student at BMSIT, interested in the intersection of artificial intelligence, research and software development. From exploring multimodal deepfake detection to building practical applications, I enjoy turning ideas into working solutions through experimentation and engineering.',
   location: 'Bengaluru, India',
@@ -63,7 +64,8 @@ export const projects = [
           'Further work focuses on improving generalisation to unseen manipulation methods, reducing overfitting, investigating modality contributions and evaluating robustness under different video and audio conditions.'
       }
     ],
-    links: []
+    links: [],
+    github: 'https://github.com/RishithSuresh/multimodal-deepfake-detection'
   },
 
   {
@@ -107,7 +109,8 @@ export const projects = [
           'Beyond technical development, the experience helped me understand collaborative research, product-oriented thinking and how to communicate and present a technical solution to an audience.'
       }
     ],
-    links: []
+    links: [],
+    github: 'https://github.com/RishithSuresh/rule-based-auto-remediation'
   },
 
   {
@@ -150,7 +153,8 @@ export const projects = [
           'Further improvements can focus on clearer storage visualisations, more detailed folder analysis and a smoother user experience for reviewing cleanup recommendations.'
       }
     ],
-    links: []
+    links: [],
+    github: 'https://github.com/RishithSuresh/dietingdisk'
   },
 
   {
@@ -188,7 +192,8 @@ export const projects = [
           'The project provides practical experience with application structure, API integration, frontend-backend communication and deployment.'
       }
     ],
-    links: []
+    links: [],
+    github: 'https://github.com/RishithSuresh/musiclens'
   },
 
   {
@@ -227,7 +232,101 @@ export const projects = [
           'The project provides experience with component-based development, frontend architecture, backend integration and building responsive web interfaces.'
       }
     ],
-    links: []
+    links: [],
+    github: 'https://github.com/RishithSuresh/neruvo'
+  },
+
+  {
+    slug: 'portfolio-lab',
+    number: '06',
+    category: 'WEB · CREATIVE CODE',
+    title: 'Portfolio Lab',
+    summary: 'An interactive portfolio exploring motion, WebGL and research-led storytelling.',
+    description: 'A personal portfolio experiment combining React, motion design and interactive 3D scenes to make technical work easier to explore.',
+    tags: ['React', 'Vite', 'Three.js', 'Motion'],
+    image: 'https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1400&q=85',
+    featured: false,
+    sections: [{ title: 'Overview', body: 'An ongoing design and engineering experiment for presenting projects, research and technical interests.' }],
+    links: [],
+    github: 'https://github.com/RishithSuresh/Portfolio'
+  },
+
+  {
+    slug: 'campus-connect',
+    number: '07',
+    category: 'WEB · COMMUNITY',
+    title: 'Campus Connect',
+    summary: 'A concept for helping students discover events, resources and collaborative opportunities.',
+    description: 'A student-focused application concept that brings campus information and collaboration into one accessible interface.',
+    tags: ['JavaScript', 'UI Design', 'Product Thinking'],
+    image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1400&q=85',
+    featured: false,
+    sections: [{ title: 'Overview', body: 'A product exploration focused on clearer campus communication and student participation.' }],
+    links: [],
+    github: 'https://github.com/RishithSuresh'
+  },
+
+  {
+    slug: 'ml-experiments',
+    number: '08',
+    category: 'AI / ML · EXPERIMENTS',
+    title: 'ML Experiments',
+    summary: 'A collection of small machine-learning experiments, notebooks and evaluation studies.',
+    description: 'A growing collection of focused experiments used to learn, compare approaches and document practical machine-learning workflows.',
+    tags: ['Python', 'Jupyter', 'Machine Learning', 'Evaluation'],
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1400&q=85',
+    featured: false,
+    sections: [{ title: 'Overview', body: 'A working archive for small experiments and lessons learned while studying machine learning.' }],
+    links: [],
+    github: 'https://github.com/RishithSuresh'
+  }
+];
+
+export const researchPapers = [
+  {
+    title: 'Multimodal Deepfake Detection',
+    venue: 'Research paper / In preparation',
+    summary: 'Audio-visual fusion for detecting manipulated media across diverse datasets.',
+    status: 'IN PROGRESS',
+    url: ''
+  },
+  {
+    title: 'Add your next paper',
+    venue: 'Conference, journal or preprint',
+    summary: 'Use this slot for a published paper, preprint, poster or technical report.',
+    status: 'ADD PAPER',
+    url: ''
+  },
+  {
+    title: 'Add another investigation',
+    venue: 'Research project',
+    summary: 'A second space for documenting a question, methodology and key findings.',
+    status: 'ADD PAPER',
+    url: ''
+  }
+];
+
+export const certifications = [
+  {
+    title: 'Add certification title',
+    issuer: 'Issuing organisation',
+    date: 'YEAR',
+    credential: '',
+    detail: 'Add the certification name, issuing organisation and credential link here.'
+  },
+  {
+    title: 'Add certification title',
+    issuer: 'Issuing organisation',
+    date: 'YEAR',
+    credential: '',
+    detail: 'Use this card for a technical, cloud, security or professional certification.'
+  },
+  {
+    title: 'Add certification title',
+    issuer: 'Issuing organisation',
+    date: 'YEAR',
+    credential: '',
+    detail: 'Replace this placeholder with another certificate or verified achievement.'
   }
 ];
 

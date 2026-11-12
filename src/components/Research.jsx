@@ -1,4 +1,5 @@
-import { ArrowUpRight, AudioWaveform, ScanFace, Network } from 'lucide-react'
+import { ArrowUpRight, AudioWaveform, ExternalLink, FileText, ScanFace, Network } from 'lucide-react'
+import { researchPapers } from '../data/site'
 import Reveal from './Reveal'
 export default function Research() {
   return <section className="section research-section" id="research">
@@ -8,5 +9,7 @@ export default function Research() {
       <div className="research-visual"><div className="signal signal-a"><ScanFace/><span>VISUAL SIGNAL</span></div><div className="signal signal-b"><AudioWaveform/><span>AUDIO SIGNAL</span></div><div className="fusion-node"><Network size={26}/><b>FUSION</b></div><div className="fusion-line line-a"/><div className="fusion-line line-b"/><span className="visual-caption">MULTI-MODAL / ANALYSIS</span></div>
     </div>
     <div className="research-foot"><span>METHOD · EXPERIMENT · EVALUATE · ITERATE</span><span>Research is a process, not just a result.</span></div>
+    <div className="papers-heading"><span className="eyebrow">RESEARCH PAPERS / ARCHIVE</span><p>Add published papers, preprints, posters and technical reports here.</p></div>
+    <div className="papers-grid">{researchPapers.map(paper => <article className="paper-card" key={paper.title}><div className="paper-icon"><FileText size={18}/><span>{paper.status}</span></div><h3>{paper.title}</h3><span className="paper-venue">{paper.venue}</span><p>{paper.summary}</p>{paper.url ? <a href={paper.url} target="_blank" rel="noreferrer">Read paper <ExternalLink size={14}/></a> : <span className="paper-placeholder">Add paper link <ArrowUpRight size={14}/></span>}</article>)}</div>
   </section>
 }

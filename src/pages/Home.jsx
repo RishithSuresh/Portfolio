@@ -6,7 +6,7 @@ import BentoIntro from '../components/BentoIntro'
 import Projects from '../components/Projects'
 import Research from '../components/Research'
 import Experience from '../components/Experience'
-import GitHubRepos from '../components/GitHubRepos'
+import Certifications from '../components/Certifications'
 import TerminalSection from '../components/Terminal'
 import Contact from '../components/Contact'
 import Footer from '../components/Footer'
@@ -17,6 +17,6 @@ export default function Home() {
       <div className="hero-art"><AIArtwork/><span className="art-caption">FIG 01. / IDEAS IN MOTION</span></div>
     </section>
     <div className="marquee" aria-hidden="true"><div>LEARN <i>✳</i> EXPERIMENT <i>✳</i> BUILD <i>✳</i> ITERATE <i>✳</i> LEARN <i>✳</i> EXPERIMENT <i>✳</i> BUILD <i>✳</i> ITERATE <i>✳</i></div></div>
-    <BentoIntro/><Projects/><Research/><Experience/><GitHubRepos/><TerminalSection/><Contact/><Footer/>
+    <BentoIntro/><Projects/><Research/><Experience/><Certifications/><TerminalSection/><Contact/><Footer/>
   </main>
 }

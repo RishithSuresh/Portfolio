@@ -532,6 +532,40 @@ h2 em,
   letter-spacing: 1px;
 }
 
+.about-photo {
+  width: 112px;
+  height: 112px;
+  margin-top: 24px;
+  border: 1px dashed var(--line);
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 7px;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--bg) 18%, transparent);
+  text-align: center;
+}
+
+.about-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.about-photo span,
+.about-photo small {
+  font: 8px var(--mono);
+  letter-spacing: .5px;
+  color: var(--muted);
+}
+
+.about-photo small {
+  font-size: 7px;
+  max-width: 90px;
+  line-height: 1.4;
+}
+
 .interest-card {
   border: 1px solid var(--line);
   border-radius: 18px;
@@ -596,6 +630,10 @@ h2 em,
 .project-card {
   display: block;
   min-width: 0;
+}
+
+.project-card > a {
+  display: block;
 }
 
 .project-image {
@@ -679,6 +717,16 @@ h2 em,
   border: 1px solid var(--line);
   border-radius: 100px;
   color: var(--muted);
+}
+
+.project-github-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 14px;
+  color: var(--green);
+  font: 9px var(--mono);
+  letter-spacing: .5px;
 }
 
 .project-stack .project-image {
@@ -848,6 +896,74 @@ h2 em,
   color: var(--muted);
   font: 9px var(--mono);
   letter-spacing: .8px;
+}
+
+.papers-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 30px;
+  margin-top: 58px;
+  margin-bottom: 20px;
+}
+
+.papers-heading p {
+  color: var(--muted);
+  font-size: 11px;
+  margin: 0;
+}
+
+.papers-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.paper-card {
+  min-height: 230px;
+  padding: 23px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--surface);
+}
+
+.paper-icon {
+  display: flex;
+  justify-content: space-between;
+  color: var(--green);
+}
+
+.paper-icon span,
+.paper-venue {
+  font: 8px var(--mono);
+  letter-spacing: .8px;
+  color: var(--muted);
+}
+
+.paper-card h3 {
+  margin: 28px 0 7px;
+  font-size: 18px;
+  letter-spacing: -.5px;
+}
+
+.paper-venue {
+  display: block;
+}
+
+.paper-card p {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.paper-card a,
+.paper-placeholder {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+  color: var(--green);
+  font: 9px var(--mono);
 }
 
 /* EXPERIENCE */
@@ -1034,6 +1150,68 @@ h2 em,
 .muted {
   color: var(--muted);
   font-size: 12px;
+}
+
+/* CERTIFICATIONS */
+
+.certification-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.certification-card {
+  min-height: 235px;
+  padding: 24px;
+  border-radius: 16px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+}
+
+.certification-card:nth-child(2) {
+  background: var(--surface-2);
+}
+
+.certification-card:nth-child(3) {
+  background: color-mix(in srgb, var(--sand) 55%, var(--surface));
+}
+
+.certification-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--green);
+}
+
+.certification-top span,
+.certification-issuer,
+.certification-placeholder {
+  font: 9px var(--mono);
+  letter-spacing: .7px;
+  color: var(--muted);
+}
+
+.certification-card h3 {
+  margin: 31px 0 7px;
+  font-size: 18px;
+}
+
+.certification-issuer {
+  display: block;
+}
+
+.certification-card p {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.certification-card a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--green);
+  font: 9px var(--mono);
 }
 
 /* TERMINAL */
@@ -1515,6 +1693,11 @@ h2 em,
   .detail-content {
     gap: 40px;
   }
+
+  .papers-grid,
+  .certification-grid {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 /* MOBILE */
@@ -1700,6 +1883,19 @@ h2 em,
 
   .research-visual {
     min-height: 290px;
+  }
+
+  .papers-heading {
+    display: block;
+  }
+
+  .papers-heading p {
+    margin-top: 12px;
+  }
+
+  .papers-grid,
+  .certification-grid {
+    grid-template-columns: 1fr;
   }
 
   .signal {
