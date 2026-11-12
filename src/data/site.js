@@ -1,15 +1,20 @@
+
 export const profile = {
   name: 'Rishith Suresh',
   shortName: 'rishith.',
-  role: 'Computer Science Engineer',
-  tagline: 'Curious by nature. Building by passion.',
-  intro: 'I explore the intersection of technology, research and innovation — turning ideas into useful things through experimentation and engineering.',
-  location: 'India',
-  email: 'hello@example.com', // TODO: replace with your preferred contact email
-  github: 'RishithSuresh',
-  linkedin: 'https://www.linkedin.com/', // TODO: replace with your profile URL
+  role: 'Computer Science & Engineering Student',
+  tagline: 'Curious by nature. Building with purpose.',
+  intro:
+    'I am a final-year Computer Science and Engineering student at BMSIT, interested in the intersection of artificial intelligence, research and software development. From exploring multimodal deepfake detection to building practical applications, I enjoy turning ideas into working solutions through experimentation and engineering.',
+  location: 'Bengaluru, India',
+
+  // Replace these with your actual contact details before publishing.
+  email: 'rishithsuresh10@gmail.com',
+  github: 'https://github.com/RishithSuresh',
+  linkedin: 'https://www.linkedin.com/',
+
   cv: '/cv.pdf'
-}
+};
 
 export const projects = [
   {
@@ -17,109 +22,306 @@ export const projects = [
     number: '01',
     category: 'AI / ML · RESEARCH',
     title: 'Multimodal Deepfake Detection',
-    summary: 'Exploring manipulated media detection through complementary audio and visual signals.',
-    description: 'A multimodal research project investigating how visual features, audio representations and cross-modal information can be combined to identify manipulated media.',
-    tags: ['Python', 'Deep Learning', 'Computer Vision', 'Audio Processing'],
-    image: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=1400&q=85',
+    summary:
+      'Investigating manipulated media detection through complementary audio and visual information.',
+    description:
+      'An AI research project focused on developing a multimodal deepfake detection system that analyses both audio and video signals. The goal is to explore how individual modality features and cross-modal relationships can help identify synthetic and manipulated media.',
+    tags: [
+      'Python',
+      'Deep Learning',
+      'Computer Vision',
+      'Audio Processing',
+      'Multimodal Learning'
+    ],
+    image:
+      'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=1400&q=85',
     featured: true,
     sections: [
-      { title: 'The problem', body: 'Synthetic media is becoming increasingly convincing. Relying on a single modality can leave important clues unused, so this project explores complementary audio and visual evidence.' },
-      { title: 'The approach', body: 'The workflow explores video-frame sampling, face-region processing, audio feature extraction and multimodal fusion. Dataset handling and split strategy are important to reduce leakage and overfitting.' },
-      { title: 'Evaluation', body: 'Evaluate with precision, recall, F1-score, ROC-AUC and confusion matrices. Report results alongside dataset, split, threshold and training configuration so the numbers are reproducible.' },
-      { title: 'Next steps', body: 'Improve cross-dataset generalization, conduct modality ablations and test robustness against compression and unseen manipulation methods.' }
+      {
+        title: 'The problem',
+        body:
+          'Deepfake technology is evolving rapidly, making manipulated audio and video increasingly difficult to distinguish from authentic media. Systems that examine only one modality may overlook important evidence present in another.'
+      },
+      {
+        title: 'The approach',
+        body:
+          'The project explores a multimodal pipeline involving video-frame sampling, face-region processing, audio feature extraction and feature-level fusion. It investigates how visual, acoustic and cross-modal information can contribute to a more reliable prediction.'
+      },
+      {
+        title: 'Datasets',
+        body:
+          'The research uses multiple deepfake datasets, including FaceForensics++, DF40, Celeb-DF and the Synthetic Deepfake Detection Dataset (SDFDC), to investigate model performance across different sources of manipulated media.'
+      },
+      {
+        title: 'Evaluation',
+        body:
+          'Model evaluation considers accuracy, precision, recall, F1-score, ROC-AUC and confusion matrices. Cross-dataset testing, class-wise performance and generalisation are important considerations in assessing the system.'
+      },
+      {
+        title: 'Future direction',
+        body:
+          'Further work focuses on improving generalisation to unseen manipulation methods, reducing overfitting, investigating modality contributions and evaluating robustness under different video and audio conditions.'
+      }
     ],
-    links: [{ label: 'GitHub', url: `https://github.com/${profile.github}` }]
+    links: []
   },
+
   {
     slug: 'rule-based-auto-remediation',
     number: '02',
     category: 'SOFTWARE · AUTOMATION',
     title: 'Rule-Based Auto Remediation',
-    summary: 'A Windows-focused application for identifying known issues and applying predefined remediation workflows.',
-    description: 'A campus research project with Unisys India focused on rule-based remediation for known Windows issues, event monitoring and automation.',
-    tags: ['Python', 'Windows', 'PowerShell', 'SQLite'],
-    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1400&q=85',
+    summary:
+      'A Windows-focused application designed to identify known system issues and support automated remediation.',
+    description:
+      'A campus research project undertaken with Unisys India. The project focused on building an application that brings together known-issue rules, remediation scripts and system event logging to support a more structured approach to Windows troubleshooting.',
+    tags: [
+      'Python',
+      'Windows',
+      'PowerShell',
+      'SQLite',
+      'Automation'
+    ],
+    image:
+      'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1400&q=85',
     featured: true,
     sections: [
-      { title: 'The problem', body: 'Known system issues can consume time when they require repeated manual diagnosis and intervention.' },
-      { title: 'The approach', body: 'The application brings together known-issue rules, remediation scripts and event logging to support a more structured workflow.' },
-      { title: 'My contribution', body: 'Describe your exact responsibilities, implementation choices and team contribution here. Add screenshots and architecture diagrams before publishing.' },
-      { title: 'What I learned', body: 'The project strengthened practical problem-solving, automation thinking and the ability to communicate a technical product.' }
+      {
+        title: 'The problem',
+        body:
+          'Repeated Windows system issues can require time-consuming manual diagnosis and intervention. Identifying known problems and following consistent remediation steps can make troubleshooting more structured.'
+      },
+      {
+        title: 'The approach',
+        body:
+          'The application was designed around known-issue rules, predefined remediation scripts and system event monitoring. It aimed to bring these elements together in a single workflow.'
+      },
+      {
+        title: 'Project experience',
+        body:
+          'Working as part of a team, I experienced the process of taking an initial application concept and developing it into a more complete software solution. The project involved practical problem-solving and thinking about how automation could simplify repetitive system tasks.'
+      },
+      {
+        title: 'What I learned',
+        body:
+          'Beyond technical development, the experience helped me understand collaborative research, product-oriented thinking and how to communicate and present a technical solution to an audience.'
+      }
     ],
-    links: [{ label: 'Project repository', url: `https://github.com/${profile.github}` }]
+    links: []
   },
+
   {
     slug: 'dietingdisk',
     number: '03',
     category: 'DESKTOP · SYSTEMS',
     title: 'DietingDisk',
-    summary: 'A Windows storage auditor that turns disk usage into understandable insights and cautious cleanup recommendations.',
-    description: 'A Windows storage auditing project designed to inspect storage usage, identify large folders and provide recommendations before any cleanup action.',
-    tags: ['Python', 'Windows', 'SQLite', 'Analytics'],
-    image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1400&q=85',
+    summary:
+      'A Windows storage auditor that turns disk usage into understandable insights and cautious cleanup recommendations.',
+    description:
+      'DietingDisk is a Windows storage auditing project that helps users understand how their disk space is being used. It focuses on scanning storage, identifying large folders and presenting recommendations before any potentially destructive cleanup action.',
+    tags: [
+      'Python',
+      'Windows',
+      'SQLite',
+      'Storage Analytics'
+    ],
+    image:
+      'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1400&q=85',
     featured: true,
     sections: [
-      { title: 'The problem', body: 'Low disk space is frustrating, and deleting files without understanding their purpose can be risky.' },
-      { title: 'The approach', body: 'DietingDisk inventories storage, records scan results and surfaces read-only recommendations before cleanup.' },
-      { title: 'Safety principle', body: 'The application should require explicit user approval before destructive actions and clearly explain access errors and exclusions.' }
+      {
+        title: 'The problem',
+        body:
+          'When storage space becomes limited, users often struggle to understand what is consuming it. Removing files without knowing their purpose can also lead to accidental data loss.'
+      },
+      {
+        title: 'The approach',
+        body:
+          'DietingDisk inventories storage across drives, records scan results and helps identify folders that consume significant disk space.'
+      },
+      {
+        title: 'Safety first',
+        body:
+          'The project follows a cautious approach: recommendations are read-only, and destructive cleanup actions require explicit user approval. Access errors and excluded paths are also considered during scanning.'
+      },
+      {
+        title: 'Future direction',
+        body:
+          'Further improvements can focus on clearer storage visualisations, more detailed folder analysis and a smoother user experience for reviewing cleanup recommendations.'
+      }
     ],
-    links: [{ label: 'GitHub', url: `https://github.com/${profile.github}` }]
+    links: []
   },
+
   {
     slug: 'musiclens',
     number: '04',
     category: 'MOBILE · FULL STACK',
     title: 'MusicLens',
-    summary: 'A Flutter application supported by a Python backend.',
-    description: 'A cross-platform app project combining a Flutter frontend with a Python API. Add the actual product story, features and screenshots here.',
-    tags: ['Flutter', 'Python', 'REST API'],
-    image: 'https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=1400&q=85',
-    featured: false,
-    sections: [
-      { title: 'Overview', body: 'Explain the user problem, core experience and how the mobile app communicates with the backend.' },
-      { title: 'Implementation', body: 'Document the API contract, application state, error handling and deployment setup.' }
+    summary:
+      'A mobile application project combining a Flutter frontend with a Python backend.',
+    description:
+      'MusicLens is a mobile application project built using Flutter and a Python-based backend. It explores the integration of a mobile user interface with backend services through API communication.',
+    tags: [
+      'Flutter',
+      'Dart',
+      'Python',
+      'REST API'
     ],
-    links: [{ label: 'GitHub', url: `https://github.com/${profile.github}` }]
+    image:
+      'https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=1400&q=85',
+    featured: true,
+    sections: [
+      {
+        title: 'Overview',
+        body:
+          'The project brings together mobile application development and backend integration, with a focus on building a connected application experience.'
+      },
+      {
+        title: 'Technology',
+        body:
+          'Flutter is used for the mobile frontend, while Python powers the backend API. The two components communicate through REST-based requests.'
+      },
+      {
+        title: 'Development focus',
+        body:
+          'The project provides practical experience with application structure, API integration, frontend-backend communication and deployment.'
+      }
+    ],
+    links: []
   },
+
   {
     slug: 'neruvo',
     number: '05',
     category: 'WEB · PRODUCT',
     title: 'Neruvo',
-    summary: 'A web application built with a modern React-based stack.',
-    description: 'A product development project using React, Vite and a Node/Express backend. Add verified product details and screenshots.',
-    tags: ['React', 'Vite', 'Node.js', 'Express'],
-    image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1400&q=85',
-    featured: false,
-    sections: [
-      { title: 'Overview', body: 'Describe what the product does and who it is for.' },
-      { title: 'Technical decisions', body: 'Explain the frontend architecture, API design, state management and deployment.' }
+    summary:
+      'A web application project developed using a modern React-based technology stack.',
+    description:
+      'Neruvo is a web development project built around a React-based frontend and a Node.js backend. It explores modern frontend development, application architecture and full-stack integration.',
+    tags: [
+      'React',
+      'Vite',
+      'Tailwind CSS',
+      'Node.js',
+      'Express'
     ],
-    links: [{ label: 'GitHub', url: `https://github.com/${profile.github}` }]
+    image:
+      'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1400&q=85',
+    featured: true,
+    sections: [
+      {
+        title: 'Overview',
+        body:
+          'Neruvo is an ongoing product development project focused on building a modern web application.'
+      },
+      {
+        title: 'Technology',
+        body:
+          'The frontend uses React and Vite, with Tailwind CSS for styling. The backend uses Node.js and Express for server-side functionality.'
+      },
+      {
+        title: 'Development focus',
+        body:
+          'The project provides experience with component-based development, frontend architecture, backend integration and building responsive web interfaces.'
+      }
+    ],
+    links: []
   }
-]
+];
 
 export const experience = [
-  { period: '2026', role: 'Intern', organization: 'LRDE · DRDO', detail: 'Research and technical internship in Bengaluru. Add your exact team, dates and responsibilities.' },
-  { period: '2025 — 2026', role: 'Student Research Project', organization: 'Unisys India', detail: 'Worked with a team on Rule-Based Auto Remediation for Known Issues.' },
-  { period: '2023 — 2027', role: 'B.E. Computer Science & Engineering', organization: 'BMS Institute of Technology', detail: 'Undergraduate studies, technical projects and campus activities.' }
-]
+  {
+    period: 'Aug 2026 — Present',
+    role: 'Intern',
+    organization: 'LRDE · DRDO',
+    detail:
+      'Currently undertaking a technical internship at the Electronics and Radar Development Establishment (LRDE), DRDO, Bengaluru. Add your specific team, technologies and responsibilities here.'
+  },
+  {
+    period: 'Dec 2025 — Jul 2026',
+    role: 'Student Research Project',
+    organization: 'Unisys India',
+    detail:
+      'Collaborated with a team on Rule-Based Auto Remediation for Known Issues, a Windows-focused application exploring known-issue identification, remediation workflows and system event logging.'
+  },
+  {
+    period: '2023 — 2027',
+    role: 'B.E. Computer Science & Engineering',
+    organization: 'BMS Institute of Technology and Management',
+    detail:
+      'Pursuing an undergraduate degree in Computer Science and Engineering, with interests in artificial intelligence, machine learning, software development and research.'
+  }
+];
 
 export const skills = [
-  { group: 'Languages', items: ['C', 'Python', 'SQL', 'R'] },
-  { group: 'AI & Research', items: ['Machine Learning', 'Deep Learning', 'Computer Vision', 'Audio Processing'] },
-  { group: 'Development', items: ['React', 'Flutter', 'Node.js', 'REST APIs'] },
-  { group: 'Data & Tools', items: ['MySQL', 'SQLite', 'MongoDB', 'Git', 'GitHub'] }
-]
+  {
+    group: 'Programming Languages',
+    items: [
+      'C',
+      'Python',
+      'SQL',
+      'R'
+    ]
+  },
+  {
+    group: 'AI & Research',
+    items: [
+      'Machine Learning',
+      'Deep Learning',
+      'Computer Vision',
+      'Audio Processing',
+      'Multimodal Learning'
+    ]
+  },
+  {
+    group: 'Development',
+    items: [
+      'React',
+      'Flutter',
+      'Node.js',
+      'Express',
+      'REST APIs'
+    ]
+  },
+  {
+    group: 'Databases & Tools',
+    items: [
+      'MySQL',
+      'SQLite',
+      'MongoDB',
+      'Git',
+      'GitHub',
+      'PowerShell'
+    ]
+  }
+];
 
 export const terminalCommands = {
-  help: 'Available commands: about, projects, research, skills, experience, github, contact, clear',
-  about: 'I am a Computer Science Engineer exploring technology, research and innovation.',
-  projects: 'Featured work: Multimodal Deepfake Detection, Rule-Based Auto Remediation, DietingDisk, MusicLens and Neruvo.',
-  research: 'Research interests include AI/ML, computer vision, audio processing and robust multimodal systems.',
-  skills: 'Explore the Skills section for languages, AI/ML, development and data tools.',
-  experience: 'Experience includes LRDE · DRDO, a Unisys India campus research project and BMSIT.',
-  github: `Opening GitHub profile: https://github.com/${profile.github}`,
-  contact: `You can reach me at ${profile.email}. Replace this placeholder email in src/data/site.js.`,
+  help:
+    'Available commands: about, projects, research, skills, experience, github, contact, clear',
+
+  about:
+    'I am Rishith, a final-year Computer Science and Engineering student at BMSIT, interested in AI, research and software development.',
+
+  projects:
+    'Featured projects: Multimodal Deepfake Detection, Rule-Based Auto Remediation, DietingDisk, MusicLens and Neruvo.',
+
+  research:
+    'My research interests include AI/ML, computer vision, audio processing and multimodal deepfake detection.',
+
+  skills:
+    'Explore the Skills section for my programming languages, AI/ML interests, development technologies and tools.',
+
+  experience:
+    'Experience: Intern at LRDE · DRDO; Unisys India campus research project; B.E. Computer Science & Engineering at BMSIT.',
+
+  github:
+    `GitHub profile: https://github.com/${profile.github}`,
+
+  contact:
+    `Contact: ${profile.email}. Replace the placeholder email in src/data/site.js before publishing.`,
+
   clear: ''
-}
+};
