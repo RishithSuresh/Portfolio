@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import { ArrowUpRight, Download } from 'lucide-react'
+import { ArrowDown, ArrowUpRight, Download } from 'lucide-react'
 import { motion, useScroll, useTransform } from 'motion/react'
 import { profile } from '../data/site'
 import AIArtwork from '../components/AIArtwork'
@@ -21,8 +21,8 @@ export default function Home() {
 
   const copyY = useTransform(scrollYProgress, [0, 1], [0, -56])
   const copyOpacity = useTransform(scrollYProgress, [0, 0.85], [1, 0.2])
-  const stageScale = useTransform(scrollYProgress, [0, 1], [1, 0.9])
-  const stageY = useTransform(scrollYProgress, [0, 1], [0, 42])
+  const stageScale = useTransform(scrollYProgress, [0, 1], [1, 0.92])
+  const stageY = useTransform(scrollYProgress, [0, 1], [0, 40])
 
   return (
     <main id="top">
@@ -34,7 +34,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45 }}
           >
-            Computer Science · AI &amp; Systems
+            {profile.name} · Computer Science &amp; AI
           </motion.span>
 
           <h1 className="hero-title">
@@ -65,8 +65,8 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65, delay: 0.3 }}
           >
-            I&apos;m <strong>{profile.name}</strong> — a final-year Computer Science Engineer
-            exploring multimodal AI, systems automation, and expressive software.
+            Exploring the intersection of <strong>multimodal AI</strong>, systems automation, and
+            expressive software — turning research into working solutions.
           </motion.p>
 
           <motion.div
@@ -95,9 +95,14 @@ export default function Home() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.85, delay: 0.16, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div className="hero-halo" aria-hidden="true" />
+          <div className="hero-aurora-orb" aria-hidden="true" />
           <AIArtwork />
+          <span className="stage-whisper">Drag to orbit · Click to spin</span>
         </motion.div>
+
+        <a href="#about" className="hero-scroll-cue" aria-label="Scroll to About">
+          <ArrowDown size={14} /> Scroll to explore
+        </a>
       </section>
 
       <BentoIntro />

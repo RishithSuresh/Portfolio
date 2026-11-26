@@ -1,34 +1,13 @@
-import { createContext, useContext, useEffect, useMemo, useState } from 'react'
+import { createContext, useContext, useEffect, useMemo } from 'react'
 
-const ThemeContext = createContext(null)
+const ThemeContext = createContext({ theme: 'unified' })
 
 export function ThemeProvider({ children }) {
-  const [theme, setTheme] = useState(() => {
-    try {
-      return localStorage.getItem('portfolio-theme') || 'dark'
-    } catch {
-      return 'dark'
-    }
-  })
-
   useEffect(() => {
-    document.documentElement.dataset.theme = theme
-    const metaTheme = document.querySelector('meta[name="theme-color"]')
-    if (metaTheme) {
-      metaTheme.setAttribute('content', theme === 'dark' ? '#001524' : '#edf6f9')
-    }
-    try {
-      localStorage.setItem('portfolio-theme', theme)
-    } catch {
-      // Ignore storage errors in restricted environments.
-    }
-  }, [theme])
+    document.documentElement.dataset.theme = 'unified'
+  }, [])
 
-  const toggleTheme = () => {
-    setTheme(prev => (prev === 'dark' ? 'light' : 'dark'))
-  }
-
-  const value = useMemo(() => ({ theme, setTheme, toggleTheme }), [theme])
+  const value = useMemo(() => ({ theme: 'unified' }), [])
   return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
 }
 

@@ -2,10 +2,9 @@ import { useMemo, useRef } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { Environment, Lightformer, OrbitControls, RoundedBox } from '@react-three/drei'
 import * as THREE from 'three'
-import { useTheme } from './ThemeProvider'
 
-const CUBE_SIZE = 0.8
-const CUBE_GAP = 0.065
+const CUBE_SIZE = 0.78
+const CUBE_GAP = 0.068
 const SPACING = CUBE_SIZE + CUBE_GAP
 
 const SHUFFLE_MOVES = [
@@ -38,27 +37,6 @@ const AXIS_VEC = {
   z: new THREE.Vector3(0, 0, 1)
 }
 
-const PALETTES = {
-  dark: {
-    body: '#001524',
-    px: '#ff7d00',
-    nx: '#ffecd1',
-    py: '#15616d',
-    ny: '#78290f',
-    pz: '#ffb366',
-    nz: '#288796'
-  },
-  light: {
-    body: '#006d77',
-    px: '#ffddd2',
-    nx: '#e29578',
-    py: '#edf6f9',
-    ny: '#83c5be',
-    pz: '#ff7d00',
-    nz: '#15616d'
-  }
-}
-
 function Sticker({ position, size, color, emissive = '#000000', emissiveIntensity = 0 }) {
   return (
     <RoundedBox position={position} args={size} radius={0.016} smoothness={3}>
@@ -66,14 +44,14 @@ function Sticker({ position, size, color, emissive = '#000000', emissiveIntensit
         color={color}
         emissive={emissive}
         emissiveIntensity={emissiveIntensity}
-        roughness={0.2}
-        metalness={0.1}
+        roughness={0.18}
+        metalness={0.12}
       />
     </RoundedBox>
   )
 }
 
-function Cubelet({ position, index, register, colors }) {
+function Cubelet({ position, index, register }) {
   const [x, y, z] = position
   const stickerSize = CUBE_SIZE * 0.72
   const stickerDepth = 0.036
@@ -81,30 +59,61 @@ function Cubelet({ position, index, register, colors }) {
 
   return (
     <group ref={node => register(index, node)}>
-      <RoundedBox args={[CUBE_SIZE, CUBE_SIZE, CUBE_SIZE]} radius={0.085} smoothness={4}>
-        <meshStandardMaterial color={colors.body} roughness={0.24} metalness={0.45} />
+      <RoundedBox args={[CUBE_SIZE, CUBE_SIZE, CUBE_SIZE]} radius={0.088} smoothness={4}>
+        <meshStandardMaterial color="#001524" roughness={0.22} metalness={0.48} />
       </RoundedBox>
       {x === 1 && (
         <Sticker
           position={[stickerOffset, 0, 0]}
           size={[stickerDepth, stickerSize, stickerSize]}
-          color={colors.px}
-          emissive={colors.px}
+          color="#ff7d00"
+          emissive="#ff7d00"
           emissiveIntensity={0.08}
         />
       )}
-      {x === -1 && <Sticker position={[-stickerOffset, 0, 0]} size={[stickerDepth, stickerSize, stickerSize]} color={colors.nx} />}
-      {y === 1 && <Sticker position={[0, stickerOffset, 0]} size={[stickerSize, stickerDepth, stickerSize]} color={colors.py} />}
-      {y === -1 && <Sticker position={[0, -stickerOffset, 0]} size={[stickerSize, stickerDepth, stickerSize]} color={colors.ny} />}
-      {z === 1 && <Sticker position={[0, 0, stickerOffset]} size={[stickerSize, stickerSize, stickerDepth]} color={colors.pz} />}
-      {z === -1 && <Sticker position={[0, 0, -stickerOffset]} size={[stickerSize, stickerSize, stickerDepth]} color={colors.nz} />}
+      {x === -1 && (
+        <Sticker
+          position={[-stickerOffset, 0, 0]}
+          size={[stickerDepth, stickerSize, stickerSize]}
+          color="#ffddd2"
+        />
+      )}
+      {y === 1 && (
+        <Sticker
+          position={[0, stickerOffset, 0]}
+          size={[stickerSize, stickerDepth, stickerSize]}
+          color="#edf6f9"
+        />
+      )}
+      {y === -1 && (
+        <Sticker
+          position={[0, -stickerOffset, 0]}
+          size={[stickerSize, stickerDepth, stickerSize]}
+          color="#78290f"
+        />
+      )}
+      {z === 1 && (
+        <Sticker
+          position={[0, 0, stickerOffset]}
+          size={[stickerSize, stickerSize, stickerDepth]}
+          color="#83c5be"
+        />
+      )}
+      {z === -1 && (
+        <Sticker
+          position={[0, 0, -stickerOffset]}
+          size={[stickerSize, stickerSize, stickerDepth]}
+          color="#e29578"
+        />
+      )}
     </group>
   )
 }
 
-export function RubiksCube({ colors }) {
+export function RubiksCube() {
   const rig = useRef()
   const group = useRef()
+  const ringRef = useRef()
   const cubeletRefs = useRef([])
   const impulseSpin = useRef(0)
   const scratchQuat = useRef(new THREE.Quaternion())
@@ -140,6 +149,10 @@ export function RubiksCube({ colors }) {
 
     rig.current.rotation.x = THREE.MathUtils.lerp(rig.current.rotation.x, -state.pointer.y * 0.22, safeDelta * 3.5)
     rig.current.rotation.y = THREE.MathUtils.lerp(rig.current.rotation.y, state.pointer.x * 0.28, safeDelta * 3.5)
+
+    if (ringRef.current) {
+      ringRef.current.rotation.z += safeDelta * 0.14
+    }
 
     impulseSpin.current = THREE.MathUtils.lerp(impulseSpin.current, 0, safeDelta * 3.2)
     group.current.rotation.y += safeDelta * (0.16 + impulseSpin.current)
@@ -221,17 +234,21 @@ export function RubiksCube({ colors }) {
         impulseSpin.current = 4.2
       }}
     >
-      <group ref={group} scale={1.08}>
+      <group ref={group} scale={1.06}>
         {coords.map(([x, y, z], index) => (
           <Cubelet
             key={`${x}-${y}-${z}`}
             index={index}
             position={[x, y, z]}
             register={registerCubelet}
-            colors={colors}
           />
         ))}
       </group>
+
+      <mesh ref={ringRef} rotation={[Math.PI / 2.5, 0.38, 0]}>
+        <torusGeometry args={[2.55, 0.009, 12, 110]} />
+        <meshBasicMaterial color="#ffecd1" transparent opacity={0.32} />
+      </mesh>
     </group>
   )
 }
@@ -240,29 +257,27 @@ export function StudioEnvironment() {
   return (
     <Environment resolution={256}>
       <group rotation={[-Math.PI / 3, 0, 1]}>
-        <Lightformer form="circle" intensity={3.2} rotation-x={Math.PI / 2} position={[0, 5, -9]} scale={10} color="#ffecd1" />
-        <Lightformer form="rect" intensity={2.4} rotation-y={Math.PI / 2} position={[-5, 1, -1]} scale={[12, 4, 1]} color="#15616d" />
+        <Lightformer form="circle" intensity={3.2} rotation-x={Math.PI / 2} position={[0, 5, -9]} scale={10} color="#edf6f9" />
+        <Lightformer form="rect" intensity={2.4} rotation-y={Math.PI / 2} position={[-5, 1, -1]} scale={[12, 4, 1]} color="#83c5be" />
         <Lightformer form="rect" intensity={2.2} rotation-y={-Math.PI / 2} position={[5, 2, 1]} scale={[12, 4, 1]} color="#ff7d00" />
+        <Lightformer form="ring" intensity={1.5} rotation-y={Math.PI / 2} position={[0, -5, 2]} scale={8} color="#ffddd2" />
       </group>
     </Environment>
   )
 }
 
 export default function HeroScene() {
-  const { theme } = useTheme()
-  const colors = PALETTES[theme] || PALETTES.dark
-
   return (
     <Canvas
-      camera={{ position: [0, 0.15, 6.4], fov: 44 }}
+      camera={{ position: [0, 0.15, 6.5], fov: 44 }}
       dpr={[1, 1.75]}
       gl={{ alpha: true, antialias: true }}
     >
       <ambientLight intensity={1.05} />
       <directionalLight position={[4, 6, 5]} intensity={1.9} color="#ffecd1" />
-      <pointLight position={[-4, -2, 3]} intensity={1.5} color={theme === 'dark' ? '#15616d' : '#83c5be'} />
-      <pointLight position={[3, 2, -4]} intensity={1.4} color={theme === 'dark' ? '#ff7d00' : '#ffddd2'} />
-      <RubiksCube colors={colors} />
+      <pointLight position={[-4, -2, 3]} intensity={1.5} color="#006d77" />
+      <pointLight position={[3, 2, -4]} intensity={1.4} color="#ff7d00" />
+      <RubiksCube />
       <StudioEnvironment />
       <OrbitControls
         enableZoom={false}

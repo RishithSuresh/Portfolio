@@ -1,13 +1,11 @@
 import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowUpRight } from 'lucide-react'
-import { useTheme } from './ThemeProvider'
 import Reveal from './Reveal'
 
 function HarmonicWaveCanvas() {
   const canvasRef = useRef(null)
   const pointerRef = useRef({ x: 0.5, active: false })
-  const { theme } = useTheme()
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -33,10 +31,6 @@ function HarmonicWaveCanvas() {
       const h = rect.height
       ctx.clearRect(0, 0, w, h)
 
-      const primary = theme === 'dark' ? '#ff7d00' : '#006d77'
-      const secondary = theme === 'dark' ? '#ffecd1' : '#e29578'
-      const tertiary = theme === 'dark' ? '#15616d' : '#83c5be'
-
       const focusX = pointerRef.current.active ? pointerRef.current.x : 0.5
       const cy = h * 0.5
 
@@ -60,9 +54,9 @@ function HarmonicWaveCanvas() {
         ctx.stroke()
       }
 
-      drawWave(tertiary, h * 0.24, 9, 0.9, 1.5, 0)
-      drawWave(secondary, h * 0.18, 13, -1.1, 1.8, 1.4)
-      drawWave(primary, h * 0.22, 7, 1.35, 2.6, 2.8)
+      drawWave('#83c5be', h * 0.24, 9, 0.9, 1.6, 0)
+      drawWave('#ffddd2', h * 0.18, 13, -1.1, 1.8, 1.4)
+      drawWave('#ff7d00', h * 0.22, 7, 1.35, 2.6, 2.8)
 
       phase += 0.028
       rafId = requestAnimationFrame(render)
@@ -73,7 +67,7 @@ function HarmonicWaveCanvas() {
       cancelAnimationFrame(rafId)
       window.removeEventListener('resize', resize)
     }
-  }, [theme])
+  }, [])
 
   return (
     <div

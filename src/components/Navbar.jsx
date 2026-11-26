@@ -1,8 +1,7 @@
 import { useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { Menu, X, ArrowUpRight, Sun, Moon } from 'lucide-react'
+import { Menu, X, ArrowUpRight } from 'lucide-react'
 import { profile } from '../data/site'
-import { useTheme } from './ThemeProvider'
 
 const links = [
   ['About', '#about'],
@@ -14,7 +13,6 @@ const links = [
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
-  const { theme, toggleTheme } = useTheme()
   const location = useLocation()
   const navigate = useNavigate()
 
@@ -54,15 +52,6 @@ export default function Navbar() {
         </nav>
 
         <div className="nav-actions">
-          <button
-            type="button"
-            className="theme-toggle"
-            onClick={toggleTheme}
-            aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
-          >
-            {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
-          </button>
-
           <a
             className="nav-cta"
             href="#contact"
@@ -76,7 +65,7 @@ export default function Navbar() {
 
           <button
             type="button"
-            className="theme-toggle mobile-menu-button"
+            className="icon-button mobile-menu-button"
             onClick={() => setOpen(v => !v)}
             aria-label="Toggle menu"
           >
