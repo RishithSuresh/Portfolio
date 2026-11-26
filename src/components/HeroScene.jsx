@@ -40,13 +40,13 @@ const AXIS_VEC = {
 
 const PALETTES = {
   dark: {
-    body: '#001d3d',
-    px: '#ffc300',
-    nx: '#ffd60a',
-    py: '#edf6f9',
-    ny: '#003566',
-    pz: '#83c5be',
-    nz: '#ffddd2'
+    body: '#001524',
+    px: '#ff7d00',
+    nx: '#ffecd1',
+    py: '#15616d',
+    ny: '#78290f',
+    pz: '#ffb366',
+    nz: '#288796'
   },
   light: {
     body: '#006d77',
@@ -54,15 +54,21 @@ const PALETTES = {
     nx: '#e29578',
     py: '#edf6f9',
     ny: '#83c5be',
-    pz: '#ffc300',
-    nz: '#003566'
+    pz: '#ff7d00',
+    nz: '#15616d'
   }
 }
 
-function Sticker({ position, size, color }) {
+function Sticker({ position, size, color, emissive = '#000000', emissiveIntensity = 0 }) {
   return (
     <RoundedBox position={position} args={size} radius={0.016} smoothness={3}>
-      <meshStandardMaterial color={color} roughness={0.22} metalness={0.08} />
+      <meshStandardMaterial
+        color={color}
+        emissive={emissive}
+        emissiveIntensity={emissiveIntensity}
+        roughness={0.2}
+        metalness={0.1}
+      />
     </RoundedBox>
   )
 }
@@ -76,9 +82,17 @@ function Cubelet({ position, index, register, colors }) {
   return (
     <group ref={node => register(index, node)}>
       <RoundedBox args={[CUBE_SIZE, CUBE_SIZE, CUBE_SIZE]} radius={0.085} smoothness={4}>
-        <meshStandardMaterial color={colors.body} roughness={0.25} metalness={0.35} />
+        <meshStandardMaterial color={colors.body} roughness={0.24} metalness={0.45} />
       </RoundedBox>
-      {x === 1 && <Sticker position={[stickerOffset, 0, 0]} size={[stickerDepth, stickerSize, stickerSize]} color={colors.px} />}
+      {x === 1 && (
+        <Sticker
+          position={[stickerOffset, 0, 0]}
+          size={[stickerDepth, stickerSize, stickerSize]}
+          color={colors.px}
+          emissive={colors.px}
+          emissiveIntensity={0.08}
+        />
+      )}
       {x === -1 && <Sticker position={[-stickerOffset, 0, 0]} size={[stickerDepth, stickerSize, stickerSize]} color={colors.nx} />}
       {y === 1 && <Sticker position={[0, stickerOffset, 0]} size={[stickerSize, stickerDepth, stickerSize]} color={colors.py} />}
       {y === -1 && <Sticker position={[0, -stickerOffset, 0]} size={[stickerSize, stickerDepth, stickerSize]} color={colors.ny} />}
@@ -92,6 +106,7 @@ export function RubiksCube({ colors }) {
   const rig = useRef()
   const group = useRef()
   const cubeletRefs = useRef([])
+  const impulseSpin = useRef(0)
   const scratchQuat = useRef(new THREE.Quaternion())
   const scratchVec = useRef(new THREE.Vector3())
   const scheduler = useRef({ elapsed: 0, moveIndex: 0, holding: false, holdElapsed: 0 })
@@ -123,21 +138,22 @@ export function RubiksCube({ colors }) {
     if (!group.current || !rig.current) return
     const safeDelta = Math.min(delta, 0.05)
 
-    rig.current.rotation.x = THREE.MathUtils.lerp(rig.current.rotation.x, -state.pointer.y * 0.18, safeDelta * 3.5)
-    rig.current.rotation.y = THREE.MathUtils.lerp(rig.current.rotation.y, state.pointer.x * 0.24, safeDelta * 3.5)
+    rig.current.rotation.x = THREE.MathUtils.lerp(rig.current.rotation.x, -state.pointer.y * 0.22, safeDelta * 3.5)
+    rig.current.rotation.y = THREE.MathUtils.lerp(rig.current.rotation.y, state.pointer.x * 0.28, safeDelta * 3.5)
 
-    group.current.rotation.y += safeDelta * 0.15
-    group.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.4) * 0.1
-    group.current.position.y = Math.sin(state.clock.elapsedTime * 0.8) * 0.07
+    impulseSpin.current = THREE.MathUtils.lerp(impulseSpin.current, 0, safeDelta * 3.2)
+    group.current.rotation.y += safeDelta * (0.16 + impulseSpin.current)
+    group.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.4) * 0.11
+    group.current.position.y = Math.sin(state.clock.elapsedTime * 0.8) * 0.075
 
-    const moveDuration = 0.44
+    const moveDuration = 0.42
     const pauseDuration = 0.08
     const slotDuration = moveDuration + pauseDuration
     const timeline = scheduler.current
 
     if (timeline.holding) {
       timeline.holdElapsed += safeDelta
-      if (timeline.holdElapsed >= 3.2) {
+      if (timeline.holdElapsed >= 3.0) {
         timeline.holding = false
         timeline.holdElapsed = 0
         timeline.elapsed = 0
@@ -199,8 +215,13 @@ export function RubiksCube({ colors }) {
   })
 
   return (
-    <group ref={rig}>
-      <group ref={group} scale={1.06}>
+    <group
+      ref={rig}
+      onClick={() => {
+        impulseSpin.current = 4.2
+      }}
+    >
+      <group ref={group} scale={1.08}>
         {coords.map(([x, y, z], index) => (
           <Cubelet
             key={`${x}-${y}-${z}`}
@@ -219,9 +240,9 @@ export function StudioEnvironment() {
   return (
     <Environment resolution={256}>
       <group rotation={[-Math.PI / 3, 0, 1]}>
-        <Lightformer form="circle" intensity={3.2} rotation-x={Math.PI / 2} position={[0, 5, -9]} scale={10} color="#ffffff" />
-        <Lightformer form="rect" intensity={2.2} rotation-y={Math.PI / 2} position={[-5, 1, -1]} scale={[12, 4, 1]} color="#83c5be" />
-        <Lightformer form="rect" intensity={2.0} rotation-y={-Math.PI / 2} position={[5, 2, 1]} scale={[12, 4, 1]} color="#ffd60a" />
+        <Lightformer form="circle" intensity={3.2} rotation-x={Math.PI / 2} position={[0, 5, -9]} scale={10} color="#ffecd1" />
+        <Lightformer form="rect" intensity={2.4} rotation-y={Math.PI / 2} position={[-5, 1, -1]} scale={[12, 4, 1]} color="#15616d" />
+        <Lightformer form="rect" intensity={2.2} rotation-y={-Math.PI / 2} position={[5, 2, 1]} scale={[12, 4, 1]} color="#ff7d00" />
       </group>
     </Environment>
   )
@@ -237,10 +258,10 @@ export default function HeroScene() {
       dpr={[1, 1.75]}
       gl={{ alpha: true, antialias: true }}
     >
-      <ambientLight intensity={1.1} />
-      <directionalLight position={[4, 6, 5]} intensity={1.9} color="#ffffff" />
-      <pointLight position={[-4, -2, 3]} intensity={1.4} color={theme === 'dark' ? '#003566' : '#83c5be'} />
-      <pointLight position={[3, 2, -4]} intensity={1.2} color={theme === 'dark' ? '#ffc300' : '#ffddd2'} />
+      <ambientLight intensity={1.05} />
+      <directionalLight position={[4, 6, 5]} intensity={1.9} color="#ffecd1" />
+      <pointLight position={[-4, -2, 3]} intensity={1.5} color={theme === 'dark' ? '#15616d' : '#83c5be'} />
+      <pointLight position={[3, 2, -4]} intensity={1.4} color={theme === 'dark' ? '#ff7d00' : '#ffddd2'} />
       <RubiksCube colors={colors} />
       <StudioEnvironment />
       <OrbitControls

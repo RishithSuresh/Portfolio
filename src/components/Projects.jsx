@@ -1,49 +1,16 @@
-import { ArrowUpRight, Github, MoveUpRight } from 'lucide-react'
+import { useState } from 'react'
+import { ArrowUpRight, Github } from 'lucide-react'
+import { AnimatePresence, motion } from 'motion/react'
 import { Link } from 'react-router-dom'
 import { projects, getGithubUrl } from '../data/site'
 import Reveal from './Reveal'
 
-export function ProjectCard({ project, large = false }) {
-  return (
-    <article className={`project-card ${large ? 'project-card-large' : ''}`}>
-      <Link to={`/projects/${project.slug}`}>
-        <div className="project-image">
-          <img src={project.image} alt={`${project.title} preview`} loading="lazy" />
-          <span className="image-arrow">
-            <MoveUpRight size={18} />
-          </span>
-        </div>
-        <div className="project-meta">
-          <span>
-            {project.number} / {project.category}
-          </span>
-          <span>CASE STUDY</span>
-        </div>
-        <h3>{project.title}</h3>
-        <p>{project.summary}</p>
-        <div className="tag-row">
-          {project.tags.slice(0, 4).map(t => (
-            <span key={t}>{t}</span>
-          ))}
-        </div>
-      </Link>
-      {project.github && (
-        <a
-          className="project-github-link"
-          href={getGithubUrl(project.github)}
-          target="_blank"
-          rel="noreferrer"
-        >
-          <Github size={14} /> View source <ArrowUpRight size={13} />
-        </a>
-      )}
-    </article>
-  )
-}
-
 export default function Projects() {
   const featured = projects.filter(p => p.featured)
   const secondary = projects.filter(p => !p.featured)
+  const [activeSlug, setActiveSlug] = useState(featured[0].slug)
+
+  const activeProject = featured.find(p => p.slug === activeSlug) || featured[0]
 
   return (
     <section className="section" id="work">
@@ -57,21 +24,72 @@ export default function Projects() {
           </h2>
         </div>
         <p>
-          A focused selection of research experiments, desktop systems, and full-stack
-          applications.
+          Hover or select a project to preview its architecture, stack, and full case study.
         </p>
       </Reveal>
 
-      <div className="projects-grid">
-        <Reveal>
-          <ProjectCard project={featured[0]} large />
-        </Reveal>
-        <div className="project-stack">
-          {featured.slice(1).map((p, i) => (
-            <Reveal key={p.slug} delay={i * 0.06}>
-              <ProjectCard project={p} />
-            </Reveal>
-          ))}
+      <div className="showcase-split">
+        <div className="showcase-list">
+          {featured.map(p => {
+            const isSelected = activeProject.slug === p.slug
+            return (
+              <button
+                type="button"
+                key={p.slug}
+                className={`showcase-row ${isSelected ? 'is-active' : ''}`}
+                onMouseEnter={() => setActiveSlug(p.slug)}
+                onFocus={() => setActiveSlug(p.slug)}
+                onClick={() => setActiveSlug(p.slug)}
+              >
+                <span className="showcase-num">{p.number}</span>
+                <div>
+                  <h3>{p.title}</h3>
+                  <span>{p.category}</span>
+                </div>
+                <ArrowUpRight size={18} />
+              </button>
+            )
+          })}
+        </div>
+
+        <div className="showcase-stage">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeProject.slug}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <div className="showcase-media">
+                <img src={activeProject.image} alt={`${activeProject.title} preview`} />
+              </div>
+              <div className="showcase-body">
+                <h3>{activeProject.title}</h3>
+                <p>{activeProject.description}</p>
+                <div className="tag-row">
+                  {activeProject.tags.slice(0, 4).map(t => (
+                    <span key={t}>{t}</span>
+                  ))}
+                </div>
+                <div className="showcase-actions">
+                  <Link className="button button-primary" to={`/projects/${activeProject.slug}`}>
+                    Read Case Study <ArrowUpRight size={15} />
+                  </Link>
+                  {activeProject.github && (
+                    <a
+                      className="button button-quiet"
+                      href={getGithubUrl(activeProject.github)}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <Github size={15} /> Source
+                    </a>
+                  )}
+                </div>
+              </div>
+            </motion.div>
+          </AnimatePresence>
         </div>
       </div>
 

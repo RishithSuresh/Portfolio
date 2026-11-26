@@ -15,7 +15,7 @@ export function ThemeProvider({ children }) {
     document.documentElement.dataset.theme = theme
     const metaTheme = document.querySelector('meta[name="theme-color"]')
     if (metaTheme) {
-      metaTheme.setAttribute('content', theme === 'dark' ? '#000814' : '#edf6f9')
+      metaTheme.setAttribute('content', theme === 'dark' ? '#001524' : '#edf6f9')
     }
     try {
       localStorage.setItem('portfolio-theme', theme)

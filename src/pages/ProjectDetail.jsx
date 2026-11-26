@@ -1,12 +1,14 @@
 import { useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { ArrowLeft, ArrowUpRight, ExternalLink, Github } from 'lucide-react'
+import { ArrowLeft, ArrowRight, ArrowUpRight, ExternalLink, Github } from 'lucide-react'
 import { projects, getGithubUrl } from '../data/site'
 import Footer from '../components/Footer'
 
 export default function ProjectDetail() {
   const { slug } = useParams()
-  const project = projects.find(p => p.slug === slug)
+  const idx = projects.findIndex(p => p.slug === slug)
+  const project = projects[idx]
+  const nextProject = idx >= 0 ? projects[(idx + 1) % projects.length] : null
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' })
@@ -27,7 +29,7 @@ export default function ProjectDetail() {
   return (
     <main className="project-detail page-shell">
       <Link to="/" className="back-link">
-        <ArrowLeft size={16} /> Back to the lab
+        <ArrowLeft size={16} /> Back to home
       </Link>
 
       <div className="detail-heading">
@@ -85,10 +87,14 @@ export default function ProjectDetail() {
             </section>
           ))}
           <div className="detail-next">
-            <span className="eyebrow">KEEP EXPLORING</span>
             <Link to="/">
-              Back to all projects <ArrowUpRight size={16} />
+              <ArrowLeft size={15} /> All projects
             </Link>
+            {nextProject && (
+              <Link to={`/projects/${nextProject.slug}`}>
+                Next: {nextProject.title} <ArrowRight size={15} />
+              </Link>
+            )}
           </div>
         </article>
       </div>
