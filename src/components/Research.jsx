@@ -7,15 +7,15 @@ import SpotlightCard from './SpotlightCard'
 
 const nodeDetails = {
   visual: {
-    label: 'VISUAL STREAM',
+    label: '01 / VISUAL STREAM',
     detail: 'Frame sampling & facial-region spatial-temporal artifact encoding'
   },
   audio: {
-    label: 'AUDIO STREAM',
+    label: '02 / AUDIO STREAM',
     detail: 'Spectral acoustic extraction & vocal synthesis anomaly cues'
   },
   fusion: {
-    label: 'CROSS-MODAL FUSION',
+    label: '03 / CROSS-MODAL FUSION',
     detail: 'Joint representation evaluated across FaceForensics++, DF40, Celeb-DF & SDFDC'
   }
 }
@@ -28,7 +28,7 @@ export default function Research() {
     <section className="section research-section" id="research">
       <Reveal className="section-heading">
         <div>
-          <span className="eyebrow">03 / THE RESEARCH LAB</span>
+          <span className="eyebrow">03 / THE LAB</span>
           <h2>
             Questions worth
             <br />
@@ -59,60 +59,54 @@ export default function Research() {
             <span>Celeb-DF</span>
             <span>SDFDC</span>
           </div>
-          <Link className="text-link" to="/projects/multimodal-deepfake-detection">
+          <Link className="text-link" to="/projects/multimodal-deepfake-detection" style={{ marginTop: 22 }}>
             Explore the case study <ArrowUpRight size={16} />
           </Link>
         </div>
 
         <div className="research-visual">
-          <svg className="pipeline-svg" viewBox="0 0 500 380" preserveAspectRatio="none" aria-hidden="true">
-            <path
-              d="M 140 120 C 140 210, 210 210, 250 250"
-              className={`pipeline-path ${selectedNode === 'visual' || selectedNode === 'fusion' ? 'is-active' : ''}`}
-            />
-            <path
-              d="M 360 120 C 360 210, 290 210, 250 250"
-              className={`pipeline-path ${selectedNode === 'audio' || selectedNode === 'fusion' ? 'is-active' : ''}`}
-            />
-          </svg>
+          <div className="oscilloscope-box" aria-hidden="true">
+            <span className="osc-label">SIGNAL PHASE // {current.label}</span>
+            <svg className="oscilloscope-svg" viewBox="0 0 460 120" preserveAspectRatio="none">
+              <path
+                className="wave-a"
+                d="M0 60 Q 30 22, 60 60 T 120 60 T 180 60 T 240 60 T 300 60 T 360 60 T 420 60 T 460 60"
+                style={{ opacity: selectedNode === 'audio' ? 0.3 : 0.95 }}
+              />
+              <path
+                className="wave-b"
+                d="M0 60 Q 22 98, 45 60 T 90 60 T 135 60 T 180 60 T 225 60 T 270 60 T 315 60 T 360 60 T 405 60 T 460 60"
+                style={{ opacity: selectedNode === 'visual' ? 0.3 : 0.95 }}
+              />
+            </svg>
+          </div>
 
           <div className="pipeline-nodes">
             <button
               type="button"
-              className={`signal signal-a ${selectedNode === 'visual' ? 'is-selected' : ''}`}
+              className={`signal ${selectedNode === 'visual' ? 'is-selected' : ''}`}
               onClick={() => setSelectedNode('visual')}
-              onMouseEnter={() => setSelectedNode('visual')}
             >
-              <ScanFace size={24} color="var(--cyan)" />
-              <span>VISUAL SIGNAL</span>
+              <ScanFace size={22} color="var(--ice)" />
+              <span>VISUAL STREAM</span>
             </button>
 
             <button
               type="button"
-              className={`signal signal-b ${selectedNode === 'audio' ? 'is-selected' : ''}`}
+              className={`signal ${selectedNode === 'audio' ? 'is-selected' : ''}`}
               onClick={() => setSelectedNode('audio')}
-              onMouseEnter={() => setSelectedNode('audio')}
             >
-              <AudioWaveform size={24} color="var(--coral)" />
-              <div className="waveform-bars" aria-hidden="true">
-                <i />
-                <i />
-                <i />
-                <i />
-                <i />
-              </div>
-              <span>AUDIO SIGNAL</span>
+              <AudioWaveform size={22} color="var(--accent)" />
+              <span>AUDIO STREAM</span>
             </button>
 
             <button
               type="button"
-              className={`fusion-node ${selectedNode === 'fusion' ? 'is-selected' : ''}`}
+              className={`signal ${selectedNode === 'fusion' ? 'is-selected' : ''}`}
               onClick={() => setSelectedNode('fusion')}
-              onMouseEnter={() => setSelectedNode('fusion')}
             >
-              <Network size={26} />
-              <b>FUSION CORE</b>
-              <small>ROC-AUC · F1</small>
+              <Network size={22} color="var(--saffron)" />
+              <span>FUSION CORE</span>
             </button>
           </div>
 
@@ -121,11 +115,6 @@ export default function Research() {
             <span>{current.detail}</span>
           </div>
         </div>
-      </div>
-
-      <div className="research-foot">
-        <span>METHOD · EXPERIMENT · EVALUATE · ITERATE</span>
-        <span>Research is a process, not just a result.</span>
       </div>
 
       <div className="papers-heading">
@@ -145,7 +134,7 @@ export default function Research() {
               <div>
                 <div className="paper-icon">
                   <FileText size={18} />
-                  <span className="status-pill">{paper.status}</span>
+                  <span className="paper-badge">{paper.status}</span>
                 </div>
                 <h3>{paper.title}</h3>
                 <span className="paper-venue">{paper.venue}</span>
