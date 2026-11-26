@@ -15,12 +15,12 @@ export function ThemeProvider({ children }) {
     document.documentElement.dataset.theme = theme
     const metaTheme = document.querySelector('meta[name="theme-color"]')
     if (metaTheme) {
-      metaTheme.setAttribute('content', theme === 'dark' ? '#070a1e' : '#efe9dc')
+      metaTheme.setAttribute('content', theme === 'dark' ? '#000814' : '#edf6f9')
     }
     try {
       localStorage.setItem('portfolio-theme', theme)
     } catch {
-      // Ignore storage failures in restricted contexts.
+      // Ignore storage errors in restricted environments.
     }
   }, [theme])
 

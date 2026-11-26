@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { ArrowUpRight, Github, Star, GitFork } from 'lucide-react'
 import { profile, getGithubUsername, getGithubUrl } from '../data/site'
 import Reveal from './Reveal'
-import SpotlightCard from './SpotlightCard'
 
 export default function GitHubRepos() {
   const [repos, setRepos] = useState([])
@@ -36,17 +35,17 @@ export default function GitHubRepos() {
   }, [username])
 
   return (
-    <section className="section github-section" id="github">
+    <section className="section" id="github">
       <Reveal className="section-heading">
         <div>
-          <span className="eyebrow">05 / OPEN SOURCE</span>
+          <span className="eyebrow">05 / Open Source</span>
           <h2>
             Built in the
             <br />
             <em>open.</em>
           </h2>
         </div>
-        <p>A live glimpse of public repositories and recent work from GitHub.</p>
+        <p>Recent public repositories directly from GitHub.</p>
       </Reveal>
 
       <div className="github-header">
@@ -72,8 +71,7 @@ export default function GitHubRepos() {
       {status === 'ready' && repos.length > 0 && (
         <div className="repo-grid">
           {repos.map(r => (
-            <SpotlightCard
-              as="a"
+            <a
               className="repo-card"
               key={r.id}
               href={r.html_url}
@@ -94,7 +92,7 @@ export default function GitHubRepos() {
                   <GitFork size={13} /> {r.forks_count}
                 </span>
               </footer>
-            </SpotlightCard>
+            </a>
           ))}
         </div>
       )}

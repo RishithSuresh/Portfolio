@@ -2,11 +2,11 @@ import { Suspense, lazy } from 'react'
 
 const Scene = lazy(() => import('./ArtworkScene'))
 
-export default function AIArtwork({ paused = false, exploded = false }) {
+export default function AIArtwork() {
   return (
-    <div className="artwork-wrap" aria-label="Interactive 3D combinatorial Rubik's cube specimen">
+    <div className="artwork-wrap" aria-label="Interactive 3D Rubik's cube">
       <Suspense fallback={null}>
-        <Scene paused={paused} exploded={exploded} />
+        <Scene />
       </Suspense>
     </div>
   )
