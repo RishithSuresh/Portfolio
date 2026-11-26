@@ -397,9 +397,24 @@ export const skills = [
   }
 ];
 
+export const getGithubUsername = (value = '') => {
+  const cleaned = value.trim().replace(/\/+$/, '')
+  if (!cleaned) return ''
+  return cleaned.includes('github.com/') ? cleaned.split('github.com/').pop().split('/')[0] : cleaned
+}
+
+export const getGithubUrl = (value = '') => {
+  const cleaned = value.trim()
+  if (!cleaned) return 'https://github.com'
+  return /^https?:\/\//i.test(cleaned) ? cleaned : `https://github.com/${cleaned}`
+}
+
 export const terminalCommands = {
   help:
-    'Available commands: about, projects, research, skills, experience, github, contact, clear',
+    'Available commands: about, projects, research, skills, experience, whoami, github, contact, theme, clear',
+
+  whoami:
+    `${profile.name} — ${profile.role} · ${profile.location}`,
 
   about:
     'I am Rishith, a final-year Computer Science and Engineering student at BMSIT, interested in AI, research and software development.',
@@ -417,10 +432,10 @@ export const terminalCommands = {
     'Experience: Intern at LRDE · DRDO; Unisys India campus research project; B.E. Computer Science & Engineering at BMSIT.',
 
   github:
-    `GitHub profile: https://github.com/${profile.github}`,
+    `GitHub profile: ${getGithubUrl(profile.github)}`,
 
   contact:
-    `Contact: ${profile.email}. Replace the placeholder email in src/data/site.js before publishing.`,
+    `Email: ${profile.email} · Based in ${profile.location}`,
 
   clear: ''
 };
