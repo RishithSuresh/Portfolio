@@ -95,11 +95,11 @@ export default function StickmenName() {
         aria-label="Rishith Suresh in luminous sculpted decorative lettering with animated stickmen"
       >
         <defs>
-          {/* Ultra-Bold Deep Abyssal-to-Petrol Sculpted Fill */}
+          {/* Deep Petrol-to-Lagoon Sculpted Fill */}
           <linearGradient id="glyphGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#000a12" />
-            <stop offset="50%" stopColor="#002b3d" />
-            <stop offset="100%" stopColor="#000f1a" />
+            <stop offset="0%" stopColor="#001524" />
+            <stop offset="48%" stopColor="#00555f" />
+            <stop offset="100%" stopColor="#001524" />
           </linearGradient>
 
           {/* Animated Specular Metallic Sheen Sweeping Across Letters */}
