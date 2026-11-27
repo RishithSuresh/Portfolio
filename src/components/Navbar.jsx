@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { Menu, X, ArrowUpRight } from 'lucide-react'
 import { profile } from '../data/site'
+import SectionStickman from './SectionStickman'
 
 const links = [
   ['About', '#about'],
@@ -52,16 +53,19 @@ export default function Navbar() {
         </nav>
 
         <div className="nav-actions">
-          <a
-            className="nav-cta"
-            href="#contact"
-            onClick={e => {
-              e.preventDefault()
-              go('#contact')
-            }}
-          >
-            Let&apos;s talk <ArrowUpRight size={14} />
-          </a>
+          <div className="nav-cta-wrap">
+            <SectionStickman variant="peeker" className="stickman-nav-peeker" width={26} height={26} />
+            <a
+              className="nav-cta"
+              href="#contact"
+              onClick={e => {
+                e.preventDefault()
+                go('#contact')
+              }}
+            >
+              Let&apos;s talk <ArrowUpRight size={14} />
+            </a>
+          </div>
 
           <button
             type="button"

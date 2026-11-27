@@ -32,7 +32,8 @@ export default function Contact() {
   return (
     <section className="section" id="contact">
       <Reveal className="contact-card">
-        <SectionStickman variant="courier" className="stickman-contact-ledge" width={72} height={44} />
+        <SectionStickman variant="lounger" className="stickman-contact-lounger" width={46} height={28} />
+        <SectionStickman variant="courier" className="stickman-contact-ledge" width={74} height={44} />
         <div className="contact-copy">
           <span className="eyebrow">06 / Contact</span>
           <h2>

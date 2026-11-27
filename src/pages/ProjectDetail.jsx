@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom'
 import { ArrowLeft, ArrowRight, ArrowUpRight, ExternalLink, Github } from 'lucide-react'
 import { projects, getGithubUrl } from '../data/site'
 import Footer from '../components/Footer'
+import SectionStickman from '../components/SectionStickman'
 
 export default function ProjectDetail() {
   const { slug } = useParams()
@@ -45,7 +46,10 @@ export default function ProjectDetail() {
         </div>
       </div>
 
-      <img className="detail-cover" src={project.image} alt={`${project.title} visual`} />
+      <div className="detail-cover-wrap">
+        <SectionStickman variant="sketcher" className="stickman-detail-ledge" width={46} height={40} />
+        <img className="detail-cover" src={project.image} alt={`${project.title} visual`} />
+      </div>
 
       <div className="detail-content">
         <aside>

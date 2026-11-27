@@ -72,7 +72,7 @@ export default function GitHubRepos() {
       )}
       {status === 'ready' && repos.length > 0 && (
         <div className="repo-grid">
-          {repos.map(r => (
+          {repos.map((r, idx) => (
             <a
               className="repo-card"
               key={r.id}
@@ -80,6 +80,12 @@ export default function GitHubRepos() {
               target="_blank"
               rel="noreferrer"
             >
+              {idx === 0 && (
+                <SectionStickman variant="pogo" className="stickman-repo-pogo" width={32} height={46} />
+              )}
+              {idx === 1 && (
+                <SectionStickman variant="napper" className="stickman-repo-napper" width={48} height={30} />
+              )}
               <div>
                 <span className="repo-name">{r.name}</span>
                 <ArrowUpRight size={16} />

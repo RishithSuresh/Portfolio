@@ -468,132 +468,222 @@ button {
   stroke-dasharray: 2 2;
 }
 
-/* Articulated Stickmen Animations */
-.anim-kick {
-  transform-origin: 0px -1px;
-  animation: kick 1.2s ease-in-out infinite alternate;
+/* Articulated Biomechanical Stickmen Animations */
+.stick-note,
+.stick-zzz {
+  font: 700 10px var(--display);
+  fill: var(--teal-deep);
+  user-select: none;
+}
+
+.stick-zzz {
+  fill: var(--rust);
+}
+
+.stick-ripple {
+  fill: none;
+  stroke: var(--seafoam);
+  stroke-width: 1;
+}
+
+.anim-sway-torso {
+  transform-origin: 0px 0px;
+  animation: sway-torso 2.4s ease-in-out infinite alternate;
+}
+
+.anim-elbow-wave {
+  transform-origin: 0px 0px;
+  animation: elbow-wave 0.55s ease-in-out infinite alternate;
+}
+
+.anim-elbow-wave-left {
+  transform-origin: 0px 0px;
+  animation: elbow-wave-left 0.55s ease-in-out infinite alternate;
+}
+
+.anim-skate-real {
+  transform-origin: 0px -2px;
+  animation: skate-real 4.4s linear infinite;
+}
+
+.anim-skate-crouch {
+  transform-origin: 0px -3px;
+  animation: skate-crouch 2.2s ease-in-out infinite;
+}
+
+.anim-clean-body {
+  transform-origin: 0px 0px;
+  animation: clean-body 2.1s ease-in-out infinite;
+}
+
+.anim-clean-bar {
+  transform-origin: 0px 0px;
+  animation: clean-bar 2.1s cubic-bezier(0.32, 0.08, 0.24, 1) infinite;
+}
+
+.anim-toss-l {
+  transform-origin: 0px 0px;
+  animation: wrist-toss 0.6s ease-in-out infinite alternate;
+}
+
+.anim-toss-r {
+  transform-origin: 0px 0px;
+  animation: wrist-toss 0.6s ease-in-out 0.3s infinite alternate;
+}
+
+.anim-parabola-a {
+  animation: parabola-a 1.8s linear infinite;
+}
+
+.anim-parabola-b {
+  animation: parabola-b 1.8s linear infinite;
+}
+
+.anim-parabola-c {
+  animation: parabola-c 1.8s linear infinite;
+}
+
+.anim-handstand {
+  transform-origin: 0px 0px;
+  animation: handstand-balance 2.5s ease-in-out infinite alternate;
+}
+
+.anim-scissor-a {
+  transform-origin: 0px 0px;
+  animation: scissor-a 1.4s ease-in-out infinite alternate;
+}
+
+.anim-scissor-b {
+  transform-origin: 0px 0px;
+  animation: scissor-b 1.4s ease-in-out infinite alternate;
+}
+
+.anim-skip-hop {
+  transform-origin: 0px 0px;
+  animation: skip-hop 0.66s cubic-bezier(0.33, 0.85, 0.45, 1) infinite;
+}
+
+.anim-rope-spin {
+  transform-origin: 0px -13px;
+  animation: rope-spin 0.66s linear infinite;
+}
+
+.anim-sprint-turn {
+  transform-origin: 0px 0px;
+  animation: sprint-turn 3.2s linear infinite;
+}
+
+.anim-run-bounce {
+  animation: run-bounce 0.34s ease-in-out infinite;
+}
+
+.anim-stride-a {
+  transform-origin: 0px 0px;
+  animation: stride-a 0.34s ease-in-out infinite alternate;
+}
+
+.anim-stride-b {
+  transform-origin: 0px 0px;
+  animation: stride-b 0.34s ease-in-out infinite alternate;
+}
+
+.anim-arm-a {
+  transform-origin: 0px 0px;
+  animation: stride-b 0.34s ease-in-out infinite alternate;
+}
+
+.anim-arm-b {
+  transform-origin: 0px 0px;
+  animation: stride-a 0.34s ease-in-out infinite alternate;
+}
+
+.anim-climb-pull {
+  animation: climb-pull 3.6s ease-in-out infinite alternate;
+}
+
+.anim-climb-short {
+  animation: climb-short 3.2s ease-in-out infinite alternate;
+}
+
+.anim-reach-a {
+  transform-origin: 0px 0px;
+  animation: reach-a 0.6s ease-in-out infinite alternate;
+}
+
+.anim-reach-b {
+  transform-origin: 0px 0px;
+  animation: reach-b 0.6s ease-in-out infinite alternate;
+}
+
+.anim-knee-a {
+  transform-origin: 0px 0px;
+  animation: knee-tuck 0.6s ease-in-out infinite alternate;
+}
+
+.anim-knee-b {
+  transform-origin: 0px 0px;
+  animation: knee-tuck 0.6s ease-in-out 0.3s infinite alternate;
+}
+
+.anim-music-groove {
+  transform-origin: 0px -2px;
+  animation: music-groove 1.2s ease-in-out infinite;
+}
+
+.anim-note-float {
+  animation: note-float 2.4s ease-out infinite;
+}
+
+.anim-type {
+  transform-origin: 0px 0px;
+  animation: type-tap 0.24s ease-in-out infinite alternate;
+}
+
+.anim-type-alt {
+  transform-origin: 0px 1px;
+  animation: type-tap 0.24s ease-in-out 0.12s infinite alternate;
+}
+
+.anim-fish-lean {
+  transform-origin: 0px 0px;
+  animation: fish-lean 4.4s ease-in-out infinite;
+}
+
+.anim-bite-bob {
+  animation: bite-bob 4.4s ease-in-out infinite;
+}
+
+.anim-ripple {
+  transform-origin: 28px 54px;
+  animation: ripple-ring 4.4s ease-out infinite;
+}
+
+.anim-throw-lean {
+  transform-origin: 0px 0px;
+  animation: throw-lean 3.4s ease-in-out infinite;
+}
+
+.anim-throw {
+  transform-origin: 0px 0px;
+  animation: throw-arm 3.4s cubic-bezier(0.22, 0.85, 0.32, 1) infinite;
+}
+
+.anim-flag-flutter {
+  transform-origin: 0px -32px;
+  animation: flag-flutter 1.1s ease-in-out infinite alternate;
 }
 
 .anim-kick-soft {
   transform-origin: 0px -1px;
-  animation: kick-soft 1.4s ease-in-out infinite alternate;
-}
-
-.anim-sprint,
-.anim-sprint-tight {
-  animation: sprint-tight 2.6s ease-in-out infinite alternate;
-}
-
-.anim-stride-a {
-  transform-origin: -1px -8px;
-  animation: stride-a 0.4s ease-in-out infinite alternate;
-}
-
-.anim-stride-b {
-  transform-origin: -1px -8px;
-  animation: stride-b 0.4s ease-in-out infinite alternate;
-}
-
-.anim-arm-a {
-  transform-origin: 0.5px -18px;
-  animation: stride-b 0.4s ease-in-out infinite alternate;
-}
-
-.anim-arm-b {
-  transform-origin: 0.5px -18px;
-  animation: stride-a 0.4s ease-in-out infinite alternate;
-}
-
-.anim-pushup {
-  transform-origin: 14px 0px;
-  animation: pushup 1.5s ease-in-out infinite;
-}
-
-.anim-swing {
-  transform-origin: 0px 0px;
-  animation: swing 2.2s ease-in-out infinite alternate;
-}
-
-.anim-lift {
-  animation: lift 1.7s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
-}
-
-.anim-squat {
-  animation: squat 1.7s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
-}
-
-.anim-bob {
-  animation: bob 2.1s ease-in-out infinite alternate;
+  animation: kick-soft 1.3s ease-in-out infinite alternate;
 }
 
 .anim-bob-soft {
-  animation: bob-soft 1.8s ease-in-out infinite alternate;
-}
-
-.anim-type {
-  transform-origin: 0px -13px;
-  animation: type-tap 0.36s ease-in-out infinite alternate;
-}
-
-.anim-hands {
-  transform-origin: 0px -17px;
-  animation: hands-toss 0.7s ease-in-out infinite alternate;
-}
-
-.anim-skate-tight {
-  transform-origin: 0px -2px;
-  animation: skate-tight 3.4s ease-in-out infinite;
-}
-
-@keyframes skate-tight {
-  0% { transform: translate(-18px, 0px) rotate(0deg); }
-  22% { transform: translate(-4px, 0px) rotate(0deg); }
-  36% { transform: translate(4px, -14px) rotate(-13deg); }
-  50% { transform: translate(17px, 0px) rotate(0deg); }
-  74% { transform: translate(5px, 0px) rotate(0deg); }
-  88% { transform: translate(-6px, -12px) rotate(11deg); }
-  100% { transform: translate(-18px, 0px) rotate(0deg); }
-}
-
-.anim-climb {
-  animation: climb 2.8s ease-in-out infinite alternate;
-}
-
-.anim-climb-short {
-  animation: climb-short 2.6s ease-in-out infinite alternate;
-}
-
-.anim-jump {
-  animation: jump 1.25s cubic-bezier(0.35, 0.85, 0.4, 1) infinite;
+  animation: bob-soft 1.6s ease-in-out infinite alternate;
 }
 
 .anim-jump-soft {
-  animation: jump-soft 1.6s cubic-bezier(0.35, 0.85, 0.4, 1) infinite;
-}
-
-.anim-wobble {
-  transform-origin: 0px 0px;
-  animation: wobble 2.1s ease-in-out infinite alternate;
-}
-
-.anim-wave {
-  transform-origin: 0px -19px;
-  animation: wave-arm 0.85s ease-in-out infinite alternate;
-}
-
-.anim-wave-left {
-  transform-origin: 0px -18px;
-  animation: wave-left 0.9s ease-in-out infinite alternate;
-}
-
-.anim-wave-18 {
-  transform-origin: 0px -18px;
-  animation: wave-arm 0.85s ease-in-out infinite alternate;
-}
-
-.anim-throw {
-  transform-origin: 0px -17px;
-  animation: throw-arm 3.4s ease-in-out infinite;
+  animation: jump-soft 1.5s cubic-bezier(0.32, 0.9, 0.42, 1) infinite;
 }
 
 .anim-peek {
@@ -601,9 +691,37 @@ button {
   animation: peek 2.8s ease-in-out infinite alternate;
 }
 
+.anim-sweep-glass {
+  transform-origin: 0px 0px;
+  animation: sweep-glass 2s ease-in-out infinite alternate;
+}
+
+.anim-levitate {
+  animation: levitate 2.8s ease-in-out infinite alternate;
+}
+
+.anim-yoyo-wrist {
+  transform-origin: 0px 0px;
+  animation: yoyo-wrist 1.9s ease-in-out infinite;
+}
+
+.anim-yoyo-line {
+  transform-origin: 8px -13px;
+  animation: yoyo-line 1.9s ease-in-out infinite;
+}
+
+.anim-yoyo-disc {
+  animation: yoyo-disc 1.9s ease-in-out infinite;
+}
+
 .anim-wrench {
-  transform-origin: 0px -16px;
-  animation: wrench-turn 1.4s ease-in-out infinite alternate;
+  transform-origin: 0px 0px;
+  animation: wrench-turn 1.1s ease-in-out infinite alternate;
+}
+
+.anim-focus-hand {
+  transform-origin: 0px -15px;
+  animation: focus-hand 2.2s ease-in-out infinite alternate;
 }
 
 .anim-surf {
@@ -611,74 +729,180 @@ button {
   animation: surf-rock 2.2s ease-in-out infinite alternate;
 }
 
-@keyframes kick {
-  from { transform: rotate(-14deg); }
+.anim-pushup-body {
+  transform-origin: 12px -1px;
+  animation: pushup-body 1.5s ease-in-out infinite;
+}
+
+.anim-pogo {
+  transform-origin: 0px 0px;
+  animation: pogo-hop 0.85s cubic-bezier(0.35, 0.88, 0.45, 1) infinite;
+}
+
+.anim-breathe {
+  transform-origin: 0px 0px;
+  animation: breathe 2.6s ease-in-out infinite;
+}
+
+.anim-zzz-a {
+  animation: zzz-rise 2.8s ease-out infinite;
+}
+
+.anim-zzz-b {
+  animation: zzz-rise 2.8s ease-out 1.4s infinite;
+}
+
+.anim-steam {
+  animation: steam-rise 2.2s ease-in-out infinite alternate;
+}
+
+.anim-peek-up {
+  animation: peek-up 3s ease-in-out infinite;
+}
+
+@keyframes sway-torso {
+  from { transform: rotate(-4deg); }
+  to { transform: rotate(5deg); }
+}
+
+@keyframes elbow-wave {
+  from { transform: rotate(-22deg); }
   to { transform: rotate(28deg); }
 }
 
-@keyframes kick-soft {
-  from { transform: rotate(-12deg); }
-  to { transform: rotate(24deg); }
+@keyframes elbow-wave-left {
+  from { transform: rotate(22deg); }
+  to { transform: rotate(-28deg); }
 }
 
-@keyframes sprint-tight {
-  from { transform: translateX(-15px); }
-  to { transform: translateX(15px); }
+@keyframes skate-real {
+  0% { transform: translate(-17px, 0px) scaleX(1) rotate(0deg); }
+  12% { transform: translate(-10px, 0px) scaleX(1) rotate(0deg); }
+  20% { transform: translate(-4px, -9px) scaleX(1) rotate(-18deg); }
+  30% { transform: translate(3px, -15px) scaleX(1) rotate(2deg); }
+  40% { transform: translate(11px, -6px) scaleX(1) rotate(9deg); }
+  47% { transform: translate(16px, 0px) scaleX(1) rotate(0deg); }
+  52% { transform: translate(16px, 0px) scaleX(-1) rotate(0deg); }
+  64% { transform: translate(8px, 0px) scaleX(-1) rotate(0deg); }
+  74% { transform: translate(0px, -14px) scaleX(-1) rotate(-16deg); }
+  85% { transform: translate(-10px, -5px) scaleX(-1) rotate(7deg); }
+  94% { transform: translate(-17px, 0px) scaleX(-1) rotate(0deg); }
+  100% { transform: translate(-17px, 0px) scaleX(1) rotate(0deg); }
 }
 
-@keyframes stride-a {
-  from { transform: rotate(-22deg); }
-  to { transform: rotate(20deg); }
+@keyframes skate-crouch {
+  0%, 100% { transform: scaleY(0.95); }
+  12%, 47%, 54% { transform: scaleY(0.84) translateY(1px); }
+  28%, 74% { transform: scaleY(1) translateY(-1px); }
 }
 
-@keyframes stride-b {
-  from { transform: rotate(20deg); }
-  to { transform: rotate(-22deg); }
+@keyframes clean-body {
+  0%, 100% { transform: translateY(2px) scaleY(0.92); }
+  22% { transform: translateY(0px) scaleY(1.03); }
+  45%, 65% { transform: translateY(-1px) scaleY(1); }
+  85% { transform: translateY(2px) scaleY(0.94); }
 }
 
-@keyframes pushup {
-  0%, 100% { transform: rotate(0deg); }
-  50% { transform: rotate(-16deg); }
+@keyframes clean-bar {
+  0%, 100% { transform: translateY(6px); }
+  18% { transform: translateY(-2px); }
+  36%, 62% { transform: translateY(-10px); }
+  82% { transform: translateY(-2px); }
 }
 
-@keyframes swing {
-  from { transform: rotate(-22deg); }
+@keyframes wrist-toss {
+  from { transform: rotate(-18deg); }
   to { transform: rotate(22deg); }
 }
 
-@keyframes lift {
-  0%, 100% { transform: translateY(2px); }
-  50% { transform: translateY(-9px); }
+/* Smooth 6-step parabolic cascade across (-8,-19) -> (0,-34) -> (8,-19) */
+@keyframes parabola-a {
+  0%, 100% { transform: translate(0px, 0px); }
+  16% { transform: translate(3.5px, -10px); }
+  33% { transform: translate(8px, -15px); }
+  50% { transform: translate(12.5px, -10px); }
+  66% { transform: translate(16px, 0px); }
+  83% { transform: translate(8px, 2px); }
 }
 
-@keyframes squat {
-  0%, 100% { transform: translateY(1.5px); }
-  50% { transform: translateY(-2.5px); }
+@keyframes parabola-b {
+  0%, 100% { transform: translate(0px, 0px); }
+  16% { transform: translate(4.5px, 5px); }
+  33% { transform: translate(8px, 15px); }
+  50% { transform: translate(0px, 17px); }
+  66% { transform: translate(-8px, 15px); }
+  83% { transform: translate(-4.5px, 5px); }
 }
 
-@keyframes bob {
-  from { transform: translateY(-3px); }
-  to { transform: translateY(4px); }
+@keyframes parabola-c {
+  0%, 100% { transform: translate(0px, 0px); }
+  16% { transform: translate(-8px, 2px); }
+  33% { transform: translate(-16px, 0px); }
+  50% { transform: translate(-12.5px, -10px); }
+  66% { transform: translate(-8px, -15px); }
+  83% { transform: translate(-3.5px, -10px); }
 }
 
-@keyframes bob-soft {
-  from { transform: translateY(0px); }
-  to { transform: translateY(-2.5px); }
+@keyframes handstand-balance {
+  0% { transform: rotate(-7deg); }
+  40% { transform: rotate(2deg); }
+  70% { transform: rotate(-3deg); }
+  100% { transform: rotate(8deg); }
 }
 
-@keyframes type-tap {
-  from { transform: rotate(-6deg); }
-  to { transform: rotate(6deg); }
+@keyframes scissor-a {
+  from { transform: rotate(-16deg); }
+  to { transform: rotate(14deg); }
 }
 
-@keyframes hands-toss {
-  from { transform: rotate(-7deg); }
-  to { transform: rotate(7deg); }
+@keyframes scissor-b {
+  from { transform: rotate(14deg); }
+  to { transform: rotate(-16deg); }
 }
 
-@keyframes climb {
-  from { transform: translateY(20px); }
-  to { transform: translateY(-16px); }
+@keyframes skip-hop {
+  0%, 100% { transform: translateY(1.5px) scaleY(0.92); }
+  20% { transform: translateY(0px) scaleY(1.04); }
+  50% { transform: translateY(-10px) scaleY(1); }
+  82% { transform: translateY(0px) scaleY(0.97); }
+}
+
+@keyframes rope-spin {
+  0% { transform: scaleY(1); opacity: 0.95; }
+  45% { transform: scaleY(-1); opacity: 0.9; }
+  55% { transform: scaleY(-1.05); opacity: 0.85; }
+  100% { transform: scaleY(1); opacity: 0.95; }
+}
+
+@keyframes sprint-turn {
+  0% { transform: translateX(-15px) scaleX(1); }
+  45% { transform: translateX(15px) scaleX(1); }
+  50% { transform: translateX(15px) scaleX(-1); }
+  95% { transform: translateX(-15px) scaleX(-1); }
+  100% { transform: translateX(-15px) scaleX(1); }
+}
+
+@keyframes run-bounce {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-2.8px); }
+}
+
+@keyframes stride-a {
+  from { transform: rotate(-34deg); }
+  to { transform: rotate(32deg); }
+}
+
+@keyframes stride-b {
+  from { transform: rotate(32deg); }
+  to { transform: rotate(-34deg); }
+}
+
+@keyframes climb-pull {
+  0% { transform: translateY(20px); }
+  25% { transform: translateY(8px); }
+  50% { transform: translateY(-6px); }
+  75% { transform: translateY(-14px); }
+  100% { transform: translateY(-18px); }
 }
 
 @keyframes climb-short {
@@ -686,35 +910,90 @@ button {
   to { transform: translateY(-12px); }
 }
 
-@keyframes jump {
-  0%, 100% { transform: translateY(0px); }
-  45% { transform: translateY(-15px); }
+@keyframes reach-a {
+  from { transform: rotate(-14deg); }
+  to { transform: rotate(28deg); }
 }
 
-@keyframes jump-soft {
-  0%, 100% { transform: translateY(0px); }
-  45% { transform: translateY(-10px); }
+@keyframes reach-b {
+  from { transform: rotate(28deg); }
+  to { transform: rotate(-14deg); }
 }
 
-@keyframes wobble {
-  from { transform: rotate(-8deg); }
-  to { transform: rotate(8deg); }
+@keyframes knee-tuck {
+  from { transform: rotate(-10deg); }
+  to { transform: rotate(22deg); }
 }
 
-@keyframes wave-arm {
-  from { transform: rotate(-18deg); }
-  to { transform: rotate(24deg); }
+@keyframes music-groove {
+  0%, 100% { transform: translateY(0px) rotate(-1deg); }
+  50% { transform: translateY(-1.5px) rotate(3deg); }
 }
 
-@keyframes wave-left {
-  from { transform: rotate(-24deg); }
-  to { transform: rotate(16deg); }
+@keyframes note-float {
+  0% { transform: translate(0px, 4px) scale(0.8); opacity: 0; }
+  25% { transform: translate(3px, -2px) scale(1); opacity: 0.95; }
+  80% { transform: translate(8px, -12px) scale(1.08); opacity: 0.85; }
+  100% { transform: translate(11px, -17px) scale(0.9); opacity: 0; }
+}
+
+@keyframes type-tap {
+  from { transform: rotate(-7deg); }
+  to { transform: rotate(7deg); }
+}
+
+@keyframes fish-lean {
+  0%, 66%, 100% { transform: rotate(0deg); }
+  73% { transform: rotate(7deg); }
+  82% { transform: rotate(-9deg); }
+  91% { transform: rotate(-2deg); }
+}
+
+@keyframes bite-bob {
+  0%, 66%, 100% { transform: translateY(-2px); }
+  33% { transform: translateY(2px); }
+  73% { transform: translateY(6px); }
+  82% { transform: translateY(-5px); }
+}
+
+@keyframes ripple-ring {
+  0%, 65% { transform: scale(0.4); opacity: 0; }
+  74% { transform: scale(0.8); opacity: 0.9; }
+  92% { transform: scale(2.1); opacity: 0; }
+  100% { transform: scale(2.1); opacity: 0; }
+}
+
+@keyframes throw-lean {
+  0%, 75%, 100% { transform: rotate(-6deg); }
+  14% { transform: rotate(9deg); }
+  35% { transform: rotate(2deg); }
 }
 
 @keyframes throw-arm {
-  0%, 72%, 100% { transform: rotate(-22deg); }
-  12% { transform: rotate(18deg); }
-  25% { transform: rotate(-10deg); }
+  0%, 76%, 100% { transform: rotate(-32deg); }
+  12% { transform: rotate(22deg); }
+  28% { transform: rotate(-4deg); }
+}
+
+@keyframes flag-flutter {
+  from { transform: skewY(-5deg) scaleX(0.92); }
+  to { transform: skewY(5deg) scaleX(1.06); }
+}
+
+@keyframes kick-soft {
+  from { transform: rotate(-12deg); }
+  to { transform: rotate(26deg); }
+}
+
+@keyframes bob-soft {
+  from { transform: translateY(0px); }
+  to { transform: translateY(-2.5px); }
+}
+
+@keyframes jump-soft {
+  0%, 100% { transform: translateY(1px) scaleY(0.94); }
+  20% { transform: translateY(-1px) scaleY(1.04); }
+  48% { transform: translateY(-11px) scaleY(1); }
 }
 
 @keyframes peek {
@@ -722,15 +1001,78 @@ button {
   to { transform: rotate(7deg); }
 }
 
-@keyframes wrench-turn {
+@keyframes sweep-glass {
   from { transform: rotate(-16deg); }
-  to { transform: rotate(22deg); }
+  to { transform: rotate(18deg); }
+}
+
+@keyframes levitate {
+  from { transform: translateY(0px); }
+  to { transform: translateY(-7px); }
+}
+
+@keyframes yoyo-wrist {
+  0%, 100% { transform: rotate(-12deg); }
+  50% { transform: rotate(18deg); }
+}
+
+@keyframes yoyo-line {
+  0%, 100% { transform: scaleY(0.32); }
+  45%, 60% { transform: scaleY(1); }
+}
+
+@keyframes yoyo-disc {
+  0%, 100% { transform: translateY(-12px); }
+  45%, 60% { transform: translateY(0px); }
+}
+
+@keyframes wrench-turn {
+  from { transform: rotate(-22deg); }
+  to { transform: rotate(24deg); }
+}
+
+@keyframes focus-hand {
+  from { transform: translateX(-1px) rotate(-6deg); }
+  to { transform: translateX(2px) rotate(6deg); }
 }
 
 @keyframes surf-rock {
   0% { transform: translate(0px, 0px) rotate(-7deg); }
   50% { transform: translate(6px, -5px) rotate(4deg); }
   100% { transform: translate(-4px, 2px) rotate(8deg); }
+}
+
+@keyframes pushup-body {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(-16deg); }
+}
+
+@keyframes pogo-hop {
+  0%, 100% { transform: translateY(2px) scaleY(0.88) rotate(-3deg); }
+  22% { transform: translateY(-1px) scaleY(1.04) rotate(2deg); }
+  52% { transform: translateY(-14px) scaleY(1) rotate(5deg); }
+  84% { transform: translateY(0px) scaleY(0.95) rotate(-1deg); }
+}
+
+@keyframes breathe {
+  0%, 100% { transform: scaleY(1); }
+  50% { transform: scaleY(1.08); }
+}
+
+@keyframes zzz-rise {
+  0% { transform: translate(0px, 4px) scale(0.7); opacity: 0; }
+  30% { transform: translate(2px, -2px) scale(1); opacity: 0.9; }
+  100% { transform: translate(7px, -13px) scale(1.1); opacity: 0; }
+}
+
+@keyframes steam-rise {
+  from { transform: translateY(1px) scaleX(0.9); opacity: 0.45; }
+  to { transform: translateY(-3px) scaleX(1.1); opacity: 0.9; }
+}
+
+@keyframes peek-up {
+  0%, 100% { transform: translateY(2px); }
+  50% { transform: translateY(-3px); }
 }
 
 .anim-orbit-cw {
@@ -747,36 +1089,6 @@ button {
 
 @keyframes orbit-ccw {
   to { transform: rotate(-360deg); }
-}
-
-.anim-juggle-a {
-  animation: juggle-a 1.65s ease-in-out infinite;
-}
-
-.anim-juggle-b {
-  animation: juggle-b 1.65s ease-in-out infinite;
-}
-
-.anim-juggle-c {
-  animation: juggle-c 1.65s ease-in-out infinite;
-}
-
-@keyframes juggle-a {
-  0%, 100% { transform: translate(0px, 0px); }
-  33% { transform: translate(7px, -11px); }
-  66% { transform: translate(14px, 0px); }
-}
-
-@keyframes juggle-b {
-  0%, 100% { transform: translate(0px, 0px); }
-  33% { transform: translate(7px, 11px); }
-  66% { transform: translate(-7px, 11px); }
-}
-
-@keyframes juggle-c {
-  0%, 100% { transform: translate(0px, 0px); }
-  33% { transform: translate(-14px, 0px); }
-  66% { transform: translate(-7px, -11px); }
 }
 
 .anim-plane {
@@ -821,6 +1133,19 @@ button {
   stroke: var(--cream);
 }
 
+.nav-cta-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.stickman-nav-peeker {
+  position: absolute;
+  top: -15px;
+  right: 12px;
+  z-index: -1;
+}
+
 .hero-scroll-wrap {
   margin-top: 32px;
   display: inline-flex;
@@ -834,20 +1159,38 @@ button {
 
 .stickman-about-ledge {
   position: absolute;
-  top: -34px;
+  top: -38px;
   right: 34px;
 }
 
-.stickman-skills-ledge {
+.stickman-pillar-meditator {
   position: absolute;
-  top: -42px;
-  right: 34px;
+  top: -34px;
+  right: 22px;
 }
 
 .stickman-pillar-corner {
   position: absolute;
   top: -36px;
   right: 22px;
+}
+
+.stickman-pillar-yoyo {
+  position: absolute;
+  top: -36px;
+  right: 22px;
+}
+
+.stickman-skills-pushup {
+  position: absolute;
+  top: -24px;
+  left: 34px;
+}
+
+.stickman-skills-ledge {
+  position: absolute;
+  top: -42px;
+  right: 34px;
 }
 
 .stickman-stage-ledge {
@@ -891,6 +1234,24 @@ button {
   bottom: -4px;
 }
 
+.stickman-repo-pogo {
+  position: absolute;
+  top: -41px;
+  right: 26px;
+}
+
+.stickman-repo-napper {
+  position: absolute;
+  top: -26px;
+  right: 28px;
+}
+
+.stickman-contact-lounger {
+  position: absolute;
+  top: -24px;
+  left: 48px;
+}
+
 .stickman-contact-ledge {
   position: absolute;
   top: -38px;
@@ -901,6 +1262,16 @@ button {
   position: absolute;
   top: -38px;
   right: 28px;
+}
+
+.detail-cover-wrap {
+  position: relative;
+}
+
+.stickman-detail-ledge {
+  position: absolute;
+  top: -34px;
+  right: 38px;
 }
 
 .hero-lead {
@@ -1535,6 +1906,7 @@ button {
 }
 
 .repo-card {
+  position: relative;
   border: 1px solid var(--line);
   border-radius: 18px;
   padding: 24px;
@@ -1880,7 +2252,7 @@ button {
   }
 
   .desktop-nav,
-  .nav-cta { display: none; }
+  .nav-cta-wrap { display: none; }
   .mobile-menu-button { display: grid; }
 
   .mobile-nav {
@@ -1973,8 +2345,9 @@ button {
   .contact-card { padding: 28px 22px; }
 
   .stickman-github-ledge { right: 112px; }
-  .stickman-timeline-climber { left: -14px; }
+  .stickman-timeline-climber { left: -18px; }
   .stickman-contact-ledge { right: 30px; }
+  .stickman-contact-lounger { left: 26px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

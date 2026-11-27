@@ -34,6 +34,7 @@ export default function Experience() {
         </div>
 
         <div className="skills-panel">
+          <SectionStickman variant="pushup" className="stickman-skills-pushup" width={44} height={28} />
           <SectionStickman variant="juggler" className="stickman-skills-ledge" width={40} height={46} />
           <span className="eyebrow">Toolkit</span>
           <h3>
