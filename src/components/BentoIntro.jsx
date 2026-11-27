@@ -70,9 +70,6 @@ export default function BentoIntro() {
               whileHover={{ y: -5, transition: { duration: 0.2 } }}
               className="pillar-card"
             >
-              {i === 0 && (
-                <SectionStickman variant="meditator" className="stickman-pillar-meditator" width={40} height={38} />
-              )}
               {i === 1 && (
                 <SectionStickman variant="curious" className="stickman-pillar-corner" width={42} height={42} />
               )}

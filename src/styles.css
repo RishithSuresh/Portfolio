@@ -678,6 +678,11 @@ button {
   animation: kick-soft 1.3s ease-in-out infinite alternate;
 }
 
+.anim-kick-seated {
+  transform-origin: 0px 0px;
+  animation: kick-soft 1.3s ease-in-out infinite alternate;
+}
+
 .anim-bob-soft {
   animation: bob-soft 1.6s ease-in-out infinite alternate;
 }
@@ -797,17 +802,17 @@ button {
 }
 
 @keyframes clean-body {
-  0%, 100% { transform: translateY(2px) scaleY(0.92); }
-  22% { transform: translateY(0px) scaleY(1.03); }
-  45%, 65% { transform: translateY(-1px) scaleY(1); }
-  85% { transform: translateY(2px) scaleY(0.94); }
+  0%, 100% { transform: scaleY(0.92); }
+  22% { transform: scaleY(1.03); }
+  45%, 65% { transform: scaleY(1); }
+  85% { transform: scaleY(0.94); }
 }
 
 @keyframes clean-bar {
   0%, 100% { transform: translateY(6px); }
-  18% { transform: translateY(-2px); }
-  36%, 62% { transform: translateY(-10px); }
-  82% { transform: translateY(-2px); }
+  18% { transform: translateY(-1px); }
+  36%, 62% { transform: translateY(-9px); }
+  82% { transform: translateY(-1px); }
 }
 
 @keyframes wrist-toss {
@@ -1044,7 +1049,7 @@ button {
 
 @keyframes pushup-body {
   0%, 100% { transform: rotate(0deg); }
-  50% { transform: rotate(-16deg); }
+  50% { transform: rotate(10deg); }
 }
 
 @keyframes pogo-hop {
@@ -1157,16 +1162,14 @@ button {
   transform: translateY(-2px);
 }
 
+.section-relative {
+  position: relative;
+}
+
 .stickman-about-ledge {
   position: absolute;
   top: -38px;
-  right: 34px;
-}
-
-.stickman-pillar-meditator {
-  position: absolute;
-  top: -34px;
-  right: 22px;
+  left: 44px;
 }
 
 .stickman-pillar-corner {
@@ -1179,12 +1182,6 @@ button {
   position: absolute;
   top: -36px;
   right: 22px;
-}
-
-.stickman-skills-pushup {
-  position: absolute;
-  top: -24px;
-  left: 34px;
 }
 
 .stickman-skills-ledge {
@@ -1212,7 +1209,7 @@ button {
 .stickman-research-ledge {
   position: absolute;
   top: -36px;
-  left: calc(48% - 20px);
+  left: 26%;
 }
 
 .stickman-wave-rider {
@@ -1228,16 +1225,17 @@ button {
   z-index: 4;
 }
 
-.stickman-github-ledge {
-  position: absolute;
-  right: 128px;
-  bottom: -4px;
-}
-
-.stickman-repo-pogo {
+.stickman-section-pogo {
   position: absolute;
   top: -41px;
-  right: 26px;
+  right: 48px;
+}
+
+.stickman-github-ledge {
+  position: absolute;
+  left: 52%;
+  transform: translateX(-50%);
+  bottom: -4px;
 }
 
 .stickman-repo-napper {
@@ -1256,6 +1254,12 @@ button {
   position: absolute;
   top: -38px;
   right: 64px;
+}
+
+.stickman-footer-meditator {
+  position: absolute;
+  top: -34px;
+  left: 22%;
 }
 
 .stickman-footer-waver {
@@ -2344,10 +2348,10 @@ button {
 
   .contact-card { padding: 28px 22px; }
 
-  .stickman-github-ledge { right: 112px; }
   .stickman-timeline-climber { left: -18px; }
   .stickman-contact-ledge { right: 30px; }
   .stickman-contact-lounger { left: 26px; }
+  .stickman-footer-meditator { left: 16%; }
 }
 
 @media (prefers-reduced-motion: reduce) {

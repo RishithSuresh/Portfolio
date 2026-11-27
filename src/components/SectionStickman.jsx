@@ -10,7 +10,7 @@ const VARIANTS = {
           <path d="M0 -1 L-4 7" className="stick-limb anim-kick-soft" />
           <g transform="translate(0, -12)">
             <path d="M0 0 L7 5 L11 3" className="stick-limb anim-type" />
-            <path d="M0 1 L6 6 L10 5" className="stick-limb anim-type-alt" />
+            <path d="M0 0 L6 6 L10 5" className="stick-limb anim-type-alt" />
           </g>
         </g>
         <path d="M9 -1 L16 -1 L18 -8" className="stick-prop" />
@@ -77,11 +77,11 @@ const VARIANTS = {
       <>
         <g className="anim-sway-torso">
           <circle cx="0" cy="-20" r="3.9" fill="#ffddd2" stroke="#001524" strokeWidth="1.25" />
-          <path d="M0 -16 L0 -1" className="stick-limb" />
+          <path d="M0 -16 L0 0" className="stick-limb" />
           <path d="M0 -11 L7 -6 L11 -1 M0 -11 L-6 -14" className="stick-limb" />
         </g>
-        <path d="M0 -1 L-7 1" className="stick-limb" />
-        <path d="M0 -1 L3 9" className="stick-limb anim-kick-soft" />
+        <path d="M0 0 L-7 2" className="stick-limb" />
+        <path d="M0 0 L3 9" className="stick-limb anim-kick-seated" />
       </>
     )
   },
@@ -158,14 +158,14 @@ const VARIANTS = {
     )
   },
 
-  // 10. Push-up / Plank athlete (Experience skills panel left)
+  // 10. Push-up / Plank athlete
   pushup: {
     viewBox: '-22 -24 44 28',
     render: () => (
       <g className="anim-pushup-body">
-        <circle cx="-11" cy="-14" r="3.6" fill="#e29578" stroke="#001524" strokeWidth="1.2" />
-        <path d="M-9 -11 L11 -1 L15 -1" className="stick-limb" />
-        <path d="M-7 -9 L-10 -4 L-9 0" className="stick-limb" />
+        <circle cx="-11" cy="-12" r="3.6" fill="#e29578" stroke="#001524" strokeWidth="1.2" />
+        <path d="M-9 -9 L13 -1 L16 0" className="stick-limb" />
+        <path d="M-7 -8 L-9 -4 L-8 0" className="stick-limb" />
       </g>
     )
   },
@@ -287,7 +287,7 @@ const VARIANTS = {
     viewBox: '-18 -38 36 42',
     render: () => (
       <>
-        <path d="M-5 0 L-3 -9 M5 0 L3 -9" className="stick-limb" />
+        <path d="M-5 0 L0 -9 M5 0 L0 -9" className="stick-limb" />
         <g transform="translate(0, -9)">
           <g className="anim-sway-torso">
             <path d="M0 0 L0 -14" className="stick-limb" />

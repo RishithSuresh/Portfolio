@@ -248,7 +248,7 @@ export default function StickmenName() {
         <g className="stickmen-layer">
           {/* 1. Greeter on R's left curl with natural hip sway & elbow-hinged forearm wave (Tangerine) */}
           <g transform={`translate(${spots[0].x}, ${spots[0].y})`}>
-            <path d="M-5 0 L-3 -9 M5 0 L3 -9" className="stick-limb" />
+            <path d="M-5 0 L0 -9 M5 0 L0 -9" className="stick-limb" />
             <g transform="translate(0, -9)">
               <g className="anim-sway-torso">
                 <path d="M0 0 L0 -14" className="stick-limb" />
@@ -269,7 +269,7 @@ export default function StickmenName() {
               <g className="anim-skate-crouch">
                 <circle cx="0" cy="-27" r="3.8" fill="#ffddd2" stroke="#001524" strokeWidth="1.2" />
                 <path d="M0 -23 L-1 -11" className="stick-limb" />
-                <path d="M-1 -11 L-5 -6 L-4 -3 M-1 -11 L5 -6 L4 -3" className="stick-limb" />
+                <path d="M-1 -11 L-5 -6 L-4 -2 M-1 -11 L5 -6 L4 -2" className="stick-limb" />
                 <path d="M0 -19 L-8 -15 L-11 -18 M0 -19 L8 -16 L10 -20" className="stick-limb" />
               </g>
               <line x1="-10" y1="-2" x2="10" y2="-2" stroke="#ff7d00" strokeWidth="2.2" strokeLinecap="round" />
@@ -278,20 +278,18 @@ export default function StickmenName() {
             </g>
           </g>
 
-          {/* 3. Weightlifter doing clean-and-jerk on i1 dot with hip drive & lockout (Seafoam) */}
+          {/* 3. Weightlifter doing clean-and-jerk on i1 dot with connected knees & lockout (Seafoam) */}
           <g transform={`translate(${spots[2].x}, ${spots[2].y})`}>
-            <path d="M-5 0 L-3 -7 M5 0 L3 -7" className="stick-limb" />
-            <g transform="translate(0, -7)">
-              <g className="anim-clean-body">
-                <path d="M0 0 L0 -14" className="stick-limb" />
-                <circle cx="0" cy="-18" r="3.8" fill="#83c5be" stroke="#001524" strokeWidth="1.2" />
-              </g>
-              <g className="anim-clean-bar">
-                <path d="M0 -10 L-8 -17 M0 -10 L8 -17" className="stick-limb" />
-                <line x1="-13" y1="-18" x2="13" y2="-18" className="stick-prop" />
-                <rect x="-15" y="-21" width="2.8" height="6" rx="0.8" fill="#ff7d00" />
-                <rect x="12.2" y="-21" width="2.8" height="6" rx="0.8" fill="#ff7d00" />
-              </g>
+            <g className="anim-clean-body">
+              <path d="M-5 0 L-3 -4 L0 -8 M5 0 L3 -4 L0 -8" className="stick-limb" />
+              <path d="M0 -8 L0 -21" className="stick-limb" />
+              <circle cx="0" cy="-25" r="3.8" fill="#83c5be" stroke="#001524" strokeWidth="1.2" />
+            </g>
+            <g className="anim-clean-bar">
+              <path d="M0 -17 L-8 -24 M0 -17 L8 -24" className="stick-limb" />
+              <line x1="-13" y1="-25" x2="13" y2="-25" className="stick-prop" />
+              <rect x="-15" y="-28" width="2.8" height="6" rx="0.8" fill="#ff7d00" />
+              <rect x="12.2" y="-28" width="2.8" height="6" rx="0.8" fill="#ff7d00" />
             </g>
           </g>
 
@@ -315,7 +313,7 @@ export default function StickmenName() {
           {/* 5. One-arm scissor-leg handstand balancer on h1 narrow crown (Deep Teal) */}
           <g transform={`translate(${spots[4].x}, ${spots[4].y})`}>
             <g className="anim-handstand">
-              <path d="M-3 0 L-1 -9 M3 0 L1 -9" className="stick-limb" />
+              <path d="M-3.5 0 L0 -9 M3.5 0 L0 -9" className="stick-limb" />
               <path d="M0 -9 L0 -22" className="stick-limb" />
               <circle cx="0" cy="-5" r="3.8" fill="#006d77" stroke="#001524" strokeWidth="1.2" />
               <g transform="translate(0, -22)">
@@ -393,7 +391,7 @@ export default function StickmenName() {
               <path d="M0 -2 L-4 2" className="stick-limb" />
               <g transform="translate(0, -13)">
                 <path d="M0 0 L6 5 L10 3" className="stick-limb anim-type" />
-                <path d="M0 1 L5 6 L9 5" className="stick-limb anim-type-alt" />
+                <path d="M0 0 L5 6 L9 5" className="stick-limb anim-type-alt" />
               </g>
             </g>
             <path d="M9 -1 L15 -1 L17 -7" className="stick-prop" />
@@ -408,7 +406,7 @@ export default function StickmenName() {
                 <circle cx="0" cy="-20" r="3.8" fill="#ffc300" stroke="#001524" strokeWidth="1.2" />
                 <path d="M0 -16 L0 0" className="stick-limb" />
                 <path d="M0 -12 L9 -11" className="stick-limb" />
-                <path d="M8 -10 Q19 -22 28 -12" className="stick-prop" fill="none" />
+                <path d="M9 -11 Q19 -22 28 -12" className="stick-prop" fill="none" />
               </g>
             </g>
             <line x1="28" y1="-14" x2="28" y2="54" className="stick-line anim-bite-bob" />
@@ -437,7 +435,7 @@ export default function StickmenName() {
 
           {/* 12. Summiteer planting & waving a fluttering pennant flag atop h2's crown (Terracotta) */}
           <g transform={`translate(${spots[11].x}, ${spots[11].y})`}>
-            <path d="M-5 0 L-3 -9 M5 0 L3 -9" className="stick-limb" />
+            <path d="M-5 0 L0 -9 M5 0 L0 -9" className="stick-limb" />
             <g transform="translate(0, -9)">
               <g className="anim-sway-torso">
                 <path d="M0 0 L0 -14" className="stick-limb" />

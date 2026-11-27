@@ -5,6 +5,7 @@ import SectionStickman from './SectionStickman'
 export default function Footer() {
   return (
     <footer className="footer">
+      <SectionStickman variant="meditator" className="stickman-footer-meditator" width={40} height={38} />
       <a className="brand" href="#top">
         {profile.shortName}
         <span>✳</span>
