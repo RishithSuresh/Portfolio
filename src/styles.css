@@ -281,47 +281,15 @@ button {
   display: block;
 }
 
-.glyph-glow-base {
-  fill: var(--cream);
-  opacity: 0.78;
+.glyph-crisp {
+  stroke: none;
 }
 
-.glyph-main {
-  stroke: #001524;
-  stroke-width: 1.6px;
-  stroke-linejoin: miter;
-}
-
-.glyph-thin-outline {
+.glyph-hairline-trace {
   fill: none;
-  stroke: var(--ice);
-  stroke-width: 0.85px;
-  stroke-linejoin: miter;
-  opacity: 0.92;
-}
-
-.glyph-inline-stem {
-  stroke: rgba(255, 236, 209, 0.58);
+  stroke: var(--terracotta);
   stroke-width: 1px;
-  stroke-linecap: round;
-}
-
-.glyph-extrude {
-  fill: var(--terracotta);
-  opacity: 0.78;
-}
-
-.glyph-keyline {
-  fill: none;
-  stroke: var(--cream);
-  stroke-width: 1.45px;
-  opacity: 0.95;
-}
-
-.glyph-keyline-warm {
-  fill: none;
-  stroke: rgba(255, 125, 0, 0.48);
-  stroke-width: 0.95px;
+  opacity: 0.72;
 }
 
 .ornament-guide {
