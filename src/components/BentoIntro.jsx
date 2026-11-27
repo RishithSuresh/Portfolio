@@ -62,7 +62,12 @@ export default function BentoIntro() {
 
         <div className="pillar-grid">
           {pillars.map((p, i) => (
-            <Reveal key={p.title} delay={i * 0.05} className="pillar-card">
+            <Reveal
+              key={p.title}
+              delay={i * 0.06}
+              whileHover={{ y: -5, transition: { duration: 0.2 } }}
+              className="pillar-card"
+            >
               <p.icon size={22} />
               <h3>{p.title}</h3>
               <p>{p.text}</p>

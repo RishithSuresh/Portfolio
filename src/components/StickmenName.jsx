@@ -179,18 +179,24 @@ export default function StickmenName() {
           <line x1="940" y1="286" x2="1176" y2="50" className="ornament-guide-soft" />
           <line x1="1070" y1="50" x2="1300" y2="280" className="ornament-guide-soft" />
 
-          {/* Nested concentric drafting circles & orbits */}
-          <circle cx="118" cy="144" r="88" className="ornament-arc-dashed" />
+          {/* Nested concentric drafting circles & orbits (animated rotation) */}
+          <g className="anim-orbit-cw" style={{ transformOrigin: '118px 144px' }}>
+            <circle cx="118" cy="144" r="88" className="ornament-arc-dashed" />
+            <circle cx="118" cy="144" r="50" className="ornament-arc-accent" />
+          </g>
           <circle cx="118" cy="144" r="70" className="ornament-arc" />
-          <circle cx="118" cy="144" r="50" className="ornament-arc-accent" />
           <circle cx="372" cy="180" r="62" className="ornament-arc" />
-          <circle cx="452" cy="132" r="74" className="ornament-arc" />
-          <circle cx="452" cy="132" r="46" className="ornament-arc-dashed" />
-          <circle cx="754" cy="192" r="84" className="ornament-arc" />
-          <circle cx="754" cy="192" r="56" className="ornament-arc-accent" />
-          <circle cx="952" cy="166" r="54" className="ornament-arc-dashed" />
+          <g className="anim-orbit-ccw" style={{ transformOrigin: '452px 132px' }}>
+            <circle cx="452" cy="132" r="74" className="ornament-arc" />
+            <circle cx="452" cy="132" r="46" className="ornament-arc-dashed" />
+          </g>
+          <g className="anim-orbit-cw" style={{ transformOrigin: '754px 192px' }}>
+            <circle cx="754" cy="192" r="84" className="ornament-arc" />
+            <circle cx="754" cy="192" r="56" className="ornament-arc-accent" />
+          </g>
+          <circle cx="952" cy="166" r="54" className="ornament-arc-dashed anim-orbit-ccw" style={{ transformOrigin: '952px 166px' }} />
           <circle cx="1042" cy="178" r="72" className="ornament-arc" />
-          <circle cx="1226" cy="180" r="64" className="ornament-arc-dashed" />
+          <circle cx="1226" cy="180" r="64" className="ornament-arc-dashed anim-orbit-cw" style={{ transformOrigin: '1226px 180px' }} />
           <ellipse cx="692" cy="180" rx="580" ry="118" className="ornament-orbit" />
 
           {/* Crosshair ticks at line intersections */}
@@ -388,6 +394,24 @@ export default function StickmenName() {
             <path d="M0 -25 L0 -10 L-5 0 M0 -10 L5 0" className="stick-limb" />
             <path d="M0 -20 L-7 -12" className="stick-limb" />
             <path d="M0 -20 L8 -28" className="stick-limb anim-wave" />
+          </g>
+
+          {/* 12. Juggling 3 colored balls on top of S in RISHITH (x=276, y=108) (Deep Teal) */}
+          <g transform="translate(276, 108)">
+            <circle cx="0" cy="-25" r="3.8" fill="#006d77" stroke="#001524" strokeWidth="1.2" />
+            <path d="M0 -21 L0 -8 L-5 0 M0 -8 L5 0" className="stick-limb" />
+            <path d="M0 -17 L-8 -13 M0 -17 L8 -13" className="stick-limb" />
+            <circle cx="-7" cy="-22" r="2.1" fill="#ff7d00" className="anim-juggle-a" />
+            <circle cx="0" cy="-31" r="2.1" fill="#83c5be" className="anim-juggle-b" />
+            <circle cx="7" cy="-22" r="2.1" fill="#e29578" className="anim-juggle-c" />
+          </g>
+
+          {/* 13. Launching a gliding paper airplane from U's right spire (x=885, y=110) (Rust) */}
+          <g transform="translate(885, 110)">
+            <circle cx="0" cy="-25" r="3.7" fill="#78290f" stroke="#001524" strokeWidth="1.2" />
+            <path d="M0 -21 L0 -8 L-5 0 M0 -8 L5 0" className="stick-limb" />
+            <path d="M0 -17 L-6 -12 M0 -17 L9 -21" className="stick-limb" />
+            <path d="M10 -24 L20 -26 L13 -20 Z" fill="#ffddd2" stroke="#001524" strokeWidth="0.9" className="anim-plane" />
           </g>
         </g>
       </svg>

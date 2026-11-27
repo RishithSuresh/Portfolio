@@ -1,5 +1,5 @@
 import { Routes, Route, useLocation } from 'react-router-dom'
-import { AnimatePresence, motion } from 'motion/react'
+import { AnimatePresence, motion, useScroll, useSpring } from 'motion/react'
 import Navbar from './components/Navbar'
 import Home from './pages/Home'
 import ProjectDetail from './pages/ProjectDetail'
@@ -26,8 +26,12 @@ function RouteView() {
 }
 
 export default function App() {
+  const { scrollYProgress } = useScroll()
+  const scaleX = useSpring(scrollYProgress, { stiffness: 260, damping: 30, restDelta: 0.001 })
+
   return (
     <>
+      <motion.div className="scroll-progress" style={{ scaleX }} aria-hidden="true" />
       <Navbar />
       <RouteView />
     </>

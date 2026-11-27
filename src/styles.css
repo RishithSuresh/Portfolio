@@ -92,6 +92,18 @@ button {
    MINIMAL AIRY NAVBAR
 ========================================= */
 
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 60;
+  background: linear-gradient(90deg, var(--teal-deep), var(--tangerine), var(--terracotta));
+  transform-origin: 0%;
+  pointer-events: none;
+}
+
 .navbar-wrap {
   position: sticky;
   top: 0;
@@ -572,6 +584,60 @@ button {
 @keyframes wave-arm {
   from { transform: rotate(-18deg); }
   to { transform: rotate(24deg); }
+}
+
+.anim-orbit-cw {
+  animation: orbit-cw 38s linear infinite;
+}
+
+.anim-orbit-ccw {
+  animation: orbit-ccw 32s linear infinite;
+}
+
+@keyframes orbit-cw {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes orbit-ccw {
+  to { transform: rotate(-360deg); }
+}
+
+.anim-juggle-a {
+  animation: juggle-a 1.4s ease-in-out infinite;
+}
+
+.anim-juggle-b {
+  animation: juggle-b 1.4s ease-in-out infinite;
+}
+
+.anim-juggle-c {
+  animation: juggle-c 1.4s ease-in-out infinite;
+}
+
+@keyframes juggle-a {
+  0%, 100% { transform: translate(0px, 0px); }
+  50% { transform: translate(7px, -11px); }
+}
+
+@keyframes juggle-b {
+  0%, 100% { transform: translate(0px, 0px); }
+  50% { transform: translate(7px, 9px); }
+}
+
+@keyframes juggle-c {
+  0%, 100% { transform: translate(0px, 0px); }
+  50% { transform: translate(-14px, 2px); }
+}
+
+.anim-plane {
+  animation: fly-plane 3.4s ease-in-out infinite;
+}
+
+@keyframes fly-plane {
+  0% { transform: translate(0px, 0px) rotate(0deg); opacity: 0; }
+  12% { transform: translate(4px, -2px) rotate(-6deg); opacity: 1; }
+  75% { transform: translate(46px, -22px) rotate(-14deg); opacity: 1; }
+  100% { transform: translate(62px, -28px) rotate(-18deg); opacity: 0; }
 }
 
 .hero-lead {
@@ -1066,6 +1132,16 @@ button {
   box-shadow: 0 0 0 5px var(--bg);
 }
 
+.timeline-item:first-child .timeline-dot {
+  animation: pulse-dot 2.2s infinite;
+}
+
+@keyframes pulse-dot {
+  0% { box-shadow: 0 0 0 0 rgba(255, 125, 0, 0.55), 0 0 0 5px var(--bg); }
+  70% { box-shadow: 0 0 0 11px rgba(255, 125, 0, 0), 0 0 0 5px var(--bg); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 125, 0, 0), 0 0 0 5px var(--bg); }
+}
+
 .timeline-period {
   font: 12px var(--mono);
   color: var(--teal-mid);
@@ -1142,6 +1218,13 @@ button {
   background: var(--surface-solid);
   border: 1px solid rgba(0, 109, 119, 0.2);
   color: var(--deep);
+  transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.skill-group b:hover {
+  transform: translateY(-2px);
+  border-color: var(--tangerine);
+  background: var(--cream);
 }
 
 /* =========================================
