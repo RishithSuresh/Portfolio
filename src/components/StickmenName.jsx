@@ -1,206 +1,192 @@
 import { useLayoutEffect, useRef, useState } from 'react'
 
+const FULL_NAME = 'RISHITH SURESH'
+const BASELINE_Y = 186
+
 /**
- * Renders the user's name in large, bold hollow typography with animated
- * colored-head stickmen performing activities directly on the letterforms.
+ * Single-line hollow display name ("RISHITH SURESH") with slender,
+ * long-bodied, colored-head stickmen anchored to exact glyph strokes.
  */
 export default function StickmenName() {
-  const line1Ref = useRef(null)
-  const line2Ref = useRef(null)
-
-  const [anchors, setAnchors] = useState({
-    l1Top: 58,
-    l1Bottom: 175,
-    l1Chars: [215, 315, 405, 515, 610, 700, 810],
-    l2Top: 222,
-    l2Bottom: 340,
-    l2Chars: [240, 355, 475, 590, 705, 825],
-    l1Right: 880,
-    l2Right: 895
-  })
+  const textRef = useRef(null)
+  const [layout, setLayout] = useState(null)
 
   useLayoutEffect(() => {
-    const measureLine = (el, count) => {
-      if (!el) return null
-      const box = el.getBBox()
-      const centers = []
-      for (let i = 0; i < count; i++) {
-        const start = el.getStartPositionOfChar(i).x
-        const end = el.getEndPositionOfChar(i).x
-        centers.push((start + end) / 2)
-      }
-      return {
-        top: box.y,
-        bottom: box.y + box.height,
-        right: box.x + box.width,
-        centers
-      }
-    }
+    const el = textRef.current
+    if (!el) return
 
-    const update = () => {
-      const m1 = measureLine(line1Ref.current, 7)
-      const m2 = measureLine(line2Ref.current, 6)
-      if (m1 && m2) {
-        setAnchors({
-          l1Top: m1.top,
-          l1Bottom: m1.bottom,
-          l1Chars: m1.centers,
-          l1Right: m1.right,
-          l2Top: m2.top,
-          l2Bottom: m2.bottom,
-          l2Chars: m2.centers,
-          l2Right: m2.right
+    const measure = () => {
+      try {
+        const style = getComputedStyle(el)
+        const canvas = document.createElement('canvas')
+        const ctx = canvas.getContext('2d')
+        ctx.font = `${style.fontWeight} ${style.fontSize} ${style.fontFamily}`
+        const metrics = ctx.measureText('H')
+        const ascent = metrics.actualBoundingBoxAscent || parseFloat(style.fontSize) * 0.72
+        const strokeHalf = (parseFloat(style.strokeWidth) || 2.6) / 2
+        const capTop = BASELINE_Y - ascent - strokeHalf
+        const baselineBottom = BASELINE_Y + strokeHalf
+
+        const chars = []
+        for (let i = 0; i < FULL_NAME.length; i++) {
+          const ext = el.getExtentOfChar(i)
+          chars.push({
+            left: ext.x,
+            right: ext.x + ext.width,
+            cx: ext.x + ext.width / 2
+          })
+        }
+
+        setLayout({
+          capTop,
+          baseline: baselineBottom,
+          chars
         })
+      } catch {
+        // Fallback if SVG text metrics are temporarily unavailable.
       }
     }
 
-    update()
+    measure()
     let cancelled = false
     if (document.fonts?.ready) {
       document.fonts.ready.then(() => {
-        if (!cancelled) update()
+        if (!cancelled) measure()
       })
     }
-    window.addEventListener('resize', update)
+    window.addEventListener('resize', measure)
     return () => {
       cancelled = true
-      window.removeEventListener('resize', update)
+      window.removeEventListener('resize', measure)
     }
   }, [])
 
-  const { l1Top, l1Bottom, l1Chars, l1Right, l2Top, l2Bottom, l2Chars, l2Right } = anchors
+  const c = layout?.chars
+  const topY = layout?.capTop ?? 116
+  const baseY = layout?.baseline ?? 193
 
   return (
     <div className="stickmen-stage">
       <svg
         className="stickmen-svg"
-        viewBox="0 0 1100 400"
+        viewBox="0 0 1320 260"
         role="img"
         aria-label="Rishith Suresh in bold hollow lettering with animated stickmen"
       >
-        {/* Giant Bold Hollow Name */}
         <text
-          ref={line1Ref}
-          x="550"
-          y="175"
+          ref={textRef}
+          x="660"
+          y={BASELINE_Y}
           textAnchor="middle"
           className="hollow-name-text"
         >
-          RISHITH
+          {FULL_NAME}
         </text>
 
-        <text
-          ref={line2Ref}
-          x="550"
-          y="340"
-          textAnchor="middle"
-          className="hollow-name-text hollow-name-sub"
-        >
-          SURESH
-        </text>
+        {c && (
+          <g className="stickmen-layer">
+            {/* 1. Sitting & dangling leg on top of first 'R' (Tangerine head) */}
+            <g transform={`translate(${c[0].cx - 4}, ${topY})`}>
+              <circle cx="0" cy="-23" r="4.2" fill="#ff7d00" stroke="#001524" strokeWidth="1.2" />
+              {/* Long slender torso */}
+              <path d="M0 -18.5 L0 -1 L8 0" className="stick-limb" />
+              <path d="M0 -1 L-3 9" className="stick-limb anim-kick" />
+              {/* Arms typing on tiny laptop */}
+              <path d="M0 -14 L7 -9 L11 -11" className="stick-limb" />
+              <path d="M9 -1 L16 -1 L18 -8" className="stick-prop" />
+            </g>
 
-        {/* 1. Sitting & kicking legs on top of 'R' with a tiny laptop (Tangerine head) */}
-        <g transform={`translate(${l1Chars[0] - 8}, ${l1Top})`} className="stickman">
-          <circle cx="0" cy="-24" r="6.5" fill="#ff7d00" stroke="#001524" strokeWidth="1.6" />
-          <path d="M0 -17 L0 -2 L10 0" className="stick-limb" />
-          {/* Kicking leg */}
-          <path d="M0 -2 L-4 9" className="stick-limb anim-kick" />
-          {/* Arms typing on laptop */}
-          <path d="M0 -13 L9 -8 L13 -11" className="stick-limb" />
-          <path d="M11 -2 L19 -2 L21 -9" className="stick-prop" />
-        </g>
+            {/* 2. Sprinting across 'S' -> 'H' top edge (Deep Teal head) */}
+            <g transform={`translate(${(c[2].cx + c[3].cx) / 2}, ${topY})`}>
+              <g className="anim-sprint">
+                <circle cx="2" cy="-27" r="4.1" fill="#006d77" stroke="#001524" strokeWidth="1.2" />
+                <path d="M1.5 -22.5 L-1 -8" className="stick-limb" />
+                <path d="M-1 -8 L-8 0 M-1 -8 L7 -1" className="stick-limb anim-run-legs" />
+                <path d="M0.5 -19 L8 -14 M0.5 -19 L-7 -15" className="stick-limb" />
+              </g>
+            </g>
 
-        {/* 2. Sprinting across 'S' -> 'H' top edge (Deep Teal head) */}
-        <g transform={`translate(${(l1Chars[2] + l1Chars[3]) / 2}, ${l1Top})`}>
-          <g className="anim-sprint">
-            <circle cx="0" cy="-28" r="6.5" fill="#006d77" stroke="#001524" strokeWidth="1.6" />
-            <path d="M2 -21 L-2 -8" className="stick-limb" />
-            <path d="M-2 -8 L-10 0 M-2 -8 L9 -2" className="stick-limb anim-run-legs" />
-            <path d="M0 -18 L9 -13 M0 -18 L-9 -14" className="stick-limb" />
+            {/* 3. Swinging between 'I' and 'T' (Terracotta head) */}
+            <g transform={`translate(${(c[4].right + c[5].left) / 2}, ${topY + 2})`}>
+              <g className="anim-swing">
+                <line x1="0" y1="0" x2="0" y2="26" className="stick-prop" />
+                <circle cx="0" cy="28" r="3.9" fill="#e29578" stroke="#001524" strokeWidth="1.2" />
+                <path d="M0 32 L0 47 L-4 57 M0 47 L4 57" className="stick-limb" />
+                <path d="M0 36 L-3 25 M0 36 L3 25" className="stick-limb" />
+              </g>
+            </g>
+
+            {/* 4. Weightlifting on top of 'T' (Seafoam head) */}
+            <g transform={`translate(${c[5].cx}, ${topY})`}>
+              <circle cx="0" cy="-26" r="4.1" fill="#83c5be" stroke="#001524" strokeWidth="1.2" />
+              <path d="M0 -21.5 L0 -8 L-5 0 M0 -8 L5 0" className="stick-limb" />
+              <g className="anim-lift">
+                <path d="M0 -18 L-9 -27 M0 -18 L9 -27" className="stick-limb" />
+                <line x1="-15" y1="-28" x2="15" y2="-28" className="stick-prop" />
+                <rect x="-17" y="-31" width="3" height="6" rx="0.8" fill="#ff7d00" />
+                <rect x="14" y="-31" width="3" height="6" rx="0.8" fill="#ff7d00" />
+              </g>
+            </g>
+
+            {/* 5. Climbing rope down the side of first 'H' (Rust head) */}
+            <g transform={`translate(${c[6].right + 5}, ${topY})`}>
+              <line x1="0" y1="0" x2="0" y2={baseY - topY} className="stick-line" />
+              <g className="anim-climb">
+                <circle cx="-5" cy="24" r="3.9" fill="#78290f" stroke="#001524" strokeWidth="1.2" />
+                <path d="M-5 28 L-5 43 L-10 52 M-5 43 L0 51" className="stick-limb" />
+                <path d="M-5 32 L0 26 M-5 35 L0 39" className="stick-limb" />
+              </g>
+            </g>
+
+            {/* 6. Fishing off the top lip of 'U' into the curve (Gold head) */}
+            <g transform={`translate(${c[9].left + 6}, ${topY})`}>
+              <circle cx="0" cy="-23" r="4.1" fill="#ffc300" stroke="#001524" strokeWidth="1.2" />
+              <path d="M0 -18.5 L0 -1 L8 0 M0 -1 L4 8" className="stick-limb" />
+              <path d="M0 -14 L9 -13" className="stick-limb" />
+              <path d="M8 -12 Q20 -26 30 -18" className="stick-prop" fill="none" />
+              <line x1="30" y1="-18" x2="30" y2="26" className="stick-line anim-bob" />
+              <circle cx="30" cy="26" r="2.2" fill="#ff7d00" className="anim-bob" />
+            </g>
+
+            {/* 7. Skateboarding across top of 'R' -> 'E' (Peach head) */}
+            <g transform={`translate(${(c[10].cx + c[11].cx) / 2}, ${topY})`}>
+              <g className="anim-skate">
+                <circle cx="0" cy="-29" r="4.1" fill="#ffddd2" stroke="#001524" strokeWidth="1.2" />
+                <path d="M0 -24.5 L-1 -11 L-5 -3 M-1 -11 L5 -3" className="stick-limb" />
+                <path d="M0 -20 L-8 -16 M0 -20 L8 -17" className="stick-limb" />
+                <line x1="-10" y1="-2" x2="10" y2="-2" stroke="#ff7d00" strokeWidth="2.2" strokeLinecap="round" />
+                <circle cx="-6" cy="-0.4" r="1.5" fill="#001524" />
+                <circle cx="6" cy="-0.4" r="1.5" fill="#001524" />
+              </g>
+            </g>
+
+            {/* 8. Jumping on top of 'E' (Tangerine head) */}
+            <g transform={`translate(${c[11].cx + 8}, ${topY})`}>
+              <g className="anim-jump">
+                <circle cx="0" cy="-26" r="4.1" fill="#ff7d00" stroke="#001524" strokeWidth="1.2" />
+                <path d="M0 -21.5 L0 -8 L-5 0 M0 -8 L5 0" className="stick-limb" />
+                <path d="M0 -17 L-8 -24 M0 -17 L8 -24" className="stick-limb" />
+              </g>
+            </g>
+
+            {/* 9. Handstand balancing on final 'H' left pillar (Teal head) */}
+            <g transform={`translate(${c[13].left + 8}, ${topY})`}>
+              <g className="anim-wobble">
+                <path d="M-4 0 L-1 -9 M4 0 L1 -9" className="stick-limb" />
+                <path d="M0 -9 L0 -23 L-4 -32 M0 -23 L4 -32" className="stick-limb" />
+                <circle cx="0" cy="-5" r="3.9" fill="#006d77" stroke="#001524" strokeWidth="1.2" />
+              </g>
+            </g>
+
+            {/* 10. Standing tall on the baseline after final 'H' & waving (Terracotta head) */}
+            <g transform={`translate(${c[13].right + 18}, ${baseY})`}>
+              <circle cx="0" cy="-30" r="4.2" fill="#e29578" stroke="#001524" strokeWidth="1.2" />
+              <path d="M0 -25.5 L0 -10 L-5 0 M0 -10 L5 0" className="stick-limb" />
+              <path d="M0 -21 L-7 -13" className="stick-limb" />
+              <path d="M0 -21 L8 -29" className="stick-limb anim-wave" />
+            </g>
           </g>
-        </g>
-
-        {/* 3. Swinging on a rope between 'I' and 'T' */}
-        <g transform={`translate(${(l1Chars[4] + l1Chars[5]) / 2}, ${l1Top + 14})`}>
-          <g className="anim-swing">
-            <line x1="0" y1="0" x2="0" y2="38" className="stick-prop" />
-            <circle cx="0" cy="40" r="6" fill="#e29578" stroke="#001524" strokeWidth="1.6" />
-            <path d="M0 46 L0 61 L-5 72 M0 61 L5 72" className="stick-limb" />
-            <path d="M0 50 L-4 38 M0 50 L4 38" className="stick-limb" />
-          </g>
-        </g>
-
-        {/* 4. Weightlifting a barbell on top of 'T' (Seafoam head) */}
-        <g transform={`translate(${l1Chars[5]}, ${l1Top})`}>
-          <circle cx="0" cy="-26" r="6.5" fill="#83c5be" stroke="#001524" strokeWidth="1.6" />
-          <path d="M0 -19 L0 -7 L-6 0 M0 -7 L6 0" className="stick-limb" />
-          <g className="anim-lift">
-            <path d="M0 -15 L-11 -26 M0 -15 L11 -26" className="stick-limb" />
-            <line x1="-18" y1="-27" x2="18" y2="-27" className="stick-prop" />
-            <rect x="-21" y="-31" width="4" height="8" rx="1" fill="#ff7d00" />
-            <rect x="17" y="-31" width="4" height="8" rx="1" fill="#ff7d00" />
-          </g>
-        </g>
-
-        {/* 5. Fishing off the right edge of 'H' in RISHITH (Rust head) */}
-        <g transform={`translate(${l1Right - 10}, ${l1Top})`}>
-          <circle cx="0" cy="-24" r="6.5" fill="#78290f" stroke="#001524" strokeWidth="1.6" />
-          <path d="M0 -17 L0 -2 L10 0 M0 -2 L6 8" className="stick-limb" />
-          <path d="M0 -13 L10 -12" className="stick-limb" />
-          {/* Fishing rod + bobbing line */}
-          <path d="M8 -11 Q26 -30 42 -22" className="stick-prop" fill="none" />
-          <line x1="42" y1="-22" x2="42" y2="28" className="stick-line anim-bob" />
-          <circle cx="42" cy="28" r="3" fill="#ff7d00" className="anim-bob" />
-        </g>
-
-        {/* 6. Skateboarding across top of 'S' -> 'U' in SURESH (Peach head) */}
-        <g transform={`translate(${(l2Chars[0] + l2Chars[1]) / 2}, ${l2Top})`}>
-          <g className="anim-skate">
-            <circle cx="0" cy="-31" r="6.5" fill="#ffddd2" stroke="#001524" strokeWidth="1.6" />
-            <path d="M0 -24 L-1 -12 L-7 -4 M-1 -12 L6 -4" className="stick-limb" />
-            <path d="M0 -21 L-10 -17 M0 -21 L10 -18" className="stick-limb" />
-            {/* Skateboard */}
-            <line x1="-13" y1="-3" x2="13" y2="-3" stroke="#ff7d00" strokeWidth="2.8" strokeLinecap="round" />
-            <circle cx="-8" cy="-0.5" r="2" fill="#001524" />
-            <circle cx="8" cy="-0.5" r="2" fill="#001524" />
-          </g>
-        </g>
-
-        {/* 7. Climbing a rope up the side of 'R' in SURESH (Tangerine head) */}
-        <g transform={`translate(${l2Chars[2] + 36}, ${l2Top + 18})`}>
-          <line x1="0" y1="-16" x2="0" y2="95" className="stick-line" />
-          <g className="anim-climb">
-            <circle cx="-6" cy="26" r="6" fill="#ff7d00" stroke="#001524" strokeWidth="1.6" />
-            <path d="M-6 32 L-6 48 L-12 58 M-6 48 L0 56" className="stick-limb" />
-            <path d="M-6 37 L0 30 M-6 40 L0 44" className="stick-limb" />
-          </g>
-        </g>
-
-        {/* 8. Jumping joyfully on top of 'E' in SURESH (Gold/Saffron head) */}
-        <g transform={`translate(${l2Chars[3]}, ${l2Top})`}>
-          <g className="anim-jump">
-            <circle cx="0" cy="-27" r="6.5" fill="#ffc300" stroke="#001524" strokeWidth="1.6" />
-            <path d="M0 -20 L0 -8 L-7 0 M0 -8 L7 0" className="stick-limb" />
-            <path d="M0 -17 L-10 -25 M0 -17 L10 -25" className="stick-limb" />
-          </g>
-        </g>
-
-        {/* 9. Handstand / balancing on top of 'S' in SURESH (Teal head) */}
-        <g transform={`translate(${l2Chars[4]}, ${l2Top})`}>
-          <g className="anim-wobble">
-            <path d="M-6 0 L-2 -11 M6 0 L2 -11" className="stick-limb" />
-            <path d="M0 -11 L0 -23 L-6 -33 M0 -23 L6 -33" className="stick-limb" />
-            <circle cx="0" cy="-6" r="6" fill="#006d77" stroke="#001524" strokeWidth="1.6" />
-          </g>
-        </g>
-
-        {/* 10. Standing at the baseline next to final 'H' & waving hello (Terracotta head) */}
-        <g transform={`translate(${l2Right + 24}, ${l2Bottom})`}>
-          <circle cx="0" cy="-31" r="6.5" fill="#e29578" stroke="#001524" strokeWidth="1.6" />
-          <path d="M0 -24 L0 -10 L-6 0 M0 -10 L6 0" className="stick-limb" />
-          <path d="M0 -20 L-9 -12" className="stick-limb" />
-          <path d="M0 -20 L10 -29" className="stick-limb anim-wave" />
-        </g>
+        )}
       </svg>
     </div>
   )

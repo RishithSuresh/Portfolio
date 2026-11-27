@@ -237,8 +237,8 @@ button {
 }
 
 .hero-name-wrap {
-  width: min(1080px, 100%);
-  margin-block: 4px 14px;
+  width: min(1240px, 100%);
+  margin-block: 6px 10px;
 }
 
 .stickmen-stage {
@@ -253,27 +253,21 @@ button {
 }
 
 .hollow-name-text {
-  font-family: var(--display);
-  font-size: 162px;
-  font-weight: 700;
-  letter-spacing: 6px;
-  fill: rgba(255, 255, 255, 0.22);
+  font-family: 'Syne', var(--display);
+  font-size: 86px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  fill: rgba(255, 255, 255, 0.18);
   stroke: var(--deep);
-  stroke-width: 3.4px;
+  stroke-width: 2.5px;
   stroke-linejoin: round;
   paint-order: stroke;
-}
-
-.hollow-name-sub {
-  font-size: 148px;
-  letter-spacing: 10px;
-  stroke: var(--teal-deep);
 }
 
 .stick-limb {
   fill: none;
   stroke: var(--deep);
-  stroke-width: 2.3;
+  stroke-width: 1.5;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
@@ -281,20 +275,20 @@ button {
 .stick-prop {
   fill: none;
   stroke: var(--rust);
-  stroke-width: 2;
+  stroke-width: 1.4;
   stroke-linecap: round;
 }
 
 .stick-line {
   fill: none;
   stroke: var(--teal-mid);
-  stroke-width: 1.4;
+  stroke-width: 1.1;
   stroke-dasharray: 2 2;
 }
 
 /* Stickmen micro-animations */
 .anim-kick {
-  transform-origin: 0px -2px;
+  transform-origin: 0px -1px;
   animation: kick 1.4s ease-in-out infinite alternate;
 }
 
@@ -303,7 +297,7 @@ button {
 }
 
 .anim-run-legs {
-  transform-origin: -2px -8px;
+  transform-origin: -1px -8px;
   animation: run-legs 0.45s ease-in-out infinite alternate;
 }
 
@@ -338,7 +332,7 @@ button {
 }
 
 .anim-wave {
-  transform-origin: 0px -20px;
+  transform-origin: 0px -21px;
   animation: wave-arm 0.9s ease-in-out infinite alternate;
 }
 
@@ -348,8 +342,8 @@ button {
 }
 
 @keyframes sprint {
-  from { transform: translateX(-52px); }
-  to { transform: translateX(52px); }
+  from { transform: translateX(-34px); }
+  to { transform: translateX(34px); }
 }
 
 @keyframes run-legs {
@@ -358,33 +352,33 @@ button {
 }
 
 @keyframes swing {
-  from { transform: rotate(-22deg); }
-  to { transform: rotate(22deg); }
+  from { transform: rotate(-20deg); }
+  to { transform: rotate(20deg); }
 }
 
 @keyframes lift {
   0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-9px); }
+  50% { transform: translateY(-7px); }
 }
 
 @keyframes bob {
-  from { transform: translateY(-3px); }
-  to { transform: translateY(4px); }
+  from { transform: translateY(-2px); }
+  to { transform: translateY(3px); }
 }
 
 @keyframes skate {
-  from { transform: translateX(-58px); }
-  to { transform: translateX(58px); }
+  from { transform: translateX(-36px); }
+  to { transform: translateX(36px); }
 }
 
 @keyframes climb {
-  from { transform: translateY(14px); }
-  to { transform: translateY(-18px); }
+  from { transform: translateY(10px); }
+  to { transform: translateY(-10px); }
 }
 
 @keyframes jump {
   0%, 100% { transform: translateY(0px); }
-  45% { transform: translateY(-18px); }
+  45% { transform: translateY(-14px); }
 }
 
 @keyframes wobble {
