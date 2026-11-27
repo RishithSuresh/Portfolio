@@ -57,12 +57,10 @@ export default function HeroBackground() {
       color: shades[(i * 2) % shades.length]
     }))
 
-    // Sweeping dashed blueprint lines moving smoothly across the viewport
+    // Balanced set of sweeping blueprint lines
     const scanLines = [
-      { axis: 'x', pos: 0.18, speed: 0.018, color: 'rgba(0, 109, 119, 0.16)', dash: [14, 18] },
-      { axis: 'x', pos: 0.72, speed: -0.014, color: 'rgba(226, 149, 120, 0.18)', dash: [8, 22] },
-      { axis: 'y', pos: 0.28, speed: 0.012, color: 'rgba(131, 197, 190, 0.22)', dash: [24, 16] },
-      { axis: 'y', pos: 0.78, speed: -0.015, color: 'rgba(255, 125, 0, 0.14)', dash: [10, 20] }
+      { axis: 'x', pos: 0.22, speed: 0.015, color: 'rgba(0, 109, 119, 0.14)', dash: [14, 20] },
+      { axis: 'y', pos: 0.72, speed: -0.012, color: 'rgba(226, 149, 120, 0.16)', dash: [18, 18] }
     ]
 
     const ripples = []
@@ -315,48 +313,26 @@ export default function HeroBackground() {
         ctx.restore()
       })
 
-      // Rotating diagonal architectural rays
       const cx = width * 0.5
       const cy = height * 0.48
-      ctx.save()
-      ctx.translate(cx, cy)
-      ctx.rotate(time * 0.035)
-      const diagLen = Math.max(width, height) * 0.75
-      for (let i = 0; i < 6; i++) {
-        const a = (Math.PI * i) / 6
-        ctx.strokeStyle = i % 2 === 0 ? 'rgba(0, 109, 119, 0.1)' : 'rgba(226, 149, 120, 0.12)'
-        ctx.lineWidth = 0.8
-        ctx.setLineDash([6, 14])
-        ctx.lineDashOffset = -time * 16
-        ctx.beginPath()
-        ctx.moveTo(-Math.cos(a) * diagLen, -Math.sin(a) * diagLen)
-        ctx.lineTo(Math.cos(a) * diagLen, Math.sin(a) * diagLen)
-        ctx.stroke()
-      }
-      ctx.restore()
 
-      // 3. Flowing Lissajous ribbon curves behind the centerpiece
-      drawLissajous(cx, cy, width * 0.38, height * 0.28, 2, 3, time * 0.3, 'rgba(131, 197, 190, 0.25)', [10, 10])
-      drawLissajous(cx, cy, width * 0.34, height * 0.22, 3, 2, -time * 0.24 + 1.1, 'rgba(226, 149, 120, 0.24)', [])
+      // 3. Single sweeping Lissajous ribbon curve behind the centerpiece
+      drawLissajous(cx, cy, width * 0.36, height * 0.25, 2, 3, time * 0.26, 'rgba(131, 197, 190, 0.22)', [10, 12])
 
-      // 4. 8 layered multi-shade drifting harmonic wave lines + surfing pulses
-      drawWaveBand(0.16, 16, 6.2, 0.45, 'rgba(0, 109, 119, 0.16)', null, 0.4, null, 0, [8, 12])
-      drawWaveBand(0.24, 24, 5.2, 0.58, 'rgba(0, 109, 119, 0.22)', 'rgba(131, 197, 190, 0.07)', 0, 'rgba(0, 109, 119, 0.55)', 0.12)
-      drawWaveBand(0.35, 28, 4.4, -0.46, 'rgba(131, 197, 190, 0.36)', 'rgba(255, 221, 210, 0.08)', 1.1, 'rgba(131, 197, 190, 0.7)', 0.09)
-      drawWaveBand(0.47, 22, 7.0, 0.4, 'rgba(21, 97, 109, 0.18)', null, 1.8, null, 0, [14, 10])
-      drawWaveBand(0.56, 26, 6.0, 0.52, 'rgba(226, 149, 120, 0.32)', 'rgba(255, 236, 209, 0.12)', 2.4, 'rgba(255, 125, 0, 0.65)', 0.14)
-      drawWaveBand(0.68, 20, 4.8, -0.38, 'rgba(255, 125, 0, 0.22)', null, 3.6, 'rgba(226, 149, 120, 0.6)', 0.11)
-      drawWaveBand(0.78, 18, 5.6, 0.36, 'rgba(226, 149, 120, 0.2)', null, 4.1, null, 0, [6, 10])
-      drawWaveBand(0.88, 14, 6.8, -0.32, 'rgba(120, 41, 15, 0.15)', null, 4.9, null, 0)
+      // 4. 4 calmer layered harmonic wave lines + 2 surfing pulses
+      drawWaveBand(0.26, 22, 5.0, 0.5, 'rgba(0, 109, 119, 0.18)', 'rgba(131, 197, 190, 0.06)', 0, 'rgba(0, 109, 119, 0.48)', 0.11)
+      drawWaveBand(0.42, 26, 4.4, -0.42, 'rgba(131, 197, 190, 0.32)', 'rgba(255, 221, 210, 0.08)', 1.2, null, 0)
+      drawWaveBand(0.6, 24, 5.6, 0.46, 'rgba(226, 149, 120, 0.28)', 'rgba(255, 236, 209, 0.1)', 2.4, 'rgba(255, 125, 0, 0.6)', 0.13)
+      drawWaveBand(0.76, 18, 5.0, -0.34, 'rgba(255, 125, 0, 0.18)', null, 3.8, null, 0, [8, 12])
 
-      // 5. Rotating degree dial & multi-ring astrolabe arcs with satellites
+      // 5. Rotating degree dial & 3 astrolabe arcs with satellites
       const baseR = Math.min(width, height) * 0.44
 
       ctx.save()
       ctx.translate(cx, cy)
-      ctx.rotate(time * 0.05)
-      ctx.strokeStyle = 'rgba(0, 109, 119, 0.16)'
-      ctx.lineWidth = 0.9
+      ctx.rotate(time * 0.045)
+      ctx.strokeStyle = 'rgba(0, 109, 119, 0.14)'
+      ctx.lineWidth = 0.85
       const tickR1 = baseR * 0.96
       const tickR2 = baseR * 1.01
       for (let i = 0; i < 36; i++) {
@@ -370,10 +346,9 @@ export default function HeroBackground() {
       ctx.restore()
 
       const orbits = [
-        { r: baseR * 0.62, start: time * 0.18, span: Math.PI * 1.15, color: 'rgba(0, 109, 119, 0.26)', dash: [], sat: '#ff7d00' },
-        { r: baseR * 0.82, start: -time * 0.14 + 0.9, span: Math.PI * 0.95, color: 'rgba(226, 149, 120, 0.36)', dash: [4, 7], sat: '#006d77' },
-        { r: baseR * 1.04, start: time * 0.1 + 2.2, span: Math.PI * 1.3, color: 'rgba(131, 197, 190, 0.36)', dash: [2, 8], sat: '#e29578' },
-        { r: baseR * 1.24, start: -time * 0.07 + 3.5, span: Math.PI * 0.9, color: 'rgba(120, 41, 15, 0.22)', dash: [8, 6], sat: '#83c5be' }
+        { r: baseR * 0.66, start: time * 0.16, span: Math.PI * 1.1, color: 'rgba(0, 109, 119, 0.22)', dash: [], sat: '#ff7d00' },
+        { r: baseR * 0.88, start: -time * 0.12 + 0.9, span: Math.PI * 0.9, color: 'rgba(226, 149, 120, 0.3)', dash: [4, 8], sat: '#006d77' },
+        { r: baseR * 1.12, start: time * 0.08 + 2.2, span: Math.PI * 1.2, color: 'rgba(131, 197, 190, 0.3)', dash: [2, 8], sat: '#e29578' }
       ]
 
       orbits.forEach(o => {

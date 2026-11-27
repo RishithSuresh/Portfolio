@@ -95,11 +95,11 @@ export default function StickmenName() {
         aria-label="Rishith Suresh in luminous sculpted decorative lettering with animated stickmen"
       >
         <defs>
-          {/* Deep Petrol-to-Lagoon Sculpted Fill */}
+          {/* Ultra-Bold Deep Abyssal-to-Petrol Sculpted Fill */}
           <linearGradient id="glyphGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#001524" />
-            <stop offset="48%" stopColor="#00555f" />
-            <stop offset="100%" stopColor="#001524" />
+            <stop offset="0%" stopColor="#000a12" />
+            <stop offset="50%" stopColor="#002b3d" />
+            <stop offset="100%" stopColor="#000f1a" />
           </linearGradient>
 
           {/* Animated Specular Metallic Sheen Sweeping Across Letters */}
@@ -147,56 +147,29 @@ export default function StickmenName() {
           </filter>
         </defs>
 
-        {/* Rich Multi-Layer Architectural Lines, Concentric Arcs & Flourishes */}
+        {/* Clean Architectural Lines & Framing Arcs */}
         <g aria-hidden="true">
-          {/* Horizontal drafting rules + double framing lines */}
-          <line x1="24" y1="64" x2="1336" y2="64" className="ornament-guide-soft" />
-          <line x1="24" y1="80" x2="1336" y2="80" className="ornament-guide-dashed" />
           <line x1="24" y1="110" x2="1336" y2="110" className="ornament-guide" />
-          <line x1="24" y1="144" x2="1336" y2="144" className="ornament-guide-soft" />
           <line x1="24" y1="179" x2="1336" y2="179" className="ornament-guide-dashed" />
-          <line x1="24" y1="215" x2="1336" y2="215" className="ornament-guide-soft" />
           <line x1="24" y1="250" x2="1336" y2="250" className="ornament-guide" />
-          <line x1="24" y1="282" x2="1336" y2="282" className="ornament-guide-soft" />
 
-          {/* Vertical stem alignment rules */}
-          <line x1="110" y1="36" x2="110" y2="298" className="ornament-guide-soft" />
-          <line x1="214" y1="46" x2="214" y2="294" className="ornament-guide-soft" />
-          <line x1="372" y1="48" x2="372" y2="292" className="ornament-guide-soft" />
-          <line x1="452" y1="44" x2="452" y2="296" className="ornament-guide-soft" />
-          <line x1="525" y1="48" x2="525" y2="292" className="ornament-guide-soft" />
+          <line x1="110" y1="42" x2="110" y2="292" className="ornament-guide-soft" />
           <line x1="692" y1="36" x2="692" y2="300" className="ornament-guide" />
-          <line x1="754" y1="46" x2="754" y2="294" className="ornament-guide-soft" />
-          <line x1="852" y1="46" x2="852" y2="292" className="ornament-guide-soft" />
-          <line x1="952" y1="48" x2="952" y2="292" className="ornament-guide-soft" />
-          <line x1="1042" y1="44" x2="1042" y2="296" className="ornament-guide-soft" />
-          <line x1="1226" y1="46" x2="1226" y2="294" className="ornament-guide-soft" />
+          <line x1="1226" y1="48" x2="1226" y2="290" className="ornament-guide-soft" />
 
-          {/* Diagonal geometric rays */}
-          <line x1="64" y1="280" x2="304" y2="44" className="ornament-guide-soft" />
-          <line x1="276" y1="52" x2="510" y2="286" className="ornament-guide-soft" />
-          <line x1="612" y1="54" x2="840" y2="282" className="ornament-guide-soft" />
-          <line x1="940" y1="286" x2="1176" y2="50" className="ornament-guide-soft" />
-          <line x1="1070" y1="50" x2="1300" y2="280" className="ornament-guide-soft" />
-
-          {/* Nested concentric drafting circles & orbits (animated rotation) */}
+          {/* Nested concentric drafting circles & orbits */}
           <g className="anim-orbit-cw" style={{ transformOrigin: '118px 144px' }}>
-            <circle cx="118" cy="144" r="88" className="ornament-arc-dashed" />
+            <circle cx="118" cy="144" r="84" className="ornament-arc-dashed" />
             <circle cx="118" cy="144" r="50" className="ornament-arc-accent" />
           </g>
-          <circle cx="118" cy="144" r="70" className="ornament-arc" />
-          <circle cx="372" cy="180" r="62" className="ornament-arc" />
           <g className="anim-orbit-ccw" style={{ transformOrigin: '452px 132px' }}>
-            <circle cx="452" cy="132" r="74" className="ornament-arc" />
-            <circle cx="452" cy="132" r="46" className="ornament-arc-dashed" />
+            <circle cx="452" cy="132" r="70" className="ornament-arc" />
           </g>
           <g className="anim-orbit-cw" style={{ transformOrigin: '754px 192px' }}>
-            <circle cx="754" cy="192" r="84" className="ornament-arc" />
-            <circle cx="754" cy="192" r="56" className="ornament-arc-accent" />
+            <circle cx="754" cy="192" r="80" className="ornament-arc" />
+            <circle cx="754" cy="192" r="54" className="ornament-arc-accent" />
           </g>
-          <circle cx="952" cy="166" r="54" className="ornament-arc-dashed anim-orbit-ccw" style={{ transformOrigin: '952px 166px' }} />
-          <circle cx="1042" cy="178" r="72" className="ornament-arc" />
-          <circle cx="1226" cy="180" r="64" className="ornament-arc-dashed anim-orbit-cw" style={{ transformOrigin: '1226px 180px' }} />
+          <circle cx="1042" cy="178" r="68" className="ornament-arc" />
           <ellipse cx="692" cy="180" rx="580" ry="118" className="ornament-orbit" />
 
           {/* Crosshair ticks at line intersections */}
