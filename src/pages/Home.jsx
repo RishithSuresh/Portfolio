@@ -19,7 +19,7 @@ export default function Home() {
         {/* Dull, constantly shuffling Rubik's Cube in the background */}
         <AIArtwork />
 
-        <div className="hero-foreground page-shell">
+        <div className="hero-foreground">
           <motion.span
             className="hero-kicker hero-kicker-framed"
             initial={{ opacity: 0, y: 10 }}

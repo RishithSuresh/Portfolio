@@ -224,6 +224,8 @@ button {
 .hero-foreground {
   position: relative;
   z-index: 2;
+  width: min(1440px, calc(100% - 28px));
+  margin-inline: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -235,7 +237,7 @@ button {
   letter-spacing: 3.5px;
   text-transform: uppercase;
   color: var(--teal-deep);
-  margin-bottom: 6px;
+  margin-bottom: 4px;
   display: inline-flex;
   align-items: center;
   gap: 14px;
@@ -255,16 +257,17 @@ button {
   letter-spacing: 4px;
   color: var(--rust);
   opacity: 0.78;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 
 .hero-name-wrap {
-  width: min(1280px, 100%);
-  margin-block: 2px 6px;
+  width: 100%;
+  margin-block: 0 4px;
 }
 
 .stickmen-stage {
   width: 100%;
+  filter: drop-shadow(0 0 28px rgba(255, 221, 210, 0.72));
 }
 
 .stickmen-svg {
@@ -274,22 +277,53 @@ button {
   display: block;
 }
 
+.glyph-glow-base {
+  fill: var(--cream);
+  opacity: 0.9;
+}
+
 .glyph-main {
   stroke: var(--deep);
   stroke-width: 1.1px;
   stroke-linejoin: round;
 }
 
+.glyph-inline-rim {
+  fill: none;
+  stroke: rgba(237, 246, 249, 0.55);
+  stroke-width: 0.9px;
+}
+
+.glyph-inline-stem {
+  stroke: rgba(255, 236, 209, 0.58);
+  stroke-width: 1px;
+  stroke-linecap: round;
+}
+
 .glyph-extrude {
   fill: var(--terracotta);
-  opacity: 0.72;
+  opacity: 0.78;
 }
 
 .glyph-keyline {
   fill: none;
   stroke: var(--cream);
-  stroke-width: 1.4px;
-  opacity: 0.92;
+  stroke-width: 1.45px;
+  opacity: 0.95;
+}
+
+.glyph-keyline-warm {
+  fill: none;
+  stroke: rgba(255, 125, 0, 0.48);
+  stroke-width: 0.95px;
+}
+
+.ornament-orbit {
+  fill: none;
+  stroke: var(--teal-mid);
+  stroke-width: 0.75;
+  stroke-dasharray: 2 5;
+  opacity: 0.24;
 }
 
 .ornament-guide {

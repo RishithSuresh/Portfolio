@@ -1,8 +1,8 @@
 /**
  * Bespoke tall Art-Deco / Didone sculpted vector glyphs for "RISHITH SURESH"
- * with multi-layered 3D extrusion, animated specular shimmer, intricate
- * geometric drafting lines, filigree swashes, twinkling 4-point stars, and
- * slender colored-head stickmen anchored directly to the letter strokes.
+ * with luminous glow aura, inline engraving lines, multi-layered contours,
+ * animated specular shimmer, dense architectural linework, and animated
+ * slender colored-head stickmen.
  */
 
 const GLYPHS = [
@@ -47,6 +47,23 @@ const GLYPHS = [
   'M 1180 110 L 1216 110 L 1216 114 L 1206 116 L 1206 177 L 1246 177 L 1246 116 L 1236 114 L 1236 110 L 1272 110 L 1272 114 L 1262 116 L 1262 244 L 1272 246 L 1272 250 L 1236 250 L 1236 246 L 1246 244 L 1246 182 L 1206 182 L 1206 244 L 1216 246 L 1216 250 L 1180 250 L 1180 246 L 1190 244 L 1190 116 L 1180 114 Z'
 ]
 
+// Fine inline engraving pinstripes sitting inside the main vertical stems
+const INLINE_STEMS = [
+  [110, 112, 110, 246],
+  [214, 114, 214, 246],
+  [344, 114, 344, 246],
+  [400, 114, 400, 246],
+  [452, 114, 452, 246],
+  [525, 116, 525, 246],
+  [598, 114, 598, 246],
+  [654, 114, 654, 246],
+  [826, 114, 826, 226],
+  [928, 114, 928, 246],
+  [1026, 114, 1026, 246],
+  [1198, 114, 1198, 246],
+  [1254, 114, 1254, 246]
+]
+
 function Star4({ cx, cy, size = 9, className = 'ornament-star' }) {
   const s = size
   const i = size * 0.28
@@ -61,8 +78,8 @@ function Star4({ cx, cy, size = 9, className = 'ornament-star' }) {
 function Crosshair({ x, y }) {
   return (
     <g className="ornament-cross" aria-hidden="true">
-      <line x1={x - 5} y1={y} x2={x + 5} y2={y} />
-      <line x1={x} y1={y - 5} x2={x} y2={y + 5} />
+      <line x1={x - 6} y1={y} x2={x + 6} y2={y} />
+      <line x1={x} y1={y - 6} x2={x} y2={y + 6} />
     </g>
   )
 }
@@ -72,124 +89,191 @@ export default function StickmenName() {
     <div className="stickmen-stage">
       <svg
         className="stickmen-svg"
-        viewBox="0 0 1360 330"
+        viewBox="20 34 1320 272"
         role="img"
-        aria-label="Rishith Suresh in sculpted decorative lettering with animated stickmen"
+        aria-label="Rishith Suresh in luminous sculpted decorative lettering with animated stickmen"
       >
         <defs>
-          {/* Rich Deep Petrol-to-Lagoon Gradient Fill */}
+          {/* Deep Petrol-to-Lagoon Sculpted Fill */}
           <linearGradient id="glyphGrad" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stopColor="#001524" />
-            <stop offset="52%" stopColor="#004d57" />
+            <stop offset="48%" stopColor="#00555f" />
             <stop offset="100%" stopColor="#001524" />
           </linearGradient>
 
           {/* Animated Specular Metallic Sheen Sweeping Across Letters */}
           <linearGradient id="shimmerGrad" x1="-60%" y1="0%" x2="40%" y2="100%">
             <stop offset="0%" stopColor="#83c5be" stopOpacity="0" />
-            <stop offset="42%" stopColor="#ffecd1" stopOpacity="0.48" />
-            <stop offset="50%" stopColor="#ff7d00" stopOpacity="0.55" />
-            <stop offset="58%" stopColor="#edf6f9" stopOpacity="0.35" />
+            <stop offset="42%" stopColor="#ffecd1" stopOpacity="0.56" />
+            <stop offset="50%" stopColor="#ff7d00" stopOpacity="0.62" />
+            <stop offset="58%" stopColor="#edf6f9" stopOpacity="0.45" />
             <stop offset="100%" stopColor="#83c5be" stopOpacity="0" />
             <animateTransform
               attributeName="gradientTransform"
               type="translate"
               from="-1.2 0"
               to="2.2 0"
-              dur="5.8s"
+              dur="5.2s"
               repeatCount="indefinite"
             />
           </linearGradient>
 
+          {/* Luminous Soft Light Glow Behind the Text */}
+          <filter id="textGlow" x="-18%" y="-25%" width="136%" height="150%">
+            <feGaussianBlur stdDeviation="8" result="blurA" />
+            <feColorMatrix
+              in="blurA"
+              type="matrix"
+              values="0 0 0 0 1   0 0 0 0 0.72   0 0 0 0 0.42  0 0 0 0.72 0"
+              result="warmGlow"
+            />
+            <feGaussianBlur in="SourceGraphic" stdDeviation="3.5" result="blurB" />
+            <feColorMatrix
+              in="blurB"
+              type="matrix"
+              values="0 0 0 0 0.51   0 0 0 0 0.77   0 0 0 0 0.75  0 0 0 0.85 0"
+              result="tealGlow"
+            />
+            <feMerge>
+              <feMergeNode in="warmGlow" />
+              <feMergeNode in="tealGlow" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+
           <filter id="sculptShadow" x="-10%" y="-10%" width="125%" height="125%">
-            <feDropShadow dx="4" dy="6" stdDeviation="4" floodColor="#001524" floodOpacity="0.22" />
+            <feDropShadow dx="4" dy="6" stdDeviation="4" floodColor="#001524" floodOpacity="0.24" />
           </filter>
         </defs>
 
-        {/* Intricate Architectural Drafting Lines, Tangent Rays & Compass Circles */}
+        {/* Rich Multi-Layer Architectural Lines, Concentric Arcs & Flourishes */}
         <g aria-hidden="true">
-          {/* Horizontal typographic baselines & cap-height rules */}
-          <line x1="24" y1="80" x2="1336" y2="80" className="ornament-guide-soft" />
+          {/* Horizontal drafting rules + double framing lines */}
+          <line x1="24" y1="64" x2="1336" y2="64" className="ornament-guide-soft" />
+          <line x1="24" y1="80" x2="1336" y2="80" className="ornament-guide-dashed" />
           <line x1="24" y1="110" x2="1336" y2="110" className="ornament-guide" />
+          <line x1="24" y1="144" x2="1336" y2="144" className="ornament-guide-soft" />
           <line x1="24" y1="179" x2="1336" y2="179" className="ornament-guide-dashed" />
+          <line x1="24" y1="215" x2="1336" y2="215" className="ornament-guide-soft" />
           <line x1="24" y1="250" x2="1336" y2="250" className="ornament-guide" />
-          <line x1="24" y1="280" x2="1336" y2="280" className="ornament-guide-soft" />
+          <line x1="24" y1="282" x2="1336" y2="282" className="ornament-guide-soft" />
 
-          {/* Vertical stem alignment guides */}
-          <line x1="110" y1="44" x2="110" y2="296" className="ornament-guide-soft" />
-          <line x1="214" y1="54" x2="214" y2="290" className="ornament-guide-soft" />
-          <line x1="452" y1="48" x2="452" y2="294" className="ornament-guide-soft" />
-          <line x1="692" y1="40" x2="692" y2="300" className="ornament-guide" />
-          <line x1="852" y1="54" x2="852" y2="290" className="ornament-guide-soft" />
-          <line x1="1042" y1="48" x2="1042" y2="294" className="ornament-guide-soft" />
-          <line x1="1226" y1="54" x2="1226" y2="290" className="ornament-guide-soft" />
+          {/* Vertical stem alignment rules */}
+          <line x1="110" y1="36" x2="110" y2="298" className="ornament-guide-soft" />
+          <line x1="214" y1="46" x2="214" y2="294" className="ornament-guide-soft" />
+          <line x1="372" y1="48" x2="372" y2="292" className="ornament-guide-soft" />
+          <line x1="452" y1="44" x2="452" y2="296" className="ornament-guide-soft" />
+          <line x1="525" y1="48" x2="525" y2="292" className="ornament-guide-soft" />
+          <line x1="692" y1="36" x2="692" y2="300" className="ornament-guide" />
+          <line x1="754" y1="46" x2="754" y2="294" className="ornament-guide-soft" />
+          <line x1="852" y1="46" x2="852" y2="292" className="ornament-guide-soft" />
+          <line x1="952" y1="48" x2="952" y2="292" className="ornament-guide-soft" />
+          <line x1="1042" y1="44" x2="1042" y2="296" className="ornament-guide-soft" />
+          <line x1="1226" y1="46" x2="1226" y2="294" className="ornament-guide-soft" />
 
           {/* Diagonal geometric rays */}
-          <line x1="70" y1="274" x2="290" y2="54" className="ornament-guide-soft" />
-          <line x1="630" y1="62" x2="825" y2="278" className="ornament-guide-soft" />
-          <line x1="960" y1="280" x2="1180" y2="60" className="ornament-guide-soft" />
+          <line x1="64" y1="280" x2="304" y2="44" className="ornament-guide-soft" />
+          <line x1="276" y1="52" x2="510" y2="286" className="ornament-guide-soft" />
+          <line x1="612" y1="54" x2="840" y2="282" className="ornament-guide-soft" />
+          <line x1="940" y1="286" x2="1176" y2="50" className="ornament-guide-soft" />
+          <line x1="1070" y1="50" x2="1300" y2="280" className="ornament-guide-soft" />
 
-          {/* Nested concentric drafting circles */}
-          <circle cx="118" cy="144" r="78" className="ornament-arc" />
-          <circle cx="118" cy="144" r="56" className="ornament-arc-accent" />
-          <circle cx="452" cy="132" r="68" className="ornament-arc" />
-          <circle cx="452" cy="132" r="42" className="ornament-arc-dashed" />
-          <circle cx="754" cy="192" r="76" className="ornament-arc" />
-          <circle cx="754" cy="192" r="52" className="ornament-arc-accent" />
-          <circle cx="1042" cy="178" r="66" className="ornament-arc" />
-          <circle cx="1226" cy="180" r="58" className="ornament-arc-dashed" />
+          {/* Nested concentric drafting circles & orbits */}
+          <circle cx="118" cy="144" r="88" className="ornament-arc-dashed" />
+          <circle cx="118" cy="144" r="70" className="ornament-arc" />
+          <circle cx="118" cy="144" r="50" className="ornament-arc-accent" />
+          <circle cx="372" cy="180" r="62" className="ornament-arc" />
+          <circle cx="452" cy="132" r="74" className="ornament-arc" />
+          <circle cx="452" cy="132" r="46" className="ornament-arc-dashed" />
+          <circle cx="754" cy="192" r="84" className="ornament-arc" />
+          <circle cx="754" cy="192" r="56" className="ornament-arc-accent" />
+          <circle cx="952" cy="166" r="54" className="ornament-arc-dashed" />
+          <circle cx="1042" cy="178" r="72" className="ornament-arc" />
+          <circle cx="1226" cy="180" r="64" className="ornament-arc-dashed" />
+          <ellipse cx="692" cy="180" rx="580" ry="118" className="ornament-orbit" />
 
           {/* Crosshair ticks at line intersections */}
           <Crosshair x={692} y={110} />
+          <Crosshair x={692} y={179} />
           <Crosshair x={692} y={250} />
           <Crosshair x={110} y={250} />
+          <Crosshair x={452} y={110} />
           <Crosshair x={1042} y={110} />
+          <Crosshair x={1226} y={250} />
 
           {/* Ornamental spiral filigree tendrils */}
-          <path d="M 102 106 C 58 72, 42 140, 90 156 C 122 166, 120 124, 96 130" className="ornament-curl" />
-          <path d="M 146 92 C 180 72, 204 120, 176 148" className="ornament-curl-warm" />
-          <path d="M 304 114 C 330 92, 344 126, 322 138" className="ornament-curl" />
-          <path d="M 566 136 C 588 152, 576 176, 554 166" className="ornament-curl-warm" />
-          <path d="M 788 106 C 822 86, 834 134, 798 148" className="ornament-curl" />
-          <path d="M 716 244 C 680 272, 698 298, 734 278" className="ornament-curl-warm" />
-          <path d="M 888 146 C 916 128, 924 164, 900 174" className="ornament-curl" />
-          <path d="M 1076 136 C 1102 120, 1114 152, 1088 160" className="ornament-curl-warm" />
-          <path d="M 1262 212 C 1296 196, 1306 238, 1278 248" className="ornament-curl" />
+          <path d="M 102 106 C 54 68, 36 142, 88 160 C 122 170, 122 122, 96 130" className="ornament-curl" />
+          <path d="M 146 92 C 182 70, 208 122, 176 152" className="ornament-curl-warm" />
+          <path d="M 184 250 C 206 276, 232 264, 224 246" className="ornament-curl" />
+          <path d="M 304 114 C 334 90, 348 126, 322 140" className="ornament-curl" />
+          <path d="M 566 136 C 592 152, 578 180, 552 168" className="ornament-curl-warm" />
+          <path d="M 788 106 C 826 84, 838 136, 798 152" className="ornament-curl" />
+          <path d="M 716 244 C 676 274, 696 302, 736 280" className="ornament-curl-warm" />
+          <path d="M 888 146 C 918 126, 928 166, 900 178" className="ornament-curl" />
+          <path d="M 988 144 C 1014 130, 1022 162, 998 170" className="ornament-curl-warm" />
+          <path d="M 1076 136 C 1106 118, 1118 154, 1088 164" className="ornament-curl-warm" />
+          <path d="M 1164 212 C 1192 230, 1182 266, 1152 256" className="ornament-curl" />
+          <path d="M 1262 212 C 1298 194, 1310 240, 1278 252" className="ornament-curl" />
 
           {/* Decorative ball terminals */}
           <circle cx="164" cy="94" r="5.5" fill="#ff7d00" stroke="#001524" strokeWidth="1.4" />
           <circle cx="722" cy="252" r="4.2" fill="#e29578" stroke="#001524" strokeWidth="1.3" />
-          <circle cx="322" cy="138" r="3" fill="#006d77" />
-          <circle cx="1088" cy="160" r="3.2" fill="#ff7d00" />
+          <circle cx="322" cy="140" r="3" fill="#006d77" />
+          <circle cx="1088" cy="164" r="3.2" fill="#ff7d00" />
+          <circle cx="552" cy="168" r="2.8" fill="#83c5be" />
 
           {/* Twinkling 4-point diamond stars */}
-          <Star4 cx={214} cy={86} size={10} className="ornament-star anim-twinkle" />
-          <Star4 cx={452} cy={84} size={10.5} className="ornament-star anim-twinkle-delay" />
-          <Star4 cx={778} cy={260} size={8} className="ornament-star anim-twinkle" />
-          <Star4 cx={1126} cy={86} size={7} className="ornament-star-teal anim-twinkle-delay" />
+          <Star4 cx={214} cy={86} size={10.5} className="ornament-star anim-twinkle" />
+          <Star4 cx={452} cy={84} size={11} className="ornament-star anim-twinkle-delay" />
+          <Star4 cx={778} cy={260} size={8.5} className="ornament-star anim-twinkle" />
+          <Star4 cx={1126} cy={86} size={7.5} className="ornament-star-teal anim-twinkle-delay" />
         </g>
 
-        {/* LAYER 1: Offset 3D Warm Peach-Terracotta Extrusion Shadow */}
-        <g transform="translate(5, 5)" aria-hidden="true">
+        {/* LAYER 1: Luminous Soft Light Glow Halo Behind Letterforms */}
+        <g filter="url(#textGlow)" aria-hidden="true">
+          {GLYPHS.map((d, idx) => (
+            <path key={`glow-${idx}`} d={d} className="glyph-glow-base" fillRule="evenodd" />
+          ))}
+        </g>
+
+        {/* LAYER 2: Offset 3D Warm Peach-Terracotta Extrusion Shadow */}
+        <g transform="translate(5.5, 5.5)" aria-hidden="true">
           {GLYPHS.map((d, idx) => (
             <path key={`ext-${idx}`} d={d} className="glyph-extrude" fillRule="evenodd" />
           ))}
         </g>
 
-        {/* LAYER 2: Crisp Outer Offset Keyline Echo */}
-        <g transform="translate(-2.5, -2.5)" aria-hidden="true">
+        {/* LAYER 3: Outer Offset Keyline + Secondary Fine Double-Contour */}
+        <g transform="translate(-3, -3)" aria-hidden="true">
           {GLYPHS.map((d, idx) => (
             <path key={`key-${idx}`} d={d} className="glyph-keyline" fillRule="evenodd" />
           ))}
         </g>
+        <g transform="translate(2.5, -2)" aria-hidden="true">
+          {GLYPHS.map((d, idx) => (
+            <path key={`key2-${idx}`} d={d} className="glyph-keyline-warm" fillRule="evenodd" />
+          ))}
+        </g>
 
-        {/* LAYER 3: Main Sculpted Petrol-to-Teal Glyphs + Animated Specular Shimmer */}
+        {/* LAYER 4: Main Sculpted Petrol-to-Teal Glyphs + Specular Shimmer + Inline Engraving */}
         <g filter="url(#sculptShadow)">
           {GLYPHS.map((d, idx) => (
             <g key={`main-${idx}`}>
               <path d={d} fill="url(#glyphGrad)" className="glyph-main" fillRule="evenodd" />
               <path d={d} fill="url(#shimmerGrad)" fillRule="evenodd" pointerEvents="none" />
+              <path d={d} className="glyph-inline-rim" fillRule="evenodd" pointerEvents="none" />
             </g>
+          ))}
+          {INLINE_STEMS.map(([x1, y1, x2, y2], idx) => (
+            <line
+              key={`in-${idx}`}
+              x1={x1}
+              y1={y1}
+              x2={x2}
+              y2={y2}
+              className="glyph-inline-stem"
+              pointerEvents="none"
+            />
           ))}
         </g>
 
