@@ -274,29 +274,82 @@ button {
   display: block;
 }
 
-.bespoke-glyph {
-  fill: rgba(237, 246, 249, 0.46);
+.glyph-main {
   stroke: var(--deep);
-  stroke-width: 2.3px;
+  stroke-width: 1.1px;
   stroke-linejoin: round;
+}
+
+.glyph-extrude {
+  fill: var(--terracotta);
+  opacity: 0.72;
+}
+
+.glyph-keyline {
+  fill: none;
+  stroke: var(--cream);
+  stroke-width: 1.4px;
+  opacity: 0.92;
 }
 
 .ornament-guide {
   stroke: var(--teal-mid);
+  stroke-width: 0.8;
+  opacity: 0.3;
+}
+
+.ornament-guide-soft {
+  stroke: var(--teal-deep);
   stroke-width: 0.65;
-  opacity: 0.22;
+  opacity: 0.16;
+}
+
+.ornament-guide-dashed {
+  stroke: var(--rust);
+  stroke-width: 0.75;
+  stroke-dasharray: 4 6;
+  opacity: 0.25;
 }
 
 .ornament-arc {
   fill: none;
   stroke: var(--teal-mid);
-  stroke-width: 0.9;
+  stroke-width: 0.95;
   opacity: 0.36;
+}
+
+.ornament-arc-accent {
+  fill: none;
+  stroke: var(--terracotta);
+  stroke-width: 0.9;
+  opacity: 0.48;
+}
+
+.ornament-arc-dashed {
+  fill: none;
+  stroke: var(--teal-deep);
+  stroke-width: 0.85;
+  stroke-dasharray: 3 5;
+  opacity: 0.34;
+}
+
+.ornament-cross line {
+  stroke: var(--rust);
+  stroke-width: 1.1;
+  opacity: 0.55;
 }
 
 .ornament-curl {
   fill: none;
   stroke: var(--deep);
+  stroke-width: 1.25;
+  stroke-linecap: round;
+  opacity: 0.72;
+}
+
+.ornament-curl-warm {
+  fill: none;
+  stroke: var(--rust);
   stroke-width: 1.25;
   stroke-linecap: round;
   opacity: 0.68;
@@ -305,7 +358,30 @@ button {
 .ornament-star {
   fill: var(--tangerine);
   stroke: var(--deep);
-  stroke-width: 0.85;
+  stroke-width: 0.8;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.ornament-star-teal {
+  fill: var(--seafoam);
+  stroke: var(--deep);
+  stroke-width: 0.8;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.anim-twinkle {
+  animation: twinkle 2.6s ease-in-out infinite;
+}
+
+.anim-twinkle-delay {
+  animation: twinkle 2.6s ease-in-out 1.2s infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.95; }
+  50% { transform: scale(1.28) rotate(12deg); opacity: 0.65; }
 }
 
 .stick-limb {
