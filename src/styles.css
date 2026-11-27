@@ -474,28 +474,34 @@ button {
   animation: kick 1.2s ease-in-out infinite alternate;
 }
 
-.anim-sprint {
-  animation: sprint 3.4s ease-in-out infinite alternate;
+.anim-kick-soft {
+  transform-origin: 0px -1px;
+  animation: kick-soft 1.4s ease-in-out infinite alternate;
+}
+
+.anim-sprint,
+.anim-sprint-tight {
+  animation: sprint-tight 2.6s ease-in-out infinite alternate;
 }
 
 .anim-stride-a {
   transform-origin: -1px -8px;
-  animation: stride-a 0.42s ease-in-out infinite alternate;
+  animation: stride-a 0.4s ease-in-out infinite alternate;
 }
 
 .anim-stride-b {
   transform-origin: -1px -8px;
-  animation: stride-b 0.42s ease-in-out infinite alternate;
+  animation: stride-b 0.4s ease-in-out infinite alternate;
 }
 
 .anim-arm-a {
   transform-origin: 0.5px -18px;
-  animation: stride-b 0.42s ease-in-out infinite alternate;
+  animation: stride-b 0.4s ease-in-out infinite alternate;
 }
 
 .anim-arm-b {
   transform-origin: 0.5px -18px;
-  animation: stride-a 0.42s ease-in-out infinite alternate;
+  animation: stride-a 0.4s ease-in-out infinite alternate;
 }
 
 .anim-pushup {
@@ -509,63 +515,125 @@ button {
 }
 
 .anim-lift {
-  animation: lift 1.7s ease-in-out infinite;
+  animation: lift 1.7s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+}
+
+.anim-squat {
+  animation: squat 1.7s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
 }
 
 .anim-bob {
   animation: bob 2.1s ease-in-out infinite alternate;
 }
 
+.anim-bob-soft {
+  animation: bob-soft 1.8s ease-in-out infinite alternate;
+}
+
+.anim-type {
+  transform-origin: 0px -13px;
+  animation: type-tap 0.36s ease-in-out infinite alternate;
+}
+
+.anim-hands {
+  transform-origin: 0px -17px;
+  animation: hands-toss 0.7s ease-in-out infinite alternate;
+}
+
 .anim-skate-tight {
-  animation: skate-tight 3.8s ease-in-out infinite;
+  transform-origin: 0px -2px;
+  animation: skate-tight 3.4s ease-in-out infinite;
 }
 
 @keyframes skate-tight {
-  0% { transform: translate(-20px, 0px) rotate(0deg); }
-  25% { transform: translate(-4px, 0px) rotate(0deg); }
-  38% { transform: translate(4px, -15px) rotate(-14deg); }
-  50% { transform: translate(18px, 0px) rotate(0deg); }
-  75% { transform: translate(6px, 0px) rotate(0deg); }
-  88% { transform: translate(-6px, -13px) rotate(12deg); }
-  100% { transform: translate(-20px, 0px) rotate(0deg); }
+  0% { transform: translate(-18px, 0px) rotate(0deg); }
+  22% { transform: translate(-4px, 0px) rotate(0deg); }
+  36% { transform: translate(4px, -14px) rotate(-13deg); }
+  50% { transform: translate(17px, 0px) rotate(0deg); }
+  74% { transform: translate(5px, 0px) rotate(0deg); }
+  88% { transform: translate(-6px, -12px) rotate(11deg); }
+  100% { transform: translate(-18px, 0px) rotate(0deg); }
 }
 
 .anim-climb {
   animation: climb 2.8s ease-in-out infinite alternate;
 }
 
+.anim-climb-short {
+  animation: climb-short 2.6s ease-in-out infinite alternate;
+}
+
 .anim-jump {
   animation: jump 1.25s cubic-bezier(0.35, 0.85, 0.4, 1) infinite;
 }
 
+.anim-jump-soft {
+  animation: jump-soft 1.6s cubic-bezier(0.35, 0.85, 0.4, 1) infinite;
+}
+
 .anim-wobble {
   transform-origin: 0px 0px;
-  animation: wobble 2s ease-in-out infinite alternate;
+  animation: wobble 2.1s ease-in-out infinite alternate;
 }
 
 .anim-wave {
-  transform-origin: 0px -20px;
+  transform-origin: 0px -19px;
   animation: wave-arm 0.85s ease-in-out infinite alternate;
 }
 
-@keyframes kick {
-  from { transform: rotate(-16deg); }
-  to { transform: rotate(30deg); }
+.anim-wave-left {
+  transform-origin: 0px -18px;
+  animation: wave-left 0.9s ease-in-out infinite alternate;
 }
 
-@keyframes sprint {
-  from { transform: translateX(-32px); }
-  to { transform: translateX(32px); }
+.anim-wave-18 {
+  transform-origin: 0px -18px;
+  animation: wave-arm 0.85s ease-in-out infinite alternate;
+}
+
+.anim-throw {
+  transform-origin: 0px -17px;
+  animation: throw-arm 3.4s ease-in-out infinite;
+}
+
+.anim-peek {
+  transform-origin: 0px 0px;
+  animation: peek 2.8s ease-in-out infinite alternate;
+}
+
+.anim-wrench {
+  transform-origin: 0px -16px;
+  animation: wrench-turn 1.4s ease-in-out infinite alternate;
+}
+
+.anim-surf {
+  transform-origin: 0px -2px;
+  animation: surf-rock 2.2s ease-in-out infinite alternate;
+}
+
+@keyframes kick {
+  from { transform: rotate(-14deg); }
+  to { transform: rotate(28deg); }
+}
+
+@keyframes kick-soft {
+  from { transform: rotate(-12deg); }
+  to { transform: rotate(24deg); }
+}
+
+@keyframes sprint-tight {
+  from { transform: translateX(-15px); }
+  to { transform: translateX(15px); }
 }
 
 @keyframes stride-a {
-  from { transform: rotate(-24deg); }
-  to { transform: rotate(22deg); }
+  from { transform: rotate(-22deg); }
+  to { transform: rotate(20deg); }
 }
 
 @keyframes stride-b {
-  from { transform: rotate(22deg); }
-  to { transform: rotate(-24deg); }
+  from { transform: rotate(20deg); }
+  to { transform: rotate(-22deg); }
 }
 
 @keyframes pushup {
@@ -574,13 +642,18 @@ button {
 }
 
 @keyframes swing {
-  from { transform: rotate(-24deg); }
-  to { transform: rotate(24deg); }
+  from { transform: rotate(-22deg); }
+  to { transform: rotate(22deg); }
 }
 
 @keyframes lift {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-8px); }
+  0%, 100% { transform: translateY(2px); }
+  50% { transform: translateY(-9px); }
+}
+
+@keyframes squat {
+  0%, 100% { transform: translateY(1.5px); }
+  50% { transform: translateY(-2.5px); }
 }
 
 @keyframes bob {
@@ -588,16 +661,39 @@ button {
   to { transform: translateY(4px); }
 }
 
-/* clean keyframe slot */
+@keyframes bob-soft {
+  from { transform: translateY(0px); }
+  to { transform: translateY(-2.5px); }
+}
+
+@keyframes type-tap {
+  from { transform: rotate(-6deg); }
+  to { transform: rotate(6deg); }
+}
+
+@keyframes hands-toss {
+  from { transform: rotate(-7deg); }
+  to { transform: rotate(7deg); }
+}
 
 @keyframes climb {
-  from { transform: translateY(22px); }
-  to { transform: translateY(-18px); }
+  from { transform: translateY(20px); }
+  to { transform: translateY(-16px); }
+}
+
+@keyframes climb-short {
+  from { transform: translateY(12px); }
+  to { transform: translateY(-12px); }
 }
 
 @keyframes jump {
   0%, 100% { transform: translateY(0px); }
   45% { transform: translateY(-15px); }
+}
+
+@keyframes jump-soft {
+  0%, 100% { transform: translateY(0px); }
+  45% { transform: translateY(-10px); }
 }
 
 @keyframes wobble {
@@ -608,6 +704,33 @@ button {
 @keyframes wave-arm {
   from { transform: rotate(-18deg); }
   to { transform: rotate(24deg); }
+}
+
+@keyframes wave-left {
+  from { transform: rotate(-24deg); }
+  to { transform: rotate(16deg); }
+}
+
+@keyframes throw-arm {
+  0%, 72%, 100% { transform: rotate(-22deg); }
+  12% { transform: rotate(18deg); }
+  25% { transform: rotate(-10deg); }
+}
+
+@keyframes peek {
+  from { transform: rotate(-6deg); }
+  to { transform: rotate(7deg); }
+}
+
+@keyframes wrench-turn {
+  from { transform: rotate(-16deg); }
+  to { transform: rotate(22deg); }
+}
+
+@keyframes surf-rock {
+  0% { transform: translate(0px, 0px) rotate(-7deg); }
+  50% { transform: translate(6px, -5px) rotate(4deg); }
+  100% { transform: translate(-4px, 2px) rotate(8deg); }
 }
 
 .anim-orbit-cw {
@@ -627,41 +750,157 @@ button {
 }
 
 .anim-juggle-a {
-  animation: juggle-a 1.4s ease-in-out infinite;
+  animation: juggle-a 1.65s ease-in-out infinite;
 }
 
 .anim-juggle-b {
-  animation: juggle-b 1.4s ease-in-out infinite;
+  animation: juggle-b 1.65s ease-in-out infinite;
 }
 
 .anim-juggle-c {
-  animation: juggle-c 1.4s ease-in-out infinite;
+  animation: juggle-c 1.65s ease-in-out infinite;
 }
 
 @keyframes juggle-a {
   0%, 100% { transform: translate(0px, 0px); }
-  50% { transform: translate(7px, -11px); }
+  33% { transform: translate(7px, -11px); }
+  66% { transform: translate(14px, 0px); }
 }
 
 @keyframes juggle-b {
   0%, 100% { transform: translate(0px, 0px); }
-  50% { transform: translate(7px, 9px); }
+  33% { transform: translate(7px, 11px); }
+  66% { transform: translate(-7px, 11px); }
 }
 
 @keyframes juggle-c {
   0%, 100% { transform: translate(0px, 0px); }
-  50% { transform: translate(-14px, 2px); }
+  33% { transform: translate(-14px, 0px); }
+  66% { transform: translate(-7px, -11px); }
 }
 
 .anim-plane {
+  transform-box: fill-box;
+  transform-origin: center;
   animation: fly-plane 3.4s ease-in-out infinite;
 }
 
 @keyframes fly-plane {
   0% { transform: translate(0px, 0px) rotate(0deg); opacity: 0; }
-  12% { transform: translate(4px, -2px) rotate(-6deg); opacity: 1; }
+  12% { transform: translate(5px, -3px) rotate(-6deg); opacity: 1; }
   75% { transform: translate(46px, -22px) rotate(-14deg); opacity: 1; }
-  100% { transform: translate(62px, -28px) rotate(-18deg); opacity: 0; }
+  100% { transform: translate(60px, -28px) rotate(-18deg); opacity: 0; }
+}
+
+/* =========================================
+   SECTION STICKMEN (ACROSS PORTFOLIO)
+   ========================================= */
+
+.section-stickman {
+  pointer-events: none;
+  display: inline-flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 6;
+}
+
+.section-stickman svg {
+  display: block;
+  overflow: visible;
+}
+
+.stickman-on-dark .stick-limb {
+  stroke: var(--ice);
+}
+
+.stickman-on-dark .stick-prop {
+  stroke: var(--peach);
+}
+
+.stickman-on-dark circle {
+  stroke: var(--cream);
+}
+
+.hero-scroll-wrap {
+  margin-top: 32px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.stickman-scroll-guide {
+  transform: translateY(-2px);
+}
+
+.stickman-about-ledge {
+  position: absolute;
+  top: -34px;
+  right: 34px;
+}
+
+.stickman-skills-ledge {
+  position: absolute;
+  top: -42px;
+  right: 34px;
+}
+
+.stickman-pillar-corner {
+  position: absolute;
+  top: -36px;
+  right: 22px;
+}
+
+.stickman-stage-ledge {
+  position: absolute;
+  top: -32px;
+  right: 36px;
+}
+
+.all-projects-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.stickman-inline {
+  margin-bottom: -4px;
+}
+
+.stickman-research-ledge {
+  position: absolute;
+  top: -36px;
+  left: calc(48% - 20px);
+}
+
+.stickman-wave-rider {
+  position: absolute;
+  bottom: 22px;
+  right: 26px;
+}
+
+.stickman-timeline-climber {
+  position: absolute;
+  top: 52px;
+  left: -18px;
+  z-index: 4;
+}
+
+.stickman-github-ledge {
+  position: absolute;
+  right: 128px;
+  bottom: -4px;
+}
+
+.stickman-contact-ledge {
+  position: absolute;
+  top: -38px;
+  right: 64px;
+}
+
+.stickman-footer-waver {
+  position: absolute;
+  top: -38px;
+  right: 28px;
 }
 
 .hero-lead {
@@ -723,7 +962,6 @@ button {
 }
 
 .hero-scroll-cue {
-  margin-top: 32px;
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -801,6 +1039,7 @@ button {
 }
 
 .about-lead-card {
+  position: relative;
   background: linear-gradient(155deg, var(--peach) 0%, var(--cream) 100%);
   color: var(--deep);
   border: 1px solid var(--line-warm);
@@ -847,6 +1086,7 @@ button {
 }
 
 .pillar-card {
+  position: relative;
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 20px;
@@ -948,9 +1188,12 @@ button {
   transform: translate(3px, -3px);
 }
 
-.showcase-stage {
+.showcase-stage-wrap {
   position: sticky;
   top: 94px;
+}
+
+.showcase-stage {
   border-radius: 22px;
   overflow: hidden;
   background: var(--deep);
@@ -1076,12 +1319,13 @@ button {
 ========================================= */
 
 .research-panel {
+  position: relative;
   display: grid;
   grid-template-columns: 1fr 1.05fr;
   background: linear-gradient(155deg, #ffffff 0%, var(--cream) 100%);
   border: 1px solid var(--line);
   border-radius: 24px;
-  overflow: hidden;
+  overflow: visible;
   box-shadow: var(--shadow);
 }
 
@@ -1111,6 +1355,7 @@ button {
   position: relative;
   min-height: 360px;
   background: linear-gradient(145deg, var(--deep), var(--teal-mid));
+  border-radius: 0 23px 23px 0;
   overflow: hidden;
 }
 
@@ -1131,6 +1376,7 @@ button {
 }
 
 .timeline {
+  position: relative;
   border-left: 1px solid var(--line);
   margin-left: 8px;
 }
@@ -1193,6 +1439,7 @@ button {
 }
 
 .skills-panel {
+  position: relative;
   background: linear-gradient(155deg, #ffffff 0%, var(--peach) 100%);
   border: 1px solid var(--line-warm);
   border-radius: 22px;
@@ -1256,6 +1503,7 @@ button {
 ========================================= */
 
 .github-header {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -1343,6 +1591,7 @@ button {
 ========================================= */
 
 .contact-card {
+  position: relative;
   display: grid;
   grid-template-columns: 1fr 0.9fr;
   gap: 52px;
@@ -1464,6 +1713,7 @@ button {
 ========================================= */
 
 .footer {
+  position: relative;
   border-top: 1px solid var(--line);
   min-height: 88px;
   display: flex;
@@ -1666,10 +1916,16 @@ button {
     grid-template-columns: 1fr;
   }
 
-  .showcase-stage { position: static; }
+  .showcase-stage-wrap { position: static; }
   .research-canvas-wrap {
     border-top: 1px solid var(--line);
+    border-radius: 0 0 23px 23px;
     min-height: 260px;
+  }
+
+  .stickman-research-ledge {
+    left: auto;
+    right: 36px;
   }
 
   .detail-content {
@@ -1715,6 +1971,10 @@ button {
   }
 
   .contact-card { padding: 28px 22px; }
+
+  .stickman-github-ledge { right: 112px; }
+  .stickman-timeline-climber { left: -14px; }
+  .stickman-contact-ledge { right: 30px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

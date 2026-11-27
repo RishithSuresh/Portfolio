@@ -1,5 +1,6 @@
 import { experience, skills } from '../data/site'
 import Reveal from './Reveal'
+import SectionStickman from './SectionStickman'
 
 export default function Experience() {
   return (
@@ -18,6 +19,7 @@ export default function Experience() {
 
       <div className="journey-grid">
         <div className="timeline">
+          <SectionStickman variant="climber" className="stickman-timeline-climber" width={34} height={86} />
           {experience.map((e, i) => (
             <Reveal key={e.organization} delay={i * 0.06} className="timeline-item">
               <span className="timeline-dot" />
@@ -32,6 +34,7 @@ export default function Experience() {
         </div>
 
         <div className="skills-panel">
+          <SectionStickman variant="juggler" className="stickman-skills-ledge" width={40} height={46} />
           <span className="eyebrow">Toolkit</span>
           <h3>
             Technologies

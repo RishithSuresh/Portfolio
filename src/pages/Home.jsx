@@ -3,6 +3,7 @@ import { motion } from 'motion/react'
 import { profile } from '../data/site'
 import HeroBackground from '../components/HeroBackground'
 import StickmenName from '../components/StickmenName'
+import SectionStickman from '../components/SectionStickman'
 import Magnetic from '../components/Magnetic'
 import BentoIntro from '../components/BentoIntro'
 import Projects from '../components/Projects'
@@ -74,9 +75,12 @@ export default function Home() {
             </Magnetic>
           </motion.div>
 
-          <a href="#about" className="hero-scroll-cue" aria-label="Scroll to About">
-            <ArrowDown size={14} /> Scroll to explore
-          </a>
+          <div className="hero-scroll-wrap">
+            <a href="#about" className="hero-scroll-cue" aria-label="Scroll to About">
+              <ArrowDown size={14} /> Scroll to explore
+            </a>
+            <SectionStickman variant="guide" className="stickman-scroll-guide" width={28} height={34} />
+          </div>
         </div>
       </section>
 

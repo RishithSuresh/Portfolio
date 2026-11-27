@@ -5,20 +5,20 @@ const BASELINE_Y = 230
 const FONT_SIZE = 224
 const CENTER_X = 680
 
-// Default anchors derived from Maellen-e9j06.otf advance widths (total 4889 UPM)
+// Default anchors verified from Maellen-e9j06.otf contours at 224px (BASELINE_Y = 230)
 const DEFAULT_SPOTS = [
-  { x: 256, y: 74 },  // 0: R top arch (sitting)
-  { x: 432, y: 162 }, // 1: s1 top (juggling)
-  { x: 492, y: 68 },  // 2: h1 tall loop (sprinting)
-  { x: 545, y: 142 }, // 3: i2 top (lifting)
-  { x: 615, y: 66 },  // 4: t_h ascender (swinging)
-  { x: 696, y: 92 },  // 5: rope climber between Rishith & Suresh
-  { x: 838, y: 72 },  // 6: S2 arch (fishing)
-  { x: 970, y: 160 }, // 7: u top (paper plane)
-  { x: 1034, y: 140 }, // 8: r top (skateboarding)
-  { x: 1094, y: 165 }, // 9: e top (jumping)
-  { x: 1204, y: 68 }, // 10: h2 tall loop (handstand)
-  { x: 1272, y: 230 } // 11: baseline after h2 (waving)
+  { x: 192, y: 145 },  // 0: R left sweeping curl (waving hello)
+  { x: 282, y: 66 },   // 1: R wide upper crown (skateboarding ollie)
+  { x: 426, y: 143 },  // 2: i1 slanted dot (weightlifting)
+  { x: 466, y: 162 },  // 3: s1 smooth dome (3-ball circular juggle)
+  { x: 524, y: 66 },   // 4: h1 narrow tall crown (handstand balance)
+  { x: 570, y: 143 },  // 5: i2 slanted dot (cheerful jumper in clear chimney)
+  { x: 636, y: 63 },   // 6: t_h twin-loop broad crown (sprinter)
+  { x: 681, y: 114 },  // 7: t_h projecting right crossbar tip (rope climber into canyon)
+  { x: 820, y: 111 },  // 8: S smooth left plateau (laptop coder)
+  { x: 930, y: 67 },   // 9: S towering right hood (fisherman over u valley)
+  { x: 1026, y: 141 }, // 10: r sharp crest (paper airplane launcher over e s)
+  { x: 1216, y: 66 }   // 11: h2 tall loop crown (victory star cheer)
 ]
 
 function Star4({ cx, cy, size = 8.5, className = 'ornament-star' }) {
@@ -54,55 +54,101 @@ export default function StickmenName() {
         ctx.fillText(DISPLAY_NAME, CENTER_X, BASELINE_Y)
 
         const metrics = ctx.measureText(DISPLAY_NAME)
-        const totalW = metrics.width || 1100
+        const totalW = metrics.width || 1095
         const startX = CENTER_X - totalW / 2
         const img = ctx.getImageData(0, 0, canvas.width, canvas.height).data
 
-        // Scan vertically around target x to locate exact topmost ink pixel
+        const hasInk = (x, y) => {
+          const px = Math.round(x)
+          const py = Math.round(y)
+          if (px < 0 || px >= canvas.width || py < 0 || py >= canvas.height) return false
+          return img[(py * canvas.width + px) * 4 + 3] > 85
+        }
+
         const findTopY = (targetX, minY = 20, maxY = BASELINE_Y - 6) => {
           const cx = Math.round(targetX)
           for (let y = minY; y <= maxY; y++) {
-            for (let dx = -2; dx <= 2; dx++) {
-              const px = cx + dx
-              if (px < 0 || px >= canvas.width) continue
-              const alpha = img[(y * canvas.width + px) * 4 + 3]
-              if (alpha > 80) return y
+            for (let dx = -1; dx <= 1; dx++) {
+              if (hasInk(cx + dx, y)) return y
             }
           }
           return null
         }
 
-        // Exact fractional horizontal positions across the 4889-unit Maellen string
-        const ratios = [
-          0.145, // 0: R arch
-          0.288, // 1: s1
-          0.342, // 2: h1
-          0.384, // 3: i2
-          0.445, // 4: t_h
-          0.514, // 5: gap between words
-          0.635, // 6: S2 arch
-          0.76,  // 7: u
-          0.816, // 8: r
-          0.868, // 9: e
-          0.968, // 10: h2
-          1.028  // 11: baseline wave
+        // Find the peak crown (lowest y) across a narrow horizontal window [rMin, rMax]
+        const findCrownSpot = (rMin, rMax, fallback, minY = 20, maxY = BASELINE_Y - 6) => {
+          const xStart = Math.round(startX + totalW * rMin)
+          const xEnd = Math.round(startX + totalW * rMax)
+          let bestY = Infinity
+          const bestXs = []
+
+          for (let x = xStart; x <= xEnd; x += 2) {
+            const y = findTopY(x, minY, maxY)
+            if (y !== null) {
+              if (y < bestY - 1) {
+                bestY = y
+                bestXs.length = 0
+                bestXs.push(x)
+              } else if (Math.abs(y - bestY) <= 1) {
+                bestXs.push(x)
+              }
+            }
+          }
+
+          if (bestXs.length === 0) return fallback
+          const midX = bestXs[Math.floor(bestXs.length / 2)]
+          return { x: midX, y: bestY }
+        }
+
+        // Find the rightmost pixel of a projecting crossbar (e.g. t_h)
+        const findCrossbarTip = (rMin, rMax, yMin, yMax, fallback) => {
+          const xStart = Math.round(startX + totalW * rMin)
+          const xEnd = Math.round(startX + totalW * rMax)
+          for (let x = xEnd; x >= xStart; x--) {
+            for (let y = yMin; y <= yMax; y++) {
+              if (hasInk(x, y)) return { x: x - 1, y }
+            }
+          }
+          return fallback
+        }
+
+        const specs = [
+          // 0: R left sweeping curl
+          () => {
+            const x = Math.round(startX + totalW * 0.054)
+            return { x, y: findTopY(x, 120, 175) ?? DEFAULT_SPOTS[0].y }
+          },
+          // 1: R wide upper crown
+          () => findCrownSpot(0.125, 0.148, DEFAULT_SPOTS[1], 45, 95),
+          // 2: i1 slanted dot
+          () => findCrownSpot(0.258, 0.278, DEFAULT_SPOTS[2], 125, 160),
+          // 3: s1 smooth dome
+          () => findCrownSpot(0.295, 0.312, DEFAULT_SPOTS[3], 145, 185),
+          // 4: h1 tall narrow loop crown
+          () => findCrownSpot(0.348, 0.368, DEFAULT_SPOTS[4], 40, 95),
+          // 5: i2 slanted dot
+          () => findCrownSpot(0.392, 0.410, DEFAULT_SPOTS[5], 125, 160),
+          // 6: t_h broad twin-loop top
+          () => findCrownSpot(0.452, 0.470, DEFAULT_SPOTS[6], 40, 95),
+          // 7: t_h right projecting crossbar tip (rope anchor)
+          () => findCrossbarTip(0.488, 0.518, 102, 126, DEFAULT_SPOTS[7]),
+          // 8: S smooth left plateau
+          () => {
+            const x = Math.round(startX + totalW * 0.628)
+            return { x, y: findTopY(x, 96, 138) ?? DEFAULT_SPOTS[8].y }
+          },
+          // 9: S towering right hood crown
+          () => findCrownSpot(0.718, 0.742, DEFAULT_SPOTS[9], 40, 95),
+          // 10: r crest
+          () => findCrownSpot(0.806, 0.826, DEFAULT_SPOTS[10], 125, 165),
+          // 11: h2 tall loop crown
+          () => findCrownSpot(0.978, 0.996, DEFAULT_SPOTS[11], 40, 95)
         ]
 
-        const computed = ratios.map((r, idx) => {
-          const x = startX + totalW * r
-          if (idx === 5) {
-            return { x, y: findTopY(startX + totalW * 0.45, 25, 160) ?? 72 }
-          }
-          if (idx === 11) {
-            return { x: startX + totalW + 22, y: BASELINE_Y }
-          }
-          const y = findTopY(x)
-          return { x, y: y ?? DEFAULT_SPOTS[idx].y }
-        })
-
+        const computed = specs.map(fn => fn())
         if (!cancelled) setSpots(computed)
       } catch {
-        // Keep exact fontTools-derived fallback coordinates
+        // Keep fontTools-verified fallback coordinates
       }
     }
 
@@ -130,7 +176,7 @@ export default function StickmenName() {
     <div className="stickmen-stage">
       <svg
         className="stickmen-svg"
-        viewBox="30 10 1300 320"
+        viewBox="30 8 1300 322"
         shapeRendering="geometricPrecision"
         role="img"
         aria-label="Rishith Suresh in Maellen decorative font with animated stickmen"
@@ -174,9 +220,9 @@ export default function StickmenName() {
           <circle cx="1110" cy="165" r="76" className="ornament-arc" />
           <ellipse cx="680" cy="175" rx="575" ry="122" className="ornament-orbit" />
 
-          <Star4 cx={spots[3].x} cy={spots[3].y - 38} size={8.5} className="ornament-star anim-twinkle" />
-          <Star4 cx={spots[6].x + 26} cy={spots[6].y - 18} size={7.5} className="ornament-star anim-twinkle-delay" />
-          <Star4 cx={spots[9].x} cy={spots[9].y - 44} size={6.5} className="ornament-star-teal anim-twinkle" />
+          <Star4 cx={spots[2].x - 16} cy={spots[2].y - 52} size={8} className="ornament-star anim-twinkle" />
+          <Star4 cx={spots[9].x - 42} cy={spots[9].y - 24} size={7.5} className="ornament-star anim-twinkle-delay" />
+          <Star4 cx={spots[11].x + 20} cy={spots[11].y - 34} size={8.5} className="ornament-star-teal anim-twinkle" />
         </g>
 
         {/* Soft luminous light glow behind Maellen lettering */}
@@ -212,91 +258,20 @@ export default function StickmenName() {
           {DISPLAY_NAME}
         </text>
 
-        {/* 12 Slender, Long-Bodied Colored-Head Stickmen Snapped to Maellen Ink Contours */}
+        {/* 12 Slender Colored-Head Stickmen Snapped Cleanly onto Maellen Contours */}
         <g className="stickmen-layer">
-          {/* 1. Sitting on R's top arch (Tangerine) */}
+          {/* 1. Cheerful greeter waving from R's left swash curl (Tangerine) */}
           <g transform={`translate(${spots[0].x}, ${spots[0].y})`}>
-            <circle cx="0" cy="-22" r="3.8" fill="#ff7d00" stroke="#001524" strokeWidth="1.2" />
-            <path d="M0 -18 L0 -1 L8 0" className="stick-limb" />
-            <path d="M0 -1 L-3 9" className="stick-limb anim-kick" />
-            <path d="M0 -13 L7 -8 L11 -10" className="stick-limb" />
-            <path d="M9 -1 L15 -1 L17 -7" className="stick-prop" />
+            <g className="anim-bob-soft">
+              <circle cx="0" cy="-27" r="3.8" fill="#ff7d00" stroke="#001524" strokeWidth="1.2" />
+              <path d="M0 -23 L0 -9 L-5 0 M0 -9 L5 0" className="stick-limb" />
+              <path d="M0 -18 L7 -11" className="stick-limb" />
+              <path d="M0 -18 L-8 -26" className="stick-limb anim-wave-left" />
+            </g>
           </g>
 
-          {/* 2. Juggling 3 colored balls on s1 (Deep Teal) */}
+          {/* 2. Skateboarder carving & popping an Ollie on R's wide upper crown (Peach) */}
           <g transform={`translate(${spots[1].x}, ${spots[1].y})`}>
-            <circle cx="0" cy="-25" r="3.8" fill="#006d77" stroke="#001524" strokeWidth="1.2" />
-            <path d="M0 -21 L0 -8 L-5 0 M0 -8 L5 0" className="stick-limb" />
-            <path d="M0 -17 L-8 -13 M0 -17 L8 -13" className="stick-limb" />
-            <circle cx="-7" cy="-22" r="2.1" fill="#ff7d00" className="anim-juggle-a" />
-            <circle cx="0" cy="-31" r="2.1" fill="#83c5be" className="anim-juggle-b" />
-            <circle cx="7" cy="-22" r="2.1" fill="#e29578" className="anim-juggle-c" />
-          </g>
-
-          {/* 3. Sprinting across h1 loop (Teal) */}
-          <g transform={`translate(${spots[2].x}, ${spots[2].y})`}>
-            <g className="anim-sprint">
-              <circle cx="2" cy="-26" r="3.8" fill="#006d77" stroke="#001524" strokeWidth="1.2" />
-              <path d="M1.5 -22 L-1 -8" className="stick-limb" />
-              <path d="M-1 -8 L-7 -3 L-9 0" className="stick-limb anim-stride-a" />
-              <path d="M-1 -8 L5 -4 L7 0" className="stick-limb anim-stride-b" />
-              <path d="M0.5 -18 L7 -14 L10 -17" className="stick-limb anim-arm-a" />
-              <path d="M0.5 -18 L-6 -14 L-9 -12" className="stick-limb anim-arm-b" />
-            </g>
-          </g>
-
-          {/* 4. Weightlifting on i2 (Seafoam) */}
-          <g transform={`translate(${spots[3].x}, ${spots[3].y})`}>
-            <circle cx="0" cy="-25" r="3.8" fill="#83c5be" stroke="#001524" strokeWidth="1.2" />
-            <path d="M0 -21 L0 -8 L-5 0 M0 -8 L5 0" className="stick-limb" />
-            <g className="anim-lift">
-              <path d="M0 -17 L-9 -26 M0 -17 L9 -26" className="stick-limb" />
-              <line x1="-15" y1="-27" x2="15" y2="-27" className="stick-prop" />
-              <rect x="-17" y="-30" width="3" height="6" rx="0.8" fill="#ff7d00" />
-              <rect x="14" y="-30" width="3" height="6" rx="0.8" fill="#ff7d00" />
-            </g>
-          </g>
-
-          {/* 5. Swinging from t_h ascender (Terracotta) */}
-          <g transform={`translate(${spots[4].x}, ${spots[4].y + 4})`}>
-            <g className="anim-swing">
-              <line x1="0" y1="0" x2="0" y2="26" className="stick-prop" />
-              <circle cx="0" cy="28" r="3.7" fill="#e29578" stroke="#001524" strokeWidth="1.2" />
-              <path d="M0 32 L0 46 L-4 56 M0 46 L4 56" className="stick-limb" />
-              <path d="M0 36 L-3 25 M0 36 L3 25" className="stick-limb" />
-            </g>
-          </g>
-
-          {/* 6. Climbing rope in the gap between Rishith & Suresh (Rust) */}
-          <g transform={`translate(${spots[5].x}, ${spots[5].y})`}>
-            <line x1="0" y1="0" x2="0" y2={BASELINE_Y - spots[5].y} className="stick-line" />
-            <g className="anim-climb">
-              <circle cx="-5" cy="48" r="3.8" fill="#78290f" stroke="#001524" strokeWidth="1.2" />
-              <path d="M-5 52 L-5 68 L-10 77 M-5 68 L0 76" className="stick-limb" />
-              <path d="M-5 56 L0 49 M-5 60 L0 65" className="stick-limb" />
-            </g>
-          </g>
-
-          {/* 7. Fishing off S2's arch (Gold) */}
-          <g transform={`translate(${spots[6].x}, ${spots[6].y})`}>
-            <circle cx="0" cy="-22" r="3.8" fill="#ffc300" stroke="#001524" strokeWidth="1.2" />
-            <path d="M0 -18 L0 -1 L8 0 M0 -1 L4 8" className="stick-limb" />
-            <path d="M0 -14 L9 -13" className="stick-limb" />
-            <path d="M8 -12 Q22 -24 34 -14" className="stick-prop" fill="none" />
-            <line x1="34" y1="-14" x2="34" y2="62" className="stick-line anim-bob" />
-            <circle cx="34" cy="62" r="2.4" fill="#ff7d00" className="anim-bob" />
-          </g>
-
-          {/* 8. Launching gliding paper airplane from u (Rust) */}
-          <g transform={`translate(${spots[7].x}, ${spots[7].y})`}>
-            <circle cx="0" cy="-25" r="3.7" fill="#78290f" stroke="#001524" strokeWidth="1.2" />
-            <path d="M0 -21 L0 -8 L-5 0 M0 -8 L5 0" className="stick-limb" />
-            <path d="M0 -17 L-6 -12 M0 -17 L9 -21" className="stick-limb" />
-            <path d="M10 -24 L20 -26 L13 -20 Z" fill="#ffddd2" stroke="#001524" strokeWidth="0.9" className="anim-plane" />
-          </g>
-
-          {/* 9. Skateboarding with mid-air Ollie over r (Peach) */}
-          <g transform={`translate(${spots[8].x}, ${spots[8].y})`}>
             <g className="anim-skate-tight">
               <circle cx="0" cy="-28" r="3.8" fill="#ffddd2" stroke="#001524" strokeWidth="1.2" />
               <path d="M0 -24 L-1 -11 L-5 -3 M-1 -11 L5 -3" className="stick-limb" />
@@ -307,17 +282,33 @@ export default function StickmenName() {
             </g>
           </g>
 
-          {/* 10. Jumping cheerfully on top of e (Tangerine) */}
-          <g transform={`translate(${spots[9].x}, ${spots[9].y})`}>
-            <g className="anim-jump">
-              <circle cx="0" cy="-25" r="3.8" fill="#ff7d00" stroke="#001524" strokeWidth="1.2" />
-              <path d="M0 -21 L0 -8 L-5 0 M0 -8 L5 0" className="stick-limb" />
-              <path d="M0 -17 L-8 -24 M0 -17 L8 -24" className="stick-limb" />
+          {/* 3. Weightlifter synced knee-squat & overhead press on i1 dot (Seafoam) */}
+          <g transform={`translate(${spots[2].x}, ${spots[2].y})`}>
+            <path d="M-5 0 L-3 -7 M5 0 L3 -7" className="stick-limb" />
+            <g className="anim-squat">
+              <circle cx="0" cy="-25" r="3.8" fill="#83c5be" stroke="#001524" strokeWidth="1.2" />
+              <path d="M0 -21 L0 -7" className="stick-limb" />
+            </g>
+            <g className="anim-lift">
+              <path d="M0 -17 L-8 -25 M0 -17 L8 -25" className="stick-limb" />
+              <line x1="-13" y1="-26" x2="13" y2="-26" className="stick-prop" />
+              <rect x="-15" y="-29" width="2.8" height="6" rx="0.8" fill="#ff7d00" />
+              <rect x="12.2" y="-29" width="2.8" height="6" rx="0.8" fill="#ff7d00" />
             </g>
           </g>
 
-          {/* 11. Balancing handstand on final h2 tall loop (Teal) */}
-          <g transform={`translate(${spots[10].x}, ${spots[10].y})`}>
+          {/* 4. 3-ball circular cascade juggler on s1 dome (Deep Teal) */}
+          <g transform={`translate(${spots[3].x}, ${spots[3].y})`}>
+            <circle cx="0" cy="-25" r="3.8" fill="#006d77" stroke="#001524" strokeWidth="1.2" />
+            <path d="M0 -21 L0 -8 L-5 0 M0 -8 L5 0" className="stick-limb" />
+            <path d="M0 -17 L-7 -12 M0 -17 L7 -12" className="stick-limb anim-hands" />
+            <circle cx="-7" cy="-22" r="2.1" fill="#ff7d00" className="anim-juggle-a" />
+            <circle cx="0" cy="-32" r="2.1" fill="#83c5be" className="anim-juggle-b" />
+            <circle cx="7" cy="-22" r="2.1" fill="#e29578" className="anim-juggle-c" />
+          </g>
+
+          {/* 5. Balancing handstand on h1 tall narrow crown (Deep Teal) */}
+          <g transform={`translate(${spots[4].x}, ${spots[4].y})`}>
             <g className="anim-wobble">
               <path d="M-4 0 L-1 -9 M4 0 L1 -9" className="stick-limb" />
               <path d="M0 -9 L0 -23 L-4 -32 M0 -23 L4 -32" className="stick-limb" />
@@ -325,12 +316,81 @@ export default function StickmenName() {
             </g>
           </g>
 
-          {/* 12. Standing tall on the baseline after final h2 & waving hello (Terracotta) */}
+          {/* 6. Joyful jumper inside the open chimney over i2 dot (Tangerine) */}
+          <g transform={`translate(${spots[5].x}, ${spots[5].y})`}>
+            <g className="anim-jump">
+              <circle cx="0" cy="-25" r="3.8" fill="#ff7d00" stroke="#001524" strokeWidth="1.2" />
+              <path d="M0 -21 L0 -8 L-5 0 M0 -8 L5 0" className="stick-limb" />
+              <path d="M0 -17 L-7 -24 M0 -17 L7 -24" className="stick-limb" />
+            </g>
+          </g>
+
+          {/* 7. Sprinter racing across t_h's wide twin-loop crown (Terracotta) */}
+          <g transform={`translate(${spots[6].x}, ${spots[6].y})`}>
+            <g className="anim-sprint-tight">
+              <circle cx="2" cy="-26" r="3.8" fill="#e29578" stroke="#001524" strokeWidth="1.2" />
+              <path d="M1.5 -22 L-1 -8" className="stick-limb" />
+              <path d="M-1 -8 L-6 -3 L-8 0" className="stick-limb anim-stride-a" />
+              <path d="M-1 -8 L5 -4 L7 0" className="stick-limb anim-stride-b" />
+              <path d="M0.5 -18 L6 -14 L9 -17" className="stick-limb anim-arm-a" />
+              <path d="M0.5 -18 L-6 -14 L-9 -12" className="stick-limb anim-arm-b" />
+            </g>
+          </g>
+
+          {/* 8. Rope climber anchored directly onto t_h's crossbar tip in the canyon (Rust) */}
+          <g transform={`translate(${spots[7].x}, ${spots[7].y})`}>
+            <circle cx="0" cy="0" r="1.6" fill="#78290f" />
+            <line x1="0" y1="0" x2="0" y2={BASELINE_Y - spots[7].y - 4} className="stick-line" />
+            <g className="anim-climb">
+              <circle cx="5" cy="44" r="3.8" fill="#78290f" stroke="#001524" strokeWidth="1.2" />
+              <path d="M5 48 L5 64 L0 72 M5 64 L10 73" className="stick-limb" />
+              <path d="M5 52 L0 45 M5 56 L0 61" className="stick-limb" />
+            </g>
+          </g>
+
+          {/* 9. Laptop coder seated cleanly on S's left upper plateau (Tangerine) */}
+          <g transform={`translate(${spots[8].x}, ${spots[8].y})`}>
+            <g className="anim-bob-soft">
+              <circle cx="0" cy="-21" r="3.8" fill="#ff7d00" stroke="#001524" strokeWidth="1.2" />
+              <path d="M0 -17 L0 -2 L6 0 L8 2" className="stick-limb" />
+              <path d="M0 -2 L-4 2" className="stick-limb" />
+              <path d="M0 -13 L6 -8 L10 -10" className="stick-limb anim-type" />
+            </g>
+            <path d="M9 -1 L15 -1 L17 -7" className="stick-prop" />
+          </g>
+
+          {/* 10. Fisherman perched on S's towering right hood casting over u valley (Gold) */}
+          <g transform={`translate(${spots[9].x}, ${spots[9].y})`}>
+            <circle cx="0" cy="-22" r="3.8" fill="#ffc300" stroke="#001524" strokeWidth="1.2" />
+            <path d="M0 -18 L0 -2 L7 0 L8 5" className="stick-limb" />
+            <path d="M0 -2 L4 5" className="stick-limb" />
+            <path d="M0 -14 L9 -13" className="stick-limb" />
+            <path d="M8 -12 Q19 -24 28 -14" className="stick-prop" fill="none" />
+            <line x1="28" y1="-14" x2="28" y2="54" className="stick-line anim-bob" />
+            <circle cx="28" cy="54" r="2.3" fill="#ff7d00" className="anim-bob" />
+          </g>
+
+          {/* 11. Paper airplane launcher atop r's sharp peak (Rust) */}
+          <g transform={`translate(${spots[10].x}, ${spots[10].y})`}>
+            <circle cx="0" cy="-25" r="3.7" fill="#78290f" stroke="#001524" strokeWidth="1.2" />
+            <path d="M0 -21 L0 -8 L-5 0 M0 -8 L5 0" className="stick-limb" />
+            <path d="M0 -17 L-6 -12" className="stick-limb" />
+            <path d="M0 -17 L9 -21" className="stick-limb anim-throw" />
+            <path
+              d="M11 -24 L21 -26 L14 -20 Z"
+              fill="#ffddd2"
+              stroke="#001524"
+              strokeWidth="0.9"
+              className="anim-plane"
+            />
+          </g>
+
+          {/* 12. Victory star-cheerleader atop h2's tall loop crown (Terracotta) */}
           <g transform={`translate(${spots[11].x}, ${spots[11].y})`}>
-            <circle cx="0" cy="-29" r="3.9" fill="#e29578" stroke="#001524" strokeWidth="1.2" />
-            <path d="M0 -25 L0 -10 L-5 0 M0 -10 L5 0" className="stick-limb" />
-            <path d="M0 -20 L-7 -12" className="stick-limb" />
-            <path d="M0 -20 L8 -28" className="stick-limb anim-wave" />
+            <circle cx="0" cy="-27" r="3.9" fill="#e29578" stroke="#001524" strokeWidth="1.2" />
+            <path d="M0 -23 L0 -9 L-5 0 M0 -9 L5 0" className="stick-limb" />
+            <path d="M0 -19 L-7 -12" className="stick-limb" />
+            <path d="M0 -19 L8 -27" className="stick-limb anim-wave" />
           </g>
         </g>
       </svg>

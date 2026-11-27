@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { ArrowUpRight, Github, Star, GitFork } from 'lucide-react'
 import { profile, getGithubUsername, getGithubUrl } from '../data/site'
 import Reveal from './Reveal'
+import SectionStickman from './SectionStickman'
 
 export default function GitHubRepos() {
   const [repos, setRepos] = useState([])
@@ -53,6 +54,7 @@ export default function GitHubRepos() {
           <Github size={18} />
           <span>github.com/{username}</span>
         </div>
+        <SectionStickman variant="starCheer" className="stickman-github-ledge" width={38} height={44} />
         <a href={profileUrl} target="_blank" rel="noreferrer">
           Visit profile <ArrowUpRight size={15} />
         </a>

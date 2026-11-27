@@ -1,6 +1,7 @@
 import { ArrowUpRight, BrainCircuit, FlaskConical, Code2, Compass } from 'lucide-react'
 import { profile } from '../data/site'
 import Reveal from './Reveal'
+import SectionStickman from './SectionStickman'
 
 const pillars = [
   {
@@ -42,6 +43,7 @@ export default function BentoIntro() {
 
       <div className="about-grid">
         <Reveal className="about-lead-card">
+          <SectionStickman variant="laptop" className="stickman-about-ledge" width={48} height={44} />
           <div>
             <span className="eyebrow">Perspective</span>
             <h3>
@@ -68,6 +70,9 @@ export default function BentoIntro() {
               whileHover={{ y: -5, transition: { duration: 0.2 } }}
               className="pillar-card"
             >
+              {i === 1 && (
+                <SectionStickman variant="curious" className="stickman-pillar-corner" width={40} height={42} />
+              )}
               <p.icon size={22} />
               <h3>{p.title}</h3>
               <p>{p.text}</p>

@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowUpRight } from 'lucide-react'
 import Reveal from './Reveal'
+import SectionStickman from './SectionStickman'
 
 function HarmonicWaveCanvas() {
   const canvasRef = useRef(null)
@@ -84,6 +85,7 @@ function HarmonicWaveCanvas() {
       }}
     >
       <canvas ref={canvasRef} className="research-canvas" aria-hidden="true" />
+      <SectionStickman variant="surfer" className="stickman-wave-rider stickman-on-dark" width={44} height={42} />
     </div>
   )
 }
@@ -107,6 +109,7 @@ export default function Research() {
       </Reveal>
 
       <Reveal className="research-panel">
+        <SectionStickman variant="telescope" className="stickman-research-ledge" width={46} height={42} />
         <div className="research-copy">
           <span className="eyebrow">Current Focus</span>
           <h3>

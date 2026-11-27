@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { ArrowUpRight, Mail, Linkedin, Github, Copy, Check } from 'lucide-react'
 import { profile, getGithubUrl } from '../data/site'
 import Reveal from './Reveal'
+import SectionStickman from './SectionStickman'
 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', message: '' })
@@ -31,6 +32,7 @@ export default function Contact() {
   return (
     <section className="section" id="contact">
       <Reveal className="contact-card">
+        <SectionStickman variant="courier" className="stickman-contact-ledge" width={72} height={44} />
         <div className="contact-copy">
           <span className="eyebrow">06 / Contact</span>
           <h2>
