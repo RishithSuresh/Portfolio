@@ -197,11 +197,11 @@ button {
   position: relative;
   display: grid;
   place-items: center;
-  padding-block: 28px 52px;
+  padding-block: 72px 44px;
   overflow: hidden;
   background:
-    radial-gradient(ellipse 75% 60% at 50% 46%, rgba(255, 255, 255, 0.65), transparent 70%),
-    radial-gradient(ellipse 55% 45% at 50% 50%, rgba(131, 197, 190, 0.25), transparent 68%);
+    radial-gradient(ellipse 75% 60% at 50% 52%, rgba(255, 255, 255, 0.65), transparent 70%),
+    radial-gradient(ellipse 55% 45% at 50% 54%, rgba(131, 197, 190, 0.25), transparent 68%);
 }
 
 .hero-bg-cube {
@@ -262,12 +262,11 @@ button {
 
 .hero-name-wrap {
   width: 100%;
-  margin-block: 0 4px;
+  margin-block: 26px 8px;
 }
 
 .stickmen-stage {
   width: 100%;
-  filter: drop-shadow(0 0 28px rgba(255, 221, 210, 0.72));
 }
 
 .stickmen-svg {
@@ -279,19 +278,21 @@ button {
 
 .glyph-glow-base {
   fill: var(--cream);
-  opacity: 0.9;
+  opacity: 0.78;
 }
 
 .glyph-main {
-  stroke: var(--deep);
-  stroke-width: 1.1px;
-  stroke-linejoin: round;
+  stroke: #001524;
+  stroke-width: 1.6px;
+  stroke-linejoin: miter;
 }
 
-.glyph-inline-rim {
+.glyph-thin-outline {
   fill: none;
-  stroke: rgba(237, 246, 249, 0.55);
-  stroke-width: 0.9px;
+  stroke: var(--ice);
+  stroke-width: 0.85px;
+  stroke-linejoin: miter;
+  opacity: 0.92;
 }
 
 .glyph-inline-stem {

@@ -89,7 +89,8 @@ export default function StickmenName() {
     <div className="stickmen-stage">
       <svg
         className="stickmen-svg"
-        viewBox="20 34 1320 272"
+        viewBox="20 18 1320 288"
+        shapeRendering="geometricPrecision"
         role="img"
         aria-label="Rishith Suresh in luminous sculpted decorative lettering with animated stickmen"
       >
@@ -255,13 +256,13 @@ export default function StickmenName() {
           ))}
         </g>
 
-        {/* LAYER 4: Main Sculpted Petrol-to-Teal Glyphs + Specular Shimmer + Inline Engraving */}
-        <g filter="url(#sculptShadow)">
+        {/* LAYER 4: Main Sculpted Petrol-to-Teal Glyphs + Specular Shimmer + Thin Crisp Outline */}
+        <g>
           {GLYPHS.map((d, idx) => (
             <g key={`main-${idx}`}>
               <path d={d} fill="url(#glyphGrad)" className="glyph-main" fillRule="evenodd" />
               <path d={d} fill="url(#shimmerGrad)" fillRule="evenodd" pointerEvents="none" />
-              <path d={d} className="glyph-inline-rim" fillRule="evenodd" pointerEvents="none" />
+              <path d={d} className="glyph-thin-outline" fillRule="evenodd" pointerEvents="none" />
             </g>
           ))}
           {INLINE_STEMS.map(([x1, y1, x2, y2], idx) => (
