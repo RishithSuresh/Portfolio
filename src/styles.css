@@ -253,15 +253,37 @@ button {
 }
 
 .hollow-name-text {
-  font-family: 'Syne', var(--display);
-  font-size: 86px;
+  font-family: 'Bodoni Moda', Georgia, serif;
+  font-variation-settings: "opsz" 96;
+  font-size: 108px;
   font-weight: 800;
   letter-spacing: 3px;
-  fill: rgba(255, 255, 255, 0.18);
+  fill: rgba(255, 255, 255, 0.22);
   stroke: var(--deep);
-  stroke-width: 2.5px;
+  stroke-width: 2.2px;
   stroke-linejoin: round;
   paint-order: stroke;
+}
+
+.ornament-arc {
+  fill: none;
+  stroke: var(--teal-mid);
+  stroke-width: 0.9;
+  opacity: 0.45;
+}
+
+.ornament-curl {
+  fill: none;
+  stroke: var(--deep);
+  stroke-width: 1.25;
+  stroke-linecap: round;
+  opacity: 0.72;
+}
+
+.ornament-star {
+  fill: var(--tangerine);
+  stroke: var(--deep);
+  stroke-width: 0.8;
 }
 
 .stick-limb {

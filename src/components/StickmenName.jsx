@@ -1,11 +1,11 @@
 import { useLayoutEffect, useRef, useState } from 'react'
 
 const FULL_NAME = 'RISHITH SURESH'
-const BASELINE_Y = 186
+const BASELINE_Y = 204
 
 /**
- * Single-line hollow display name ("RISHITH SURESH") with slender,
- * long-bodied, colored-head stickmen anchored to exact glyph strokes.
+ * Single-line hollow Didone display name ("RISHITH SURESH") with decorative
+ * filigree swashes, 4-point star accents, and slender colored-head stickmen.
  */
 export default function StickmenName() {
   const textRef = useRef(null)
@@ -23,7 +23,7 @@ export default function StickmenName() {
         ctx.font = `${style.fontWeight} ${style.fontSize} ${style.fontFamily}`
         const metrics = ctx.measureText('H')
         const ascent = metrics.actualBoundingBoxAscent || parseFloat(style.fontSize) * 0.72
-        const strokeHalf = (parseFloat(style.strokeWidth) || 2.6) / 2
+        const strokeHalf = (parseFloat(style.strokeWidth) || 2.2) / 2
         const capTop = BASELINE_Y - ascent - strokeHalf
         const baselineBottom = BASELINE_Y + strokeHalf
 
@@ -62,17 +62,47 @@ export default function StickmenName() {
   }, [])
 
   const c = layout?.chars
-  const topY = layout?.capTop ?? 116
-  const baseY = layout?.baseline ?? 193
+  const topY = layout?.capTop ?? 124
+  const baseY = layout?.baseline ?? 205
 
   return (
     <div className="stickmen-stage">
       <svg
         className="stickmen-svg"
-        viewBox="0 0 1320 260"
+        viewBox="0 0 1320 280"
         role="img"
-        aria-label="Rishith Suresh in bold hollow lettering with animated stickmen"
+        aria-label="Rishith Suresh in decorative hollow lettering with animated stickmen"
       >
+        {/* Decorative geometric arcs & swirls inspired by editorial Didone specimen art */}
+        {c && (
+          <g aria-hidden="true">
+            <circle cx={c[0].left + 12} cy={(topY + baseY) / 2} r="54" className="ornament-arc" />
+            <circle cx={c[4].cx} cy={topY + 18} r="44" className="ornament-arc" />
+            <circle cx={c[10].cx} cy={baseY - 20} r="48" className="ornament-arc" />
+
+            {/* Swash curl off top-left of R */}
+            <path
+              d={`M ${c[0].left + 6} ${topY + 12} C ${c[0].left - 34} ${topY - 22}, ${c[0].left - 44} ${topY + 42}, ${c[0].left - 6} ${topY + 48}`}
+              className="ornament-curl"
+            />
+            {/* Swash curl off bottom-right of S */}
+            <path
+              d={`M ${c[12].right - 4} ${baseY - 8} C ${c[12].right + 28} ${baseY + 26}, ${c[12].right + 38} ${baseY - 12}, ${c[12].right + 16} ${baseY - 18}`}
+              className="ornament-curl"
+            />
+
+            {/* 4-point star sparkles above the I's */}
+            <path
+              d={`M ${c[1].cx} ${topY - 22} L ${c[1].cx + 2.5} ${topY - 15.5} L ${c[1].cx + 9} ${topY - 13} L ${c[1].cx + 2.5} ${topY - 10.5} L ${c[1].cx} ${topY - 4} L ${c[1].cx - 2.5} ${topY - 10.5} L ${c[1].cx - 9} ${topY - 13} L ${c[1].cx - 2.5} ${topY - 15.5} Z`}
+              className="ornament-star"
+            />
+            <path
+              d={`M ${c[4].cx} ${topY - 24} L ${c[4].cx + 2.5} ${topY - 17.5} L ${c[4].cx + 9} ${topY - 15} L ${c[4].cx + 2.5} ${topY - 12.5} L ${c[4].cx} ${topY - 6} L ${c[4].cx - 2.5} ${topY - 12.5} L ${c[4].cx - 9} ${topY - 15} L ${c[4].cx - 2.5} ${topY - 17.5} Z`}
+              className="ornament-star"
+            />
+          </g>
+        )}
+
         <text
           ref={textRef}
           x="660"
@@ -88,10 +118,8 @@ export default function StickmenName() {
             {/* 1. Sitting & dangling leg on top of first 'R' (Tangerine head) */}
             <g transform={`translate(${c[0].cx - 4}, ${topY})`}>
               <circle cx="0" cy="-23" r="4.2" fill="#ff7d00" stroke="#001524" strokeWidth="1.2" />
-              {/* Long slender torso */}
               <path d="M0 -18.5 L0 -1 L8 0" className="stick-limb" />
               <path d="M0 -1 L-3 9" className="stick-limb anim-kick" />
-              {/* Arms typing on tiny laptop */}
               <path d="M0 -14 L7 -9 L11 -11" className="stick-limb" />
               <path d="M9 -1 L16 -1 L18 -8" className="stick-prop" />
             </g>
