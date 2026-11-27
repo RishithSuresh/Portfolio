@@ -1,67 +1,53 @@
 /**
- * Bespoke tall Art-Deco / Didone sculpted vector glyphs for "RISHITH SURESH"
- * with luminous glow aura, inline engraving lines, multi-layered contours,
- * animated specular shimmer, dense architectural linework, and animated
- * slender colored-head stickmen.
+ * Bespoke decorative Art-Deco / Didone typography for "RISHITH SURESH"
+ * modeled directly on the reference specimens:
+ * - Oversized drop-cap R & S with sweeping spirals and ball terminals
+ * - High-contrast thick vertical pillars + razor-thin crossbars & curves
+ * - Concave flared serifs, trumpet-arm E, thick-to-thin U, curved-leg R
+ * - Delicate concentric compass circles, tiny spiral curls, and gold rim trace
+ * - 13 slender colored-head stickmen anchored to exact letter coordinates
  */
 
 const GLYPHS = [
-  // 1. R (Hero drop-cap with sweeping upper spiral & curled leg)
-  'M 96 106 C 96 74, 138 70, 150 92 C 156 104, 140 116, 126 110 C 116 106, 118 92, 130 92 L 130 96 C 122 96, 121 103, 127 106 C 137 110, 148 101, 143 93 C 134 78, 102 80, 102 106 L 118 106 L 118 250 L 94 250 L 94 246 L 102 244 Z',
-  'M 118 110 L 146 110 C 168 110, 176 126, 176 144 C 176 164, 162 178, 138 178 L 118 178 L 118 174 L 136 174 C 150 174, 157 162, 157 144 C 157 126, 150 114, 136 114 L 118 114 Z M 132 178 L 150 178 L 176 244 L 186 246 L 186 250 L 158 250 L 132 178 Z',
+  // 1. Drop-Cap R (Sweeping left spiral loop + thick stem + curled-ball bowl + dipping leg)
+  'M 106 106 C 106 72, 152 68, 162 94 C 166 106, 150 118, 134 112 L 136 108 C 148 112, 158 103, 155 94 C 148 76, 112 78, 112 106 L 125 106 L 125 244 L 136 246 L 136 250 L 96 250 L 96 246 L 106 244 Z',
+  'M 125 112 L 146 112 C 166 112, 174 126, 174 144 C 174 164, 160 176, 136 176 L 125 176 L 125 172 L 136 172 C 150 172, 156 161, 156 144 C 156 126, 150 115, 136 115 L 125 115 Z M 136 176 L 154 176 L 174 238 C 178 248, 184 254, 190 256 C 178 258, 166 252, 160 238 L 136 176 Z',
 
   // 2. I
-  'M 196 110 L 232 110 L 232 114 L 222 116 L 222 244 L 232 246 L 232 250 L 196 250 L 196 246 L 206 244 L 206 116 L 196 114 Z',
+  'M 196 112 L 228 112 L 228 115 L 220 117 L 220 245 L 228 247 L 228 250 L 196 250 L 196 247 L 204 245 L 204 117 L 196 115 Z',
 
-  // 3. S
-  'M 304 113 L 304 140 L 300 140 C 296 120, 286 113, 274 113 C 262 113, 256 122, 256 132 C 256 154, 310 166, 310 212 C 310 236, 294 252, 272 252 C 260 252, 250 248, 244 243 L 244 214 L 248 214 C 252 236, 262 248, 274 248 C 288 248, 294 236, 294 222 C 294 194, 244 182, 244 138 C 244 118, 258 108, 276 108 C 288 108, 297 110, 304 113 Z',
+  // 3. S (Thick diagonal spine + razor-thin loops + hooked ball terminal + bottom spur)
+  'M 294 126 C 290 115, 282 112, 272 112 C 254 112, 244 124, 244 140 C 244 178, 306 184, 306 220 C 306 238, 290 251, 270 251 C 258 251, 248 248, 244 244 L 244 216 L 247 216 C 250 237, 258 248, 270 248 C 284 248, 290 237, 290 223 C 290 192, 244 182, 244 142 C 244 121, 257 109, 274 109 C 287 109, 296 114, 298 126 Z',
 
-  // 4. H
-  'M 326 110 L 362 110 L 362 114 L 352 116 L 352 177 L 392 177 L 392 116 L 382 114 L 382 110 L 418 110 L 418 114 L 408 116 L 408 244 L 418 246 L 418 250 L 382 250 L 382 246 L 392 244 L 392 182 L 352 182 L 352 244 L 362 246 L 362 250 L 326 250 L 326 246 L 336 244 L 336 116 L 326 114 Z',
+  // 4. H (Bold pillars + razor-thin crossbar + sharp horizontal serifs)
+  'M 326 112 L 358 112 L 358 115 L 350 117 L 350 178 L 388 178 L 388 117 L 380 115 L 380 112 L 412 112 L 412 115 L 404 117 L 404 245 L 412 247 L 412 250 L 380 250 L 380 247 L 388 245 L 388 181 L 350 181 L 350 245 L 358 247 L 358 250 L 326 250 L 326 247 L 334 245 L 334 117 L 326 115 Z',
 
   // 5. I
-  'M 434 110 L 470 110 L 470 114 L 460 116 L 460 244 L 470 246 L 470 250 L 434 250 L 434 246 L 444 244 L 444 116 L 434 114 Z',
+  'M 428 112 L 460 112 L 460 115 L 452 117 L 452 245 L 460 247 L 460 250 L 428 250 L 428 247 L 436 245 L 436 117 L 428 115 Z',
 
-  // 6. T
-  'M 484 110 L 566 110 L 566 136 L 562 136 C 558 118, 550 114, 533 114 L 533 244 L 544 246 L 544 250 L 506 250 L 506 246 L 517 244 L 517 114 C 500 114, 492 118, 488 136 L 484 136 Z',
+  // 6. T (Razor-thin top bar + hanging curved brackets + thick central pillar)
+  'M 476 112 L 556 112 L 556 138 L 553 138 C 549 120, 541 115, 524 115 L 524 245 L 534 247 L 534 250 L 498 250 L 498 247 L 508 245 L 508 115 C 491 115, 483 120, 479 138 L 476 138 Z',
 
   // 7. H
-  'M 580 110 L 616 110 L 616 114 L 606 116 L 606 177 L 646 177 L 646 116 L 636 114 L 636 110 L 672 110 L 672 114 L 662 116 L 662 244 L 672 246 L 672 250 L 636 250 L 636 246 L 646 244 L 646 182 L 606 182 L 606 244 L 616 246 L 616 250 L 580 250 L 580 246 L 590 244 L 590 116 L 580 114 Z',
+  'M 572 112 L 604 112 L 604 115 L 596 117 L 596 178 L 634 178 L 634 117 L 626 115 L 626 112 L 658 112 L 658 115 L 650 117 L 650 245 L 658 247 L 658 250 L 626 250 L 626 247 L 634 245 L 634 181 L 596 181 L 596 245 L 604 247 L 604 250 L 572 250 L 572 247 L 580 245 L 580 117 L 572 115 Z',
 
-  // 8. S (Tall decorative drop-cap for SURESH)
-  'M 788 106 L 788 138 L 784 138 C 780 114, 768 105, 754 105 C 740 105, 734 116, 734 128 C 734 154, 796 166, 796 214 C 796 240, 776 256, 750 256 C 736 256, 724 250, 716 244 L 716 212 L 720 212 C 724 238, 736 251, 752 251 C 768 251, 776 238, 776 222 C 776 192, 718 180, 718 134 C 718 112, 734 100, 756 100 C 768 100, 779 102, 788 106 Z',
+  // 8. Oversized Decorative S (SURESH drop-cap modeled directly on STRONG & MOONSHINE S)
+  'M 772 118 C 768 104, 758 100, 744 100 C 722 100, 710 114, 710 134 C 710 180, 786 188, 786 226 C 786 246, 766 259, 742 259 C 726 259, 714 254, 706 248 L 706 216 L 709 216 C 713 242, 726 255, 744 255 C 762 255, 769 242, 769 226 C 769 190, 710 180, 710 134 C 710 111, 725 96, 747 96 C 763 96, 774 104, 777 118 Z',
 
-  // 9. U
-  'M 808 110 L 844 110 L 844 114 L 834 116 L 834 218 C 834 238, 844 246, 858 246 C 874 246, 882 236, 882 216 L 882 116 L 872 114 L 872 110 L 898 110 L 898 114 L 888 116 L 888 216 C 888 240, 874 252, 852 252 C 828 252, 818 238, 818 216 L 818 116 L 808 114 Z',
+  // 9. U (Thick left pillar + razor-thin U curve + razor-thin right stem)
+  'M 804 112 L 838 112 L 838 115 L 830 117 L 830 218 C 830 239, 840 247, 855 247 C 870 247, 876 237, 876 218 L 876 117 L 868 115 L 868 112 L 888 112 L 888 115 L 880 117 L 880 218 C 880 241, 868 252, 848 252 C 824 252, 814 239, 814 218 L 814 117 L 804 115 Z',
 
-  // 10. R
-  'M 914 110 L 958 110 C 980 110, 988 126, 988 144 C 988 164, 976 177, 954 178 L 984 246 L 994 246 L 994 250 L 966 250 L 938 180 L 934 180 L 934 244 L 944 246 L 944 250 L 914 250 L 914 246 L 922 244 L 922 116 L 914 114 Z M 934 114 L 934 175 L 952 175 C 966 175, 972 162, 972 144 C 972 126, 966 114, 952 114 Z',
+  // 10. R (STRONG / HERE R with curved leg & crisp bowl)
+  'M 904 112 L 948 112 C 970 112, 978 126, 978 144 C 978 164, 966 176, 944 178 L 972 238 C 976 248, 982 254, 988 256 C 976 258, 964 252, 958 238 L 932 179 L 928 179 L 928 245 L 936 247 L 936 250 L 904 250 L 904 247 L 912 245 L 912 117 L 904 115 Z M 928 115 L 928 175 L 944 175 C 958 175, 963 162, 963 144 C 963 126, 958 115, 944 115 Z',
 
-  // 11. E
-  'M 1008 110 L 1076 110 L 1076 136 L 1072 136 C 1068 118, 1058 114, 1034 114 L 1034 177 L 1054 177 C 1060 177, 1063 172, 1065 166 L 1067 166 L 1067 192 L 1065 192 C 1063 186, 1060 181, 1054 181 L 1034 181 L 1034 246 C 1060 246, 1070 242, 1074 222 L 1078 222 L 1078 250 L 1008 250 L 1008 246 L 1018 244 L 1018 116 L 1008 114 Z',
+  // 11. E (MOONSHINE / UNIQUE E with pointed spurs & flared trumpet middle arm)
+  'M 1002 112 L 1070 112 L 1070 136 L 1067 136 C 1063 119, 1054 115, 1028 115 L 1028 178 L 1048 178 C 1054 178, 1057 173, 1059 166 L 1061 166 L 1061 193 L 1059 193 C 1057 186, 1054 181, 1048 181 L 1028 181 L 1028 247 C 1055 247, 1064 242, 1068 223 L 1071 223 L 1071 250 L 1002 250 L 1002 247 L 1012 245 L 1012 117 L 1002 115 Z',
 
   // 12. S
-  'M 1158 113 L 1158 140 L 1154 140 C 1150 120, 1140 113, 1128 113 C 1116 113, 1110 122, 1110 132 C 1110 154, 1164 166, 1164 212 C 1164 236, 1148 252, 1126 252 C 1114 252, 1104 248, 1098 243 L 1098 214 L 1102 214 C 1106 236, 1116 248, 1128 248 C 1142 248, 1148 236, 1148 222 C 1148 194, 1098 182, 1098 138 C 1098 118, 1112 108, 1130 108 C 1142 108, 1151 110, 1158 113 Z',
+  'M 1146 126 C 1142 115, 1134 112, 1124 112 C 1106 112, 1096 124, 1096 140 C 1096 178, 1158 184, 1158 220 C 1158 238, 1142 251, 1122 251 C 1110 251, 1100 248, 1096 244 L 1096 216 L 1099 216 C 1102 237, 1110 248, 1122 248 C 1136 248, 1142 237, 1142 223 C 1142 192, 1096 182, 1096 142 C 1096 121, 1109 109, 1126 109 C 1139 109, 1148 114, 1150 126 Z',
 
   // 13. H
-  'M 1180 110 L 1216 110 L 1216 114 L 1206 116 L 1206 177 L 1246 177 L 1246 116 L 1236 114 L 1236 110 L 1272 110 L 1272 114 L 1262 116 L 1262 244 L 1272 246 L 1272 250 L 1236 250 L 1236 246 L 1246 244 L 1246 182 L 1206 182 L 1206 244 L 1216 246 L 1216 250 L 1180 250 L 1180 246 L 1190 244 L 1190 116 L 1180 114 Z'
-]
-
-// Fine inline engraving pinstripes sitting inside the main vertical stems
-const INLINE_STEMS = [
-  [110, 112, 110, 246],
-  [214, 114, 214, 246],
-  [344, 114, 344, 246],
-  [400, 114, 400, 246],
-  [452, 114, 452, 246],
-  [525, 116, 525, 246],
-  [598, 114, 598, 246],
-  [654, 114, 654, 246],
-  [826, 114, 826, 226],
-  [928, 114, 928, 246],
-  [1026, 114, 1026, 246],
-  [1198, 114, 1198, 246],
-  [1254, 114, 1254, 246]
+  'M 1174 112 L 1206 112 L 1206 115 L 1198 117 L 1198 178 L 1236 178 L 1236 117 L 1228 115 L 1228 112 L 1260 112 L 1260 115 L 1252 117 L 1252 245 L 1260 247 L 1260 250 L 1228 250 L 1228 247 L 1236 245 L 1236 181 L 1198 181 L 1198 245 L 1206 247 L 1206 250 L 1174 250 L 1174 247 L 1182 245 L 1182 117 L 1174 115 Z'
 ]
 
 function Star4({ cx, cy, size = 9, className = 'ornament-star' }) {
@@ -75,167 +61,140 @@ function Star4({ cx, cy, size = 9, className = 'ornament-star' }) {
   )
 }
 
-function Crosshair({ x, y }) {
-  return (
-    <g className="ornament-cross" aria-hidden="true">
-      <line x1={x - 6} y1={y} x2={x + 6} y2={y} />
-      <line x1={x} y1={y - 6} x2={x} y2={y + 6} />
-    </g>
-  )
-}
-
 export default function StickmenName() {
   return (
     <div className="stickmen-stage">
       <svg
         className="stickmen-svg"
-        viewBox="20 18 1320 288"
+        viewBox="20 20 1320 286"
         shapeRendering="geometricPrecision"
         role="img"
-        aria-label="Rishith Suresh in luminous sculpted decorative lettering with animated stickmen"
+        aria-label="Rishith Suresh in decorative Art-Deco lettering with animated stickmen"
       >
         <defs>
-          {/* Deep Petrol-to-Lagoon Sculpted Fill */}
           <linearGradient id="glyphGrad" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stopColor="#001524" />
             <stop offset="48%" stopColor="#00555f" />
             <stop offset="100%" stopColor="#001524" />
           </linearGradient>
 
-          {/* Animated Specular Metallic Sheen Sweeping Across Letters */}
           <linearGradient id="shimmerGrad" x1="-60%" y1="0%" x2="40%" y2="100%">
             <stop offset="0%" stopColor="#83c5be" stopOpacity="0" />
-            <stop offset="42%" stopColor="#ffecd1" stopOpacity="0.56" />
-            <stop offset="50%" stopColor="#ff7d00" stopOpacity="0.62" />
-            <stop offset="58%" stopColor="#edf6f9" stopOpacity="0.45" />
+            <stop offset="42%" stopColor="#ffecd1" stopOpacity="0.52" />
+            <stop offset="50%" stopColor="#ff7d00" stopOpacity="0.55" />
+            <stop offset="58%" stopColor="#edf6f9" stopOpacity="0.4" />
             <stop offset="100%" stopColor="#83c5be" stopOpacity="0" />
             <animateTransform
               attributeName="gradientTransform"
               type="translate"
               from="-1.2 0"
               to="2.2 0"
-              dur="5.2s"
+              dur="5.4s"
               repeatCount="indefinite"
             />
           </linearGradient>
 
-          {/* Luminous Soft Light Glow Behind the Text */}
           <filter id="textGlow" x="-18%" y="-25%" width="136%" height="150%">
-            <feGaussianBlur stdDeviation="8" result="blurA" />
+            <feGaussianBlur stdDeviation="7.5" result="blurA" />
             <feColorMatrix
               in="blurA"
               type="matrix"
-              values="0 0 0 0 1   0 0 0 0 0.72   0 0 0 0 0.42  0 0 0 0.72 0"
+              values="0 0 0 0 1   0 0 0 0 0.78   0 0 0 0 0.54  0 0 0 0.72 0"
               result="warmGlow"
-            />
-            <feGaussianBlur in="SourceGraphic" stdDeviation="3.5" result="blurB" />
-            <feColorMatrix
-              in="blurB"
-              type="matrix"
-              values="0 0 0 0 0.51   0 0 0 0 0.77   0 0 0 0 0.75  0 0 0 0.85 0"
-              result="tealGlow"
             />
             <feMerge>
               <feMergeNode in="warmGlow" />
-              <feMergeNode in="tealGlow" />
               <feMergeNode in="SourceGraphic" />
             </feMerge>
           </filter>
-
-          <filter id="sculptShadow" x="-10%" y="-10%" width="125%" height="125%">
-            <feDropShadow dx="4" dy="6" stdDeviation="4" floodColor="#001524" floodOpacity="0.24" />
-          </filter>
         </defs>
 
-        {/* Clean Architectural Lines & Framing Arcs */}
+        {/* Gossamer Concentric Compass Circles & Spiral Filigree (modeled on MOONSHINE / UNIQUE / BE STRONG) */}
         <g aria-hidden="true">
-          <line x1="24" y1="110" x2="1336" y2="110" className="ornament-guide" />
-          <line x1="24" y1="179" x2="1336" y2="179" className="ornament-guide-dashed" />
-          <line x1="24" y1="250" x2="1336" y2="250" className="ornament-guide" />
-
-          <line x1="110" y1="42" x2="110" y2="292" className="ornament-guide-soft" />
-          <line x1="692" y1="36" x2="692" y2="300" className="ornament-guide" />
-          <line x1="1226" y1="48" x2="1226" y2="290" className="ornament-guide-soft" />
-
-          {/* Nested concentric drafting circles & orbits */}
-          <g className="anim-orbit-cw" style={{ transformOrigin: '118px 144px' }}>
-            <circle cx="118" cy="144" r="84" className="ornament-arc-dashed" />
-            <circle cx="118" cy="144" r="50" className="ornament-arc-accent" />
+          {/* Sweeping fine compass circles interlocking behind the letters */}
+          <g className="anim-orbit-cw" style={{ transformOrigin: '122px 146px' }}>
+            <circle cx="122" cy="146" r="82" className="ornament-arc" />
+            <circle cx="122" cy="146" r="56" className="ornament-arc-dashed" />
           </g>
-          <g className="anim-orbit-ccw" style={{ transformOrigin: '452px 132px' }}>
-            <circle cx="452" cy="132" r="70" className="ornament-arc" />
+          <g className="anim-orbit-ccw" style={{ transformOrigin: '274px 176px' }}>
+            <circle cx="274" cy="176" r="68" className="ornament-arc" />
           </g>
-          <g className="anim-orbit-cw" style={{ transformOrigin: '754px 192px' }}>
-            <circle cx="754" cy="192" r="80" className="ornament-arc" />
-            <circle cx="754" cy="192" r="54" className="ornament-arc-accent" />
+          <g className="anim-orbit-cw" style={{ transformOrigin: '444px 136px' }}>
+            <circle cx="444" cy="136" r="64" className="ornament-arc" />
+            <circle cx="444" cy="136" r="42" className="ornament-arc-accent" />
           </g>
-          <circle cx="1042" cy="178" r="68" className="ornament-arc" />
-          <ellipse cx="692" cy="180" rx="580" ry="118" className="ornament-orbit" />
+          <g className="anim-orbit-cw" style={{ transformOrigin: '744px 180px' }}>
+            <circle cx="744" cy="180" r="86" className="ornament-arc" />
+            <circle cx="744" cy="180" r="58" className="ornament-arc-dashed" />
+          </g>
+          <g className="anim-orbit-ccw" style={{ transformOrigin: '944px 174px' }}>
+            <circle cx="944" cy="174" r="66" className="ornament-arc" />
+          </g>
+          <circle cx="1124" cy="178" r="68" className="ornament-arc" />
+          <ellipse cx="680" cy="180" rx="575" ry="118" className="ornament-orbit" />
 
-          {/* Crosshair ticks at line intersections */}
-          <Crosshair x={692} y={110} />
-          <Crosshair x={692} y={179} />
-          <Crosshair x={692} y={250} />
-          <Crosshair x={110} y={250} />
-          <Crosshair x={452} y={110} />
-          <Crosshair x={1042} y={110} />
-          <Crosshair x={1226} y={250} />
+          {/* Delicate spiral filigree curls ending in tiny o-loops (exact reference detail!) */}
+          {/* Around drop-cap R */}
+          <path d="M 110 106 C 68 74, 52 138, 92 152 C 114 158, 114 132, 98 134" className="ornament-curl" />
+          <circle cx="97" cy="135" r="2.6" className="ornament-loop" />
+          <path d="M 106 196 C 72 204, 70 242, 96 246" className="ornament-curl-warm" />
+          <circle cx="78" cy="212" r="2.2" className="ornament-loop" />
+          <path d="M 174 144 C 194 148, 198 172, 182 178" className="ornament-curl" />
+          <circle cx="182" cy="178" r="2.2" className="ornament-loop" />
 
-          {/* Ornamental spiral filigree tendrils */}
-          <path d="M 102 106 C 54 68, 36 142, 88 160 C 122 170, 122 122, 96 130" className="ornament-curl" />
-          <path d="M 146 92 C 182 70, 208 122, 176 152" className="ornament-curl-warm" />
-          <path d="M 184 250 C 206 276, 232 264, 224 246" className="ornament-curl" />
-          <path d="M 304 114 C 334 90, 348 126, 322 140" className="ornament-curl" />
-          <path d="M 566 136 C 592 152, 578 180, 552 168" className="ornament-curl-warm" />
-          <path d="M 788 106 C 826 84, 838 136, 798 152" className="ornament-curl" />
-          <path d="M 716 244 C 676 274, 696 302, 736 280" className="ornament-curl-warm" />
-          <path d="M 888 146 C 918 126, 928 166, 900 178" className="ornament-curl" />
-          <path d="M 988 144 C 1014 130, 1022 162, 998 170" className="ornament-curl-warm" />
-          <path d="M 1076 136 C 1106 118, 1118 154, 1088 164" className="ornament-curl-warm" />
-          <path d="M 1164 212 C 1192 230, 1182 266, 1152 256" className="ornament-curl" />
-          <path d="M 1262 212 C 1298 194, 1310 240, 1278 252" className="ornament-curl" />
+          {/* Around S1 & H1 & I2 */}
+          <path d="M 294 126 C 318 106, 336 132, 316 144" className="ornament-curl" />
+          <circle cx="316" cy="144" r="2.3" className="ornament-loop" />
+          <path d="M 380 112 C 414 88, 444 98, 434 126" className="ornament-curl-warm" />
+          <path d="M 556 138 C 580 154, 568 178, 548 168" className="ornament-curl" />
+          <circle cx="548" cy="168" r="2.2" className="ornament-loop" />
 
-          {/* Decorative ball terminals */}
-          <circle cx="164" cy="94" r="5.5" fill="#ff7d00" stroke="#001524" strokeWidth="1.4" />
-          <circle cx="722" cy="252" r="4.2" fill="#e29578" stroke="#001524" strokeWidth="1.3" />
-          <circle cx="322" cy="140" r="3" fill="#006d77" />
-          <circle cx="1088" cy="164" r="3.2" fill="#ff7d00" />
-          <circle cx="552" cy="168" r="2.8" fill="#83c5be" />
+          {/* Around drop-cap S2 & U & R2 & E & S3 */}
+          <path d="M 772 118 C 804 92, 824 126, 796 146" className="ornament-curl" />
+          <circle cx="796" cy="146" r="2.5" className="ornament-loop" />
+          <path d="M 706 248 C 674 268, 690 294, 722 276" className="ornament-curl-warm" />
+          <circle cx="722" cy="276" r="2.3" className="ornament-loop" />
+          <path d="M 880 156 C 906 140, 916 168, 896 178" className="ornament-curl" />
+          <circle cx="896" cy="178" r="2.1" className="ornament-loop" />
+          <path d="M 1070 136 C 1094 120, 1106 148, 1084 158" className="ornament-curl-warm" />
+          <circle cx="1084" cy="158" r="2.3" className="ornament-loop" />
+          <path d="M 1252 214 C 1284 198, 1294 238, 1268 248" className="ornament-curl" />
+          <circle cx="1282" cy="222" r="2.3" className="ornament-loop" />
 
-          {/* Twinkling 4-point diamond stars */}
-          <Star4 cx={214} cy={86} size={10.5} className="ornament-star anim-twinkle" />
-          <Star4 cx={452} cy={84} size={11} className="ornament-star anim-twinkle-delay" />
-          <Star4 cx={778} cy={260} size={8.5} className="ornament-star anim-twinkle" />
-          <Star4 cx={1126} cy={86} size={7.5} className="ornament-star-teal anim-twinkle-delay" />
+          {/* Signature solid ball terminals inside the curls (just like UNIQUE, MOONSHINE, STRONG) */}
+          <circle cx="164" cy="96" r="5.5" fill="#ff7d00" stroke="#001524" strokeWidth="1.2" />
+          <circle cx="290" cy="128" r="4.5" fill="#001524" />
+          <circle cx="766" cy="120" r="5.8" fill="#001524" />
+          <circle cx="1142" cy="128" r="4.5" fill="#001524" />
+
+          {/* Twinkling 4-point diamond stars above both I's & S2 */}
+          <Star4 cx={212} cy={86} size={9.5} className="ornament-star anim-twinkle" />
+          <Star4 cx={444} cy={86} size={10} className="ornament-star anim-twinkle-delay" />
+          <Star4 cx={776} cy={258} size={7.5} className="ornament-star anim-twinkle" />
         </g>
 
-        {/* LAYER 1: Luminous Soft Light Glow Halo Behind Letterforms */}
+        {/* LAYER 1: Luminous Soft Light Glow */}
         <g filter="url(#textGlow)" aria-hidden="true">
           {GLYPHS.map((d, idx) => (
             <path key={`glow-${idx}`} d={d} className="glyph-glow-base" fillRule="evenodd" />
           ))}
         </g>
 
-        {/* LAYER 2: Offset 3D Warm Peach-Terracotta Extrusion Shadow */}
-        <g transform="translate(5.5, 5.5)" aria-hidden="true">
+        {/* LAYER 2: Warm Gold/Terracotta Bottom-Right Offset Bevel Trace (like BE STRONG) */}
+        <g transform="translate(2.5, 3)" aria-hidden="true">
           {GLYPHS.map((d, idx) => (
             <path key={`ext-${idx}`} d={d} className="glyph-extrude" fillRule="evenodd" />
           ))}
         </g>
 
-        {/* LAYER 3: Outer Offset Keyline + Secondary Fine Double-Contour */}
-        <g transform="translate(-3, -3)" aria-hidden="true">
+        {/* LAYER 3: Fine Cream Upper Keyline Echo */}
+        <g transform="translate(-1.5, -1.5)" aria-hidden="true">
           {GLYPHS.map((d, idx) => (
             <path key={`key-${idx}`} d={d} className="glyph-keyline" fillRule="evenodd" />
           ))}
         </g>
-        <g transform="translate(2.5, -2)" aria-hidden="true">
-          {GLYPHS.map((d, idx) => (
-            <path key={`key2-${idx}`} d={d} className="glyph-keyline-warm" fillRule="evenodd" />
-          ))}
-        </g>
 
-        {/* LAYER 4: Main Sculpted Petrol-to-Teal Glyphs + Specular Shimmer + Thin Crisp Outline */}
+        {/* LAYER 4: Main Sculpted Glyphs + Specular Shimmer + Crisp Thin Outline */}
         <g>
           {GLYPHS.map((d, idx) => (
             <g key={`main-${idx}`}>
@@ -244,23 +203,12 @@ export default function StickmenName() {
               <path d={d} className="glyph-thin-outline" fillRule="evenodd" pointerEvents="none" />
             </g>
           ))}
-          {INLINE_STEMS.map(([x1, y1, x2, y2], idx) => (
-            <line
-              key={`in-${idx}`}
-              x1={x1}
-              y1={y1}
-              x2={x2}
-              y2={y2}
-              className="glyph-inline-stem"
-              pointerEvents="none"
-            />
-          ))}
         </g>
 
-        {/* Slender, elongated, animated colored-head stickmen anchored to exact letter coordinates */}
+        {/* 13 Slender, Elongated, Colored-Head Stickmen Anchored to Exact Glyph Coordinates */}
         <g className="stickmen-layer">
-          {/* 1. Sitting on R's top bar (x=138, y=110) kicking leg & typing on laptop (Tangerine) */}
-          <g transform="translate(138, 110)">
+          {/* 1. Sitting on R1's top bar (x=140, y=112) kicking leg & typing on laptop (Tangerine) */}
+          <g transform="translate(140, 112)">
             <circle cx="0" cy="-22" r="3.9" fill="#ff7d00" stroke="#001524" strokeWidth="1.2" />
             <path d="M0 -18 L0 -1 L8 0" className="stick-limb" />
             <path d="M0 -1 L-3 9" className="stick-limb anim-kick" />
@@ -268,8 +216,18 @@ export default function StickmenName() {
             <path d="M9 -1 L15 -1 L17 -7" className="stick-prop" />
           </g>
 
-          {/* 2. Sprinting across H's roof (x=372, y=110) with articulated pumping knees (Teal) */}
-          <g transform="translate(372, 110)">
+          {/* 2. Juggling 3 colored balls on top of S1 (x=274, y=110) (Deep Teal) */}
+          <g transform="translate(274, 110)">
+            <circle cx="0" cy="-25" r="3.8" fill="#006d77" stroke="#001524" strokeWidth="1.2" />
+            <path d="M0 -21 L0 -8 L-5 0 M0 -8 L5 0" className="stick-limb" />
+            <path d="M0 -17 L-8 -13 M0 -17 L8 -13" className="stick-limb" />
+            <circle cx="-7" cy="-22" r="2.1" fill="#ff7d00" className="anim-juggle-a" />
+            <circle cx="0" cy="-31" r="2.1" fill="#83c5be" className="anim-juggle-b" />
+            <circle cx="7" cy="-22" r="2.1" fill="#e29578" className="anim-juggle-c" />
+          </g>
+
+          {/* 3. Sprinting across H1's roof (x=370, y=112) (Teal) */}
+          <g transform="translate(370, 112)">
             <g className="anim-sprint">
               <circle cx="2" cy="-26" r="3.8" fill="#006d77" stroke="#001524" strokeWidth="1.2" />
               <path d="M1.5 -22 L-1 -8" className="stick-limb" />
@@ -280,8 +238,8 @@ export default function StickmenName() {
             </g>
           </g>
 
-          {/* 3. Doing push-ups on the H crossbar inside H! (x=372, y=177) (Gold) */}
-          <g transform="translate(372, 177)">
+          {/* 4. Doing push-ups on H1's crossbar inside H! (x=370, y=178) (Gold) */}
+          <g transform="translate(370, 178)">
             <g className="anim-pushup">
               <circle cx="-11" cy="-9" r="3.5" fill="#ffc300" stroke="#001524" strokeWidth="1.2" />
               <path d="M-7 -7 L9 -2 L14 0" className="stick-limb" />
@@ -289,8 +247,8 @@ export default function StickmenName() {
             </g>
           </g>
 
-          {/* 4. Swinging on a rope from T's left overhang (x=492, y=114) (Terracotta) */}
-          <g transform="translate(492, 114)">
+          {/* 5. Swinging on rope from T's left bracket (x=484, y=115) (Terracotta) */}
+          <g transform="translate(484, 115)">
             <g className="anim-swing">
               <line x1="0" y1="0" x2="0" y2="28" className="stick-prop" />
               <circle cx="0" cy="30" r="3.7" fill="#e29578" stroke="#001524" strokeWidth="1.2" />
@@ -299,8 +257,8 @@ export default function StickmenName() {
             </g>
           </g>
 
-          {/* 5. Weightlifting barbell on top of T's center (x=525, y=110) (Seafoam) */}
-          <g transform="translate(525, 110)">
+          {/* 6. Weightlifting barbell on top of T's center (x=516, y=112) (Seafoam) */}
+          <g transform="translate(516, 112)">
             <circle cx="0" cy="-25" r="3.9" fill="#83c5be" stroke="#001524" strokeWidth="1.2" />
             <path d="M0 -21 L0 -8 L-5 0 M0 -8 L5 0" className="stick-limb" />
             <g className="anim-lift">
@@ -311,9 +269,9 @@ export default function StickmenName() {
             </g>
           </g>
 
-          {/* 6. Climbing rope between H and S (x=684, y=110..250) (Rust) */}
-          <g transform="translate(684, 110)">
-            <line x1="0" y1="0" x2="0" y2="140" className="stick-line" />
+          {/* 7. Climbing rope between H1 and S2 (x=678, y=112..250) (Rust) */}
+          <g transform="translate(678, 112)">
+            <line x1="0" y1="0" x2="0" y2="138" className="stick-line" />
             <g className="anim-climb">
               <circle cx="-5" cy="48" r="3.8" fill="#78290f" stroke="#001524" strokeWidth="1.2" />
               <path d="M-5 52 L-5 68 L-10 77 M-5 68 L0 76" className="stick-limb" />
@@ -321,8 +279,8 @@ export default function StickmenName() {
             </g>
           </g>
 
-          {/* 7. Fishing off U's left top pillar into the U bowl (x=826, y=110) (Gold) */}
-          <g transform="translate(826, 110)">
+          {/* 8. Fishing off U's left top pillar into the U bowl (x=822, y=112) (Gold) */}
+          <g transform="translate(822, 112)">
             <circle cx="0" cy="-22" r="3.9" fill="#ffc300" stroke="#001524" strokeWidth="1.2" />
             <path d="M0 -18 L0 -1 L8 0 M0 -1 L4 8" className="stick-limb" />
             <path d="M0 -14 L9 -13" className="stick-limb" />
@@ -331,8 +289,16 @@ export default function StickmenName() {
             <circle cx="34" cy="54" r="2.4" fill="#ff7d00" className="anim-bob" />
           </g>
 
-          {/* 8. Skateboarding with mid-air Ollie over R->E (x=996, y=110) (Peach) */}
-          <g transform="translate(996, 110)">
+          {/* 9. Launching gliding paper airplane from U's right spire (x=878, y=112) (Rust) */}
+          <g transform="translate(878, 112)">
+            <circle cx="0" cy="-25" r="3.7" fill="#78290f" stroke="#001524" strokeWidth="1.2" />
+            <path d="M0 -21 L0 -8 L-5 0 M0 -8 L5 0" className="stick-limb" />
+            <path d="M0 -17 L-6 -12 M0 -17 L9 -21" className="stick-limb" />
+            <path d="M10 -24 L20 -26 L13 -20 Z" fill="#ffddd2" stroke="#001524" strokeWidth="0.9" className="anim-plane" />
+          </g>
+
+          {/* 10. Skateboarding with mid-air Ollie over R2->E (x=990, y=112) (Peach) */}
+          <g transform="translate(990, 112)">
             <g className="anim-skate-ollie">
               <circle cx="0" cy="-28" r="3.9" fill="#ffddd2" stroke="#001524" strokeWidth="1.2" />
               <path d="M0 -24 L-1 -11 L-5 -3 M-1 -11 L5 -3" className="stick-limb" />
@@ -343,8 +309,8 @@ export default function StickmenName() {
             </g>
           </g>
 
-          {/* 9. Jumping cheerfully on top of E (x=1048, y=110) (Tangerine) */}
-          <g transform="translate(1048, 110)">
+          {/* 11. Jumping cheerfully on top of E (x=1042, y=112) (Tangerine) */}
+          <g transform="translate(1042, 112)">
             <g className="anim-jump">
               <circle cx="0" cy="-25" r="3.9" fill="#ff7d00" stroke="#001524" strokeWidth="1.2" />
               <path d="M0 -21 L0 -8 L-5 0 M0 -8 L5 0" className="stick-limb" />
@@ -352,8 +318,8 @@ export default function StickmenName() {
             </g>
           </g>
 
-          {/* 10. Balancing handstand on final H's left pillar (x=1198, y=110) (Teal) */}
-          <g transform="translate(1198, 110)">
+          {/* 12. Balancing handstand on final H2's left pillar (x=1190, y=112) (Teal) */}
+          <g transform="translate(1190, 112)">
             <g className="anim-wobble">
               <path d="M-4 0 L-1 -9 M4 0 L1 -9" className="stick-limb" />
               <path d="M0 -9 L0 -23 L-4 -32 M0 -23 L4 -32" className="stick-limb" />
@@ -361,30 +327,12 @@ export default function StickmenName() {
             </g>
           </g>
 
-          {/* 11. Standing tall on the baseline after final H & waving hello (Terracotta) */}
-          <g transform="translate(1292, 250)">
+          {/* 13. Standing tall on the baseline after final H2 & waving hello (Terracotta) */}
+          <g transform="translate(1284, 250)">
             <circle cx="0" cy="-29" r="3.9" fill="#e29578" stroke="#001524" strokeWidth="1.2" />
             <path d="M0 -25 L0 -10 L-5 0 M0 -10 L5 0" className="stick-limb" />
             <path d="M0 -20 L-7 -12" className="stick-limb" />
             <path d="M0 -20 L8 -28" className="stick-limb anim-wave" />
-          </g>
-
-          {/* 12. Juggling 3 colored balls on top of S in RISHITH (x=276, y=108) (Deep Teal) */}
-          <g transform="translate(276, 108)">
-            <circle cx="0" cy="-25" r="3.8" fill="#006d77" stroke="#001524" strokeWidth="1.2" />
-            <path d="M0 -21 L0 -8 L-5 0 M0 -8 L5 0" className="stick-limb" />
-            <path d="M0 -17 L-8 -13 M0 -17 L8 -13" className="stick-limb" />
-            <circle cx="-7" cy="-22" r="2.1" fill="#ff7d00" className="anim-juggle-a" />
-            <circle cx="0" cy="-31" r="2.1" fill="#83c5be" className="anim-juggle-b" />
-            <circle cx="7" cy="-22" r="2.1" fill="#e29578" className="anim-juggle-c" />
-          </g>
-
-          {/* 13. Launching a gliding paper airplane from U's right spire (x=885, y=110) (Rust) */}
-          <g transform="translate(885, 110)">
-            <circle cx="0" cy="-25" r="3.7" fill="#78290f" stroke="#001524" strokeWidth="1.2" />
-            <path d="M0 -21 L0 -8 L-5 0 M0 -8 L5 0" className="stick-limb" />
-            <path d="M0 -17 L-6 -12 M0 -17 L9 -21" className="stick-limb" />
-            <path d="M10 -24 L20 -26 L13 -20 Z" fill="#ffddd2" stroke="#001524" strokeWidth="0.9" className="anim-plane" />
           </g>
         </g>
       </svg>

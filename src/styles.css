@@ -393,22 +393,29 @@ button {
 
 .ornament-curl {
   fill: none;
-  stroke: var(--deep);
-  stroke-width: 1.25;
+  stroke: var(--teal-mid);
+  stroke-width: 0.95;
   stroke-linecap: round;
-  opacity: 0.72;
+  opacity: 0.58;
   stroke-dasharray: 140;
   animation: curl-trace 6.5s ease-in-out infinite alternate;
 }
 
 .ornament-curl-warm {
   fill: none;
-  stroke: var(--rust);
-  stroke-width: 1.25;
+  stroke: var(--terracotta);
+  stroke-width: 0.95;
   stroke-linecap: round;
-  opacity: 0.68;
+  opacity: 0.65;
   stroke-dasharray: 120;
   animation: curl-trace 7.5s ease-in-out 1.2s infinite alternate;
+}
+
+.ornament-loop {
+  fill: none;
+  stroke: var(--teal-mid);
+  stroke-width: 0.85;
+  opacity: 0.62;
 }
 
 @keyframes curl-trace {
