@@ -189,17 +189,42 @@ button {
 }
 
 /* =========================================
-   SUNLIT LIGHT-FORWARD HERO + DEEP 3D STAGE
+   CENTERED HOLLOW NAME HERO + BACKGROUND CUBE
 ========================================= */
 
-.hero {
+.hero-centerpiece {
   min-height: calc(100vh - 72px);
-  display: grid;
-  grid-template-columns: 1.04fr 0.96fr;
-  align-items: center;
-  gap: 44px;
-  padding-block: 36px 72px;
   position: relative;
+  display: grid;
+  place-items: center;
+  padding-block: 36px 56px;
+  overflow: hidden;
+}
+
+.hero-bg-cube {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.24;
+  filter: saturate(0.5) blur(0.6px);
+  mask-image: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.92) 30%, transparent 74%);
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.92) 30%, transparent 74%);
+}
+
+.hero-bg-cube canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+.hero-foreground {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .hero-kicker {
@@ -207,45 +232,176 @@ button {
   letter-spacing: 1.8px;
   text-transform: uppercase;
   color: var(--teal-deep);
-  margin-bottom: 18px;
+  margin-bottom: 10px;
   display: block;
 }
 
-.mask-line {
-  overflow: hidden;
+.hero-name-wrap {
+  width: min(1080px, 100%);
+  margin-block: 4px 14px;
+}
+
+.stickmen-stage {
+  width: 100%;
+}
+
+.stickmen-svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
   display: block;
 }
 
-.hero-title {
+.hollow-name-text {
   font-family: var(--display);
-  font-size: clamp(48px, 6vw, 82px);
+  font-size: 162px;
   font-weight: 700;
-  line-height: 1.05;
-  letter-spacing: -0.025em;
-  margin: 0 0 24px;
-  color: var(--deep);
+  letter-spacing: 6px;
+  fill: rgba(255, 255, 255, 0.22);
+  stroke: var(--deep);
+  stroke-width: 3.4px;
+  stroke-linejoin: round;
+  paint-order: stroke;
 }
 
-.hero-title em {
-  display: block;
-  font-family: var(--serif);
-  font-style: italic;
-  font-weight: 400;
-  font-size: clamp(56px, 6.8vw, 92px);
-  line-height: 1.02;
-  letter-spacing: -0.015em;
-  margin-top: 4px;
-  background: linear-gradient(105deg, var(--teal-deep) 0%, var(--tangerine) 55%, var(--rust) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+.hollow-name-sub {
+  font-size: 148px;
+  letter-spacing: 10px;
+  stroke: var(--teal-deep);
+}
+
+.stick-limb {
+  fill: none;
+  stroke: var(--deep);
+  stroke-width: 2.3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.stick-prop {
+  fill: none;
+  stroke: var(--rust);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.stick-line {
+  fill: none;
+  stroke: var(--teal-mid);
+  stroke-width: 1.4;
+  stroke-dasharray: 2 2;
+}
+
+/* Stickmen micro-animations */
+.anim-kick {
+  transform-origin: 0px -2px;
+  animation: kick 1.4s ease-in-out infinite alternate;
+}
+
+.anim-sprint {
+  animation: sprint 4.2s ease-in-out infinite alternate;
+}
+
+.anim-run-legs {
+  transform-origin: -2px -8px;
+  animation: run-legs 0.45s ease-in-out infinite alternate;
+}
+
+.anim-swing {
+  transform-origin: 0px 0px;
+  animation: swing 2.4s ease-in-out infinite alternate;
+}
+
+.anim-lift {
+  animation: lift 1.8s ease-in-out infinite;
+}
+
+.anim-bob {
+  animation: bob 2.2s ease-in-out infinite alternate;
+}
+
+.anim-skate {
+  animation: skate 3.8s ease-in-out infinite alternate;
+}
+
+.anim-climb {
+  animation: climb 2.8s ease-in-out infinite alternate;
+}
+
+.anim-jump {
+  animation: jump 1.3s cubic-bezier(0.35, 0.85, 0.4, 1) infinite;
+}
+
+.anim-wobble {
+  transform-origin: 0px 0px;
+  animation: wobble 2s ease-in-out infinite alternate;
+}
+
+.anim-wave {
+  transform-origin: 0px -20px;
+  animation: wave-arm 0.9s ease-in-out infinite alternate;
+}
+
+@keyframes kick {
+  from { transform: rotate(-14deg); }
+  to { transform: rotate(28deg); }
+}
+
+@keyframes sprint {
+  from { transform: translateX(-52px); }
+  to { transform: translateX(52px); }
+}
+
+@keyframes run-legs {
+  from { transform: rotate(-16deg); }
+  to { transform: rotate(18deg); }
+}
+
+@keyframes swing {
+  from { transform: rotate(-22deg); }
+  to { transform: rotate(22deg); }
+}
+
+@keyframes lift {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-9px); }
+}
+
+@keyframes bob {
+  from { transform: translateY(-3px); }
+  to { transform: translateY(4px); }
+}
+
+@keyframes skate {
+  from { transform: translateX(-58px); }
+  to { transform: translateX(58px); }
+}
+
+@keyframes climb {
+  from { transform: translateY(14px); }
+  to { transform: translateY(-18px); }
+}
+
+@keyframes jump {
+  0%, 100% { transform: translateY(0px); }
+  45% { transform: translateY(-18px); }
+}
+
+@keyframes wobble {
+  from { transform: rotate(-7deg); }
+  to { transform: rotate(7deg); }
+}
+
+@keyframes wave-arm {
+  from { transform: rotate(-18deg); }
+  to { transform: rotate(22deg); }
 }
 
 .hero-lead {
   font-size: 17.5px;
   line-height: 1.72;
   color: var(--teal-mid);
-  max-width: 500px;
+  max-width: 560px;
   margin: 0;
 }
 
@@ -257,9 +413,10 @@ button {
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   align-items: center;
   gap: 14px;
-  margin-top: 36px;
+  margin-top: 28px;
 }
 
 .button {
@@ -298,76 +455,8 @@ button {
   background: var(--peach);
 }
 
-.hero-stage {
-  height: 560px;
-  position: relative;
-  display: grid;
-  place-items: center;
-  border-radius: 28px;
-  background:
-    radial-gradient(circle at 75% 25%, rgba(21, 97, 109, 0.55), transparent 55%),
-    radial-gradient(circle at 25% 80%, rgba(120, 41, 15, 0.45), transparent 55%),
-    var(--deep);
-  box-shadow: var(--shadow-deep);
-  overflow: hidden;
-}
-
-.hero-aurora-orb {
-  position: absolute;
-  width: 78%;
-  aspect-ratio: 1;
-  border-radius: 48% 52% 45% 55%;
-  background:
-    radial-gradient(circle at 35% 35%, rgba(255, 125, 0, 0.28), transparent 56%),
-    radial-gradient(circle at 70% 60%, rgba(131, 197, 190, 0.24), transparent 58%);
-  filter: blur(22px);
-  pointer-events: none;
-  animation: morph-orb 11s ease-in-out infinite alternate;
-}
-
-@keyframes morph-orb {
-  from {
-    border-radius: 48% 52% 45% 55%;
-    transform: scale(0.95) rotate(0deg);
-  }
-  to {
-    border-radius: 56% 44% 58% 42%;
-    transform: scale(1.06) rotate(14deg);
-  }
-}
-
-.artwork-wrap {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  z-index: 2;
-}
-
-.artwork-wrap canvas {
-  position: absolute;
-  inset: 0;
-  cursor: grab;
-}
-
-.artwork-wrap canvas:active {
-  cursor: grabbing;
-}
-
-.stage-whisper {
-  position: absolute;
-  bottom: 18px;
-  right: 22px;
-  font: 11px var(--mono);
-  color: var(--seafoam);
-  opacity: 0.85;
-  pointer-events: none;
-  z-index: 3;
-}
-
 .hero-scroll-cue {
-  position: absolute;
-  bottom: 20px;
-  left: 0;
+  margin-top: 32px;
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -1285,7 +1374,6 @@ button {
 
   .mobile-nav a:last-child { border-bottom: 0; }
 
-  .hero,
   .about-grid,
   .showcase-split,
   .research-panel,
@@ -1294,8 +1382,6 @@ button {
     grid-template-columns: 1fr;
   }
 
-  .hero-stage { height: 420px; }
-  .hero-scroll-cue { display: none; }
   .showcase-stage { position: static; }
   .research-canvas-wrap {
     border-top: 1px solid var(--line);
@@ -1318,6 +1404,15 @@ button {
     width: calc(100% - 32px);
   }
 
+  .hero-centerpiece {
+    min-height: calc(100vh - 70px);
+    padding-block: 24px 40px;
+  }
+
+  .hero-bg-cube {
+    opacity: 0.18;
+  }
+
   .section { padding-block: 64px; }
 
   .section-heading {
@@ -1336,7 +1431,6 @@ button {
   }
 
   .contact-card { padding: 28px 22px; }
-  .hero-stage { height: 340px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

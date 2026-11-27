@@ -4,7 +4,7 @@ const Scene = lazy(() => import('./ArtworkScene'))
 
 export default function AIArtwork() {
   return (
-    <div className="artwork-wrap" aria-label="Interactive 3D Rubik's cube">
+    <div className="hero-bg-cube" aria-hidden="true">
       <Suspense fallback={null}>
         <Scene />
       </Suspense>
