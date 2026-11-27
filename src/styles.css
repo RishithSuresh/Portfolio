@@ -324,14 +324,6 @@ button {
   stroke-width: 0.95px;
 }
 
-.ornament-orbit {
-  fill: none;
-  stroke: var(--teal-mid);
-  stroke-width: 0.75;
-  stroke-dasharray: 2 5;
-  opacity: 0.24;
-}
-
 .ornament-guide {
   stroke: var(--teal-mid);
   stroke-width: 0.8;
@@ -348,7 +340,8 @@ button {
   stroke: var(--rust);
   stroke-width: 0.75;
   stroke-dasharray: 4 6;
-  opacity: 0.25;
+  opacity: 0.32;
+  animation: dash-flow 18s linear infinite;
 }
 
 .ornament-arc {
@@ -363,6 +356,8 @@ button {
   stroke: var(--terracotta);
   stroke-width: 0.9;
   opacity: 0.48;
+  stroke-dasharray: 18 10;
+  animation: dash-flow-rev 22s linear infinite;
 }
 
 .ornament-arc-dashed {
@@ -370,7 +365,24 @@ button {
   stroke: var(--teal-deep);
   stroke-width: 0.85;
   stroke-dasharray: 3 5;
-  opacity: 0.34;
+  opacity: 0.38;
+}
+
+.ornament-orbit {
+  fill: none;
+  stroke: var(--teal-mid);
+  stroke-width: 0.85;
+  stroke-dasharray: 6 8;
+  opacity: 0.32;
+  animation: dash-flow 26s linear infinite;
+}
+
+@keyframes dash-flow {
+  to { stroke-dashoffset: -160; }
+}
+
+@keyframes dash-flow-rev {
+  to { stroke-dashoffset: 160; }
 }
 
 .ornament-cross line {
@@ -385,6 +397,8 @@ button {
   stroke-width: 1.25;
   stroke-linecap: round;
   opacity: 0.72;
+  stroke-dasharray: 140;
+  animation: curl-trace 6.5s ease-in-out infinite alternate;
 }
 
 .ornament-curl-warm {
@@ -393,6 +407,14 @@ button {
   stroke-width: 1.25;
   stroke-linecap: round;
   opacity: 0.68;
+  stroke-dasharray: 120;
+  animation: curl-trace 7.5s ease-in-out 1.2s infinite alternate;
+}
+
+@keyframes curl-trace {
+  0% { stroke-dashoffset: 38; opacity: 0.45; }
+  50% { stroke-dashoffset: 0; opacity: 0.88; }
+  100% { stroke-dashoffset: -24; opacity: 0.55; }
 }
 
 .ornament-star {
