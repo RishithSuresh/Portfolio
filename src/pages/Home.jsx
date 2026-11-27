@@ -1,7 +1,7 @@
 import { ArrowDown, ArrowUpRight, Download } from 'lucide-react'
 import { motion } from 'motion/react'
 import { profile } from '../data/site'
-import AIArtwork from '../components/AIArtwork'
+import HeroBackground from '../components/HeroBackground'
 import StickmenName from '../components/StickmenName'
 import Magnetic from '../components/Magnetic'
 import BentoIntro from '../components/BentoIntro'
@@ -16,8 +16,7 @@ export default function Home() {
   return (
     <main id="top">
       <section className="hero-centerpiece">
-        {/* Dull, constantly shuffling Rubik's Cube in the background */}
-        <AIArtwork />
+        <HeroBackground />
 
         <div className="hero-foreground">
           <motion.span
