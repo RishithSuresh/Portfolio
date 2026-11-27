@@ -197,8 +197,11 @@ button {
   position: relative;
   display: grid;
   place-items: center;
-  padding-block: 36px 56px;
+  padding-block: 28px 52px;
   overflow: hidden;
+  background:
+    radial-gradient(ellipse 75% 60% at 50% 46%, rgba(255, 255, 255, 0.65), transparent 70%),
+    radial-gradient(ellipse 55% 45% at 50% 50%, rgba(131, 197, 190, 0.25), transparent 68%);
 }
 
 .hero-bg-cube {
@@ -206,10 +209,10 @@ button {
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  opacity: 0.24;
-  filter: saturate(0.5) blur(0.6px);
-  mask-image: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.92) 30%, transparent 74%);
-  -webkit-mask-image: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.92) 30%, transparent 74%);
+  opacity: 0.28;
+  filter: saturate(0.55) blur(0.4px);
+  mask-image: radial-gradient(circle at 50% 48%, rgba(0, 0, 0, 0.95) 30%, transparent 74%);
+  -webkit-mask-image: radial-gradient(circle at 50% 48%, rgba(0, 0, 0, 0.95) 30%, transparent 74%);
 }
 
 .hero-bg-cube canvas {
@@ -229,16 +232,35 @@ button {
 
 .hero-kicker {
   font: 500 12px var(--mono);
-  letter-spacing: 1.8px;
+  letter-spacing: 3.5px;
   text-transform: uppercase;
   color: var(--teal-deep);
-  margin-bottom: 10px;
-  display: block;
+  margin-bottom: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.hero-kicker-framed::before,
+.hero-kicker-framed::after {
+  content: "";
+  width: 28px;
+  height: 1px;
+  background: var(--teal-mid);
+  opacity: 0.45;
+}
+
+.hero-subkicker {
+  font: 500 11px var(--mono);
+  letter-spacing: 4px;
+  color: var(--rust);
+  opacity: 0.78;
+  margin-bottom: 16px;
 }
 
 .hero-name-wrap {
-  width: min(1240px, 100%);
-  margin-block: 6px 10px;
+  width: min(1280px, 100%);
+  margin-block: 2px 6px;
 }
 
 .stickmen-stage {
@@ -252,24 +274,24 @@ button {
   display: block;
 }
 
-.hollow-name-text {
-  font-family: 'Bodoni Moda', Georgia, serif;
-  font-variation-settings: "opsz" 96;
-  font-size: 108px;
-  font-weight: 800;
-  letter-spacing: 3px;
-  fill: rgba(255, 255, 255, 0.22);
+.bespoke-glyph {
+  fill: rgba(237, 246, 249, 0.46);
   stroke: var(--deep);
-  stroke-width: 2.2px;
+  stroke-width: 2.3px;
   stroke-linejoin: round;
-  paint-order: stroke;
+}
+
+.ornament-guide {
+  stroke: var(--teal-mid);
+  stroke-width: 0.65;
+  opacity: 0.22;
 }
 
 .ornament-arc {
   fill: none;
   stroke: var(--teal-mid);
   stroke-width: 0.9;
-  opacity: 0.45;
+  opacity: 0.36;
 }
 
 .ornament-curl {
@@ -277,19 +299,19 @@ button {
   stroke: var(--deep);
   stroke-width: 1.25;
   stroke-linecap: round;
-  opacity: 0.72;
+  opacity: 0.68;
 }
 
 .ornament-star {
   fill: var(--tangerine);
   stroke: var(--deep);
-  stroke-width: 0.8;
+  stroke-width: 0.85;
 }
 
 .stick-limb {
   fill: none;
   stroke: var(--deep);
-  stroke-width: 1.5;
+  stroke-width: 1.45;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
@@ -297,7 +319,7 @@ button {
 .stick-prop {
   fill: none;
   stroke: var(--rust);
-  stroke-width: 1.4;
+  stroke-width: 1.35;
   stroke-linecap: round;
 }
 
@@ -308,36 +330,56 @@ button {
   stroke-dasharray: 2 2;
 }
 
-/* Stickmen micro-animations */
+/* Articulated Stickmen Animations */
 .anim-kick {
   transform-origin: 0px -1px;
-  animation: kick 1.4s ease-in-out infinite alternate;
+  animation: kick 1.2s ease-in-out infinite alternate;
 }
 
 .anim-sprint {
-  animation: sprint 4.2s ease-in-out infinite alternate;
+  animation: sprint 3.4s ease-in-out infinite alternate;
 }
 
-.anim-run-legs {
+.anim-stride-a {
   transform-origin: -1px -8px;
-  animation: run-legs 0.45s ease-in-out infinite alternate;
+  animation: stride-a 0.42s ease-in-out infinite alternate;
+}
+
+.anim-stride-b {
+  transform-origin: -1px -8px;
+  animation: stride-b 0.42s ease-in-out infinite alternate;
+}
+
+.anim-arm-a {
+  transform-origin: 0.5px -18px;
+  animation: stride-b 0.42s ease-in-out infinite alternate;
+}
+
+.anim-arm-b {
+  transform-origin: 0.5px -18px;
+  animation: stride-a 0.42s ease-in-out infinite alternate;
+}
+
+.anim-pushup {
+  transform-origin: 14px 0px;
+  animation: pushup 1.5s ease-in-out infinite;
 }
 
 .anim-swing {
   transform-origin: 0px 0px;
-  animation: swing 2.4s ease-in-out infinite alternate;
+  animation: swing 2.2s ease-in-out infinite alternate;
 }
 
 .anim-lift {
-  animation: lift 1.8s ease-in-out infinite;
+  animation: lift 1.7s ease-in-out infinite;
 }
 
 .anim-bob {
-  animation: bob 2.2s ease-in-out infinite alternate;
+  animation: bob 2.1s ease-in-out infinite alternate;
 }
 
-.anim-skate {
-  animation: skate 3.8s ease-in-out infinite alternate;
+.anim-skate-ollie {
+  animation: skate-ollie 4.2s ease-in-out infinite;
 }
 
 .anim-climb {
@@ -345,7 +387,7 @@ button {
 }
 
 .anim-jump {
-  animation: jump 1.3s cubic-bezier(0.35, 0.85, 0.4, 1) infinite;
+  animation: jump 1.25s cubic-bezier(0.35, 0.85, 0.4, 1) infinite;
 }
 
 .anim-wobble {
@@ -354,63 +396,78 @@ button {
 }
 
 .anim-wave {
-  transform-origin: 0px -21px;
-  animation: wave-arm 0.9s ease-in-out infinite alternate;
+  transform-origin: 0px -20px;
+  animation: wave-arm 0.85s ease-in-out infinite alternate;
 }
 
 @keyframes kick {
-  from { transform: rotate(-14deg); }
-  to { transform: rotate(28deg); }
+  from { transform: rotate(-16deg); }
+  to { transform: rotate(30deg); }
 }
 
 @keyframes sprint {
-  from { transform: translateX(-34px); }
-  to { transform: translateX(34px); }
+  from { transform: translateX(-32px); }
+  to { transform: translateX(32px); }
 }
 
-@keyframes run-legs {
-  from { transform: rotate(-16deg); }
-  to { transform: rotate(18deg); }
+@keyframes stride-a {
+  from { transform: rotate(-24deg); }
+  to { transform: rotate(22deg); }
+}
+
+@keyframes stride-b {
+  from { transform: rotate(22deg); }
+  to { transform: rotate(-24deg); }
+}
+
+@keyframes pushup {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(-16deg); }
 }
 
 @keyframes swing {
-  from { transform: rotate(-20deg); }
-  to { transform: rotate(20deg); }
+  from { transform: rotate(-24deg); }
+  to { transform: rotate(24deg); }
 }
 
 @keyframes lift {
   0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-7px); }
+  50% { transform: translateY(-8px); }
 }
 
 @keyframes bob {
-  from { transform: translateY(-2px); }
-  to { transform: translateY(3px); }
+  from { transform: translateY(-3px); }
+  to { transform: translateY(4px); }
 }
 
-@keyframes skate {
-  from { transform: translateX(-36px); }
-  to { transform: translateX(36px); }
+@keyframes skate-ollie {
+  0% { transform: translate(-40px, 0px) rotate(0deg); }
+  25% { transform: translate(-12px, 0px) rotate(0deg); }
+  38% { transform: translate(0px, -16px) rotate(-14deg); }
+  50% { transform: translate(16px, 0px) rotate(0deg); }
+  75% { transform: translate(40px, 0px) rotate(0deg); }
+  88% { transform: translate(10px, -14px) rotate(12deg); }
+  100% { transform: translate(-40px, 0px) rotate(0deg); }
 }
 
 @keyframes climb {
-  from { transform: translateY(10px); }
-  to { transform: translateY(-10px); }
+  from { transform: translateY(22px); }
+  to { transform: translateY(-18px); }
 }
 
 @keyframes jump {
   0%, 100% { transform: translateY(0px); }
-  45% { transform: translateY(-14px); }
+  45% { transform: translateY(-15px); }
 }
 
 @keyframes wobble {
-  from { transform: rotate(-7deg); }
-  to { transform: rotate(7deg); }
+  from { transform: rotate(-8deg); }
+  to { transform: rotate(8deg); }
 }
 
 @keyframes wave-arm {
   from { transform: rotate(-18deg); }
-  to { transform: rotate(22deg); }
+  to { transform: rotate(24deg); }
 }
 
 .hero-lead {

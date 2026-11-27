@@ -21,7 +21,7 @@ export default function Home() {
 
         <div className="hero-foreground page-shell">
           <motion.span
-            className="hero-kicker"
+            className="hero-kicker hero-kicker-framed"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45 }}
@@ -37,6 +37,15 @@ export default function Home() {
           >
             <StickmenName />
           </motion.div>
+
+          <motion.span
+            className="hero-subkicker"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.16 }}
+          >
+            PORTFOLIO · BENGALURU
+          </motion.span>
 
           <motion.p
             className="hero-lead"
