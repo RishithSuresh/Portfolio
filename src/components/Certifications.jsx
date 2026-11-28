@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import {
   ChevronLeft,
   ChevronRight,
@@ -16,26 +16,10 @@ import SectionStickman from './SectionStickman'
 
 const CATEGORIES = ['All', 'AI & Systems', 'Recognition', 'Research', 'Competitions', 'Coursework']
 
-const SPRING_GLIDE = {
-  type: 'spring',
-  stiffness: 170,
-  damping: 24,
-  mass: 0.9
-}
-
-function getCircularOffset(i, active, total) {
-  if (total <= 3) return i - active
-  let diff = i - active
-  if (diff > total / 2) diff -= total
-  if (diff < -total / 2) diff += total
-  return diff
-}
-
 export default function Certifications() {
   const [category, setCategory] = useState('All')
-  const [index, setIndex] = useState(0)
+  const [activeIdx, setActiveIdx] = useState(0)
   const [autoPlay, setAutoPlay] = useState(true)
-  const [paused, setPaused] = useState(false)
   const [lightboxOpen, setLightboxOpen] = useState(false)
 
   const items = useMemo(
@@ -47,168 +31,276 @@ export default function Certifications() {
   )
 
   const count = items.length
-  const safeIndex = count ? Math.min(index, count - 1) : 0
+  const safeIndex = count ? Math.min(activeIdx, count - 1) : 0
   const active = items[safeIndex]
 
-  const goTo = nextIndex => {
-    if (!count) return
-    setIndex((nextIndex + count) % count)
+  // Imperative continuous animation state for silky 60fps circular rotation
+  const stageRef = useRef(null)
+  const cardRefs = useRef([])
+  const phaseRef = useRef(0)
+  const boostRef = useRef(0)
+  const activeIdxRef = useRef(0)
+  const hoveredRef = useRef(false)
+  const autoPlayRef = useRef(true)
+  const lightboxRef = useRef(false)
+  const dragRef = useRef({ active: false, startX: 0, lastX: 0, moved: false })
+
+  autoPlayRef.current = autoPlay
+  lightboxRef.current = lightboxOpen
+
+  const spinBy = delta => {
+    if (count <= 1) return
+    boostRef.current += delta
+  }
+
+  const spinTo = targetIdx => {
+    if (count <= 1) return
+    const current = ((phaseRef.current % count) + count) % count
+    let diff = targetIdx - current
+    if (diff > count / 2) diff -= count
+    if (diff < -count / 2) diff += count
+    boostRef.current = diff
   }
 
   const handleCategoryChange = cat => {
     setCategory(cat)
-    setIndex(0)
+    phaseRef.current = 0
+    boostRef.current = 0
+    activeIdxRef.current = 0
+    setActiveIdx(0)
   }
 
-  // Gentle auto-advance when active and not hovered/inspecting
+  // Reset phase when list length changes
   useEffect(() => {
-    if (!autoPlay || paused || lightboxOpen || count <= 1) return undefined
-    const timer = setInterval(() => {
-      setIndex(prev => (prev + 1) % count)
-    }, 5200)
-    return () => clearInterval(timer)
-  }, [autoPlay, paused, lightboxOpen, count])
+    phaseRef.current = 0
+    boostRef.current = 0
+    activeIdxRef.current = 0
+    setActiveIdx(0)
+  }, [count])
 
-  // Keyboard navigation in lightbox
+  // Continuous 60fps circular carousel loop
+  useEffect(() => {
+    if (!count) return undefined
+    let rafId = 0
+    let lastTime = performance.now()
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+    const renderFrame = now => {
+      const dt = Math.min(0.05, (now - lastTime) / 1000)
+      lastTime = now
+
+      if (!reducedMotion && !lightboxRef.current && !dragRef.current.active && count > 1) {
+        const baseRate = autoPlayRef.current ? (hoveredRef.current ? 0.05 : 0.2) : 0
+        const settle = boostRef.current * Math.min(1, dt * 6.8)
+        boostRef.current -= settle
+        phaseRef.current += settle + baseRate * dt
+      } else if (!reducedMotion && count === 1) {
+        phaseRef.current += dt * 0.4
+      }
+
+      const stageW = stageRef.current?.clientWidth || 1200
+      const radiusX =
+        count <= 1
+          ? 0
+          : count === 2
+            ? Math.min(220, stageW * 0.25)
+            : count <= 5
+              ? Math.min(410, stageW * 0.36)
+              : Math.min(610, stageW * 0.43)
+
+      const phase = phaseRef.current
+
+      if (count > 1) {
+        const nearest = ((Math.round(phase) % count) + count) % count
+        if (nearest !== activeIdxRef.current) {
+          activeIdxRef.current = nearest
+          setActiveIdx(nearest)
+        }
+      }
+
+      for (let i = 0; i < count; i++) {
+        const el = cardRefs.current[i]
+        if (!el) continue
+
+        if (count === 1) {
+          const floatY = Math.sin(phase * 2) * 5
+          el.style.transform = `translate3d(0px, ${floatY}px, 0px) scale(1)`
+          el.style.opacity = '1'
+          el.style.zIndex = '20'
+          el.style.filter = 'brightness(1)'
+          el.dataset.front = 'true'
+          continue
+        }
+
+        const angle = ((i - phase) / count) * Math.PI * 2
+        const cosA = Math.cos(angle)
+        const sinA = Math.sin(angle)
+        const depth = (cosA + 1) * 0.5 // 1 at front, 0 at back
+
+        const x = sinA * radiusX
+        const y = (1 - cosA) * -32 + 12
+        const scale = 0.54 + 0.46 * Math.pow(depth, 1.15)
+        const rotY = sinA * -22
+        const rotZ = sinA * -4.2
+        const opacity = count <= 3 ? 0.42 + 0.58 * depth : Math.max(0.14, Math.pow(depth, 1.35))
+        const bright = 0.62 + 0.38 * depth
+
+        el.style.transform = `translate3d(${x.toFixed(1)}px, ${y.toFixed(1)}px, 0px) perspective(1100px) rotateY(${rotY.toFixed(2)}deg) rotateZ(${rotZ.toFixed(2)}deg) scale(${scale.toFixed(3)})`
+        el.style.opacity = opacity.toFixed(3)
+        el.style.zIndex = String(Math.round(depth * 100))
+        el.style.filter = `brightness(${bright.toFixed(3)})`
+        el.style.pointerEvents = cosA > -0.2 ? 'auto' : 'none'
+        el.dataset.front = cosA > 0.88 ? 'true' : 'false'
+      }
+
+      rafId = requestAnimationFrame(renderFrame)
+    }
+
+    rafId = requestAnimationFrame(renderFrame)
+    return () => cancelAnimationFrame(rafId)
+  }, [count])
+
+  // Lightbox keyboard handling
   useEffect(() => {
     if (!lightboxOpen) return undefined
     const onKey = e => {
       if (e.key === 'Escape') setLightboxOpen(false)
-      if (e.key === 'ArrowRight') goTo(safeIndex + 1)
-      if (e.key === 'ArrowLeft') goTo(safeIndex - 1)
+      if (e.key === 'ArrowRight') spinBy(1)
+      if (e.key === 'ArrowLeft') spinBy(-1)
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
-  }, [lightboxOpen, safeIndex, count])
+  }, [lightboxOpen, count])
+
+  const onPointerDown = e => {
+    if (count <= 1) return
+    dragRef.current = { active: true, startX: e.clientX, lastX: e.clientX, moved: false }
+  }
+
+  const onPointerMove = e => {
+    if (!dragRef.current.active) return
+    const dx = e.clientX - dragRef.current.lastX
+    dragRef.current.lastX = e.clientX
+    if (Math.abs(e.clientX - dragRef.current.startX) > 6) {
+      dragRef.current.moved = true
+    }
+    phaseRef.current -= dx / 220
+  }
+
+  const onPointerUp = () => {
+    dragRef.current.active = false
+  }
 
   if (!active) return null
 
   return (
     <section
-      className="section section-relative"
+      className="cert-dark-section section-relative"
       id="certifications"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
+      onMouseEnter={() => {
+        hoveredRef.current = true
+      }}
+      onMouseLeave={() => {
+        hoveredRef.current = false
+        dragRef.current.active = false
+      }}
     >
-      <Reveal className="section-heading cert-heading">
-        <div>
-          <span className="eyebrow">05 / Certifications</span>
-          <h2>
-            Honors &amp;
-            <br />
-            <em>credentials.</em>
-          </h2>
-        </div>
+      {/* Subtle floating coastal cosmos glow & orbital rings */}
+      <svg className="cert-orbital-backdrop" viewBox="0 0 1440 620" preserveAspectRatio="none" aria-hidden="true">
+        <ellipse cx="720" cy="300" rx="600" ry="175" className="cert-silk-orbit" />
+        <ellipse cx="720" cy="300" rx="440" ry="122" className="cert-silk-orbit-warm" />
+        <path d="M-40 365 Q360 190 720 300 T1480 245" className="cert-silk-arc cert-silk-teal" />
+      </svg>
 
-        <div className="cert-filters" role="tablist" aria-label="Filter certificates">
-          {CATEGORIES.map(cat => {
-            const catCount =
-              cat === 'All'
-                ? certifications.length
-                : certifications.filter(c => c.category === cat).length
-            return (
-              <button
-                key={cat}
-                type="button"
-                role="tab"
-                aria-selected={category === cat}
-                className={`cert-filter-pill ${category === cat ? 'is-active' : ''}`}
-                onClick={() => handleCategoryChange(cat)}
-              >
-                {cat} <span>{catCount}</span>
-              </button>
-            )
-          })}
-        </div>
-      </Reveal>
+      <div className="cert-inner-shell">
+        <Reveal className="section-heading cert-heading">
+          <div>
+            <span className="eyebrow">05 / Certifications</span>
+            <h2>
+              Honors &amp;
+              <br />
+              <em>credentials.</em>
+            </h2>
+          </div>
 
-      {/* Unconstrained Full-Bleed Flowing Arc Showcase */}
+          <div className="cert-filters" role="tablist" aria-label="Filter certificates">
+            {CATEGORIES.map(cat => {
+              const catCount =
+                cat === 'All'
+                  ? certifications.length
+                  : certifications.filter(c => c.category === cat).length
+              return (
+                <button
+                  key={cat}
+                  type="button"
+                  role="tab"
+                  aria-selected={category === cat}
+                  className={`cert-filter-pill ${category === cat ? 'is-active' : ''}`}
+                  onClick={() => handleCategoryChange(cat)}
+                >
+                  {cat} <span>{catCount}</span>
+                </button>
+              )
+            })}
+          </div>
+        </Reveal>
+      </div>
+
+      {/* Continuous Rotating Circular Stage */}
       <div
         className="cert-freedom-bleed"
         tabIndex={0}
         onKeyDown={e => {
-          if (e.key === 'ArrowRight') goTo(safeIndex + 1)
-          if (e.key === 'ArrowLeft') goTo(safeIndex - 1)
+          if (e.key === 'ArrowRight') spinBy(1)
+          if (e.key === 'ArrowLeft') spinBy(-1)
         }}
+        onPointerDown={onPointerDown}
+        onPointerMove={onPointerMove}
+        onPointerUp={onPointerUp}
+        onPointerCancel={onPointerUp}
         aria-roledescription="carousel"
-        aria-label="Certificates carousel"
+        aria-label="Continuously rotating certificates carousel"
       >
-        {/* Airy coastal ambient glow & orbital wave strings matching portfolio theme */}
-        <svg className="cert-orbital-backdrop" viewBox="0 0 1440 520" preserveAspectRatio="none" aria-hidden="true">
-          <path d="M-40 310 Q360 150 720 260 T1480 210" className="cert-silk-arc cert-silk-teal" />
-          <path d="M-40 360 Q420 440 760 285 T1480 340" className="cert-silk-arc cert-silk-warm" />
-          <ellipse cx="720" cy="255" rx="540" ry="180" className="cert-silk-orbit" />
-        </svg>
+        <div className="cert-arc-stage" ref={stageRef}>
+          <SectionStickman
+            variant="surfer"
+            className="stickman-cert-orbit stickman-on-dark"
+            width={44}
+            height={42}
+          />
 
-        {/* Continuous Spring Deck Track */}
-        <div className="cert-arc-stage">
           {items.map((cert, i) => {
-            const offset = getCircularOffset(i, safeIndex, count)
-            const abs = Math.abs(offset)
-            const isVisible = abs <= 2
-            const isActive = offset === 0
-
-            // Smooth orbital fan positions across full width
-            const xOffset = offset * 335
-            const yOffset = abs * abs * 16
-            const scale = isActive ? 1 : abs === 1 ? 0.8 : 0.64
-            const rotate = offset * 5.2
-            const opacity = isActive ? 1 : abs === 1 ? 0.72 : abs === 2 ? 0.34 : 0
-            const zIndex = 20 - abs * 4
-
+            const isActive = i === safeIndex
             return (
-              <motion.div
+              <div
                 key={cert.id}
+                ref={el => {
+                  cardRefs.current[i] = el
+                }}
                 className={`cert-float-card ${isActive ? 'is-active' : ''}`}
-                initial={false}
-                animate={{
-                  x: xOffset,
-                  y: yOffset,
-                  scale,
-                  rotate,
-                  opacity,
-                  zIndex
-                }}
-                transition={SPRING_GLIDE}
-                style={{
-                  pointerEvents: isVisible ? 'auto' : 'none',
-                  transformOrigin: 'center bottom'
-                }}
-                drag={isActive && count > 1 ? 'x' : false}
-                dragConstraints={{ left: 0, right: 0 }}
-                dragElastic={0.22}
-                onDragEnd={(_, info) => {
-                  if (info.offset.x < -55) goTo(safeIndex + 1)
-                  else if (info.offset.x > 55) goTo(safeIndex - 1)
-                }}
-                whileHover={
-                  isActive
-                    ? { y: -6, scale: 1.02, transition: { duration: 0.25 } }
-                    : { y: yOffset - 10, opacity: Math.min(0.95, opacity + 0.18) }
-                }
                 onClick={() => {
+                  if (dragRef.current.moved) return
                   if (isActive) setLightboxOpen(true)
-                  else goTo(i)
+                  else spinTo(i)
                 }}
+                role="button"
+                tabIndex={isActive ? 0 : -1}
+                onKeyDown={e => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault()
+                    if (isActive) setLightboxOpen(true)
+                    else spinTo(i)
+                  }
+                }}
+                aria-label={isActive ? `Inspect ${cert.title}` : `Rotate to ${cert.title}`}
               >
-                {isActive && (
-                  <SectionStickman
-                    variant="starCheer"
-                    className="stickman-cert-float"
-                    width={38}
-                    height={44}
-                  />
-                )}
-
                 <div className="cert-float-media">
                   <img src={cert.preview} alt={`${cert.title} — ${cert.issuer}`} draggable="false" />
-                  {isActive && (
-                    <span className="cert-inspect-pill">
-                      <Maximize2 size={12} /> Inspect
-                    </span>
-                  )}
+                  <span className="cert-inspect-pill">
+                    <Maximize2 size={12} /> Inspect
+                  </span>
                 </div>
-              </motion.div>
+              </div>
             )
           })}
         </div>
@@ -218,9 +310,9 @@ export default function Certifications() {
           <AnimatePresence mode="wait">
             <motion.div
               key={active.id}
-              initial={{ opacity: 0, y: 10, filter: 'blur(4px)' }}
+              initial={{ opacity: 0, y: 8, filter: 'blur(4px)' }}
               animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-              exit={{ opacity: 0, y: -8, filter: 'blur(4px)' }}
+              exit={{ opacity: 0, y: -6, filter: 'blur(4px)' }}
               transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
               className="cert-caption-inner"
             >
@@ -269,12 +361,12 @@ export default function Certifications() {
           </AnimatePresence>
         </div>
 
-        {/* Airy Constellation Scrubber Controls */}
+        {/* Glass Scrubber Controls */}
         <div className="cert-scrubber-bar">
           <button
             type="button"
             className="cert-circle-ctrl"
-            onClick={() => goTo(safeIndex - 1)}
+            onClick={() => spinBy(-1)}
             aria-label="Previous certificate"
           >
             <ChevronLeft size={18} />
@@ -289,7 +381,7 @@ export default function Certifications() {
                 aria-label={`Jump to ${cert.title}`}
                 aria-selected={i === safeIndex}
                 className={`cert-dot ${i === safeIndex ? 'is-active' : ''}`}
-                onClick={() => goTo(i)}
+                onClick={() => spinTo(i)}
               />
             ))}
           </div>
@@ -297,7 +389,7 @@ export default function Certifications() {
           <button
             type="button"
             className="cert-circle-ctrl"
-            onClick={() => goTo(safeIndex + 1)}
+            onClick={() => spinBy(1)}
             aria-label="Next certificate"
           >
             <ChevronRight size={18} />
@@ -307,8 +399,8 @@ export default function Certifications() {
             type="button"
             className="cert-circle-ctrl cert-play-ctrl"
             onClick={() => setAutoPlay(v => !v)}
-            aria-label={autoPlay ? 'Pause autoplay' : 'Play autoplay'}
-            title={autoPlay ? 'Pause autoplay' : 'Resume autoplay'}
+            aria-label={autoPlay ? 'Pause rotation' : 'Resume rotation'}
+            title={autoPlay ? 'Pause rotation' : 'Resume rotation'}
           >
             {autoPlay ? <Pause size={14} /> : <Play size={14} />}
           </button>
@@ -344,7 +436,7 @@ export default function Certifications() {
                   <button
                     type="button"
                     className="cert-lightbox-icon"
-                    onClick={() => goTo(safeIndex - 1)}
+                    onClick={() => spinBy(-1)}
                     aria-label="Previous certificate"
                   >
                     <ChevronLeft size={18} />
@@ -352,7 +444,7 @@ export default function Certifications() {
                   <button
                     type="button"
                     className="cert-lightbox-icon"
-                    onClick={() => goTo(safeIndex + 1)}
+                    onClick={() => spinBy(1)}
                     aria-label="Next certificate"
                   >
                     <ChevronRight size={18} />

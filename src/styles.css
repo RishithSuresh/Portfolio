@@ -1874,12 +1874,45 @@ button {
 }
 
 /* =========================================
-   CERTIFICATIONS: FREE-FLOWING ORBITAL ARC CAROUSEL
+   CERTIFICATIONS: DARKER ATMOSPHERIC ORBITAL WHEEL
 ========================================= */
+
+.cert-dark-section {
+  position: relative;
+  padding-block: 88px 82px;
+  border-top: 1px solid rgba(131, 197, 190, 0.22);
+  border-bottom: 1px solid rgba(131, 197, 190, 0.22);
+  background:
+    radial-gradient(ellipse 68% 55% at 22% 24%, rgba(21, 97, 109, 0.42), transparent 62%),
+    radial-gradient(ellipse 56% 50% at 82% 72%, rgba(120, 41, 15, 0.32), transparent 60%),
+    radial-gradient(ellipse 46% 38% at 52% 48%, rgba(255, 125, 0, 0.1), transparent 62%),
+    linear-gradient(180deg, #062735 0%, #001524 52%, #052231 100%);
+  color: var(--ice);
+  overflow: hidden;
+}
+
+.cert-inner-shell {
+  position: relative;
+  z-index: 2;
+  width: min(1180px, calc(100% - 64px));
+  margin-inline: auto;
+}
 
 .cert-heading {
   align-items: flex-end;
-  margin-bottom: 28px;
+  margin-bottom: 18px;
+}
+
+.cert-dark-section .eyebrow {
+  color: var(--terracotta);
+}
+
+.cert-dark-section .section-heading h2 {
+  color: var(--cream);
+}
+
+.cert-dark-section .section-heading h2 em {
+  color: var(--seafoam);
 }
 
 .cert-filters {
@@ -1891,10 +1924,10 @@ button {
 }
 
 .cert-filter-pill {
-  border: 1px solid var(--line);
-  background: var(--surface);
+  border: 1px solid rgba(131, 197, 190, 0.26);
+  background: rgba(255, 255, 255, 0.06);
   backdrop-filter: blur(8px);
-  color: var(--teal-mid);
+  color: var(--seafoam);
   border-radius: 999px;
   padding: 7px 14px;
   font: 600 12.5px var(--display);
@@ -1907,88 +1940,101 @@ button {
 
 .cert-filter-pill span {
   font: 500 11px var(--mono);
-  opacity: 0.7;
+  opacity: 0.72;
 }
 
 .cert-filter-pill:hover {
   border-color: var(--terracotta);
-  color: var(--deep);
+  color: var(--cream);
   transform: translateY(-1px);
 }
 
 .cert-filter-pill.is-active {
-  background: var(--deep);
-  border-color: var(--deep);
-  color: var(--cream);
+  background: var(--tangerine);
+  border-color: var(--tangerine);
+  color: var(--deep);
 }
 
 .cert-filter-pill.is-active span {
-  color: var(--tangerine);
-  opacity: 1;
+  color: var(--deep);
+  opacity: 0.85;
 }
 
 .cert-freedom-bleed {
   position: relative;
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  padding: 36px 0 18px;
-  overflow: hidden;
+  z-index: 2;
+  width: 100%;
+  padding: 28px 0 6px;
   outline: none;
+  cursor: grab;
+  touch-action: pan-y;
+}
+
+.cert-freedom-bleed:active {
+  cursor: grabbing;
 }
 
 .cert-orbital-backdrop {
   position: absolute;
   inset: 0;
   width: 100%;
-  height: 440px;
+  height: 100%;
   pointer-events: none;
 }
 
 .cert-silk-arc {
   fill: none;
-  stroke-width: 1.2;
+  stroke-width: 1.1;
 }
 
 .cert-silk-teal {
-  stroke: rgba(0, 109, 119, 0.2);
-}
-
-.cert-silk-warm {
-  stroke: rgba(226, 149, 120, 0.32);
+  stroke: rgba(131, 197, 190, 0.22);
 }
 
 .cert-silk-orbit {
   fill: none;
-  stroke: rgba(131, 197, 190, 0.35);
+  stroke: rgba(131, 197, 190, 0.26);
   stroke-width: 1;
   stroke-dasharray: 5 9;
-  animation: dash-flow 32s linear infinite;
+  animation: dash-flow 30s linear infinite;
 }
 
-/* Full-bleed Spring Arc Stage */
+.cert-silk-orbit-warm {
+  fill: none;
+  stroke: rgba(226, 149, 120, 0.22);
+  stroke-width: 0.9;
+  stroke-dasharray: 12 14;
+  animation: dash-flow-rev 34s linear infinite;
+}
+
+/* Continuous Revolving Circular Stage */
 .cert-arc-stage {
   position: relative;
-  height: 410px;
+  height: 430px;
   display: flex;
   align-items: center;
   justify-content: center;
   user-select: none;
 }
 
+.stickman-cert-orbit {
+  position: absolute;
+  top: 6px;
+  right: max(6%, calc(50% - 540px));
+  z-index: 4;
+}
+
 .cert-float-card {
   position: absolute;
-  width: min(510px, 78vw);
+  width: min(490px, 76vw);
   aspect-ratio: 4 / 3;
   cursor: pointer;
   will-change: transform, opacity;
+  transform-origin: center center;
 }
 
 .cert-float-card.is-active {
-  cursor: grab;
-}
-
-.cert-float-card.is-active:active {
-  cursor: grabbing;
+  cursor: zoom-in;
 }
 
 .cert-float-media {
@@ -1998,21 +2044,19 @@ button {
   border-radius: 18px;
   padding: 10px;
   background: linear-gradient(155deg, rgba(255, 255, 255, 0.96), var(--cream));
-  border: 1px solid rgba(255, 255, 255, 0.9);
-  box-shadow:
-    0 24px 54px rgba(0, 21, 36, 0.14),
-    0 4px 14px rgba(0, 109, 119, 0.08);
+  border: 1px solid rgba(131, 197, 190, 0.45);
+  box-shadow: 0 24px 54px rgba(0, 8, 14, 0.48);
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  transition: box-shadow 0.28s ease, border-color 0.28s ease;
 }
 
 .cert-float-card.is-active .cert-float-media {
-  border-color: rgba(226, 149, 120, 0.72);
+  border-color: rgba(255, 125, 0, 0.65);
   box-shadow:
-    0 34px 72px rgba(0, 21, 36, 0.22),
-    0 0 36px rgba(131, 197, 190, 0.28);
+    0 34px 76px rgba(0, 0, 0, 0.56),
+    0 0 38px rgba(131, 197, 190, 0.28);
 }
 
 .cert-float-media img {
@@ -2024,13 +2068,6 @@ button {
   pointer-events: none;
 }
 
-.stickman-cert-float {
-  position: absolute;
-  top: -40px;
-  right: 26px;
-  z-index: 6;
-}
-
 .cert-inspect-pill {
   position: absolute;
   bottom: 18px;
@@ -2040,7 +2077,7 @@ button {
   gap: 5px;
   padding: 6px 12px;
   border-radius: 999px;
-  background: rgba(0, 21, 36, 0.84);
+  background: rgba(0, 21, 36, 0.86);
   color: var(--cream);
   font: 500 11px var(--mono);
   backdrop-filter: blur(8px);
@@ -2049,15 +2086,15 @@ button {
   transition: opacity 0.22s ease, transform 0.22s ease;
 }
 
-.cert-float-card.is-active:hover .cert-inspect-pill {
+.cert-float-card[data-front='true']:hover .cert-inspect-pill {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Minimal Airy Caption Under Active Frame */
+/* Minimal Airy Caption on Deeper Backdrop */
 .cert-minimal-caption {
   width: min(720px, calc(100% - 36px));
-  margin: 18px auto 0;
+  margin: 14px auto 0;
   text-align: center;
   min-height: 122px;
 }
@@ -2077,13 +2114,13 @@ button {
   font: 500 11.5px var(--mono);
   letter-spacing: 0.8px;
   text-transform: uppercase;
-  color: var(--rust);
+  color: var(--terracotta);
 }
 
 .cert-serif-num {
   font-family: var(--serif);
   font-style: italic;
-  font-size: 20px;
+  font-size: 21px;
   text-transform: none;
   color: var(--tangerine);
   line-height: 1;
@@ -2097,7 +2134,7 @@ button {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  color: var(--teal-deep);
+  color: var(--seafoam);
 }
 
 .cert-caption-inner h3 {
@@ -2105,13 +2142,13 @@ button {
   font-size: clamp(22px, 2.8vw, 30px);
   line-height: 1.18;
   letter-spacing: -0.025em;
-  color: var(--deep);
+  color: var(--cream);
   margin: 2px 0 0;
 }
 
 .cert-caption-issuer {
   font: 500 14.5px var(--display);
-  color: var(--teal-mid);
+  color: var(--seafoam);
   margin: 0;
 }
 
@@ -2129,29 +2166,30 @@ button {
   gap: 6px;
   padding: 8px 15px;
   border-radius: 999px;
-  border: 1px solid var(--line);
-  background: var(--surface-solid);
-  color: var(--deep);
+  border: 1px solid rgba(131, 197, 190, 0.3);
+  background: rgba(21, 97, 109, 0.36);
+  color: var(--ice);
   font: 600 12.5px var(--display);
   cursor: pointer;
-  transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+  transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
 
 .cert-link-pill:hover {
-  border-color: var(--terracotta);
-  background: var(--peach);
+  border-color: var(--tangerine);
+  background: var(--cream);
+  color: var(--deep);
   transform: translateY(-1px);
 }
 
 .cert-link-primary {
-  background: var(--deep);
-  border-color: var(--deep);
-  color: var(--cream);
+  background: var(--tangerine);
+  border-color: var(--tangerine);
+  color: var(--deep);
 }
 
 .cert-link-primary:hover {
-  background: var(--tangerine);
-  border-color: var(--tangerine);
+  background: var(--cream);
+  border-color: var(--cream);
   color: var(--deep);
 }
 
@@ -2161,13 +2199,13 @@ button {
   margin: 20px auto 0;
   padding: 6px 10px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.78);
-  border: 1px solid var(--line);
+  background: rgba(0, 21, 36, 0.72);
+  border: 1px solid rgba(131, 197, 190, 0.26);
   backdrop-filter: blur(12px);
   display: flex;
   align-items: center;
   gap: 8px;
-  box-shadow: 0 10px 26px rgba(0, 21, 36, 0.06);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
 }
 
 .cert-circle-ctrl {
@@ -2176,7 +2214,7 @@ button {
   border-radius: 999px;
   border: 1px solid transparent;
   background: transparent;
-  color: var(--deep);
+  color: var(--ice);
   display: grid;
   place-items: center;
   cursor: pointer;
@@ -2184,13 +2222,13 @@ button {
 }
 
 .cert-circle-ctrl:hover {
-  background: var(--peach);
-  color: var(--rust);
+  background: rgba(131, 197, 190, 0.2);
+  color: var(--tangerine);
   transform: scale(1.06);
 }
 
 .cert-play-ctrl {
-  border-left: 1px solid var(--line);
+  border-left: 1px solid rgba(131, 197, 190, 0.22);
   border-radius: 0 999px 999px 0;
   padding-left: 4px;
 }
@@ -2208,13 +2246,13 @@ button {
   padding: 0;
   border: 0;
   border-radius: 999px;
-  background: rgba(0, 109, 119, 0.28);
+  background: rgba(131, 197, 190, 0.34);
   cursor: pointer;
   transition: width 0.28s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.22s ease, transform 0.2s ease;
 }
 
 .cert-dot:hover {
-  background: var(--terracotta);
+  background: var(--peach);
   transform: scale(1.2);
 }
 
@@ -2722,12 +2760,16 @@ button {
     grid-template-columns: 1fr;
   }
 
+  .cert-inner-shell {
+    width: min(calc(100% - 40px), 780px);
+  }
+
   .cert-filters {
     justify-content: flex-start;
   }
 
   .cert-arc-stage {
-    height: 320px;
+    height: 340px;
   }
 
   .showcase-stage-wrap { position: static; }
@@ -2785,8 +2827,10 @@ button {
   }
 
   .contact-card { padding: 28px 22px; }
-  .cert-arc-stage { height: 265px; }
-  .cert-float-card { width: min(320px, 84vw); }
+  .cert-dark-section { padding-block: 64px; }
+  .cert-inner-shell { width: calc(100% - 32px); }
+  .cert-arc-stage { height: 280px; }
+  .cert-float-card { width: min(310px, 80vw); }
   .cert-lightbox-card { padding: 14px; }
   .cert-lightbox-top { flex-direction: column; align-items: flex-start; }
 
