@@ -43,9 +43,9 @@ export default function CommandPalette({ open, onClose }) {
       { id: 'sec-work', label: 'Go to Selected Work', tag: '02 / WORK', icon: FolderGit2, run: () => goSection('#work') },
       { id: 'sec-research', label: 'Go to Research Lab', tag: '03 / RESEARCH', icon: Compass, run: () => goSection('#research') },
       { id: 'sec-exp', label: 'Go to Experience & Skills', tag: '04 / JOURNEY', icon: Compass, run: () => goSection('#experience') },
-      { id: 'sec-github', label: 'Go to Open Source', tag: '05 / GITHUB', icon: FolderGit2, run: () => goSection('#github') },
-      { id: 'sec-term', label: 'Open Interactive Terminal', tag: '06 / SHELL', icon: Terminal, run: () => goSection('#terminal') },
-      { id: 'sec-contact', label: 'Go to Contact', tag: '07 / CONTACT', icon: Mail, run: () => goSection('#contact') }
+      { id: 'sec-certs', label: 'Go to Certifications', tag: '05 / CERTIFICATES', icon: FolderGit2, run: () => goSection('#certifications') },
+      { id: 'sec-term', label: 'Open Interactive Terminal', tag: 'SHELL', icon: Terminal, run: () => goSection('#terminal') },
+      { id: 'sec-contact', label: 'Go to Contact', tag: '06 / CONTACT', icon: Mail, run: () => goSection('#contact') }
     ]
 
     const projectItems = projects.map(p => ({

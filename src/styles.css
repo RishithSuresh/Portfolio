@@ -1917,7 +1917,7 @@ button {
   );
 }
 
-#github {
+#contact {
   border-top: 0;
 }
 
@@ -2575,6 +2575,61 @@ button {
 .contact-form .button-primary:hover {
   background: var(--cream);
   color: var(--deep);
+}
+
+.contact-form .button:disabled {
+  opacity: 0.72;
+  cursor: wait;
+}
+
+.spin-icon {
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.contact-status {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 11px 14px;
+  border-radius: 12px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.contact-status svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.contact-status.is-success {
+  background: rgba(131, 197, 190, 0.16);
+  border: 1px solid rgba(131, 197, 190, 0.45);
+  color: var(--ice);
+}
+
+.contact-status.is-error {
+  background: rgba(255, 125, 0, 0.16);
+  border: 1px solid rgba(226, 149, 120, 0.52);
+  color: var(--peach);
+}
+
+.contact-status.is-error > div {
+  display: grid;
+  gap: 5px;
+}
+
+.contact-fallback-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--tangerine);
+  font: 600 12.5px var(--display);
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .contact-form small {

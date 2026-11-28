@@ -1,22 +1,101 @@
 import { useState } from 'react'
-import { ArrowUpRight, Mail, Linkedin, Github, Copy, Check } from 'lucide-react'
+import {
+  AlertCircle,
+  ArrowUpRight,
+  Check,
+  CheckCircle2,
+  Copy,
+  Github,
+  Linkedin,
+  Loader2,
+  Mail
+} from 'lucide-react'
 import { profile, getGithubUrl } from '../data/site'
 import Reveal from './Reveal'
 import SectionStickman from './SectionStickman'
 
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', message: '' })
-  const [sent, setSent] = useState(false)
+  const [status, setStatus] = useState('idle') // 'idle' | 'sending' | 'success' | 'error'
+  const [statusMsg, setStatusMsg] = useState('')
   const [copied, setCopied] = useState(false)
 
-  const update = e => setForm({ ...form, [e.target.name]: e.target.value })
+  const update = e => {
+    setForm(prev => ({ ...prev, [e.target.name]: e.target.value }))
+    if (status === 'success' || status === 'error') {
+      setStatus('idle')
+      setStatusMsg('')
+    }
+  }
 
-  const submit = e => {
-    e.preventDefault()
-    const subject = encodeURIComponent(`Portfolio message from ${form.name}`)
+  const buildMailtoHref = () => {
+    const subject = encodeURIComponent(`Portfolio message from ${form.name || 'Visitor'}`)
     const body = encodeURIComponent(`From: ${form.name} (${form.email})\n\n${form.message}`)
-    window.location.href = `mailto:${profile.email}?subject=${subject}&body=${body}`
-    setSent(true)
+    return `mailto:${profile.email}?subject=${subject}&body=${body}`
+  }
+
+  const submit = async e => {
+    e.preventDefault()
+    if (status === 'sending') return
+
+    const name = form.name.trim()
+    const email = form.email.trim()
+    const message = form.message.trim()
+
+    if (!name || !EMAIL_RE.test(email) || !message) {
+      setStatus('error')
+      setStatusMsg('Please enter your name, a valid email address, and a message.')
+      return
+    }
+
+    setStatus('sending')
+    setStatusMsg('')
+
+    try {
+      const endpoint = `https://formsubmit.co/ajax/${encodeURIComponent(profile.email)}`
+      const res = await fetch(endpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          _replyto: email,
+          _subject: `Portfolio message from ${name}`,
+          message
+        })
+      })
+
+      let data = null
+      try {
+        data = await res.json()
+      } catch {
+        data = null
+      }
+
+      const delivered = res.ok && (data?.success === true || data?.success === 'true')
+      if (!delivered) {
+        const reason = data?.message || `Server returned status ${res.status}`
+        throw new Error(reason)
+      }
+
+      setStatus('success')
+      setStatusMsg(
+        `Delivered to ${profile.email}!${
+          data?.message ? ` (${data.message})` : ''
+        }`
+      )
+      setForm({ name: '', email: '', message: '' })
+    } catch (err) {
+      setStatus('error')
+      setStatusMsg(
+        `Message could not be delivered${err?.message ? `: ${err.message}` : '.'} You can retry or send via your mail app.`
+      )
+    }
   }
 
   const copyEmail = async () => {
@@ -29,21 +108,23 @@ export default function Contact() {
     }
   }
 
+  const isSending = status === 'sending'
+
   return (
     <section className="section" id="contact">
       <Reveal className="contact-card">
         <SectionStickman variant="lounger" className="stickman-contact-lounger" width={46} height={28} />
         <SectionStickman variant="courier" className="stickman-contact-ledge" width={74} height={44} />
         <div className="contact-copy">
-          <span className="eyebrow">07 / Contact</span>
+          <span className="eyebrow">06 / Contact</span>
           <h2>
             Have something
             <br />
             <em>in mind?</em>
           </h2>
           <p>
-            Research idea, collaboration, opportunity, or a technical challenge — I&apos;d love to
-            hear from you.
+            Research idea, collaboration, opportunity, or a technical challenge — send a message
+            directly to my inbox.
           </p>
 
           <div className="social-links">
@@ -63,7 +144,7 @@ export default function Contact() {
           </div>
         </div>
 
-        <form className="contact-form" onSubmit={submit}>
+        <form className="contact-form" onSubmit={submit} noValidate>
           <label>
             Your name
             <input
@@ -71,17 +152,19 @@ export default function Contact() {
               value={form.name}
               onChange={update}
               required
+              disabled={isSending}
               placeholder="Jane Smith"
             />
           </label>
           <label>
-            Email address
+            Your email address
             <input
               name="email"
               type="email"
               value={form.email}
               onChange={update}
               required
+              disabled={isSending}
               placeholder="jane@example.com"
             />
           </label>
@@ -92,18 +175,44 @@ export default function Contact() {
               value={form.message}
               onChange={update}
               required
+              disabled={isSending}
               rows="4"
               placeholder="Tell me what you're thinking…"
             />
           </label>
-          <button className="button button-primary" type="submit">
-            Send message <ArrowUpRight size={16} />
+          <button className="button button-primary" type="submit" disabled={isSending}>
+            {isSending ? (
+              <>
+                <Loader2 size={16} className="spin-icon" /> Sending message…
+              </>
+            ) : (
+              <>
+                Send message <ArrowUpRight size={16} />
+              </>
+            )}
           </button>
-          {sent && (
-            <small>
-              Your email app should open with the message ready to send. Or email {profile.email}{' '}
-              directly.
-            </small>
+
+          {status === 'success' && (
+            <div className="contact-status is-success" role="status" aria-live="polite">
+              <CheckCircle2 size={16} />
+              <span>{statusMsg}</span>
+            </div>
+          )}
+
+          {status === 'error' && (
+            <div className="contact-status is-error" role="alert" aria-live="assertive">
+              <AlertCircle size={16} />
+              <div>
+                <span>{statusMsg}</span>
+                <a href={buildMailtoHref()} className="contact-fallback-link">
+                  Open email app instead <ArrowUpRight size={12} />
+                </a>
+              </div>
+            </div>
+          )}
+
+          {status === 'idle' && (
+            <small>Messages are delivered directly to {profile.email}.</small>
           )}
         </form>
       </Reveal>
