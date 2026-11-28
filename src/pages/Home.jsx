@@ -26,7 +26,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45 }}
           >
-            Computer Science · AI &amp; Systems
+            LRDE · DRDO Intern · B.E. CSE &apos;27
           </motion.span>
 
           <motion.div
@@ -44,7 +44,7 @@ export default function Home() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.16 }}
           >
-            PORTFOLIO · BENGALURU
+            BMSIT&amp;M · BENGALURU · AR/VR CHAIR
           </motion.span>
 
           <motion.p
@@ -53,8 +53,9 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.22 }}
           >
-            Curious by nature, building by passion — exploring{' '}
-            <strong>multimodal AI</strong>, systems automation, and expressive software.
+            Computer Science engineer at <strong>BMSIT&amp;M</strong> &amp; technical intern at{' '}
+            <strong>LRDE · DRDO</strong> — building multimodal AI, ICRET &apos;26 research, and
+            expressive software.
           </motion.p>
 
           <motion.div

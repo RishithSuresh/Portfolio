@@ -2,14 +2,13 @@
 export const profile = {
   name: 'Rishith Suresh',
   shortName: 'rishith.',
-  role: 'Computer Science & Engineering Student',
-  tagline: 'Curious by nature. Building with purpose.',
+  role: 'CS & Engineering · LRDE DRDO Intern · Bengaluru',
+  tagline: 'Building multimodal AI, research systems, and full-stack software.',
   photo: '',
   intro:
-    'I am a final-year Computer Science and Engineering student at BMSIT, interested in the intersection of artificial intelligence, research and software development. From exploring multimodal deepfake detection to building practical applications, I enjoy turning ideas into working solutions through experimentation and engineering.',
+    'I am a B.E. Computer Science & Engineering student at BMSIT&M in Bengaluru (2023–2027), currently a technical intern at LRDE · DRDO and Chair of AR VR HUB BMSIT. From audio-visual deepfake detection and ICRET ’26 medical AI research to shipping live web & 3D software, I enjoy turning deep curiosity into working systems.',
   location: 'Bengaluru, India',
 
-  // Replace these with your actual contact details before publishing.
   email: 'rishithsuresh10@gmail.com',
   github: 'https://github.com/RishithSuresh',
   linkedin: 'https://www.linkedin.com/in/rishith-suresh-10173nh/',
@@ -705,19 +704,19 @@ export const terminalCommands = {
     `${profile.name} — ${profile.role} · ${profile.location}`,
 
   about:
-    'I am Rishith, a final-year Computer Science and Engineering student at BMSIT, interested in AI, research and software development.',
+    'Rishith Suresh — B.E. CSE (2023–2027) at BMSIT&M, Bengaluru. Technical Intern at LRDE · DRDO, Chair of AR VR HUB BMSIT, former IDRA & Unisys India campus research contributor.',
 
   projects:
     'Featured projects: Multimodal Deepfake Detection, Rule-Based Auto Remediation, LexiFix AI, MusicLens, Neruvo and PitchPulse (plus StudyFlow & DietingDisk).',
 
   research:
-    'My research interests include AI/ML, computer vision, audio processing and multimodal deepfake detection.',
+    'Research highlights: Audio-visual multimodal deepfake detection and ICRET 2026 presentation on Deep Kernel Learning for Diabetic Retinopathy.',
 
   skills:
     'Explore the Skills section for my programming languages, AI/ML interests, development technologies and tools.',
 
   experience:
-    'Experience: Intern at LRDE · DRDO; Unisys India campus research project; B.E. Computer Science & Engineering at BMSIT.',
+    'Experience: Intern at LRDE · DRDO; Data Science & AI Trainee at IDRA; Unisys India campus research; Chair at AR VR HUB BMSIT; B.E. CSE at BMSIT&M.',
 
   github:
     `GitHub profile: ${getGithubUrl(profile.github)}`,
