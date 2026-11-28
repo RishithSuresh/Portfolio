@@ -4,7 +4,7 @@ export const profile = {
   shortName: 'rishith.',
   role: 'CS & Engineering · LRDE DRDO Intern · Bengaluru',
   tagline: 'Building multimodal AI, research systems, and full-stack software.',
-  photo: '',
+  photo: '/photo.jpg',
   intro:
     'I am a B.E. Computer Science & Engineering student at BMSIT&M in Bengaluru (2023–2027), currently a technical intern at LRDE · DRDO and Chair of AR VR HUB BMSIT. From audio-visual deepfake detection and ICRET ’26 medical AI research to shipping live web & 3D software, I enjoy turning deep curiosity into working systems.',
   location: 'Bengaluru, India',
