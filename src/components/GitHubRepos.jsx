@@ -40,7 +40,7 @@ export default function GitHubRepos() {
       <SectionStickman variant="pogo" className="stickman-section-pogo" width={32} height={46} />
       <Reveal className="section-heading">
         <div>
-          <span className="eyebrow">05 / Open Source</span>
+          <span className="eyebrow">06 / Open Source</span>
           <h2>
             Built in the
             <br />

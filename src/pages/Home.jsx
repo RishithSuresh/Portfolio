@@ -9,6 +9,7 @@ import BentoIntro from '../components/BentoIntro'
 import Projects from '../components/Projects'
 import Research from '../components/Research'
 import Experience from '../components/Experience'
+import Certifications from '../components/Certifications'
 import GitHubRepos from '../components/GitHubRepos'
 import Contact from '../components/Contact'
 import Footer from '../components/Footer'
@@ -88,6 +89,7 @@ export default function Home() {
       <Projects />
       <Research />
       <Experience />
+      <Certifications />
       <GitHubRepos />
       <Contact />
       <Footer />

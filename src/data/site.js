@@ -308,25 +308,186 @@ export const researchPapers = [
 
 export const certifications = [
   {
-    title: 'Add certification title',
-    issuer: 'Issuing organisation',
-    date: 'YEAR',
+    id: 'unisys-auto-remediation',
+    title: 'Rule-Based Auto Remediation for Known Issues',
+    issuer: 'Unisys India',
+    date: 'Dec 2025 — Jul 2026',
+    category: 'Recognition',
+    preview: '/certificates/unisys-auto-remediation.jpeg',
+    file: '/certificates/unisys-auto-remediation.jpeg',
+    verifyUrl: '',
     credential: '',
-    detail: 'Add the certification name, issuing organisation and credential link here.'
+    detail:
+      'Certificate of Recognition awarded by Unisys India for campus research and engineering on Windows rule-based auto remediation workflows.'
   },
   {
-    title: 'Add certification title',
-    issuer: 'Issuing organisation',
-    date: 'YEAR',
+    id: 'icret-2026-deep-kernel',
+    title: 'Deep Kernel Learning for Diabetic Retinopathy Detection',
+    issuer: 'SVIT × Samarkand State University (ICRET 2026)',
+    date: 'May 2026',
+    category: 'Research',
+    preview: '/certificates/icret-2026-deep-kernel.jpeg',
+    file: '/certificates/icret-2026-deep-kernel.jpeg',
+    verifyUrl: '',
     credential: '',
-    detail: 'Use this card for a technical, cloud, security or professional certification.'
+    detail:
+      'Certificate of Presentation at the 17th International Conference on Recent Engineering and Technology (ICRET 2026) for presenting research using retinal fundus images.'
   },
   {
-    title: 'Add certification title',
-    issuer: 'Issuing organisation',
-    date: 'YEAR',
+    id: 'infosys-cuda-10',
+    title: 'Learning CUDA 10 Programming',
+    issuer: 'Infosys Springboard',
+    date: 'Nov 2026',
+    category: 'AI & Systems',
+    preview: '/certificates/previews/infosys-cuda-10.png',
+    file: '/certificates/infosys-cuda-10.pdf',
+    verifyUrl: 'https://verify.onwingspan.com',
+    credential: 'Infosys Verified',
+    detail:
+      'Course completion certificate covering GPU parallel computing and CUDA 10 programming fundamentals.'
+  },
+  {
+    id: 'idra-data-science-ai',
+    title: 'Data Science & AI Training & Internship Program',
+    issuer: 'India Data Research Academy (IDRA)',
+    date: 'Jul — Sep 2026',
+    category: 'AI & Systems',
+    preview: '/certificates/idra-data-science-ai.jpeg',
+    file: '/certificates/idra-data-science-ai.jpeg',
+    verifyUrl: 'https://www.idra.co.in/verify.html?id=IDRA-2026-898126',
+    credential: 'IDRA-2026-898126',
+    detail:
+      'Completed intensive data science & AI sessions, practical deliverables, and a supervised capstone project.'
+  },
+  {
+    id: 'nptel-organizational-behaviour',
+    title: 'Organizational Behaviour (Elite — 81%)',
+    issuer: 'NPTEL · IIT Hyderabad (SWAYAM)',
+    date: 'Jul — Oct 2026',
+    category: 'Coursework',
+    preview: '/certificates/previews/nptel-organizational-behaviour.png',
+    file: '/certificates/nptel-organizational-behaviour.pdf',
+    verifyUrl: '',
+    credential: 'NPTEL26MG113S852104944',
+    detail:
+      '12-week IIT Hyderabad NPTEL certification achieving Elite distinction with a consolidated score of 81%.'
+  },
+  {
+    id: 'coursera-prompt-engineering',
+    title: 'Prompt Engineering for ChatGPT',
+    issuer: 'Vanderbilt University · Coursera',
+    date: 'Dec 2024',
+    category: 'AI & Systems',
+    preview: '/certificates/previews/coursera-prompt-engineering.png',
+    file: '/certificates/coursera-prompt-engineering.pdf',
+    verifyUrl: 'https://coursera.org/verify/TX256PIXCBSU',
+    credential: 'TX256PIXCBSU',
+    detail:
+      'Authorized by Vanderbilt University covering structured prompt patterns, reasoning workflows, and LLM systems design.'
+  },
+  {
+    id: 'cisco-pcap-python',
+    title: 'PCAP: Programming Essentials in Python',
+    issuer: 'Cisco Networking Academy · OpenEDG',
+    date: 'Jun 2024',
+    category: 'Coursework',
+    preview: '/certificates/previews/cisco-pcap-python.png',
+    file: '/certificates/cisco-pcap-python.pdf',
+    verifyUrl: '',
+    credential: 'OpenEDG / NetAcad',
+    detail:
+      'Statement of Achievement covering Python syntax, algorithms, modules, file I/O, and object-oriented programming.'
+  },
+  {
+    id: 'cyseck-ctf-volunteer',
+    title: 'CySecK Cybersecurity Bootcamp & CTF Volunteer',
+    issuer: 'CySecK · K-Tech CoE & BMSIT&M',
+    date: 'Feb 2026',
+    category: 'Recognition',
+    preview: '/certificates/cyseck-ctf-volunteer.jpeg',
+    file: '/certificates/cyseck-ctf-volunteer.jpeg',
+    verifyUrl: '',
     credential: '',
-    detail: 'Replace this placeholder with another certificate or verified achievement.'
+    detail:
+      'Certificate of Appreciation for serving as a volunteer during the 2-day Women-Only Cybersecurity Bootcamp & CTF competition.'
+  },
+  {
+    id: 'incseption-hackathon-3rd',
+    title: '3rd Place — <InCSEption> 8-Hour Hackathon',
+    issuer: 'Dept. of CSE & IEEE CS · BMSIT&M',
+    date: 'BMSIT&M',
+    category: 'Competitions',
+    preview: '/certificates/incseption-hackathon-3rd.jpeg',
+    file: '/certificates/incseption-hackathon-3rd.jpeg',
+    verifyUrl: '',
+    credential: 'Team Quantum Leapers',
+    detail:
+      'Secured 3rd position with team Quantum Leapers in the 8-hour internal hackathon hosted by CSE & IEEE Computer Society.'
+  },
+  {
+    id: 'empirex-ecell-3rd',
+    title: '3rd Place — EmpireX Pitch & Presentation Challenge',
+    issuer: 'E-Cell · BMSIT&M',
+    date: 'Mar 2026',
+    category: 'Competitions',
+    preview: '/certificates/empirex-ecell-3rd.jpeg',
+    file: '/certificates/empirex-ecell-3rd.jpeg',
+    verifyUrl: '',
+    credential: 'Team CashOverflow',
+    detail:
+      'Secured 3rd place with Team CashOverflow in EmpireX, focused on product strategy, creativity, and pitching.'
+  },
+  {
+    id: 'anveshana-arvr-award',
+    title: 'Best Entertainment Award — ARVR Club Showcase',
+    issuer: 'IIC-BICEP · ANVESHANA’25, BMSIT&M',
+    date: 'Mar 2025',
+    category: 'Recognition',
+    preview: '/certificates/anveshana-arvr-award.jpeg',
+    file: '/certificates/anveshana-arvr-award.jpeg',
+    verifyUrl: '',
+    credential: 'ARVR Club',
+    detail:
+      'Certificate of Achievement awarded to the ARVR Club for winning Best Entertainment at the ANVESHANA’25 Club Showcase.'
+  },
+  {
+    id: 'skillnation-powerbi-advanced',
+    title: 'Basic to Advanced Microsoft Power BI',
+    issuer: 'Skill Nation',
+    date: 'Masterclass',
+    category: 'AI & Systems',
+    preview: '/certificates/previews/skillnation-powerbi-advanced.png',
+    file: '/certificates/skillnation-powerbi-advanced.pdf',
+    verifyUrl: '',
+    credential: '2D0FACE5901D-2D0FA779EE29-2D01B4FA3A06',
+    detail:
+      'Completed the Advanced Masterclass on business intelligence modeling, DAX, and interactive analytics with Microsoft Power BI.'
+  },
+  {
+    id: 'skillnation-powerbi-ai-dashboards',
+    title: 'AI Dashboards using Microsoft Power BI',
+    issuer: 'Skill Nation',
+    date: 'Nov 2024',
+    category: 'AI & Systems',
+    preview: '/certificates/previews/skillnation-powerbi-ai-dashboards.png',
+    file: '/certificates/skillnation-powerbi-ai-dashboards.pdf',
+    verifyUrl: '',
+    credential: '',
+    detail:
+      'Certified workshop focused on building AI-assisted decision dashboards and visual storytelling in Power BI.'
+  },
+  {
+    id: 'access-denied-digital-forensics',
+    title: 'Trail of Data: Digital Forensics in Action²',
+    issuer: 'Access Denied Club · BMSIT&M',
+    date: 'Dec 2024',
+    category: 'Coursework',
+    preview: '/certificates/access-denied-digital-forensics.jpeg',
+    file: '/certificates/access-denied-digital-forensics.jpeg',
+    verifyUrl: '',
+    credential: '',
+    detail:
+      'Hands-on seminar covering core principles, investigation workflows, and practices in digital forensics.'
   }
 ];
 
