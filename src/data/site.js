@@ -12,7 +12,7 @@ export const profile = {
   // Replace these with your actual contact details before publishing.
   email: 'rishithsuresh10@gmail.com',
   github: 'https://github.com/RishithSuresh',
-  linkedin: 'https://www.linkedin.com/',
+  linkedin: 'https://www.linkedin.com/in/rishith-suresh-10173nh/',
 
   cv: '/cv.pdf'
 };
