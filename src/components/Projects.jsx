@@ -152,17 +152,70 @@ export default function Projects() {
       </div>
 
       {secondary.length > 0 && (
-        <div className="all-projects">
-          <span className="all-projects-label">
-            <SectionStickman variant="tinker" className="stickman-inline" width={32} height={34} />
-            MORE EXPERIMENTS &amp; RESEARCH
-          </span>
-          <div>
-            {secondary.map(p => (
-              <Link key={p.slug} to={`/projects/${p.slug}`}>
-                {p.title}
-                <ArrowUpRight size={15} />
-              </Link>
+        <div className="more-projects">
+          <div className="more-projects-head">
+            <span className="all-projects-label">
+              <SectionStickman variant="tinker" className="stickman-inline" width={32} height={34} />
+              MORE EXPERIMENTS &amp; RESEARCH
+            </span>
+            <p>Additional research studies, capstone ML benchmarks, and engineering builds.</p>
+          </div>
+
+          <div className="more-projects-grid">
+            {secondary.map((p, idx) => (
+              <Reveal
+                key={p.slug}
+                delay={idx * 0.05}
+                whileHover={{ y: -5, transition: { duration: 0.2 } }}
+                className="more-project-card"
+              >
+                <Link to={`/projects/${p.slug}`} className="more-project-media">
+                  <img src={p.image} alt={`${p.title} preview`} loading="lazy" />
+                  <span className="more-project-num">{p.number}</span>
+                </Link>
+
+                <div className="more-project-body">
+                  <span className="more-project-cat">{p.category}</span>
+                  <h3>
+                    <Link to={`/projects/${p.slug}`}>{p.title}</Link>
+                  </h3>
+                  <p>{p.summary}</p>
+
+                  <div className="more-project-tags">
+                    {p.tags.slice(0, 3).map(t => (
+                      <span key={t}>{t}</span>
+                    ))}
+                  </div>
+
+                  <div className="more-project-footer">
+                    <Link to={`/projects/${p.slug}`} className="text-link">
+                      Case Study <ArrowUpRight size={15} />
+                    </Link>
+                    <div className="more-project-ext">
+                      {p.deployed && (
+                        <a
+                          href={p.deployed}
+                          target="_blank"
+                          rel="noreferrer"
+                          aria-label={`Live demo of ${p.title}`}
+                        >
+                          <Globe size={14} /> Live
+                        </a>
+                      )}
+                      {p.github && (
+                        <a
+                          href={getGithubUrl(p.github)}
+                          target="_blank"
+                          rel="noreferrer"
+                          aria-label={`GitHub source for ${p.title}`}
+                        >
+                          <Github size={14} /> Code
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </Reveal>
             ))}
           </div>
         </div>
