@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { ArrowUpRight, Github } from 'lucide-react'
+import { ArrowUpRight, ExternalLink, Github, Globe, Sparkles } from 'lucide-react'
 import { AnimatePresence, motion } from 'motion/react'
 import { Link } from 'react-router-dom'
 import { projects, getGithubUrl } from '../data/site'
@@ -25,7 +25,8 @@ export default function Projects() {
           </h2>
         </div>
         <p>
-          Hover or select a project to preview its architecture, stack, and full case study.
+          Full-stack web apps, explainable NLP, audio AI, and 3D neural visualizers — select a
+          project to explore its architecture or open the live deployment.
         </p>
       </Reveal>
 
@@ -43,9 +44,17 @@ export default function Projects() {
                 onClick={() => setActiveSlug(p.slug)}
               >
                 <span className="showcase-num">{p.number}</span>
-                <div>
-                  <h3>{p.title}</h3>
-                  <span>{p.category}</span>
+                <div className="showcase-row-copy">
+                  <div className="showcase-row-top">
+                    <h3>{p.title}</h3>
+                    {p.deployed && (
+                      <span className="showcase-live-badge">
+                        <span className="live-dot" /> Live
+                      </span>
+                    )}
+                  </div>
+                  <span className="showcase-row-cat">{p.category}</span>
+                  <p className="showcase-row-summary">{p.summary}</p>
                 </div>
                 <ArrowUpRight size={18} />
               </button>
@@ -66,19 +75,64 @@ export default function Projects() {
               >
                 <div className="showcase-media">
                   <img src={activeProject.image} alt={`${activeProject.title} preview`} />
+                  {activeProject.deployed && (
+                    <a
+                      href={activeProject.deployed}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="showcase-media-live"
+                      title={`Open live deployment of ${activeProject.title}`}
+                    >
+                      <Globe size={13} />
+                      <span>{activeProject.deployed.replace(/^https?:\/\//, '').replace(/\/$/, '')}</span>
+                      <ExternalLink size={12} />
+                    </a>
+                  )}
                 </div>
+
                 <div className="showcase-body">
+                  <span className="showcase-stage-cat">{activeProject.category}</span>
                   <h3>{activeProject.title}</h3>
                   <p>{activeProject.description}</p>
+
+                  {activeProject.highlights?.length > 0 && (
+                    <div className="showcase-highlights">
+                      {activeProject.highlights.map(h => (
+                        <span key={h}>
+                          <Sparkles size={11} /> {h}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+
                   <div className="tag-row">
-                    {activeProject.tags.slice(0, 4).map(t => (
+                    {activeProject.tags.slice(0, 5).map(t => (
                       <span key={t}>{t}</span>
                     ))}
                   </div>
+
                   <div className="showcase-actions">
-                    <Link className="button button-primary" to={`/projects/${activeProject.slug}`}>
-                      Read Case Study <ArrowUpRight size={15} />
-                    </Link>
+                    {activeProject.deployed ? (
+                      <a
+                        className="button button-primary"
+                        href={activeProject.deployed}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        Live Demo <ExternalLink size={15} />
+                      </a>
+                    ) : (
+                      <Link className="button button-primary" to={`/projects/${activeProject.slug}`}>
+                        Read Case Study <ArrowUpRight size={15} />
+                      </Link>
+                    )}
+
+                    {activeProject.deployed && (
+                      <Link className="button button-quiet" to={`/projects/${activeProject.slug}`}>
+                        Case Study <ArrowUpRight size={15} />
+                      </Link>
+                    )}
+
                     {activeProject.github && (
                       <a
                         className="button button-quiet"
@@ -101,7 +155,7 @@ export default function Projects() {
         <div className="all-projects">
           <span className="all-projects-label">
             <SectionStickman variant="tinker" className="stickman-inline" width={32} height={34} />
-            MORE EXPERIMENTS
+            MORE EXPERIMENTS &amp; RESEARCH
           </span>
           <div>
             {secondary.map(p => (

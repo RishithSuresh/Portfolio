@@ -19,266 +19,365 @@ export const profile = {
 
 export const projects = [
   {
-    slug: 'multimodal-deepfake-detection',
+    slug: 'studyflow',
     number: '01',
-    category: 'AI / ML · RESEARCH',
-    title: 'Multimodal Deepfake Detection',
+    category: 'FULL STACK · POSTGRESQL',
+    title: 'StudyFlow',
     summary:
-      'Investigating manipulated media detection through complementary audio and visual information.',
+      'Multi-user study workspace syncing mock paper analytics and mistake logs across Express, Better Auth, and Neon PostgreSQL.',
     description:
-      'An AI research project focused on developing a multimodal deepfake detection system that analyses both audio and video signals. The goal is to explore how individual modality features and cross-modal relationships can help identify synthetic and manipulated media.',
-    tags: [
-      'Python',
-      'Deep Learning',
-      'Computer Vision',
-      'Audio Processing',
-      'Multimodal Learning'
-    ],
+      'A multi-user academic workspace built for tracking mock papers, structured mistake logs, and study progress. Combines session-isolated Express APIs, Better Auth authentication, Neon PostgreSQL JSONB persistence, and local IndexedDB paper storage.',
+    highlights: ['Better Auth sessions', 'Neon PostgreSQL', 'IndexedDB papers'],
+    deployed: 'https://studyflow35.vercel.app',
+    tags: ['JavaScript', 'Express', 'Better Auth', 'Neon PostgreSQL', 'IndexedDB'],
     image:
-      'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=1400&q=85',
+      'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1400&q=85',
     featured: true,
     sections: [
       {
-        title: 'The problem',
+        title: 'Architecture & storage split',
         body:
-          'Deepfake technology is evolving rapidly, making manipulated audio and video increasingly difficult to distinguish from authentic media. Systems that examine only one modality may overlook important evidence present in another.'
+          'StudyFlow cleanly separates heavy exam PDFs from synchronized workspace telemetry: paper binaries stay instant in browser IndexedDB, while mistake logs and paper metadata sync safely across devices via `/api/workspace` backed by Neon PostgreSQL.'
       },
       {
-        title: 'The approach',
+        title: 'Multi-user isolation',
         body:
-          'The project explores a multimodal pipeline involving video-frame sampling, face-region processing, audio feature extraction and feature-level fusion. It investigates how visual, acoustic and cross-modal information can contribute to a more reliable prediction.'
+          'Authentication, sign-in, and cookie-scoped sessions are managed by Better Auth under `/api/auth/*`, ensuring every workspace read and mutation filters strictly by the authenticated user ID.'
       },
       {
-        title: 'Datasets',
+        title: 'Engineering choices',
         body:
-          'The research uses multiple deepfake datasets, including FaceForensics++, DF40, Celeb-DF and the Synthetic Deepfake Detection Dataset (SDFDC), to investigate model performance across different sources of manipulated media.'
-      },
-      {
-        title: 'Evaluation',
-        body:
-          'Model evaluation considers accuracy, precision, recall, F1-score, ROC-AUC and confusion matrices. Cross-dataset testing, class-wise performance and generalisation are important considerations in assessing the system.'
-      },
-      {
-        title: 'Future direction',
-        body:
-          'Further work focuses on improving generalisation to unseen manipulation methods, reducing overfitting, investigating modality contributions and evaluating robustness under different video and audio conditions.'
+          'Leverages PostgreSQL `user_settings.settings` JSONB alongside user-namespaced LocalStorage caching so the interface loads immediately while treating the protected API as the single source of truth.'
       }
     ],
-    links: [],
-    github: 'https://github.com/RishithSuresh/multimodal-deepfake-detection'
+    links: [{ label: 'Live Workspace', url: 'https://studyflow35.vercel.app' }],
+    github: 'https://github.com/RishithSuresh/StudyFlow'
   },
 
   {
-    slug: 'rule-based-auto-remediation',
+    slug: 'lexifix-ai',
     number: '02',
-    category: 'SOFTWARE · AUTOMATION',
-    title: 'Rule-Based Auto Remediation',
+    category: 'AI / NLP · TRANSFORMERS',
+    title: 'LexiFix AI',
     summary:
-      'A Windows-focused application designed to identify known system issues and support automated remediation.',
+      'Explainable spelling & grammar intelligence platform benchmarking deterministic multi-signal NLP against Seq2Seq Transformers.',
     description:
-      'A campus research project undertaken with Unisys India. The project focused on building an application that brings together known-issue rules, remediation scripts and system event logging to support a more structured approach to Windows troubleshooting.',
-    tags: [
-      'Python',
-      'Windows',
-      'PowerShell',
-      'SQLite',
-      'Automation'
-    ],
+      'An explainable NLP studio comparing a sub-millisecond multi-signal deterministic correction engine against CUDA-accelerated Seq2Seq Transformers (T5-base, Flan-T5, and GEC-T5) with transparent candidate rankings and WER/CER evaluation.',
+    highlights: ['Sub-ms NLP baseline', 'T5 / Flan-T5 models', '24 passing tests'],
+    deployed: '',
+    tags: ['Python', 'PyTorch', 'Transformers', 'Levenshtein', 'REST API'],
     image:
-      'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1400&q=85',
+      'https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&w=1400&q=85',
     featured: true,
     sections: [
       {
-        title: 'The problem',
+        title: 'Transparent NLP vs. black-box correction',
         body:
-          'Repeated Windows system issues can require time-consuming manual diagnosis and intervention. Identifying known problems and following consistent remediation steps can make troubleshooting more structured.'
+          'Rather than hiding how edits are chosen, LexiFix AI exposes candidate rankings across Damerau-Levenshtein edit distance, American Soundex phonetic codes, QWERTY key proximity, and contextual bigram probabilities.'
       },
       {
-        title: 'The approach',
+        title: 'Transformer benchmarking',
         body:
-          'The application was designed around known-issue rules, predefined remediation scripts and system event monitoring. It aimed to bring these elements together in a single workflow.'
+          'Includes automated CLI and REST benchmarking comparing deterministic heuristics directly against `t5-base-grammar-correction`, `gec-t5_small`, and `flan-t5-small` on Precision, Recall, F1, CER, and WER.'
       },
       {
-        title: 'Project experience',
+        title: 'Validation & quality',
         body:
-          'Working as part of a team, I experienced the process of taking an initial application concept and developing it into a more complete software solution. The project involved practical problem-solving and thinking about how automation could simplify repetitive system tasks.'
-      },
-      {
-        title: 'What I learned',
-        body:
-          'Beyond technical development, the experience helped me understand collaborative research, product-oriented thinking and how to communicate and present a technical solution to an audience.'
+          'Backed by a 24-test automated validation suite covering phonological edge cases, batch evaluation pipelines, and deterministic-vs-neural latency profiling.'
       }
     ],
     links: [],
-    github: 'https://github.com/RishithSuresh/rule-based-auto-remediation'
-  },
-
-  {
-    slug: 'dietingdisk',
-    number: '03',
-    category: 'DESKTOP · SYSTEMS',
-    title: 'DietingDisk',
-    summary:
-      'A Windows storage auditor that turns disk usage into understandable insights and cautious cleanup recommendations.',
-    description:
-      'DietingDisk is a Windows storage auditing project that helps users understand how their disk space is being used. It focuses on scanning storage, identifying large folders and presenting recommendations before any potentially destructive cleanup action.',
-    tags: [
-      'Python',
-      'Windows',
-      'SQLite',
-      'Storage Analytics'
-    ],
-    image:
-      'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1400&q=85',
-    featured: true,
-    sections: [
-      {
-        title: 'The problem',
-        body:
-          'When storage space becomes limited, users often struggle to understand what is consuming it. Removing files without knowing their purpose can also lead to accidental data loss.'
-      },
-      {
-        title: 'The approach',
-        body:
-          'DietingDisk inventories storage across drives, records scan results and helps identify folders that consume significant disk space.'
-      },
-      {
-        title: 'Safety first',
-        body:
-          'The project follows a cautious approach: recommendations are read-only, and destructive cleanup actions require explicit user approval. Access errors and excluded paths are also considered during scanning.'
-      },
-      {
-        title: 'Future direction',
-        body:
-          'Further improvements can focus on clearer storage visualisations, more detailed folder analysis and a smoother user experience for reviewing cleanup recommendations.'
-      }
-    ],
-    links: [],
-    github: 'https://github.com/RishithSuresh/dietingdisk'
+    github: 'https://github.com/RishithSuresh/LexiFix-AI'
   },
 
   {
     slug: 'musiclens',
-    number: '04',
-    category: 'MOBILE · FULL STACK',
+    number: '03',
+    category: 'AUDIO AI · FLUTTER + FASTAPI',
     title: 'MusicLens',
     summary:
-      'A mobile application project combining a Flutter frontend with a Python backend.',
+      'Interactive visual music explainer and AI prompt-to-composition studio with a FastAPI engine and Flutter glass UI.',
     description:
-      'MusicLens is a mobile application project built using Flutter and a Python-based backend. It explores the integration of a mobile user interface with backend services through API communication.',
-    tags: [
-      'Flutter',
-      'Dart',
-      'Python',
-      'REST API'
-    ],
+      'A full-stack audio analysis and music generation studio combining a FastAPI backend with a Flutter dashboard. Upload audio to visualize tempo, pitch curves, energy, and lyrics insights, or compose multi-track arrangements from text prompts with MIDI & MP3 export.',
+    highlights: ['Analyze & Compose modes', 'Piano-roll visualizer', 'Self-contained MP3/MIDI'],
+    deployed: 'https://music-lens-red.vercel.app/',
+    tags: ['Flutter', 'Dart', 'FastAPI', 'Python', 'Audio DSP'],
     image:
       'https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=1400&q=85',
     featured: true,
     sections: [
       {
-        title: 'Overview',
+        title: 'Analyze & Compose workflows',
         body:
-          'The project brings together mobile application development and backend integration, with a focus on building a connected application experience.'
+          'Analyze mode decomposes uploaded tracks into tempo, pitch contours, spectral energy, and rule-based structural insights; Compose mode turns descriptive prompts into editable multi-track piano-roll arrangements.'
       },
       {
-        title: 'Technology',
+        title: 'Self-contained audio pipeline',
         body:
-          'Flutter is used for the mobile frontend, while Python powers the backend API. The two components communicate through REST-based requests.'
+          'The FastAPI backend integrates DSP feature extraction, best-effort lyrics transcription, and a bundled MP3 encoder so previews and downloads work cleanly without external system ffmpeg dependencies.'
       },
       {
-        title: 'Development focus',
+        title: 'Cross-platform Flutter frontend',
         body:
-          'The project provides practical experience with application structure, API integration, frontend-backend communication and deployment.'
+          'Built around responsive glass cards and typed REST models (`audio_api_service.dart`), deployed live for instant browser exploration.'
       }
     ],
-    links: [],
-    github: 'https://github.com/RishithSuresh/musiclens'
+    links: [{ label: 'Launch MusicLens', url: 'https://music-lens-red.vercel.app/' }],
+    github: 'https://github.com/RishithSuresh/MusicLens'
   },
 
   {
     slug: 'neruvo',
-    number: '05',
-    category: 'WEB · PRODUCT',
-    title: 'Neruvo',
+    number: '04',
+    category: '3D WEB · COMPUTATIONAL MODELING',
+    title: 'Neruvo — Brain Visualizer',
     summary:
-      'A web application project developed using a modern React-based technology stack.',
+      'Interactive 3D visualization of human brain region activation driven by emotional stimuli and intensity telemetry.',
     description:
-      'Neruvo is a web development project built around a React-based frontend and a Node.js backend. It explores modern frontend development, application architecture and full-stack integration.',
-    tags: [
-      'React',
-      'Vite',
-      'Tailwind CSS',
-      'Node.js',
-      'Express'
-    ],
+      'A full-stack computational neuroscience visualization app built with React Three Fiber and Three.js. Lets users trigger emotional states, adjust stimulus intensity, inspect glowing 3D brain regions in real time, and review intensity trends via Chart.js.',
+    highlights: ['React Three Fiber 3D', 'Live emotion mapping', 'Chart.js telemetry'],
+    deployed: 'https://neruvo-xmqr.vercel.app',
+    tags: ['React Three Fiber', 'Three.js', 'React', 'Node.js', 'Chart.js'],
     image:
-      'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1400&q=85',
+      'https://images.unsplash.com/photo-1559757175-5700dde675bc?auto=format&fit=crop&w=1400&q=85',
     featured: true,
     sections: [
       {
-        title: 'Overview',
+        title: 'Interactive 3D neural scene',
         body:
-          'Neruvo is an ongoing product development project focused on building a modern web application.'
+          'Renders an inspectable 3D brain anatomy model with dynamic activation overlays, labeled anatomical regions, smooth camera orbiting, and keyboard shortcuts for rapid stimulus switching.'
       },
       {
-        title: 'Technology',
+        title: 'Stimulus & analytics dashboard',
         body:
-          'The frontend uses React and Vite, with Tailwind CSS for styling. The backend uses Node.js and Express for server-side functionality.'
+          'Pairs real-time stimulus intensity sliders with an Express REST backend logging session history and Chart.js visualizations tracking activation frequency and intensity patterns.'
+      }
+    ],
+    links: [{ label: 'Explore 3D Brain', url: 'https://neruvo-xmqr.vercel.app' }],
+    github: 'https://github.com/RishithSuresh/Neruvo'
+  },
+
+  {
+    slug: 'pitchpulse',
+    number: '05',
+    category: 'TYPESCRIPT · LIVE UTILITY',
+    title: 'PitchPulse (KickSplit)',
+    summary:
+      'Mobile-first football matchday organizer with weighted skill balancing, Fisher-Yates draws, and built-in match timer.',
+    description:
+      'A snappy TypeScript + React web app designed right for pitch-side match setup. Supports bulk player entry, decimal 0.0–10.0 skill weighting, fair Fisher-Yates draws, captain assignment, preset match countdown timers, and local match history.',
+    highlights: ['0.0–10.0 skill balance', 'Match timer presets', 'Zero-backend local sync'],
+    deployed: 'https://chaos11.vercel.app',
+    tags: ['TypeScript', 'React', 'Vite', 'Fisher-Yates', 'PWA-Ready'],
+    image:
+      'https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=1400&q=85',
+    featured: true,
+    sections: [
+      {
+        title: 'Fair pitch-side splits',
+        body:
+          'Uses unbiased Fisher-Yates randomization combined with optional 0.0–10.0 player ratings and unassigned player reporting to form balanced squads in seconds.'
       },
       {
-        title: 'Development focus',
+        title: 'Matchday ergonomics',
         body:
-          'The project provides experience with component-based development, frontend architecture, backend integration and building responsive web interfaces.'
+          'Includes bulk roster pasting, captain selection, live match countdown presets, local persistence across refreshes, and one-tap copy/native share for team sheets.'
+      }
+    ],
+    links: [{ label: 'Open PitchPulse', url: 'https://chaos11.vercel.app' }],
+    github: 'https://github.com/RishithSuresh/PitchPulse'
+  },
+
+  {
+    slug: 'dietingdisk',
+    number: '06',
+    category: 'DESKTOP SYSTEMS · PYTHON',
+    title: 'DietingDisk',
+    summary:
+      'Read-only Windows storage auditor featuring SQLite WAL indexing, interactive drill-down treemaps, and explainable advice.',
+    description:
+      'A strictly non-destructive Windows disk auditor built with Python, FastAPI, SQLite, and pywebview. Inventories drives, renders one-level-at-a-time treemaps, and classifies files with explicit confidence reasoning without ever altering user data.',
+    highlights: ['Strictly read-only', 'One-level treemap', 'SQLite WAL + pywebview'],
+    deployed: '',
+    tags: ['Python', 'FastAPI', 'SQLite WAL', 'pywebview', 'Windows'],
+    image:
+      'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1400&q=85',
+    featured: true,
+    sections: [
+      {
+        title: 'Safety-first architecture',
+        body:
+          'Zero code paths delete, move, or rename scanned files. Game directories, databases, model checkpoints, and documents are conservatively protected with explainable rule classifications.'
+      },
+      {
+        title: 'Scalable treemap exploration',
+        body:
+          'Queries SQLite metadata one directory depth at a time to keep memory lean across multi-terabyte drives, paired with searchable inventories and CSV export.'
       }
     ],
     links: [],
-    github: 'https://github.com/RishithSuresh/neruvo'
+    github: 'https://github.com/RishithSuresh/DietingDisk'
   },
 
   {
-    slug: 'portfolio-lab',
-    number: '06',
-    category: 'WEB · CREATIVE CODE',
-    title: 'Portfolio Lab',
-    summary: 'An interactive portfolio exploring motion, WebGL and research-led storytelling.',
-    description: 'A personal portfolio experiment combining React, motion design and interactive 3D scenes to make technical work easier to explore.',
-    tags: ['React', 'Vite', 'Three.js', 'Motion'],
-    image: 'https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1400&q=85',
-    featured: false,
-    sections: [{ title: 'Overview', body: 'An ongoing design and engineering experiment for presenting projects, research and technical interests.' }],
-    links: [],
-    github: 'https://github.com/RishithSuresh/Portfolio'
-  },
-
-  {
-    slug: 'campus-connect',
+    slug: 'multimodal-deepfake-detection',
     number: '07',
-    category: 'WEB · COMMUNITY',
-    title: 'Campus Connect',
-    summary: 'A concept for helping students discover events, resources and collaborative opportunities.',
-    description: 'A student-focused application concept that brings campus information and collaboration into one accessible interface.',
-    tags: ['JavaScript', 'UI Design', 'Product Thinking'],
-    image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1400&q=85',
+    category: 'AI / ML · RESEARCH',
+    title: 'Multimodal Deepfake Detection',
+    summary:
+      'Audio-visual fusion pipeline investigating cross-dataset generalisation across FaceForensics++, DF40, Celeb-DF, and SDFDC.',
+    description:
+      'An AI research investigation into multimodal deepfake detection combining spatial face-region features, temporal video sampling, and acoustic cues to detect synthetic media across unseen manipulation methods.',
+    highlights: ['Audio-visual fusion', '4 benchmark datasets', 'ROC-AUC evaluation'],
+    deployed: '',
+    tags: ['Python', 'Deep Learning', 'Computer Vision', 'Audio Processing', 'Research'],
+    image:
+      'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=1400&q=85',
     featured: false,
-    sections: [{ title: 'Overview', body: 'A product exploration focused on clearer campus communication and student participation.' }],
+    sections: [
+      {
+        title: 'The problem',
+        body:
+          'Single-modality detectors often miss subtle cross-stream artefacts when voice synthesis or facial reenactment evolves.'
+      },
+      {
+        title: 'Methodology & benchmarks',
+        body:
+          'Explores synchronized frame-sampling, face alignment, acoustic embeddings, and feature fusion evaluated with precision, recall, F1, and ROC-AUC across FaceForensics++, DF40, Celeb-DF, and SDFDC.'
+      }
+    ],
     links: [],
     github: 'https://github.com/RishithSuresh'
   },
 
   {
-    slug: 'ml-experiments',
+    slug: 'rule-based-auto-remediation',
     number: '08',
-    category: 'AI / ML · EXPERIMENTS',
-    title: 'ML Experiments',
-    summary: 'A collection of small machine-learning experiments, notebooks and evaluation studies.',
-    description: 'A growing collection of focused experiments used to learn, compare approaches and document practical machine-learning workflows.',
-    tags: ['Python', 'Jupyter', 'Machine Learning', 'Evaluation'],
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1400&q=85',
+    category: 'ENTERPRISE SYSTEMS · UNISYS',
+    title: 'Rule-Based Auto Remediation',
+    summary:
+      'Campus research system developed with Unisys India pairing Windows event log monitoring with deterministic recovery rules.',
+    description:
+      'A Windows auto-remediation platform undertaken with Unisys India that correlates known system failure signatures against curated PowerShell recovery scripts and structured event logging.',
+    highlights: ['Unisys Campus Research', 'PowerShell recovery', 'SQLite event audit'],
+    deployed: '',
+    tags: ['Python', 'Windows', 'PowerShell', 'SQLite', 'Automation'],
+    image:
+      'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1400&q=85',
     featured: false,
-    sections: [{ title: 'Overview', body: 'A working archive for small experiments and lessons learned while studying machine learning.' }],
+    sections: [
+      {
+        title: 'Automated Windows diagnostics',
+        body:
+          'Brings known-issue signature matching, automated PowerShell remediation steps, and auditable execution logs into a unified operator workflow.'
+      }
+    ],
     links: [],
     github: 'https://github.com/RishithSuresh'
+  },
+
+  {
+    slug: 'risklens',
+    number: '09',
+    category: 'DATA SCIENCE · CAPSTONE',
+    title: 'RiskLens — Credit Default ML',
+    summary:
+      'Imbalanced classification study evaluating Histogram Gradient Boosting across UCI credit default telemetry.',
+    description:
+      'An IDRA capstone machine-learning study profiling 22.12% imbalanced credit default risk on the UCI Taiwan dataset, identifying repayment history (PAY_0) signals and optimizing precision-recall tradeoffs.',
+    highlights: ['HistGradientBoosting', 'Imbalanced ML', 'IDRA Capstone'],
+    deployed: '',
+    tags: ['Python', 'Scikit-Learn', 'Jupyter', 'Model Evaluation'],
+    image:
+      'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1400&q=85',
+    featured: false,
+    sections: [
+      {
+        title: 'Modeling & threshold analysis',
+        body:
+          'Benchmarked tree ensembles against baselines on imbalanced default classification, generating correlation, confusion matrix, and threshold trade-off curves.'
+      }
+    ],
+    links: [],
+    github: 'https://github.com/RishithSuresh/RiskLens'
+  },
+
+  {
+    slug: 'bloomsight',
+    number: '10',
+    category: 'SECURITY · CRYPTOGRAPHY',
+    title: 'BloomSight Visual Crypto',
+    summary:
+      'Zero-dependency Python HTTP visual cryptography application splitting secrets into visual share overlays.',
+    description:
+      'A visual cryptography showcase running on Python’s standard-library HTTP server with a browser UI demonstrating secret-sharing image reconstruction.',
+    highlights: ['Stdlib HTTP server', 'Visual shares', 'Zero dependencies'],
+    deployed: '',
+    tags: ['Python', 'Cryptography', 'HTTP Server', 'Web UI'],
+    image:
+      'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1400&q=85',
+    featured: false,
+    sections: [
+      {
+        title: 'Visual secret sharing',
+        body:
+          'Demonstrates how encoded visual shares appear indistinguishable from static noise individually until overlaid in the browser.'
+      }
+    ],
+    links: [],
+    github: 'https://github.com/RishithSuresh/BloomSight'
+  },
+
+  {
+    slug: 'threat-analyzer',
+    number: '11',
+    category: 'FINTECH SECURITY · WEB',
+    title: 'Threat Analyzer (AML)',
+    summary:
+      'Anti-money-laundering analytics UI mapping structuring, layering, and cross-border spider graphs across bank accounts.',
+    description:
+      'An investigative analytics dashboard built to flag suspicious AML typologies—including smurfing, five-layer laundering trails, and shell-company transfers—via interactive network graphs.',
+    highlights: ['5-layer trail map', 'Customer risk scoring', 'Spider graph view'],
+    deployed: '',
+    tags: ['JavaScript', 'Network Graphs', 'Risk Scoring', 'Analytics'],
+    image:
+      'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=1400&q=85',
+    featured: false,
+    sections: [
+      {
+        title: 'Laundering topology detection',
+        body:
+          'Visualizes placement, structuring, layering, cross-border hops, and integration across customer accounts with exportable network snapshots.'
+      }
+    ],
+    links: [],
+    github: 'https://github.com/RishithSuresh/Threat-Analyzer'
+  },
+
+  {
+    slug: 'lifequest',
+    number: '12',
+    category: 'CREATIVE TECH · 3D UI',
+    title: 'LifeQuest',
+    summary:
+      'Gamified productivity dashboard built with Next.js App Router, Tailwind v4, Supabase, GSAP, and Three.js.',
+    description:
+      'A stylized habit and productivity platform blending Next.js App Router and Supabase auth/migrations with Three.js visuals, Framer Motion, and GSAP choreography.',
+    highlights: ['Next.js + Supabase', 'GSAP + Three.js', 'Gamified workflows'],
+    deployed: '',
+    tags: ['Next.js', 'TypeScript', 'Supabase', 'Three.js', 'GSAP'],
+    image:
+      'https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1400&q=85',
+    featured: false,
+    sections: [
+      {
+        title: 'Interactive architecture',
+        body:
+          'Combines persistent PostgreSQL state in Supabase with hardware-accelerated Three.js and GSAP transitions.'
+      }
+    ],
+    links: [],
+    github: 'https://github.com/RishithSuresh/LifeQuest'
   }
 ];
 
@@ -599,7 +698,7 @@ export const terminalCommands = {
     'I am Rishith, a final-year Computer Science and Engineering student at BMSIT, interested in AI, research and software development.',
 
   projects:
-    'Featured projects: Multimodal Deepfake Detection, Rule-Based Auto Remediation, DietingDisk, MusicLens and Neruvo.',
+    'Featured projects: StudyFlow, LexiFix AI, MusicLens, Neruvo (Brain Visualizer), PitchPulse and DietingDisk.',
 
   research:
     'My research interests include AI/ML, computer vision, audio processing and multimodal deepfake detection.',

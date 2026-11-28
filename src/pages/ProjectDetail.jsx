@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { ArrowLeft, ArrowRight, ArrowUpRight, ExternalLink, Github } from 'lucide-react'
+import { ArrowLeft, ArrowRight, ArrowUpRight, ExternalLink, Github, Globe, Sparkles } from 'lucide-react'
 import { projects, getGithubUrl } from '../data/site'
 import Footer from '../components/Footer'
 import SectionStickman from '../components/SectionStickman'
@@ -39,11 +39,39 @@ export default function ProjectDetail() {
         </span>
         <h1>{project.title}</h1>
         <p>{project.description}</p>
+        {project.highlights?.length > 0 && (
+          <div className="detail-highlights">
+            {project.highlights.map(h => (
+              <span key={h}>
+                <Sparkles size={12} /> {h}
+              </span>
+            ))}
+          </div>
+        )}
         <div className="tag-row">
           {project.tags.map(t => (
             <span key={t}>{t}</span>
           ))}
         </div>
+        {(project.deployed || project.github) && (
+          <div className="detail-top-actions">
+            {project.deployed && (
+              <a className="button button-primary" href={project.deployed} target="_blank" rel="noreferrer">
+                <Globe size={15} /> Open Live Project <ExternalLink size={14} />
+              </a>
+            )}
+            {project.github && (
+              <a
+                className="button button-quiet"
+                href={getGithubUrl(project.github)}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <Github size={15} /> View Source <ExternalLink size={14} />
+              </a>
+            )}
+          </div>
+        )}
       </div>
 
       <div className="detail-cover-wrap">

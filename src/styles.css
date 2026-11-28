@@ -1511,10 +1511,10 @@ button {
   border: 0;
   border-bottom: 1px solid var(--line);
   background: transparent;
-  padding: 22px 14px;
+  padding: 20px 16px;
   display: grid;
-  grid-template-columns: 42px 1fr auto;
-  align-items: center;
+  grid-template-columns: 38px 1fr auto;
+  align-items: start;
   gap: 14px;
   text-align: left;
   cursor: pointer;
@@ -1534,27 +1534,75 @@ button {
 .showcase-num {
   font: 500 13px var(--mono);
   color: var(--teal-deep);
+  padding-top: 4px;
 }
 
 .showcase-row.is-active .showcase-num {
   color: var(--rust);
 }
 
+.showcase-row-copy {
+  display: grid;
+  gap: 3px;
+}
+
+.showcase-row-top {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
 .showcase-row h3 {
-  margin: 0 0 4px;
+  margin: 0;
   font-family: var(--display);
-  font-size: 21px;
+  font-size: 20px;
   font-weight: 600;
   color: var(--deep);
 }
 
-.showcase-row span {
-  font: 11.5px var(--mono);
+.showcase-live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 9px;
+  border-radius: 999px;
+  background: rgba(131, 197, 190, 0.24);
+  border: 1px solid rgba(0, 109, 119, 0.26);
+  font: 600 10.5px var(--mono);
+  color: var(--teal-deep);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #16a34a;
+  box-shadow: 0 0 0 2px rgba(22, 163, 74, 0.24);
+}
+
+.showcase-row-cat {
+  font: 11px var(--mono);
+  color: var(--rust);
+  opacity: 0.86;
+}
+
+.showcase-row-summary {
+  margin: 4px 0 0;
+  font-size: 13.5px;
+  line-height: 1.55;
   color: var(--teal-mid);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .showcase-row svg {
   color: var(--teal-mid);
+  margin-top: 4px;
   transition: transform 0.2s ease, color 0.2s ease;
 }
 
@@ -1577,7 +1625,8 @@ button {
 }
 
 .showcase-media {
-  height: 310px;
+  position: relative;
+  height: 280px;
   overflow: hidden;
   background: var(--teal-mid);
 }
@@ -1589,8 +1638,39 @@ button {
   display: block;
 }
 
+.showcase-media-live {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(0, 21, 36, 0.84);
+  border: 1px solid rgba(131, 197, 190, 0.4);
+  color: var(--cream);
+  font: 500 11px var(--mono);
+  backdrop-filter: blur(8px);
+  transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.showcase-media-live:hover {
+  background: var(--tangerine);
+  border-color: var(--tangerine);
+  color: var(--deep);
+}
+
 .showcase-body {
-  padding: 28px;
+  padding: 26px 28px 28px;
+}
+
+.showcase-stage-cat {
+  display: block;
+  font: 500 11px var(--mono);
+  letter-spacing: 1px;
+  color: var(--terracotta);
+  margin-bottom: 6px;
 }
 
 .showcase-body h3 {
@@ -1601,10 +1681,29 @@ button {
 }
 
 .showcase-body p {
-  font-size: 15px;
-  line-height: 1.72;
+  font-size: 14.8px;
+  line-height: 1.7;
   color: var(--seafoam);
   margin: 0;
+}
+
+.showcase-highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.showcase-highlights span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  border-radius: 8px;
+  background: rgba(255, 125, 0, 0.14);
+  border: 1px solid rgba(255, 125, 0, 0.34);
+  font: 500 11.5px var(--mono);
+  color: var(--cream);
 }
 
 .showcase-stage .tag-row {
@@ -2703,11 +2802,37 @@ button {
   max-width: 660px;
 }
 
+.detail-highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.detail-highlights span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 11px;
+  border-radius: 8px;
+  background: var(--cream);
+  border: 1px solid var(--line-warm);
+  font: 500 12px var(--mono);
+  color: var(--rust);
+}
+
 .detail-heading .tag-row {
   display: flex;
   flex-wrap: wrap;
   gap: 7px;
-  margin-top: 18px;
+  margin-top: 14px;
+}
+
+.detail-top-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 22px;
 }
 
 .detail-heading .tag-row span {
