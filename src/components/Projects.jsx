@@ -172,6 +172,11 @@ export default function Projects() {
                 <Link to={`/projects/${p.slug}`} className="more-project-media">
                   <img src={p.image} alt={`${p.title} preview`} loading="lazy" />
                   <span className="more-project-num">{p.number}</span>
+                  {p.deployed && (
+                    <span className="more-project-live">
+                      <span className="live-dot" /> Live
+                    </span>
+                  )}
                 </Link>
 
                 <div className="more-project-body">

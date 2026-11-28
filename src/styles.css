@@ -1830,6 +1830,23 @@ button {
   backdrop-filter: blur(6px);
 }
 
+.more-project-live {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: rgba(0, 21, 36, 0.84);
+  border: 1px solid rgba(131, 197, 190, 0.36);
+  font: 600 10.5px var(--mono);
+  color: var(--cream);
+  text-transform: uppercase;
+  backdrop-filter: blur(6px);
+}
+
 .more-project-body {
   padding: 20px;
   display: flex;

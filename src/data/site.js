@@ -19,44 +19,75 @@ export const profile = {
 
 export const projects = [
   {
-    slug: 'studyflow',
+    slug: 'multimodal-deepfake-detection',
     number: '01',
-    category: 'FULL STACK · POSTGRESQL',
-    title: 'StudyFlow',
+    category: 'AI / ML · RESEARCH',
+    title: 'Multimodal Deepfake Detection',
     summary:
-      'Multi-user study workspace syncing mock paper analytics and mistake logs across Express, Better Auth, and Neon PostgreSQL.',
+      'Audio-visual fusion pipeline investigating cross-dataset generalisation across FaceForensics++, DF40, Celeb-DF, and SDFDC.',
     description:
-      'A multi-user academic workspace built for tracking mock papers, structured mistake logs, and study progress. Combines session-isolated Express APIs, Better Auth authentication, Neon PostgreSQL JSONB persistence, and local IndexedDB paper storage.',
-    highlights: ['Better Auth sessions', 'Neon PostgreSQL', 'IndexedDB papers'],
-    deployed: 'https://studyflow35.vercel.app',
-    tags: ['JavaScript', 'Express', 'Better Auth', 'Neon PostgreSQL', 'IndexedDB'],
+      'An AI research project exploring multimodal deepfake detection across complementary audio and visual signals. Combines face-region feature extraction, temporal video sampling, acoustic embeddings, and feature-level fusion to identify manipulated media across unseen generators.',
+    highlights: ['Audio-visual fusion', '4 benchmark datasets', 'ROC-AUC evaluation'],
+    deployed: '',
+    tags: ['Python', 'Deep Learning', 'Computer Vision', 'Audio Processing', 'Research'],
     image:
-      'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1400&q=85',
+      'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=1400&q=85',
     featured: true,
     sections: [
       {
-        title: 'Architecture & storage split',
+        title: 'The problem',
         body:
-          'StudyFlow cleanly separates heavy exam PDFs from synchronized workspace telemetry: paper binaries stay instant in browser IndexedDB, while mistake logs and paper metadata sync safely across devices via `/api/workspace` backed by Neon PostgreSQL.'
+          'Deepfake technology evolves rapidly, making single-modality detectors vulnerable when synthetic voice or facial reenactment artefacts only stand out in another stream.'
       },
       {
-        title: 'Multi-user isolation',
+        title: 'Methodology & fusion pipeline',
         body:
-          'Authentication, sign-in, and cookie-scoped sessions are managed by Better Auth under `/api/auth/*`, ensuring every workspace read and mutation filters strictly by the authenticated user ID.'
+          'Explores synchronized video-frame sampling, aligned face-region processing, acoustic feature extraction, and feature-level cross-modal fusion.'
       },
       {
-        title: 'Engineering choices',
+        title: 'Cross-dataset evaluation',
         body:
-          'Leverages PostgreSQL `user_settings.settings` JSONB alongside user-namespaced LocalStorage caching so the interface loads immediately while treating the protected API as the single source of truth.'
+          'Benchmarked across FaceForensics++, DF40, Celeb-DF, and SDFDC tracking accuracy, precision, recall, F1-score, ROC-AUC, and confusion matrices.'
       }
     ],
-    links: [{ label: 'Live Workspace', url: 'https://studyflow35.vercel.app' }],
-    github: 'https://github.com/RishithSuresh/StudyFlow'
+    links: [],
+    github: 'https://github.com/RishithSuresh'
+  },
+
+  {
+    slug: 'rule-based-auto-remediation',
+    number: '02',
+    category: 'ENTERPRISE SYSTEMS · UNISYS',
+    title: 'Rule-Based Auto Remediation',
+    summary:
+      'Campus research system developed with Unisys India pairing Windows event log monitoring with deterministic recovery rules.',
+    description:
+      'A Windows auto-remediation platform built in collaboration with Unisys India that pairs known system issue signatures, structured PowerShell remediation scripts, and SQLite event logging for repeatable diagnostics.',
+    highlights: ['Unisys Campus Research', 'PowerShell recovery', 'SQLite event audit'],
+    deployed: '',
+    tags: ['Python', 'Windows', 'PowerShell', 'SQLite', 'Automation'],
+    image:
+      'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1400&q=85',
+    featured: true,
+    sections: [
+      {
+        title: 'Structured Windows diagnostics',
+        body:
+          'Eliminates slow manual troubleshooting of recurring Windows issues by matching event-log triggers against curated remediation rules.'
+      },
+      {
+        title: 'End-to-end engineering',
+        body:
+          'Developed collaboratively with Unisys mentors, combining automated PowerShell recovery workflows with auditable execution logs and technical presentation.'
+      }
+    ],
+    links: [],
+    github: 'https://github.com/RishithSuresh'
   },
 
   {
     slug: 'lexifix-ai',
-    number: '02',
+    number: '03',
     category: 'AI / NLP · TRANSFORMERS',
     title: 'LexiFix AI',
     summary:
@@ -92,7 +123,7 @@ export const projects = [
 
   {
     slug: 'musiclens',
-    number: '03',
+    number: '04',
     category: 'AUDIO AI · FLUTTER + FASTAPI',
     title: 'MusicLens',
     summary:
@@ -128,7 +159,7 @@ export const projects = [
 
   {
     slug: 'neruvo',
-    number: '04',
+    number: '05',
     category: '3D WEB · COMPUTATIONAL MODELING',
     title: 'Neruvo — Brain Visualizer',
     summary:
@@ -159,7 +190,7 @@ export const projects = [
 
   {
     slug: 'pitchpulse',
-    number: '05',
+    number: '06',
     category: 'TYPESCRIPT · LIVE UTILITY',
     title: 'PitchPulse (KickSplit)',
     summary:
@@ -189,8 +220,44 @@ export const projects = [
   },
 
   {
+    slug: 'studyflow',
+    number: '07',
+    category: 'FULL STACK · POSTGRESQL',
+    title: 'StudyFlow',
+    summary:
+      'Multi-user study workspace syncing mock paper analytics and mistake logs across Express, Better Auth, and Neon PostgreSQL.',
+    description:
+      'A multi-user academic workspace built for tracking mock papers, structured mistake logs, and study progress. Combines session-isolated Express APIs, Better Auth authentication, Neon PostgreSQL JSONB persistence, and local IndexedDB paper storage.',
+    highlights: ['Better Auth sessions', 'Neon PostgreSQL', 'IndexedDB papers'],
+    deployed: 'https://studyflow35.vercel.app',
+    tags: ['JavaScript', 'Express', 'Better Auth', 'Neon PostgreSQL'],
+    image:
+      'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1400&q=85',
+    featured: false,
+    sections: [
+      {
+        title: 'Architecture & storage split',
+        body:
+          'StudyFlow cleanly separates heavy exam PDFs from synchronized workspace telemetry: paper binaries stay instant in browser IndexedDB, while mistake logs and paper metadata sync safely across devices via `/api/workspace` backed by Neon PostgreSQL.'
+      },
+      {
+        title: 'Multi-user isolation',
+        body:
+          'Authentication, sign-in, and cookie-scoped sessions are managed by Better Auth under `/api/auth/*`, ensuring every workspace read and mutation filters strictly by the authenticated user ID.'
+      },
+      {
+        title: 'Engineering choices',
+        body:
+          'Leverages PostgreSQL `user_settings.settings` JSONB alongside user-namespaced LocalStorage caching so the interface loads immediately while treating the protected API as the single source of truth.'
+      }
+    ],
+    links: [{ label: 'Live Workspace', url: 'https://studyflow35.vercel.app' }],
+    github: 'https://github.com/RishithSuresh/StudyFlow'
+  },
+
+  {
     slug: 'dietingdisk',
-    number: '06',
+    number: '08',
     category: 'DESKTOP SYSTEMS · PYTHON',
     title: 'DietingDisk',
     summary:
@@ -199,10 +266,10 @@ export const projects = [
       'A strictly non-destructive Windows disk auditor built with Python, FastAPI, SQLite, and pywebview. Inventories drives, renders one-level-at-a-time treemaps, and classifies files with explicit confidence reasoning without ever altering user data.',
     highlights: ['Strictly read-only', 'One-level treemap', 'SQLite WAL + pywebview'],
     deployed: '',
-    tags: ['Python', 'FastAPI', 'SQLite WAL', 'pywebview', 'Windows'],
+    tags: ['Python', 'FastAPI', 'SQLite WAL', 'pywebview'],
     image:
       'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1400&q=85',
-    featured: true,
+    featured: false,
     sections: [
       {
         title: 'Safety-first architecture',
@@ -217,63 +284,6 @@ export const projects = [
     ],
     links: [],
     github: 'https://github.com/RishithSuresh/DietingDisk'
-  },
-
-  {
-    slug: 'multimodal-deepfake-detection',
-    number: '07',
-    category: 'AI / ML · RESEARCH',
-    title: 'Multimodal Deepfake Detection',
-    summary:
-      'Audio-visual fusion pipeline investigating cross-dataset generalisation across FaceForensics++, DF40, Celeb-DF, and SDFDC.',
-    description:
-      'An AI research investigation into multimodal deepfake detection combining spatial face-region features, temporal video sampling, and acoustic cues to detect synthetic media across unseen manipulation methods.',
-    highlights: ['Audio-visual fusion', '4 benchmark datasets', 'ROC-AUC evaluation'],
-    deployed: '',
-    tags: ['Python', 'Deep Learning', 'Computer Vision', 'Audio Processing', 'Research'],
-    image:
-      'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=1400&q=85',
-    featured: false,
-    sections: [
-      {
-        title: 'The problem',
-        body:
-          'Single-modality detectors often miss subtle cross-stream artefacts when voice synthesis or facial reenactment evolves.'
-      },
-      {
-        title: 'Methodology & benchmarks',
-        body:
-          'Explores synchronized frame-sampling, face alignment, acoustic embeddings, and feature fusion evaluated with precision, recall, F1, and ROC-AUC across FaceForensics++, DF40, Celeb-DF, and SDFDC.'
-      }
-    ],
-    links: [],
-    github: 'https://github.com/RishithSuresh'
-  },
-
-  {
-    slug: 'rule-based-auto-remediation',
-    number: '08',
-    category: 'ENTERPRISE SYSTEMS · UNISYS',
-    title: 'Rule-Based Auto Remediation',
-    summary:
-      'Campus research system developed with Unisys India pairing Windows event log monitoring with deterministic recovery rules.',
-    description:
-      'A Windows auto-remediation platform undertaken with Unisys India that correlates known system failure signatures against curated PowerShell recovery scripts and structured event logging.',
-    highlights: ['Unisys Campus Research', 'PowerShell recovery', 'SQLite event audit'],
-    deployed: '',
-    tags: ['Python', 'Windows', 'PowerShell', 'SQLite', 'Automation'],
-    image:
-      'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1400&q=85',
-    featured: false,
-    sections: [
-      {
-        title: 'Automated Windows diagnostics',
-        body:
-          'Brings known-issue signature matching, automated PowerShell remediation steps, and auditable execution logs into a unified operator workflow.'
-      }
-    ],
-    links: [],
-    github: 'https://github.com/RishithSuresh'
   },
 
   {
@@ -698,7 +708,7 @@ export const terminalCommands = {
     'I am Rishith, a final-year Computer Science and Engineering student at BMSIT, interested in AI, research and software development.',
 
   projects:
-    'Featured projects: StudyFlow, LexiFix AI, MusicLens, Neruvo (Brain Visualizer), PitchPulse and DietingDisk.',
+    'Featured projects: Multimodal Deepfake Detection, Rule-Based Auto Remediation, LexiFix AI, MusicLens, Neruvo and PitchPulse (plus StudyFlow & DietingDisk).',
 
   research:
     'My research interests include AI/ML, computer vision, audio processing and multimodal deepfake detection.',
