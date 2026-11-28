@@ -37,7 +37,6 @@ export default function GitHubRepos() {
 
   return (
     <section className="section section-relative" id="github">
-      <SectionStickman variant="pogo" className="stickman-section-pogo" width={32} height={46} />
       <Reveal className="section-heading">
         <div>
           <span className="eyebrow">06 / Open Source</span>
@@ -55,6 +54,7 @@ export default function GitHubRepos() {
           <Github size={18} />
           <span>github.com/{username}</span>
         </div>
+        <SectionStickman variant="pogo" className="stickman-github-pogo" width={32} height={46} />
         <SectionStickman variant="starCheer" className="stickman-github-ledge" width={38} height={44} />
         <a href={profileUrl} target="_blank" rel="noreferrer">
           Visit profile <ArrowUpRight size={15} />
