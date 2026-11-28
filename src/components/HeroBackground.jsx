@@ -32,25 +32,25 @@ export default function HeroBackground() {
       '#ffddd2'
     ]
 
-    // Calmer, reduced particle count so linework leads the composition
-    const motes = Array.from({ length: 24 }, (_, i) => ({
+    // Gently reduced particle & polygon counts so the typography breathes
+    const motes = Array.from({ length: 18 }, (_, i) => ({
       x: Math.random(),
       y: Math.random(),
       vx: (Math.random() - 0.5) * 0.00028,
       vy: -0.00014 - Math.random() * 0.00018,
-      r: 1.6 + (i % 4) * 0.65,
+      r: 1.5 + (i % 4) * 0.6,
       color: shades[i % shades.length],
       kind: i % 3 === 0 ? 'star' : i % 3 === 1 ? 'ring' : 'dot',
       phase: Math.random() * Math.PI * 2,
       spin: (Math.random() - 0.5) * 0.8
     }))
 
-    const polygons = Array.from({ length: 6 }, (_, i) => ({
+    const polygons = Array.from({ length: 4 }, (_, i) => ({
       x: Math.random(),
       y: Math.random(),
       vx: (Math.random() - 0.5) * 0.00018,
       vy: -0.0001 - Math.random() * 0.00012,
-      size: 11 + (i % 3) * 6,
+      size: 11 + (i % 3) * 5,
       sides: i % 2 === 0 ? 3 : 6,
       angle: Math.random() * Math.PI * 2,
       spin: (i % 2 === 0 ? 1 : -1) * 0.0035,
@@ -59,8 +59,8 @@ export default function HeroBackground() {
 
     // Balanced set of sweeping blueprint lines
     const scanLines = [
-      { axis: 'x', pos: 0.22, speed: 0.015, color: 'rgba(0, 109, 119, 0.14)', dash: [14, 20] },
-      { axis: 'y', pos: 0.72, speed: -0.012, color: 'rgba(226, 149, 120, 0.16)', dash: [18, 18] }
+      { axis: 'x', pos: 0.22, speed: 0.015, color: 'rgba(0, 109, 119, 0.09)', dash: [14, 22] },
+      { axis: 'y', pos: 0.72, speed: -0.012, color: 'rgba(226, 149, 120, 0.11)', dash: [18, 20] }
     ]
 
     const ripples = []
@@ -316,27 +316,26 @@ export default function HeroBackground() {
       const cx = width * 0.5
       const cy = height * 0.48
 
-      // 3. Single sweeping Lissajous ribbon curve behind the centerpiece
-      drawLissajous(cx, cy, width * 0.36, height * 0.25, 2, 3, time * 0.26, 'rgba(131, 197, 190, 0.22)', [10, 12])
+      // 3. Subtle Lissajous ribbon curve behind the centerpiece
+      drawLissajous(cx, cy, width * 0.36, height * 0.25, 2, 3, time * 0.26, 'rgba(131, 197, 190, 0.15)', [10, 14])
 
-      // 4. 4 calmer layered harmonic wave lines + 2 surfing pulses
-      drawWaveBand(0.26, 22, 5.0, 0.5, 'rgba(0, 109, 119, 0.18)', 'rgba(131, 197, 190, 0.06)', 0, 'rgba(0, 109, 119, 0.48)', 0.11)
-      drawWaveBand(0.42, 26, 4.4, -0.42, 'rgba(131, 197, 190, 0.32)', 'rgba(255, 221, 210, 0.08)', 1.2, null, 0)
-      drawWaveBand(0.6, 24, 5.6, 0.46, 'rgba(226, 149, 120, 0.28)', 'rgba(255, 236, 209, 0.1)', 2.4, 'rgba(255, 125, 0, 0.6)', 0.13)
-      drawWaveBand(0.76, 18, 5.0, -0.34, 'rgba(255, 125, 0, 0.18)', null, 3.8, null, 0, [8, 12])
+      // 4. 3 calmer layered harmonic wave lines + 2 surfing pulses
+      drawWaveBand(0.24, 20, 4.8, 0.48, 'rgba(0, 109, 119, 0.14)', 'rgba(131, 197, 190, 0.05)', 0, 'rgba(0, 109, 119, 0.42)', 0.11)
+      drawWaveBand(0.55, 22, 5.2, 0.42, 'rgba(226, 149, 120, 0.22)', 'rgba(255, 236, 209, 0.08)', 2.1, 'rgba(255, 125, 0, 0.5)', 0.13)
+      drawWaveBand(0.78, 17, 4.6, -0.34, 'rgba(255, 125, 0, 0.14)', null, 3.8, null, 0, [8, 14])
 
-      // 5. Rotating degree dial & 3 astrolabe arcs with satellites
+      // 5. Rotating degree dial & 2 astrolabe arcs with satellites
       const baseR = Math.min(width, height) * 0.44
 
       ctx.save()
       ctx.translate(cx, cy)
       ctx.rotate(time * 0.045)
-      ctx.strokeStyle = 'rgba(0, 109, 119, 0.14)'
+      ctx.strokeStyle = 'rgba(0, 109, 119, 0.09)'
       ctx.lineWidth = 0.85
       const tickR1 = baseR * 0.96
       const tickR2 = baseR * 1.01
-      for (let i = 0; i < 36; i++) {
-        const a = (Math.PI * 2 * i) / 36
+      for (let i = 0; i < 24; i++) {
+        const a = (Math.PI * 2 * i) / 24
         const len = i % 3 === 0 ? 1.04 : 1.0
         ctx.beginPath()
         ctx.moveTo(Math.cos(a) * tickR1, Math.sin(a) * tickR1)
@@ -346,15 +345,14 @@ export default function HeroBackground() {
       ctx.restore()
 
       const orbits = [
-        { r: baseR * 0.66, start: time * 0.16, span: Math.PI * 1.1, color: 'rgba(0, 109, 119, 0.22)', dash: [], sat: '#ff7d00' },
-        { r: baseR * 0.88, start: -time * 0.12 + 0.9, span: Math.PI * 0.9, color: 'rgba(226, 149, 120, 0.3)', dash: [4, 8], sat: '#006d77' },
-        { r: baseR * 1.12, start: time * 0.08 + 2.2, span: Math.PI * 1.2, color: 'rgba(131, 197, 190, 0.3)', dash: [2, 8], sat: '#e29578' }
+        { r: baseR * 0.72, start: time * 0.15, span: Math.PI * 1.05, color: 'rgba(0, 109, 119, 0.16)', dash: [], sat: '#ff7d00' },
+        { r: baseR * 1.04, start: -time * 0.11 + 1.1, span: Math.PI * 0.95, color: 'rgba(226, 149, 120, 0.22)', dash: [4, 10], sat: '#006d77' }
       ]
 
       orbits.forEach(o => {
         ctx.save()
         ctx.strokeStyle = o.color
-        ctx.lineWidth = 1.15
+        ctx.lineWidth = 1.1
         ctx.setLineDash(o.dash)
         ctx.beginPath()
         ctx.arc(cx, cy, o.r, o.start, o.start + o.span)
@@ -364,14 +362,14 @@ export default function HeroBackground() {
         const sy = cy + Math.sin(o.start) * o.r
         ctx.setLineDash([])
         ctx.fillStyle = o.sat
-        ctx.globalAlpha = 0.78
+        ctx.globalAlpha = 0.72
         ctx.beginPath()
-        ctx.arc(sx, sy, 3.4, 0, Math.PI * 2)
+        ctx.arc(sx, sy, 3.2, 0, Math.PI * 2)
         ctx.fill()
         ctx.restore()
       })
 
-      // 6. Subtle floating geometric polygons & reduced motes with constellation links
+      // 6. Subtle floating geometric polygons & calmer motes with constellation links
       polygons.forEach(p => {
         if (!reducedMotion) {
           p.x += p.vx
@@ -381,7 +379,7 @@ export default function HeroBackground() {
           if (p.x > 1.05) p.x = -0.05
           if (p.y < -0.05) p.y = 1.05
         }
-        drawPolygon(p.x * width, p.y * height, p.size, p.sides, p.angle, p.color, 0.18)
+        drawPolygon(p.x * width, p.y * height, p.size, p.sides, p.angle, p.color, 0.13)
       })
 
       const px = pointerRef.current.x * width
@@ -416,12 +414,12 @@ export default function HeroBackground() {
           const dx = coords[i].x - coords[j].x
           const dy = coords[i].y - coords[j].y
           const dist = Math.hypot(dx, dy)
-          if (dist < 155) {
+          if (dist < 125) {
             ctx.save()
             ctx.strokeStyle = i % 2 === 0
-              ? `rgba(0, 109, 119, ${(1 - dist / 155) * 0.18})`
-              : `rgba(226, 149, 120, ${(1 - dist / 155) * 0.16})`
-            ctx.lineWidth = 0.85
+              ? `rgba(0, 109, 119, ${(1 - dist / 125) * 0.14})`
+              : `rgba(226, 149, 120, ${(1 - dist / 125) * 0.12})`
+            ctx.lineWidth = 0.8
             ctx.beginPath()
             ctx.moveTo(coords[i].x, coords[i].y)
             ctx.lineTo(coords[j].x, coords[j].y)

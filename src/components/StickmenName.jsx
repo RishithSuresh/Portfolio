@@ -192,18 +192,11 @@ export default function StickmenName() {
         {/* Gossamer Compass Circles & Twinkling Stars framing Maellen script */}
         <g aria-hidden="true">
           <g className="anim-orbit-cw" style={{ transformOrigin: '240px 160px' }}>
-            <circle cx="240" cy="160" r="96" className="ornament-arc" />
-            <circle cx="240" cy="160" r="68" className="ornament-arc-dashed" />
+            <circle cx="240" cy="160" r="92" className="ornament-arc" />
           </g>
-          <g className="anim-orbit-ccw" style={{ transformOrigin: '545px 150px' }}>
-            <circle cx="545" cy="150" r="78" className="ornament-arc" />
-            <circle cx="545" cy="150" r="52" className="ornament-arc-accent" />
+          <g className="anim-orbit-ccw" style={{ transformOrigin: '840px 165px' }}>
+            <circle cx="840" cy="165" r="90" className="ornament-arc-accent" />
           </g>
-          <g className="anim-orbit-cw" style={{ transformOrigin: '840px 165px' }}>
-            <circle cx="840" cy="165" r="94" className="ornament-arc" />
-            <circle cx="840" cy="165" r="64" className="ornament-arc-dashed" />
-          </g>
-          <circle cx="1110" cy="165" r="76" className="ornament-arc" />
           <ellipse cx="680" cy="175" rx="575" ry="122" className="ornament-orbit" />
 
           <Star4 cx={spots[2].x - 16} cy={spots[2].y - 52} size={8} className="ornament-star anim-twinkle" />

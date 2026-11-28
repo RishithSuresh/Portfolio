@@ -340,15 +340,15 @@ button {
 .ornament-arc {
   fill: none;
   stroke: var(--teal-mid);
-  stroke-width: 0.95;
-  opacity: 0.36;
+  stroke-width: 0.9;
+  opacity: 0.24;
 }
 
 .ornament-arc-accent {
   fill: none;
   stroke: var(--terracotta);
-  stroke-width: 0.9;
-  opacity: 0.48;
+  stroke-width: 0.85;
+  opacity: 0.34;
   stroke-dasharray: 18 10;
   animation: dash-flow-rev 22s linear infinite;
 }
@@ -358,15 +358,15 @@ button {
   stroke: var(--teal-deep);
   stroke-width: 0.85;
   stroke-dasharray: 3 5;
-  opacity: 0.38;
+  opacity: 0.26;
 }
 
 .ornament-orbit {
   fill: none;
   stroke: var(--teal-mid);
-  stroke-width: 0.85;
-  stroke-dasharray: 6 8;
-  opacity: 0.32;
+  stroke-width: 0.8;
+  stroke-dasharray: 6 10;
+  opacity: 0.2;
   animation: dash-flow 26s linear infinite;
 }
 
