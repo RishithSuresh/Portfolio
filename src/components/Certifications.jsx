@@ -40,7 +40,6 @@ export default function Certifications() {
   const phaseRef = useRef(0)
   const boostRef = useRef(0)
   const activeIdxRef = useRef(0)
-  const hoveredRef = useRef(false)
   const autoPlayRef = useRef(true)
   const lightboxRef = useRef(false)
   const dragRef = useRef({ active: false, startX: 0, lastX: 0, moved: false })
@@ -90,7 +89,7 @@ export default function Certifications() {
       lastTime = now
 
       if (!reducedMotion && !lightboxRef.current && !dragRef.current.active && count > 1) {
-        const baseRate = autoPlayRef.current ? (hoveredRef.current ? 0.05 : 0.2) : 0
+        const baseRate = autoPlayRef.current ? 0.2 : 0
         const settle = boostRef.current * Math.min(1, dt * 6.8)
         boostRef.current -= settle
         phaseRef.current += settle + baseRate * dt
@@ -197,11 +196,7 @@ export default function Certifications() {
     <section
       className="cert-dark-section section-relative"
       id="certifications"
-      onMouseEnter={() => {
-        hoveredRef.current = true
-      }}
       onMouseLeave={() => {
-        hoveredRef.current = false
         dragRef.current.active = false
       }}
     >
