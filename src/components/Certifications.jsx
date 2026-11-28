@@ -1,6 +1,5 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import {
-  Award,
   ChevronLeft,
   ChevronRight,
   ExternalLink,
@@ -8,7 +7,6 @@ import {
   Pause,
   Play,
   ShieldCheck,
-  Sparkles,
   X
 } from 'lucide-react'
 import { AnimatePresence, motion } from 'motion/react'
@@ -18,15 +16,27 @@ import SectionStickman from './SectionStickman'
 
 const CATEGORIES = ['All', 'AI & Systems', 'Recognition', 'Research', 'Competitions', 'Coursework']
 
+const SPRING_GLIDE = {
+  type: 'spring',
+  stiffness: 170,
+  damping: 24,
+  mass: 0.9
+}
+
+function getCircularOffset(i, active, total) {
+  if (total <= 3) return i - active
+  let diff = i - active
+  if (diff > total / 2) diff -= total
+  if (diff < -total / 2) diff += total
+  return diff
+}
+
 export default function Certifications() {
   const [category, setCategory] = useState('All')
   const [index, setIndex] = useState(0)
-  const [direction, setDirection] = useState(1)
   const [autoPlay, setAutoPlay] = useState(true)
   const [paused, setPaused] = useState(false)
   const [lightboxOpen, setLightboxOpen] = useState(false)
-  const [tilt, setTilt] = useState({ rx: 0, ry: 0, glowX: 50, glowY: 50 })
-  const railRef = useRef(null)
 
   const items = useMemo(
     () =>
@@ -39,69 +49,37 @@ export default function Certifications() {
   const count = items.length
   const safeIndex = count ? Math.min(index, count - 1) : 0
   const active = items[safeIndex]
-  const prevIdx = count > 1 ? (safeIndex - 1 + count) % count : null
-  const nextIdx = count > 1 ? (safeIndex + 1) % count : null
-  const prevItem = prevIdx !== null ? items[prevIdx] : null
-  const nextItem = nextIdx !== null && nextIdx !== prevIdx ? items[nextIdx] : null
 
-  const goTo = (nextIndex, dir = 1) => {
+  const goTo = nextIndex => {
     if (!count) return
-    const wrapped = (nextIndex + count) % count
-    setDirection(dir)
-    setIndex(wrapped)
+    setIndex((nextIndex + count) % count)
   }
 
   const handleCategoryChange = cat => {
     setCategory(cat)
-    setDirection(1)
     setIndex(0)
   }
 
-  const handleStageMove = e => {
-    const rect = e.currentTarget.getBoundingClientRect()
-    const nx = (e.clientX - rect.left) / Math.max(1, rect.width)
-    const ny = (e.clientY - rect.top) / Math.max(1, rect.height)
-    setTilt({
-      rx: (0.5 - ny) * 8,
-      ry: (nx - 0.5) * 10,
-      glowX: nx * 100,
-      glowY: ny * 100
-    })
-  }
-
-  const resetTilt = () => setTilt({ rx: 0, ry: 0, glowX: 50, glowY: 50 })
-
-  // Gentle auto-advance when visible, enabled, not hovered, and lightbox closed
+  // Gentle auto-advance when active and not hovered/inspecting
   useEffect(() => {
     if (!autoPlay || paused || lightboxOpen || count <= 1) return undefined
     const timer = setInterval(() => {
-      setDirection(1)
       setIndex(prev => (prev + 1) % count)
     }, 5200)
     return () => clearInterval(timer)
   }, [autoPlay, paused, lightboxOpen, count])
 
-  // Keyboard support inside lightbox
+  // Keyboard navigation in lightbox
   useEffect(() => {
     if (!lightboxOpen) return undefined
     const onKey = e => {
       if (e.key === 'Escape') setLightboxOpen(false)
-      if (e.key === 'ArrowRight') goTo(safeIndex + 1, 1)
-      if (e.key === 'ArrowLeft') goTo(safeIndex - 1, -1)
+      if (e.key === 'ArrowRight') goTo(safeIndex + 1)
+      if (e.key === 'ArrowLeft') goTo(safeIndex - 1)
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
   }, [lightboxOpen, safeIndex, count])
-
-  // Keep active contact-sheet thumbnail centered
-  useEffect(() => {
-    const rail = railRef.current
-    if (!rail) return
-    const activeBtn = rail.children[safeIndex]
-    if (activeBtn) {
-      activeBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
-    }
-  }, [safeIndex, category])
 
   if (!active) return null
 
@@ -112,7 +90,7 @@ export default function Certifications() {
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      <Reveal className="section-heading">
+      <Reveal className="section-heading cert-heading">
         <div>
           <span className="eyebrow">05 / Certifications</span>
           <h2>
@@ -121,14 +99,7 @@ export default function Certifications() {
             <em>credentials.</em>
           </h2>
         </div>
-        <p>
-          Interactive archive of verified courses, research presentations, hackathon podiums, and
-          campus recognitions — browse the fanned deck or click any certificate to inspect.
-        </p>
-      </Reveal>
 
-      {/* Filter pills + Autoplay control */}
-      <div className="cert-toolbar">
         <div className="cert-filters" role="tablist" aria-label="Filter certificates">
           {CATEGORIES.map(cat => {
             const catCount =
@@ -149,208 +120,148 @@ export default function Certifications() {
             )
           })}
         </div>
+      </Reveal>
 
-        <div className="cert-toolbar-meta">
-          <span className="cert-counter">
-            {String(safeIndex + 1).padStart(2, '0')} / {String(count).padStart(2, '0')}
-          </span>
-          <button
-            type="button"
-            className="cert-play-btn"
-            onClick={() => setAutoPlay(v => !v)}
-            aria-label={autoPlay ? 'Pause carousel autoplay' : 'Resume carousel autoplay'}
-          >
-            {autoPlay ? <Pause size={14} /> : <Play size={14} />}
-            {autoPlay ? 'Autoplay' : 'Paused'}
-          </button>
-        </div>
-      </div>
-
-      {/* Atelier Fanned Carousel Showcase */}
+      {/* Unconstrained Full-Bleed Flowing Arc Showcase */}
       <div
-        className="cert-atelier"
+        className="cert-freedom-bleed"
         tabIndex={0}
         onKeyDown={e => {
-          if (e.key === 'ArrowRight') goTo(safeIndex + 1, 1)
-          if (e.key === 'ArrowLeft') goTo(safeIndex - 1, -1)
+          if (e.key === 'ArrowRight') goTo(safeIndex + 1)
+          if (e.key === 'ArrowLeft') goTo(safeIndex - 1)
         }}
         aria-roledescription="carousel"
         aria-label="Certificates carousel"
       >
-        <SectionStickman variant="sketcher" className="stickman-cert-ledge" width={46} height={40} />
-
-        {/* Subtle geometric compass halo matching Hero drafting aesthetic */}
-        <svg className="cert-bg-compass" viewBox="0 0 600 420" aria-hidden="true">
-          <circle cx="300" cy="210" r="172" className="cert-compass-ring" />
-          <circle cx="300" cy="210" r="126" className="cert-compass-dashed" />
-          <line x1="40" y1="210" x2="560" y2="210" className="cert-compass-axis" />
-          <line x1="300" y1="20" x2="300" y2="400" className="cert-compass-axis" />
+        {/* Airy coastal ambient glow & orbital wave strings matching portfolio theme */}
+        <svg className="cert-orbital-backdrop" viewBox="0 0 1440 520" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M-40 310 Q360 150 720 260 T1480 210" className="cert-silk-arc cert-silk-teal" />
+          <path d="M-40 360 Q420 440 760 285 T1480 340" className="cert-silk-arc cert-silk-warm" />
+          <ellipse cx="720" cy="255" rx="540" ry="180" className="cert-silk-orbit" />
         </svg>
 
-        {/* Top 3D Fanned Card Deck Stage */}
-        <div className="cert-deck-stage">
-          {prevItem && (
-            <button
-              type="button"
-              className="cert-peek-card cert-peek-left"
-              onClick={() => goTo(prevIdx, -1)}
-              aria-label={`Previous: ${prevItem.title}`}
-            >
-              <img src={prevItem.preview} alt="" />
-              <span>{prevItem.issuer}</span>
-            </button>
-          )}
+        {/* Continuous Spring Deck Track */}
+        <div className="cert-arc-stage">
+          {items.map((cert, i) => {
+            const offset = getCircularOffset(i, safeIndex, count)
+            const abs = Math.abs(offset)
+            const isVisible = abs <= 2
+            const isActive = offset === 0
 
-          <button
-            type="button"
-            className="cert-nav-btn cert-nav-prev"
-            onClick={() => goTo(safeIndex - 1, -1)}
-            aria-label="Previous certificate"
-          >
-            <ChevronLeft size={20} />
-          </button>
+            // Smooth orbital fan positions across full width
+            const xOffset = offset * 335
+            const yOffset = abs * abs * 16
+            const scale = isActive ? 1 : abs === 1 ? 0.8 : 0.64
+            const rotate = offset * 5.2
+            const opacity = isActive ? 1 : abs === 1 ? 0.72 : abs === 2 ? 0.34 : 0
+            const zIndex = 20 - abs * 4
 
-          {/* Active Spotlight Framed Certificate with 3D Tilt + Sheen */}
-          <div
-            className="cert-spotlight-wrap"
-            onPointerMove={handleStageMove}
-            onPointerLeave={resetTilt}
-          >
-            <div
-              className="cert-spotlight-card"
-              onClick={() => setLightboxOpen(true)}
-              role="button"
-              tabIndex={0}
-              style={{
-                transform: `perspective(1100px) rotateX(${tilt.rx}deg) rotateY(${tilt.ry}deg)`,
-                '--glow-x': `${tilt.glowX}%`,
-                '--glow-y': `${tilt.glowY}%`
-              }}
-              onKeyDown={e => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  e.preventDefault()
-                  setLightboxOpen(true)
+            return (
+              <motion.div
+                key={cert.id}
+                className={`cert-float-card ${isActive ? 'is-active' : ''}`}
+                initial={false}
+                animate={{
+                  x: xOffset,
+                  y: yOffset,
+                  scale,
+                  rotate,
+                  opacity,
+                  zIndex
+                }}
+                transition={SPRING_GLIDE}
+                style={{
+                  pointerEvents: isVisible ? 'auto' : 'none',
+                  transformOrigin: 'center bottom'
+                }}
+                drag={isActive && count > 1 ? 'x' : false}
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={0.22}
+                onDragEnd={(_, info) => {
+                  if (info.offset.x < -55) goTo(safeIndex + 1)
+                  else if (info.offset.x > 55) goTo(safeIndex - 1)
+                }}
+                whileHover={
+                  isActive
+                    ? { y: -6, scale: 1.02, transition: { duration: 0.25 } }
+                    : { y: yOffset - 10, opacity: Math.min(0.95, opacity + 0.18) }
                 }
-              }}
-              aria-label={`Inspect ${active.title} full screen`}
-            >
-              <div className="cert-foil-corner" aria-hidden="true">
-                <Sparkles size={11} />
-                <span>#{String(safeIndex + 1).padStart(2, '0')}</span>
-              </div>
+                onClick={() => {
+                  if (isActive) setLightboxOpen(true)
+                  else goTo(i)
+                }}
+              >
+                {isActive && (
+                  <SectionStickman
+                    variant="starCheer"
+                    className="stickman-cert-float"
+                    width={38}
+                    height={44}
+                  />
+                )}
 
-              <AnimatePresence mode="wait" custom={direction}>
-                <motion.img
-                  key={active.id}
-                  src={active.preview}
-                  alt={`${active.title} — ${active.issuer}`}
-                  custom={direction}
-                  initial={{ opacity: 0, x: direction * 42, scale: 0.96 }}
-                  animate={{ opacity: 1, x: 0, scale: 1 }}
-                  exit={{ opacity: 0, x: direction * -42, scale: 0.96 }}
-                  transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                />
-              </AnimatePresence>
-
-              <div className="cert-sheen-layer" aria-hidden="true" />
-              <span className="cert-zoom-chip">
-                <Maximize2 size={13} /> Inspect full plate
-              </span>
-            </div>
-          </div>
-
-          <button
-            type="button"
-            className="cert-nav-btn cert-nav-next"
-            onClick={() => goTo(safeIndex + 1, 1)}
-            aria-label="Next certificate"
-          >
-            <ChevronRight size={20} />
-          </button>
-
-          {nextItem && (
-            <button
-              type="button"
-              className="cert-peek-card cert-peek-right"
-              onClick={() => goTo(nextIdx, 1)}
-              aria-label={`Next: ${nextItem.title}`}
-            >
-              <img src={nextItem.preview} alt="" />
-              <span>{nextItem.issuer}</span>
-            </button>
-          )}
-        </div>
-
-        {/* Autoplay Hairline Progress Bar */}
-        <div className="cert-progress-track" aria-hidden="true">
-          {autoPlay && !paused && !lightboxOpen && count > 1 && (
-            <motion.div
-              key={`${category}-${safeIndex}`}
-              className="cert-progress-fill"
-              initial={{ scaleX: 0 }}
-              animate={{ scaleX: 1 }}
-              transition={{ duration: 5.2, ease: 'linear' }}
-            />
-          )}
-        </div>
-
-        {/* Editorial Gallery Plaque Below Stage */}
-        <div className="cert-plaque">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={active.id}
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
-              className="cert-plaque-grid"
-            >
-              <div className="cert-plaque-index" aria-hidden="true">
-                {String(safeIndex + 1).padStart(2, '0')}
-              </div>
-
-              <div className="cert-plaque-main">
-                <div className="cert-badges">
-                  <span className="cert-badge-category">
-                    <Award size={12} /> {active.category}
-                  </span>
-                  <span className="cert-badge-date">{active.date}</span>
-                  {active.credential && (
-                    <span className="cert-badge-cred">
-                      <ShieldCheck size={12} /> {active.credential}
+                <div className="cert-float-media">
+                  <img src={cert.preview} alt={`${cert.title} — ${cert.issuer}`} draggable="false" />
+                  {isActive && (
+                    <span className="cert-inspect-pill">
+                      <Maximize2 size={12} /> Inspect
                     </span>
                   )}
                 </div>
+              </motion.div>
+            )
+          })}
+        </div>
 
-                <h3>{active.title}</h3>
-                <p className="cert-issuer">{active.issuer}</p>
-                <p className="cert-summary">{active.detail}</p>
+        {/* Minimal Floating Editorial Meta Below Active Card */}
+        <div className="cert-minimal-caption">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={active.id}
+              initial={{ opacity: 0, y: 10, filter: 'blur(4px)' }}
+              animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+              exit={{ opacity: 0, y: -8, filter: 'blur(4px)' }}
+              transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+              className="cert-caption-inner"
+            >
+              <div className="cert-caption-kicker">
+                <span className="cert-serif-num">{String(safeIndex + 1).padStart(2, '0')}</span>
+                <span className="cert-dot-sep">·</span>
+                <span>{active.category}</span>
+                <span className="cert-dot-sep">·</span>
+                <span>{active.date}</span>
+                {active.credential && (
+                  <>
+                    <span className="cert-dot-sep">·</span>
+                    <span className="cert-cred-inline">
+                      <ShieldCheck size={12} /> {active.credential}
+                    </span>
+                  </>
+                )}
               </div>
 
-              <div className="cert-plaque-actions">
+              <h3>{active.title}</h3>
+              <p className="cert-caption-issuer">{active.issuer}</p>
+
+              <div className="cert-caption-links">
                 <button
                   type="button"
-                  className="button button-primary"
+                  className="cert-link-pill cert-link-primary"
                   onClick={() => setLightboxOpen(true)}
                 >
-                  <Maximize2 size={15} /> Inspect
+                  <Maximize2 size={13} /> Full view
                 </button>
-                <a
-                  className="button button-quiet"
-                  href={active.file}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Open file <ExternalLink size={14} />
+                <a className="cert-link-pill" href={active.file} target="_blank" rel="noreferrer">
+                  Original file <ExternalLink size={13} />
                 </a>
                 {active.verifyUrl && (
                   <a
-                    className="button button-quiet"
+                    className="cert-link-pill"
                     href={active.verifyUrl}
                     target="_blank"
                     rel="noreferrer"
                   >
-                    Verify <ExternalLink size={14} />
+                    Verify <ExternalLink size={13} />
                   </a>
                 )}
               </div>
@@ -358,28 +269,49 @@ export default function Certifications() {
           </AnimatePresence>
         </div>
 
-        {/* Contact Sheet Filmstrip Dock */}
-        <div className="cert-thumb-rail" ref={railRef} aria-label="Certificate contact sheet">
-          {items.map((cert, i) => {
-            const isCurrent = i === safeIndex
-            return (
+        {/* Airy Constellation Scrubber Controls */}
+        <div className="cert-scrubber-bar">
+          <button
+            type="button"
+            className="cert-circle-ctrl"
+            onClick={() => goTo(safeIndex - 1)}
+            aria-label="Previous certificate"
+          >
+            <ChevronLeft size={18} />
+          </button>
+
+          <div className="cert-dots" role="tablist" aria-label="Choose certificate">
+            {items.map((cert, i) => (
               <button
                 key={cert.id}
                 type="button"
-                className={`cert-thumb ${isCurrent ? 'is-active' : ''}`}
-                onClick={() => goTo(i, i >= safeIndex ? 1 : -1)}
-                aria-label={`View ${cert.title}`}
-                aria-current={isCurrent ? 'true' : undefined}
-              >
-                <span className="cert-thumb-num">{String(i + 1).padStart(2, '0')}</span>
-                <img src={cert.preview} alt="" loading="lazy" />
-                <div>
-                  <span>{cert.issuer}</span>
-                  <strong>{cert.title}</strong>
-                </div>
-              </button>
-            )
-          })}
+                title={cert.title}
+                aria-label={`Jump to ${cert.title}`}
+                aria-selected={i === safeIndex}
+                className={`cert-dot ${i === safeIndex ? 'is-active' : ''}`}
+                onClick={() => goTo(i)}
+              />
+            ))}
+          </div>
+
+          <button
+            type="button"
+            className="cert-circle-ctrl"
+            onClick={() => goTo(safeIndex + 1)}
+            aria-label="Next certificate"
+          >
+            <ChevronRight size={18} />
+          </button>
+
+          <button
+            type="button"
+            className="cert-circle-ctrl cert-play-ctrl"
+            onClick={() => setAutoPlay(v => !v)}
+            aria-label={autoPlay ? 'Pause autoplay' : 'Play autoplay'}
+            title={autoPlay ? 'Pause autoplay' : 'Resume autoplay'}
+          >
+            {autoPlay ? <Pause size={14} /> : <Play size={14} />}
+          </button>
         </div>
       </div>
 
@@ -412,7 +344,7 @@ export default function Certifications() {
                   <button
                     type="button"
                     className="cert-lightbox-icon"
-                    onClick={() => goTo(safeIndex - 1, -1)}
+                    onClick={() => goTo(safeIndex - 1)}
                     aria-label="Previous certificate"
                   >
                     <ChevronLeft size={18} />
@@ -420,7 +352,7 @@ export default function Certifications() {
                   <button
                     type="button"
                     className="cert-lightbox-icon"
-                    onClick={() => goTo(safeIndex + 1, 1)}
+                    onClick={() => goTo(safeIndex + 1)}
                     aria-label="Next certificate"
                   >
                     <ChevronRight size={18} />
