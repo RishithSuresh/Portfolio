@@ -339,11 +339,25 @@ export const experience = [
       'Currently undertaking a technical internship at the Electronics and Radar Development Establishment (LRDE), DRDO, Bengaluru. Add your specific team, technologies and responsibilities here.'
   },
   {
+    period: 'Jul 2026 — Sep 2026',
+    role: 'Data Science & AI Trainee',
+    organization: 'India Data Research Academy (IDRA)',
+    detail:
+      'Completed a structured Data Science and Artificial Intelligence training and internship program combining academic sessions, practical learning activities, and project-based work.'
+  },
+  {
     period: 'Dec 2025 — Jul 2026',
     role: 'Student Research Project',
     organization: 'Unisys India',
     detail:
       'Collaborated with a team on Rule-Based Auto Remediation for Known Issues, a Windows-focused application exploring known-issue identification, remediation workflows and system event logging.'
+  },
+  {
+    period: 'Nov 2024 — Sep 2026',
+    role: 'Chair',
+    organization: 'AR VR HUB BMSIT',
+    detail:
+      'Coordinated workshops and training sessions to elevate AR/VR expertise within college and mentored students in the field of VR gaming tools.'
   },
   {
     period: '2023 — 2027',
@@ -361,6 +375,8 @@ export const skills = [
       'C',
       'Python',
       'SQL',
+      'C++',
+      'Java',
       'R'
     ]
   },
@@ -370,6 +386,7 @@ export const skills = [
       'Machine Learning',
       'Deep Learning',
       'Computer Vision',
+      'Neural Network',
       'Audio Processing',
       'Multimodal Learning'
     ]
@@ -392,6 +409,7 @@ export const skills = [
       'MongoDB',
       'Git',
       'GitHub',
+      'PowerBI',
       'PowerShell'
     ]
   }
